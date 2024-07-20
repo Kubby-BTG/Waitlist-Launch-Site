@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
-const inter = Inter({ subsets: ["latin"] });
+const DMSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +17,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={cn(DMSans.variable, "font-sans")}>
+        <header>
+          <div className="flex bg-background-invert text-white items-center gap-2 justify-center py-3">
+            <p className="sm:font-bold">Issue with your delivery {">"}</p>
+            <a href="/" className={"font-bold text-secondary underline"}>
+              Report it here
+            </a>
+          </div>
+        </header>
+        {children}
+      </body>
     </html>
   );
 }
