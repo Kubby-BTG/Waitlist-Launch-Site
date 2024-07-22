@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/prismicio";
 
 const DMSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
+
+const TTBluescreens = localFont({
+  src: "../fonts/tt-bluescreens-trial-webfont/TT Bluescreens Trial ExtraBold.woff",
+  weight: "800",
+  variable: "--font-tt-bluescreens",
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -27,7 +34,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(DMSans.variable, "font-sans")}>
+      <body
+        className={cn(DMSans.variable, TTBluescreens.variable, "font-sans")}
+      >
         <header>
           <div className="flex bg-background-invert text-white items-center gap-2 justify-center py-3">
             <p className="sm:font-bold">Issue with your delivery {">"}</p>
