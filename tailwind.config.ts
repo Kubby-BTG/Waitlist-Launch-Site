@@ -31,6 +31,7 @@ const config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-dm-sans)", "sans-serif"],
+        display: ["var(--font-tt-bluescreens)", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {
