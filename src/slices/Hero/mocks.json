@@ -1,0 +1,62 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Building Communities Through Shopping",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Kubby provides a seamless shopping and delivery experience that builds communities.",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"button_text": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Join Our Waitlist"
+			},
+			"image": {
+				"__TYPE__": "ImageContent",
+				"url": "https://images.unsplash.com/photo-1597714026720-8f74c62310ba?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxfHxjaXRydXMlMjBmcnVpdHxlbnwwfHx8fDE3MjE2MTMwMzh8MA&ixlib=rb-4.0.3&q=85",
+				"alt": "orange fruits under blue sky during daytime",
+				"origin": {
+					"id": "eaOjEz8746k",
+					"url": "https://images.unsplash.com/photo-1597714026720-8f74c62310ba?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxfHxjaXRydXMlMjBmcnVpdHxlbnwwfHx8fDE3MjE2MTMwMzh8MA&ixlib=rb-4.0.3&q=85",
+					"width": 5688,
+					"height": 3792
+				},
+				"width": 5688,
+				"height": 3792,
+				"edit": {
+					"background": "transparent",
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					}
+				},
+				"thumbnails": {}
+			}
+		},
+		"items": []
+	}
+]

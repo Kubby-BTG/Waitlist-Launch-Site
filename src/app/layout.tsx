@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/prismicio";
+import Header from "@/components/global/header";
 
 const DMSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
 
@@ -37,14 +38,7 @@ export default function RootLayout({
       <body
         className={cn(DMSans.variable, TTBluescreens.variable, "font-sans")}
       >
-        <header>
-          <div className="flex bg-background-invert text-white items-center gap-2 justify-center py-3">
-            <p className="sm:font-bold">Issue with your delivery {">"}</p>
-            <a href="/" className={"font-bold text-secondary underline"}>
-              Report it here
-            </a>
-          </div>
-        </header>
+        <Header />
         {children}
       </body>
     </html>
