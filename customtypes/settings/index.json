@@ -51,6 +51,14 @@
             }
           }
         }
+      },
+      "report_link": {
+        "type": "Link",
+        "config": {
+          "label": "Report Link",
+          "placeholder": "",
+          "select": null
+        }
       }
     }
   }

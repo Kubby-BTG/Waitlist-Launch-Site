@@ -141,6 +141,17 @@ interface SettingsDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#group
    */
   navigation: prismic.GroupField<Simplify<SettingsDocumentDataNavigationItem>>;
+
+  /**
+   * Report Link field in *Settings*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.report_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  report_link: prismic.LinkField;
 }
 
 /**
