@@ -17,7 +17,7 @@ const Brands = ({ slice }: Brands): JSX.Element => {
       data-slice-variation={slice.variation}
       className={"bg-background py-16"}
     >
-      <div className="container flex grid-cols-8 flex-col gap-10 md:grid md:gap-0">
+      <div className="container flex grid-cols-8 flex-col gap-10 md:grid md:gap-4">
         <p
           className={
             "text-center text-sm text-black/80 md:col-span-2 md:text-start md:text-base"
