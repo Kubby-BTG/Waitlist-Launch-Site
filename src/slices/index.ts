@@ -5,4 +5,5 @@ import dynamic from "next/dynamic";
 export const components = {
   hero: dynamic(() => import("./Hero")),
   social_proofs: dynamic(() => import("./Brands")),
+  text_with_image: dynamic(() => import("./TextWithImage")),
 };
