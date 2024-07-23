@@ -25,6 +25,7 @@ const config = {
       background: "#F9F3E8",
       "background-secondary": "#FFFAF0",
       "background-invert": "#001911",
+      "background-icon": "#005E40",
       white: "#FFFFFF",
       black: "#000000",
     },
