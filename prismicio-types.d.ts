@@ -4,7 +4,7 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type HomepageDocumentDataSlicesSlice = HeroSlice;
+type HomepageDocumentDataSlicesSlice = SocialProofsSlice | HeroSlice;
 
 /**
  * Content for Homepage documents
@@ -255,6 +255,78 @@ type HeroSliceVariation = HeroSliceDefault;
  */
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
+/**
+ * Item in *Brands → Default → Primary → Brands*
+ */
+export interface SocialProofsSliceDefaultPrimaryBrandsItem {
+  /**
+   * Brand Logo field in *Brands → Default → Primary → Brands*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_proofs.default.primary.brands[].brand_logo
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  brand_logo: prismic.ImageField<never>;
+}
+
+/**
+ * Primary content in *Brands → Default → Primary*
+ */
+export interface SocialProofsSliceDefaultPrimary {
+  /**
+   * Text field in *Brands → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_proofs.default.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text: prismic.KeyTextField;
+
+  /**
+   * Brands field in *Brands → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_proofs.default.primary.brands[]
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  brands: prismic.GroupField<
+    Simplify<SocialProofsSliceDefaultPrimaryBrandsItem>
+  >;
+}
+
+/**
+ * Default variation for Brands Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SocialProofsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<SocialProofsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Brands*
+ */
+type SocialProofsSliceVariation = SocialProofsSliceDefault;
+
+/**
+ * Brands Shared Slice
+ *
+ * - **API ID**: `social_proofs`
+ * - **Description**: SocialProofs
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SocialProofsSlice = prismic.SharedSlice<
+  "social_proofs",
+  SocialProofsSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -276,6 +348,11 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      SocialProofsSlice,
+      SocialProofsSliceDefaultPrimaryBrandsItem,
+      SocialProofsSliceDefaultPrimary,
+      SocialProofsSliceVariation,
+      SocialProofsSliceDefault,
     };
   }
 }

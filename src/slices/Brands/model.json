@@ -1,0 +1,43 @@
+{
+  "id": "social_proofs",
+  "type": "SharedSlice",
+  "name": "Brands",
+  "description": "SocialProofs",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "text": {
+          "type": "Text",
+          "config": {
+            "label": "Text",
+            "placeholder": ""
+          }
+        },
+        "brands": {
+          "type": "Group",
+          "config": {
+            "label": "Brands",
+            "repeat": true,
+            "fields": {
+              "brand_logo": {
+                "type": "Image",
+                "config": {
+                  "label": "Brand Logo",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

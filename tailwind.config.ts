@@ -22,7 +22,7 @@ const config = {
       secondary: "#38DAA6",
       brand: "#008359",
       "brand-secondary": "#BCFFE9",
-      background: "F9F3E8",
+      background: "#F9F3E8",
       "background-secondary": "#FFFAF0",
       "background-invert": "#001911",
       white: "#FFFFFF",

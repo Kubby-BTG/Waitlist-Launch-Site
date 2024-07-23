@@ -6,6 +6,7 @@ import {
   SettingsDocumentDataNavigationItem,
   Simplify,
 } from "../../../prismicio-types";
+import { Button } from "../ui/button";
 
 export default function Navbar({
   navigation,
@@ -32,9 +33,7 @@ export default function Navbar({
           </ul>
         </div>
 
-        <button className="hidden h-10 items-center justify-center rounded-lg bg-brand-secondary px-4 text-sm font-bold text-black md:flex">
-          <span className="font-medium">Join Waitlist</span>
-        </button>
+        <Button variant={"accent"}>Join Waitlist</Button>
 
         <div className="md:hidden">
           <button className="flex size-9 items-center justify-center rounded bg-brand">

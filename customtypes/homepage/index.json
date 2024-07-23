@@ -18,6 +18,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "social_proofs": {
+              "type": "SharedSlice"
+            },
             "hero": {
               "type": "SharedSlice"
             }
