@@ -5,12 +5,12 @@ import { SliceComponentProps } from "@prismicio/react";
 /**
  * Props for `SocialProofs`.
  */
-export type SocialProofsProps = SliceComponentProps<Content.SocialProofsSlice>;
+export type Brands = SliceComponentProps<Content.SocialProofsSlice>;
 
 /**
  * Component for "SocialProofs" Slices.
  */
-const SocialProofs = ({ slice }: SocialProofsProps): JSX.Element => {
+const Brands = ({ slice }: Brands): JSX.Element => {
   return (
     <section
       data-slice-type={slice.slice_type}
@@ -38,4 +38,4 @@ const SocialProofs = ({ slice }: SocialProofsProps): JSX.Element => {
   );
 };
 
-export default SocialProofs;
+export default Brands;
