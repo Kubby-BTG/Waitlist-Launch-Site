@@ -29,9 +29,9 @@ const TextWithImage = ({ slice }: TextWithImageProps): JSX.Element => {
             field={slice.primary.heading}
             components={{
               heading2: ({ children }) => (
-                <h1 className="font-display text-[2.625rem] font-extrabold uppercase leading-[3rem] text-primary md:text-[3.25rem] md:leading-[3.5rem]">
+                <h2 className="font-display text-[2.625rem] font-extrabold uppercase leading-[3rem] text-primary md:text-[3.25rem] md:leading-[3.5rem]">
                   {children}
-                </h1>
+                </h2>
               ),
               strong: ({ children }) => (
                 <strong className="text-brand">{children}</strong>
