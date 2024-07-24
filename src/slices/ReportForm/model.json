@@ -1,0 +1,51 @@
+{
+  "id": "report_form",
+  "type": "SharedSlice",
+  "name": "ReportForm",
+  "description": "ReportForm",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading2,strong"
+          }
+        },
+        "body": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Body",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "disclaimer_text": {
+          "type": "Text",
+          "config": {
+            "label": "Disclaimer Text",
+            "placeholder": ""
+          }
+        },
+        "form_title": {
+          "type": "Text",
+          "config": {
+            "label": "Form Title",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

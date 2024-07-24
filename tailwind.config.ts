@@ -28,6 +28,10 @@ const config = {
       "background-icon": "#005E40",
       white: "#FFFFFF",
       black: "#000000",
+      input: "#DBE3E6",
+      "input-foreground": "#909799",
+      "input-secondary": "#EFF4F5",
+      transparent: "transparent",
     },
     extend: {
       fontFamily: {

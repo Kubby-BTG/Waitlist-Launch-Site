@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type HomepageDocumentDataSlicesSlice =
+  | ReportFormSlice
   | FeaturesSlice
   | TextWithImageSlice
   | SocialProofsSlice
@@ -360,6 +361,81 @@ type HeroSliceVariation = HeroSliceDefault;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
+ * Primary content in *ReportForm → Default → Primary*
+ */
+export interface ReportFormSliceDefaultPrimary {
+  /**
+   * Heading field in *ReportForm → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: report_form.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Body field in *ReportForm → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: report_form.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Disclaimer Text field in *ReportForm → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: report_form.default.primary.disclaimer_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  disclaimer_text: prismic.KeyTextField;
+
+  /**
+   * Form Title field in *ReportForm → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: report_form.default.primary.form_title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  form_title: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for ReportForm Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ReportFormSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ReportFormSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ReportForm*
+ */
+type ReportFormSliceVariation = ReportFormSliceDefault;
+
+/**
+ * ReportForm Shared Slice
+ *
+ * - **API ID**: `report_form`
+ * - **Description**: ReportForm
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ReportFormSlice = prismic.SharedSlice<
+  "report_form",
+  ReportFormSliceVariation
+>;
+
+/**
  * Item in *Brands → Default → Primary → Brands*
  */
 export interface SocialProofsSliceDefaultPrimaryBrandsItem {
@@ -522,6 +598,10 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      ReportFormSlice,
+      ReportFormSliceDefaultPrimary,
+      ReportFormSliceVariation,
+      ReportFormSliceDefault,
       SocialProofsSlice,
       SocialProofsSliceDefaultPrimaryBrandsItem,
       SocialProofsSliceDefaultPrimary,

@@ -1,0 +1,41 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Tears"
+						}
+					}
+				]
+			},
+			"body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Ex duis officia eu pariatur tempor incididunt elit. Sunt in laborum esse duis in quis consectetur nulla nulla laborum cillum dolor dolore in. Voluptate dolore velit excepteur ullamco in ex officia ipsum cupidatat enim officia aute."
+						}
+					}
+				]
+			},
+			"disclaimer_text": {
+				"__TYPE__": "FieldContent",
+				"value": "when",
+				"type": "Text"
+			},
+			"form_title": {
+				"__TYPE__": "FieldContent",
+				"value": "driven",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]
