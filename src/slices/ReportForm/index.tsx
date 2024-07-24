@@ -24,14 +24,40 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={"bg-background py-12 md:py-32"}
+      className={"relative bg-background py-12 md:py-32"}
     >
       <div
         className={
-          "mx-auto w-full max-w-[44rem] bg-gradient-to-b from-[#003A28] to-[#57BF99] px-8 pb-[7.5rem] pt-[4.5rem] md:rounded-3xl md:pb-[14rem] md:pt-20"
+          "relative mx-auto w-full max-w-[44rem] bg-gradient-to-b from-[#003A28] to-[#57BF99] px-8 pb-[7.5rem] pt-[4.5rem] md:overflow-visible md:rounded-3xl md:pb-[14rem] md:pt-20"
         }
       >
-        <div className="mx-auto flex w-full max-w-[26rem] flex-col gap-6 md:gap-2.5">
+        {/* Decorations */}
+        <div className="absolute inset-0 py-20">
+          <img
+            src="/decorations/scribble.svg"
+            alt=""
+            className="h-full object-cover"
+          />
+        </div>
+
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 pt-32 md:pt-24">
+          <img src="/decorations/box-pattern.svg" alt="" />
+        </div>
+
+        <div className="absolute left-0 top-1/2 hidden -translate-y-full md:block">
+          <img
+            src="/decorations/ku-sticker.svg"
+            alt=""
+            className={"-translate-x-1/2"}
+          />
+        </div>
+
+        <div className="absolute bottom-14 left-1 block md:hidden">
+          <img src="/decorations/ku-sticker.svg" alt="" className={""} />
+        </div>
+
+        {/* Content */}
+        <div className="relative mx-auto flex w-full max-w-[26rem] flex-col gap-6 md:gap-2.5">
           <div className={"flex flex-col gap-1"}>
             <PrismicRichText
               field={slice.primary.heading}
@@ -162,6 +188,13 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
             </div>
           </form>
         </div>
+        <video
+          src="/animations/kube-on-pen.webm"
+          loop
+          autoPlay
+          muted
+          className={"absolute bottom-0 right-0"}
+        ></video>
       </div>
     </section>
   );
