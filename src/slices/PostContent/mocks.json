@@ -1,0 +1,20 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"rich_text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Veniam sit exercitation qui exercitation quis cillum qui enim in mollit consectetur laboris do. Sit pariatur fugiat deserunt ea nisi consectetur reprehenderit."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]
