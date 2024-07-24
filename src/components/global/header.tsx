@@ -15,7 +15,7 @@ export default async function Header() {
           <p className="text-sm">Issue with your delivery {">"}</p>
           <PrismicNextLink
             field={settings.data.report_link}
-            className={"text-sm font-bold text-secondary underline"}
+            className={"text-sm font-medium text-secondary underline"}
           >
             Report it here
           </PrismicNextLink>
