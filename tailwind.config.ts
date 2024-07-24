@@ -24,6 +24,7 @@ const config = {
       "brand-secondary": "#BCFFE9",
       background: "#F9F3E8",
       "background-secondary": "#FFFAF0",
+      "background-muted": "#EEDDBE",
       "background-invert": "#001911",
       "background-icon": "#005E40",
       white: "#FFFFFF",

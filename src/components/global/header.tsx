@@ -21,7 +21,10 @@ export default async function Header() {
           </PrismicNextLink>
         </div>
         {/* Navbar */}
-        <Navbar navigation={settings.data.navigation} />
+        <Navbar
+          navigation={settings.data.navigation}
+          reportLink={settings.data.report_link}
+        />
       </header>
     </StickyHeaderWrapper>
   );

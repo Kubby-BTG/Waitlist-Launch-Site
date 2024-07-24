@@ -1,6 +1,6 @@
 "use client";
 
-import { GroupField } from "@prismicio/client";
+import { GroupField, LinkField } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
 import {
   SettingsDocumentDataNavigationItem,
@@ -16,8 +16,10 @@ const MobileMenu = dynamic(() => import("./mobile-menu"), { ssr: false });
 
 export default function Navbar({
   navigation,
+  reportLink,
 }: {
   navigation: GroupField<Simplify<SettingsDocumentDataNavigationItem>>;
+  reportLink: LinkField;
 }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -82,7 +84,13 @@ export default function Navbar({
           </button>
         </div>
 
-        {isMobileMenuOpen && <MobileMenu />}
+        {isMobileMenuOpen && (
+          <MobileMenu
+            setIsOpen={setIsMobileMenuOpen}
+            navigation={navigation}
+            reportLink={reportLink}
+          />
+        )}
       </nav>
     </div>
   );
