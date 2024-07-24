@@ -32,6 +32,7 @@ const config = {
       "input-foreground": "#909799",
       "input-secondary": "#EFF4F5",
       transparent: "transparent",
+      light: "#EBFFF9",
     },
     extend: {
       fontFamily: {
