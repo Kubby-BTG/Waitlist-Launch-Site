@@ -1,3 +1,4 @@
+import Arrow from "@/components/ui/arrow";
 import { Button } from "@/components/ui/button";
 import { Content } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
@@ -47,6 +48,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
           <div>
             <Button variant={"accent"} className={"flex items-center gap-1"}>
               <span>{slice.primary.button_text}</span>
+              <Arrow className={"flex-none"} />
             </Button>
           </div>
         </div>
