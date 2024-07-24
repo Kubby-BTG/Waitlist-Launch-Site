@@ -1,3 +1,4 @@
+import WaitlistForm from "@/components/modals/waitlist-form";
 import Arrow from "@/components/ui/arrow";
 import { Button } from "@/components/ui/button";
 import { Content } from "@prismicio/client";
@@ -46,10 +47,12 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
           />
 
           <div>
-            <Button variant={"accent"} className={"flex items-center gap-1"}>
-              <span>{slice.primary.button_text}</span>
-              <Arrow className={"flex-none"} />
-            </Button>
+            <WaitlistForm>
+              <Button variant={"accent"} className={"flex items-center gap-1"}>
+                <span>{slice.primary.button_text}</span>
+                <Arrow className={"flex-none"} />
+              </Button>
+            </WaitlistForm>
           </div>
         </div>
         <PrismicNextImage field={slice.primary.image} />
