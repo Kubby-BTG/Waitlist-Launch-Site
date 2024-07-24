@@ -10,7 +10,7 @@ export default async function Header() {
   return (
     <header>
       <div className="flex items-center justify-center gap-2 bg-background-invert py-3 text-white">
-        <p className="sm:font-bold">Issue with your delivery {">"}</p>
+        <p className="">Issue with your delivery {">"}</p>
         <PrismicNextLink
           field={settings.data.report_link}
           className={"font-bold text-secondary underline"}
