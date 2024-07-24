@@ -49,7 +49,7 @@ export default function Navbar({
 
         <div className="md:hidden">
           <button
-            className="flex size-9 items-center justify-center rounded bg-brand"
+            className="flex size-9 items-center justify-center rounded bg-background-icon"
             onClick={() => setIsMobileMenuOpen(true)}
           >
             <span className="sr-only">Open Menu</span>
