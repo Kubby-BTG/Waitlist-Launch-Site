@@ -12,10 +12,10 @@ export default async function Header() {
     <StickyHeaderWrapper>
       <header>
         <div className="flex items-center justify-center gap-2 bg-background-invert py-3 text-white">
-          <p className="">Issue with your delivery {">"}</p>
+          <p className="text-sm">Issue with your delivery {">"}</p>
           <PrismicNextLink
             field={settings.data.report_link}
-            className={"font-bold text-secondary underline"}
+            className={"text-sm font-bold text-secondary underline"}
           >
             Report it here
           </PrismicNextLink>
