@@ -113,6 +113,91 @@ export interface SettingsDocumentDataNavigationItem {
 }
 
 /**
+ * Item in *Settings → Social Media*
+ */
+export interface SettingsDocumentDataSocialMediaItem {
+  /**
+   * Media Name field in *Settings → Social Media*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.social_media[].media_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  media_name: prismic.KeyTextField;
+
+  /**
+   * Media Icon field in *Settings → Social Media*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.social_media[].media_icon
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  media_icon: prismic.ImageField<never>;
+
+  /**
+   * Media Link field in *Settings → Social Media*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.social_media[].media_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  media_link: prismic.LinkField;
+}
+
+/**
+ * Item in *Settings → Main Navigation*
+ */
+export interface SettingsDocumentDataMainNavigationItem {
+  /**
+   * Link field in *Settings → Main Navigation*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.main_navigation[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * Label field in *Settings → Main Navigation*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.main_navigation[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Settings → Secondary Navigation*
+ */
+export interface SettingsDocumentDataSecondaryNavigationItem {
+  /**
+   * Link field in *Settings → Secondary Navigation*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.secondary_navigation[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * Label field in *Settings → Secondary Navigation*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.secondary_navigation[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+}
+
+/**
  * Content for Settings documents
  */
 interface SettingsDocumentData {
@@ -169,7 +254,99 @@ interface SettingsDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  report_link: prismic.LinkField;
+  report_link: prismic.LinkField /**
+   * CTA Heading field in *Settings*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.cta_heading
+   * - **Tab**: Footer
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */;
+  cta_heading: prismic.RichTextField;
+
+  /**
+   * CTA Body field in *Settings*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.cta_body
+   * - **Tab**: Footer
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  cta_body: prismic.RichTextField;
+
+  /**
+   * CTA Button Text field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.cta_button_text
+   * - **Tab**: Footer
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cta_button_text: prismic.KeyTextField;
+
+  /**
+   * Social Media field in *Settings*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.social_media[]
+   * - **Tab**: Footer
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  social_media: prismic.GroupField<
+    Simplify<SettingsDocumentDataSocialMediaItem>
+  >;
+
+  /**
+   * Main Navigation field in *Settings*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.main_navigation[]
+   * - **Tab**: Footer
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  main_navigation: prismic.GroupField<
+    Simplify<SettingsDocumentDataMainNavigationItem>
+  >;
+
+  /**
+   * Secondary Navigation field in *Settings*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.secondary_navigation[]
+   * - **Tab**: Footer
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  secondary_navigation: prismic.GroupField<
+    Simplify<SettingsDocumentDataSecondaryNavigationItem>
+  >;
+
+  /**
+   * Copyright field in *Settings*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.copyright
+   * - **Tab**: Footer
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  copyright: prismic.KeyTextField;
+
+  /**
+   * Background Image field in *Settings*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.background_image
+   * - **Tab**: Footer
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_image: prismic.ImageField<never>;
 }
 
 /**
@@ -727,6 +904,9 @@ declare module "@prismicio/client" {
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
+      SettingsDocumentDataSocialMediaItem,
+      SettingsDocumentDataMainNavigationItem,
+      SettingsDocumentDataSecondaryNavigationItem,
       AllDocumentTypes,
       CallToActionSlice,
       CallToActionSliceDefaultPrimary,
