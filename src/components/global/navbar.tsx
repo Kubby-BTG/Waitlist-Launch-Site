@@ -8,12 +8,21 @@ import {
 } from "../../../prismicio-types";
 import { Button } from "../ui/button";
 import KubbyLogo from "../ui/kubby-logo";
+import { useState } from "react";
+import dynamic from "next/dynamic";
+import { useLockBodyScroll } from "react-use";
+
+const MobileMenu = dynamic(() => import("./mobile-menu"), { ssr: false });
 
 export default function Navbar({
   navigation,
 }: {
   navigation: GroupField<Simplify<SettingsDocumentDataNavigationItem>>;
 }) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useLockBodyScroll(isMobileMenuOpen);
+
   return (
     <div className="bg-primary">
       <nav
@@ -34,10 +43,15 @@ export default function Navbar({
           </ul>
         </div>
 
-        <Button variant={"accent"}>Join Waitlist</Button>
+        <Button variant={"accent"} className={"max-md:hidden"}>
+          Join Waitlist
+        </Button>
 
         <div className="md:hidden">
-          <button className="flex size-9 items-center justify-center rounded bg-brand">
+          <button
+            className="flex size-9 items-center justify-center rounded bg-brand"
+            onClick={() => setIsMobileMenuOpen(true)}
+          >
             <span className="sr-only">Open Menu</span>
             <svg
               width="20"
@@ -67,6 +81,8 @@ export default function Navbar({
             </svg>
           </button>
         </div>
+
+        {isMobileMenuOpen && <MobileMenu />}
       </nav>
     </div>
   );
