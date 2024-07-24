@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type HomepageDocumentDataSlicesSlice =
+  | StorySlice
   | ReportFormSlice
   | FeaturesSlice
   | TextWithImageSlice
@@ -508,6 +509,78 @@ export type SocialProofsSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *Story → Default → Primary*
+ */
+export interface StorySliceDefaultPrimary {
+  /**
+   * Subheading field in *Story → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story.default.primary.subheading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subheading: prismic.KeyTextField;
+
+  /**
+   * Heading field in *Story → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Body field in *Story → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * Image field in *Story → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: story.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for Story Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StorySliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<StorySliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Story*
+ */
+type StorySliceVariation = StorySliceDefault;
+
+/**
+ * Story Shared Slice
+ *
+ * - **API ID**: `story`
+ * - **Description**: Story
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StorySlice = prismic.SharedSlice<"story", StorySliceVariation>;
+
+/**
  * Primary content in *TextWithImage → Default → Primary*
  */
 export interface TextWithImageSliceDefaultPrimary {
@@ -607,6 +680,10 @@ declare module "@prismicio/client" {
       SocialProofsSliceDefaultPrimary,
       SocialProofsSliceVariation,
       SocialProofsSliceDefault,
+      StorySlice,
+      StorySliceDefaultPrimary,
+      StorySliceVariation,
+      StorySliceDefault,
       TextWithImageSlice,
       TextWithImageSliceDefaultPrimary,
       TextWithImageSliceVariation,

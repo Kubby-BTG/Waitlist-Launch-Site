@@ -18,6 +18,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "story": {
+              "type": "SharedSlice"
+            },
             "report_form": {
               "type": "SharedSlice"
             },

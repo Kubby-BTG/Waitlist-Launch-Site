@@ -7,5 +7,6 @@ export const components = {
   hero: dynamic(() => import("./Hero")),
   report_form: dynamic(() => import("./ReportForm")),
   social_proofs: dynamic(() => import("./Brands")),
+  story: dynamic(() => import("./Story")),
   text_with_image: dynamic(() => import("./TextWithImage")),
 };
