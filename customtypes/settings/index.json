@@ -68,7 +68,7 @@
           "label": "CTA Heading",
           "placeholder": "",
           "allowTargetBlank": true,
-          "multi": "heading1,strong"
+          "multi": "strong,heading2"
         }
       },
       "cta_body": {

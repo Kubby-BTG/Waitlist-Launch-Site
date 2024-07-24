@@ -33,6 +33,7 @@ const config = {
       "input-secondary": "#EFF4F5",
       transparent: "transparent",
       light: "#EBFFF9",
+      minimal: "#CFD6D9",
     },
     extend: {
       fontFamily: {

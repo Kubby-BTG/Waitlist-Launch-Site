@@ -5,6 +5,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/prismicio";
 import Header from "@/components/global/header";
+import Footer from "@/components/global/footer";
 
 const DMSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
 
@@ -40,6 +41,7 @@ export default function RootLayout({
       >
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
