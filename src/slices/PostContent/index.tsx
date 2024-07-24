@@ -4,12 +4,12 @@ import { SliceComponentProps } from "@prismicio/react";
 /**
  * Props for `Content`.
  */
-export type ContentProps = SliceComponentProps<Content.ContentSlice>;
+export type PostContentProps = SliceComponentProps<Content.ContentSlice>;
 
 /**
  * Component for "Content" Slices.
  */
-const Content = ({ slice }: ContentProps): JSX.Element => {
+const PostContent = ({ slice }: PostContentProps): JSX.Element => {
   return (
     <section
       data-slice-type={slice.slice_type}
@@ -20,4 +20,4 @@ const Content = ({ slice }: ContentProps): JSX.Element => {
   );
 };
 
-export default Content;
+export default PostContent;
