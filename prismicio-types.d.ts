@@ -114,6 +114,7 @@ export type BlogPostDocument<Lang extends string = string> =
   >;
 
 type HomepageDocumentDataSlicesSlice =
+  | FeaturedBlogPostsSlice
   | CallToActionSlice
   | StorySlice
   | ReportFormSlice
@@ -587,6 +588,81 @@ type ContentSliceVariation = ContentSliceDefault;
 export type ContentSlice = prismic.SharedSlice<
   "content",
   ContentSliceVariation
+>;
+
+/**
+ * Primary content in *FeaturedBlogPosts → Default → Primary*
+ */
+export interface FeaturedBlogPostsSliceDefaultPrimary {
+  /**
+   * Subheading field in *FeaturedBlogPosts → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: featured_blog_posts.default.primary.subheading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subheading: prismic.KeyTextField;
+
+  /**
+   * Heading field in *FeaturedBlogPosts → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: featured_blog_posts.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Button Text field in *FeaturedBlogPosts → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: featured_blog_posts.default.primary.button_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_text: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *FeaturedBlogPosts → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: featured_blog_posts.default.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+}
+
+/**
+ * Default variation for FeaturedBlogPosts Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FeaturedBlogPostsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FeaturedBlogPostsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *FeaturedBlogPosts*
+ */
+type FeaturedBlogPostsSliceVariation = FeaturedBlogPostsSliceDefault;
+
+/**
+ * FeaturedBlogPosts Shared Slice
+ *
+ * - **API ID**: `featured_blog_posts`
+ * - **Description**: FeaturedBlogPosts
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FeaturedBlogPostsSlice = prismic.SharedSlice<
+  "featured_blog_posts",
+  FeaturedBlogPostsSliceVariation
 >;
 
 /**
@@ -1076,6 +1152,10 @@ declare module "@prismicio/client" {
       ContentSliceDefaultPrimary,
       ContentSliceVariation,
       ContentSliceDefault,
+      FeaturedBlogPostsSlice,
+      FeaturedBlogPostsSliceDefaultPrimary,
+      FeaturedBlogPostsSliceVariation,
+      FeaturedBlogPostsSliceDefault,
       FeaturesSlice,
       FeaturesSliceDefaultPrimaryItemsItem,
       FeaturesSliceDefaultPrimary,
