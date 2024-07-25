@@ -18,6 +18,7 @@ import {
   SelectValue,
 } from "../ui/select";
 import { Button } from "../ui/button";
+import { cn } from "@/lib/utils";
 
 export default function WaitlistForm({ children }: { children: ReactNode }) {
   const [isSent, setIsSent] = useState(false);
@@ -31,7 +32,12 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
 
-      <DialogContent className={"flex px-6 py-8 md:px-8"}>
+      <DialogContent
+        className={cn(
+          "flex px-6 py-8 md:px-8",
+          isSent ? "md:max-w-[32.875rem]" : "",
+        )}
+      >
         {/* Filling state */}
         {!isSent ? (
           <>
@@ -111,13 +117,14 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
                 autoPlay
                 loop
                 muted
+                className={""}
               ></video>
             </div>
 
-            <div className="flex flex-col justify-end gap-2">
+            <div className="flex flex-col justify-end gap-2 md:pt-8">
               <h1
                 className={
-                  "w-full font-display text-[2rem] uppercase leading-[2.5rem] text-primary max-md:text-center"
+                  "w-full font-display text-[2rem] uppercase leading-[2.5rem] text-primary max-md:text-center md:text-[3.25rem] md:leading-[3.5rem]"
                 }
               >
                 You&apos;re In
