@@ -11,6 +11,8 @@ import KubbyLogo from "../ui/kubby-logo";
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import { useLockBodyScroll } from "react-use";
+import Link from "next/link";
+import WaitlistForm from "../modals/waitlist-form";
 
 const MobileMenu = dynamic(() => import("./mobile-menu"), { ssr: false });
 
@@ -32,7 +34,10 @@ export default function Navbar({
       >
         <div className={"flex items-center gap-8"}>
           {/* Kubby Logo */}
-          <KubbyLogo />
+          <Link href={"/"}>
+            <KubbyLogo />
+            <span className="sr-only">Go home</span>
+          </Link>
           {/* Desktop Navlinks */}
           <ul className="hidden items-center gap-4 md:flex">
             {navigation.map((item, i) => (
@@ -50,9 +55,11 @@ export default function Navbar({
           </ul>
         </div>
 
-        <Button variant={"accent"} className={"max-md:hidden"}>
-          Join Waitlist
-        </Button>
+        <WaitlistForm>
+          <Button variant={"accent"} className={"max-md:hidden"}>
+            Join Waitlist
+          </Button>
+        </WaitlistForm>
 
         <div className="md:hidden">
           <button
