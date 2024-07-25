@@ -24,13 +24,16 @@ const TextWithImage = ({ slice }: TextWithImageProps): JSX.Element => {
           className={"md:col-span-4"}
         /> */}
 
-        <video
-          src={"/animations/" + slice.primary.animation_file_name}
-          className={"md:col-span-4"}
-          autoPlay
-          muted
-          loop
-        ></video>
+        <div className="overflow-hidden md:col-span-4">
+          <video
+            src={"/animations/" + slice.primary.animation_file_name}
+            // TODO: Remove the scaling later
+            className={"scale-[1.1]"}
+            autoPlay
+            muted
+            loop
+          ></video>
+        </div>
 
         <div className="flex flex-col gap-4 md:col-span-3 md:col-start-6 md:justify-center">
           <PrismicRichText
