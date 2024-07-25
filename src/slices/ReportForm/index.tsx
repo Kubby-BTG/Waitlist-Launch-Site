@@ -56,6 +56,10 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
           <img src="/decorations/ku-sticker.svg" alt="" className={""} />
         </div>
 
+        <div className="absolute -right-24 bottom-1/2 block hidden -translate-y-40 md:block">
+          <img src="/decorations/star.svg" alt="" className={""} />
+        </div>
+
         {/* Content */}
         <div className="relative mx-auto flex w-full max-w-[26rem] flex-col gap-6 md:gap-2.5">
           <div className={"flex flex-col gap-1"}>
