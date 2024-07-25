@@ -8,6 +8,7 @@ export const components = {
   featured_blog_posts: dynamic(() => import("./FeaturedBlogPosts")),
   features: dynamic(() => import("./Features")),
   hero: dynamic(() => import("./Hero")),
+  partnership_form: dynamic(() => import("./PartnershipForm")),
   report_form: dynamic(() => import("./ReportForm")),
   social_proofs: dynamic(() => import("./Brands")),
   story: dynamic(() => import("./Story")),

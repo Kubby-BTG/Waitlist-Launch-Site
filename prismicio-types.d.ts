@@ -245,6 +245,82 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
+type PartnershipDocumentDataSlicesSlice = PartnershipFormSlice;
+
+/**
+ * Content for Partnership documents
+ */
+interface PartnershipDocumentData {
+  /**
+   * Title field in *Partnership*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: partnership.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Slice Zone field in *Partnership*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: partnership.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<PartnershipDocumentDataSlicesSlice> /**
+   * Meta Title field in *Partnership*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: partnership.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Partnership*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: partnership.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Partnership*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: partnership.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Partnership document from Prismic
+ *
+ * - **API ID**: `partnership`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type PartnershipDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<PartnershipDocumentData>,
+    "partnership",
+    Lang
+  >;
+
 /**
  * Item in *Settings → Navigation*
  */
@@ -526,6 +602,7 @@ export type SettingsDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | BlogPostDocument
   | HomepageDocument
+  | PartnershipDocument
   | SettingsDocument;
 
 /**
@@ -886,6 +963,61 @@ type HeroSliceVariation = HeroSliceDefault;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
+ * Primary content in *PartnershipForm → Default → Primary*
+ */
+export interface PartnershipFormSliceDefaultPrimary {
+  /**
+   * Heading field in *PartnershipForm → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: partnership_form.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Body field in *PartnershipForm → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: partnership_form.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+}
+
+/**
+ * Default variation for PartnershipForm Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PartnershipFormSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<PartnershipFormSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *PartnershipForm*
+ */
+type PartnershipFormSliceVariation = PartnershipFormSliceDefault;
+
+/**
+ * PartnershipForm Shared Slice
+ *
+ * - **API ID**: `partnership_form`
+ * - **Description**: PartnershipForm
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PartnershipFormSlice = prismic.SharedSlice<
+  "partnership_form",
+  PartnershipFormSliceVariation
+>;
+
+/**
  * Primary content in *ReportForm → Default → Primary*
  */
 export interface ReportFormSliceDefaultPrimary {
@@ -1186,6 +1318,9 @@ declare module "@prismicio/client" {
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
+      PartnershipDocument,
+      PartnershipDocumentData,
+      PartnershipDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
@@ -1214,6 +1349,10 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      PartnershipFormSlice,
+      PartnershipFormSliceDefaultPrimary,
+      PartnershipFormSliceVariation,
+      PartnershipFormSliceDefault,
       ReportFormSlice,
       ReportFormSliceDefaultPrimary,
       ReportFormSliceVariation,
