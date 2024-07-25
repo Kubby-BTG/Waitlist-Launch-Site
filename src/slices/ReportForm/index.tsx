@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -190,6 +191,8 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
                 placeholder={"dd/mm/yyyy"}
               />
             </div>
+
+            <Button>Send Package</Button>
           </form>
         </div>
         <video
