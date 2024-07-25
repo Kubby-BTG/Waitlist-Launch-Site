@@ -2,11 +2,11 @@ import { Content } from "@prismicio/client";
 import Arrow from "../ui/arrow";
 import { Badge } from "../ui/badge";
 import { PrismicLink, PrismicRichText } from "@prismicio/react";
-import { PrismicNextImage } from "@prismicio/next";
+import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 
 export default function PostCard({ post }: { post: Content.BlogPostDocument }) {
   return (
-    <PrismicLink
+    <PrismicNextLink
       document={post}
       className={
         "hover:shadow-expand ease-kubby group flex w-full flex-col gap-4 rounded-lg bg-background-secondary p-4 pb-6 shadow-none transition-all duration-500 hover:bg-white/80"
@@ -59,6 +59,6 @@ export default function PostCard({ post }: { post: Content.BlogPostDocument }) {
           </div>
         </div>
       </div>
-    </PrismicLink>
+    </PrismicNextLink>
   );
 }
