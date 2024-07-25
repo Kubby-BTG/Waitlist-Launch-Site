@@ -72,7 +72,7 @@ export default function MobileMenu({
           </li>
         ))}
         <li className={"py-6 text-sm font-bold text-black/80"}>
-          <PrismicNextLink field={reportLink}>
+          <PrismicNextLink field={reportLink} onClick={() => setIsOpen(false)}>
             Report Delivery Issue
           </PrismicNextLink>
         </li>
