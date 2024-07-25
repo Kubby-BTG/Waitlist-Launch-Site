@@ -39,7 +39,7 @@ export default function Navbar({
               <li
                 key={i}
                 className={
-                  "ease-kubby transition-500 rounded-full bg-white/0 px-4 py-1.5 text-lg font-medium leading-5 text-white transition-colors hover:bg-white/5"
+                  "ease-kubby transition-500 rounded-full bg-white/0 px-4 py-[0.325rem] text-[0.938rem] font-medium leading-5 text-white transition-colors hover:bg-white/5"
                 }
               >
                 <PrismicNextLink field={item.link}>
