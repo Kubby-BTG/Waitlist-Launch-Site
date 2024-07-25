@@ -11,6 +11,7 @@ import {
 import { PrismicNextLink } from "@prismicio/next";
 import { Button } from "../ui/button";
 import Arrow from "../ui/arrow";
+import WaitlistForm from "../modals/waitlist-form";
 
 export default function MobileMenu({
   setIsOpen,
@@ -76,10 +77,12 @@ export default function MobileMenu({
       </ul>
 
       <div className={"w-full"}>
-        <Button className={"flex w-full items-center gap-1"}>
-          <span>Join Our Waitlist</span>
-          <Arrow className={"flex-none"} />
-        </Button>
+        <WaitlistForm>
+          <Button className={"flex w-full items-center gap-1"}>
+            <span>Join Our Waitlist</span>
+            <Arrow className={"flex-none"} />
+          </Button>
+        </WaitlistForm>
       </div>
 
       {post}

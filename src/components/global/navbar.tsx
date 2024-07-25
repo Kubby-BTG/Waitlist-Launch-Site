@@ -8,11 +8,12 @@ import {
 } from "../../../prismicio-types";
 import { Button } from "../ui/button";
 import KubbyLogo from "../ui/kubby-logo";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useLockBodyScroll } from "react-use";
 import Link from "next/link";
 import WaitlistForm from "../modals/waitlist-form";
+import { usePathname } from "next/navigation";
 
 const MobileMenu = dynamic(() => import("./mobile-menu"), { ssr: false });
 
@@ -27,7 +28,13 @@ export default function Navbar({
 }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const pathname = usePathname();
+
   useLockBodyScroll(isMobileMenuOpen);
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
 
   return (
     <div className="bg-primary">
