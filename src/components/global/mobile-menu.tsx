@@ -2,7 +2,7 @@
 
 import { createPortal } from "react-dom";
 import KubbyLogo from "../ui/kubby-logo";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 import { GroupField, LinkField } from "@prismicio/client";
 import {
   SettingsDocumentDataNavigationItem,
@@ -16,18 +16,20 @@ export default function MobileMenu({
   setIsOpen,
   navigation,
   reportLink,
+  post,
 }: {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   navigation: GroupField<Simplify<SettingsDocumentDataNavigationItem>>;
   reportLink: LinkField;
+  post?: ReactNode;
 }) {
   return createPortal(
-    <div className="fixed inset-0 z-50 flex flex-col gap-8 bg-background px-6 py-8 md:hidden">
+    <div className="fixed inset-0 z-50 flex flex-col gap-8 overflow-y-auto bg-background px-6 py-8 md:hidden">
       <div className="flex items-center justify-between">
         <KubbyLogo iconOnly />
         <div className="md:hidden">
           <button
-            className="bg-background-muted flex size-9 items-center justify-center rounded"
+            className="flex size-9 items-center justify-center rounded bg-background-muted"
             onClick={() => setIsOpen(false)}
           >
             <span className="sr-only">Close Menu</span>
@@ -60,7 +62,7 @@ export default function MobileMenu({
           <li
             key={i}
             className={
-              "border-b-background-muted border-b py-6 text-sm font-bold text-black/80"
+              "border-b border-b-background-muted py-6 text-sm font-bold text-black/80"
             }
           >
             <PrismicNextLink field={item.link}>{item.label}</PrismicNextLink>
@@ -73,10 +75,14 @@ export default function MobileMenu({
         </li>
       </ul>
 
-      <Button className={"flex items-center gap-1"}>
-        <span>Join Our Waitlist</span>
-        <Arrow className={"flex-none"} />
-      </Button>
+      <div className={"w-full"}>
+        <Button className={"flex w-full items-center gap-1"}>
+          <span>Join Our Waitlist</span>
+          <Arrow className={"flex-none"} />
+        </Button>
+      </div>
+
+      {post}
     </div>,
     document.body,
   );

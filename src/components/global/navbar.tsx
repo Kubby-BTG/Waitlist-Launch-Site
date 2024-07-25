@@ -8,7 +8,7 @@ import {
 } from "../../../prismicio-types";
 import { Button } from "../ui/button";
 import KubbyLogo from "../ui/kubby-logo";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import dynamic from "next/dynamic";
 import { useLockBodyScroll } from "react-use";
 import Link from "next/link";
@@ -19,9 +19,11 @@ const MobileMenu = dynamic(() => import("./mobile-menu"), { ssr: false });
 export default function Navbar({
   navigation,
   reportLink,
+  post,
 }: {
   navigation: GroupField<Simplify<SettingsDocumentDataNavigationItem>>;
   reportLink: LinkField;
+  post?: ReactNode;
 }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -101,6 +103,7 @@ export default function Navbar({
             setIsOpen={setIsMobileMenuOpen}
             navigation={navigation}
             reportLink={reportLink}
+            post={post}
           />
         )}
       </nav>
