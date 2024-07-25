@@ -55,7 +55,11 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
             </WaitlistForm>
           </div>
         </div>
-        <PrismicNextImage field={slice.primary.image} />
+
+        <div>
+          <video src="/animations/waitlist.webm" autoPlay muted loop></video>
+        </div>
+        {/* <PrismicNextImage field={slice.primary.image} /> */}
       </div>
     </section>
   );
