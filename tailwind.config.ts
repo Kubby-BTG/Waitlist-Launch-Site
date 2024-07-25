@@ -35,6 +35,7 @@ const config = {
       transparent: "transparent",
       light: "#EBFFF9",
       minimal: "#CFD6D9",
+      gray: "#474B4D",
     },
     extend: {
       fontFamily: {
