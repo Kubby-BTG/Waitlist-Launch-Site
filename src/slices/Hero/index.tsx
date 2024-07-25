@@ -1,3 +1,4 @@
+import HeroVideo from "@/components/animated-ui/hero-video";
 import WaitlistForm from "@/components/modals/waitlist-form";
 import Arrow from "@/components/ui/arrow";
 import { Button } from "@/components/ui/button";
@@ -56,9 +57,8 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
           </div>
         </div>
 
-        <div>
-          <video src="/animations/waitlist.webm" autoPlay muted loop></video>
-        </div>
+        {/* Hero Video */}
+        <HeroVideo />
         {/* <PrismicNextImage field={slice.primary.image} /> */}
       </div>
     </section>
