@@ -111,18 +111,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
           </>
         ) : (
           <div className={"grid gap-8 md:grid-cols-2"}>
-            {/* Animation */}
-            <div className={"flex items-end"}>
-              <video
-                src="/animations/kube-on-green.webm"
-                autoPlay
-                loop
-                muted
-                className={"h-full object-cover"}
-              ></video>
-            </div>
-
-            <div className="flex flex-col justify-end gap-2 md:pt-8">
+            <div className="flex flex-col justify-start gap-2 md:pb-8">
               <h1
                 className={
                   "w-full font-display text-[2rem] uppercase leading-[2.5rem] text-primary max-md:text-center md:text-[3.25rem] md:leading-[3.5rem]"
@@ -138,6 +127,17 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
               <DialogClose asChild onClick={() => setIsSent(false)}>
                 <Button>Okay</Button>
               </DialogClose>
+            </div>
+
+            {/* Animation */}
+            <div className={"flex items-end"}>
+              <video
+                src="/animations/kube-on-green.webm"
+                autoPlay
+                loop
+                muted
+                className={"h-full object-cover"}
+              ></video>
             </div>
           </div>
         )}
