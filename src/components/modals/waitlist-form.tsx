@@ -93,7 +93,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
             </form>
 
             {/* Animation */}
-            <div className={"hidden w-60 flex-none md:flex md:items-end"}>
+            <div className={"hidden w-[17rem] flex-none md:flex md:items-end"}>
               <video
                 src="/animations/kube-on-red.webm"
                 autoPlay
