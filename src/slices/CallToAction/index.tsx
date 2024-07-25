@@ -30,11 +30,7 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
             className={"h-36 w-full object-cover md:w-60"}
           />
           <div className="flex w-full flex-col gap-2 p-6 md:flex-row md:items-center md:p-8">
-            <p
-              className={
-                "w-full text-sm font-bold leading-6 text-white md:text-xl md:leading-6"
-              }
-            >
+            <p className={"w-full text-xl font-bold leading-6 text-white"}>
               {slice.primary.text}
             </p>
             <div>
