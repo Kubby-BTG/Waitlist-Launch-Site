@@ -117,7 +117,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
                 autoPlay
                 loop
                 muted
-                className={""}
+                className={"h-full object-cover"}
               ></video>
             </div>
 
