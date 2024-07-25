@@ -66,7 +66,9 @@ export default function MobileMenu({
               "border-b border-b-background-muted py-6 text-sm font-bold text-black/80"
             }
           >
-            <PrismicNextLink field={item.link}>{item.label}</PrismicNextLink>
+            <PrismicNextLink field={item.link} onClick={() => setIsOpen(false)}>
+              {item.label}
+            </PrismicNextLink>
           </li>
         ))}
         <li className={"py-6 text-sm font-bold text-black/80"}>
