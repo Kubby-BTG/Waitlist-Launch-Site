@@ -1,5 +1,5 @@
 import { Content } from "@prismicio/client";
-import { SliceComponentProps } from "@prismicio/react";
+import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
 /**
  * Props for `Content`.
@@ -14,8 +14,16 @@ const PostContent = ({ slice }: PostContentProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
+      className={"text-black/80"}
     >
-      Placeholder component for content (variation: {slice.variation}) Slices
+      <PrismicRichText
+        field={slice.primary.rich_text}
+        components={{
+          paragraph: ({ children }) => (
+            <p className="max-w-[35rem] text-sm leading-5">{children}</p>
+          ),
+        }}
+      />
     </section>
   );
 };

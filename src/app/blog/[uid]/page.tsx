@@ -1,9 +1,12 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SliceZone } from "@prismicio/react";
+import { PrismicRichText, SliceZone } from "@prismicio/react";
 
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
+import { formatDate } from "@/lib/utils";
+import { PrismicNextImage } from "@prismicio/next";
+import CuratedPosts from "@/components/blog-post/curated-posts";
 
 type Params = { uid: string };
 
@@ -13,7 +16,55 @@ export default async function Page({ params }: { params: Params }) {
     .getByUID("blog_post", params.uid)
     .catch(() => notFound());
 
-  return <SliceZone slices={page.data.slices} components={components} />;
+  return (
+    <div className="flex flex-col gap-10 py-16 md:flex-row md:gap-20 md:pb-14 md:pt-12">
+      <div className="flex w-full flex-grow flex-col gap-10">
+        {/* Above section */}
+        <div className={"flex flex-col gap-4 md:mt-16 md:gap-10"}>
+          <PrismicRichText
+            field={page.data.title}
+            components={{
+              heading1: ({ children }) => (
+                <h1
+                  className={
+                    "text-[1.5rem] font-bold leading-10 text-primary md:-mb-4 md:text-[3rem] md:leading-[4rem]"
+                  }
+                >
+                  {children}
+                </h1>
+              ),
+            }}
+          />
+          <span className="text-gray flex gap-1 text-[11px] leading-5 md:text-sm md:leading-5">
+            <span>{page.data.author}</span>|
+            <span>
+              {page.data.publication_date
+                ? formatDate(page.data.publication_date)
+                : ""}
+            </span>
+          </span>
+        </div>
+        <div className="relative aspect-video max-w-[44rem] overflow-hidden rounded-[5px] md:rounded-lg">
+          <PrismicNextImage
+            field={page.data.featured_image}
+            className={"absolute inset-0 object-cover"}
+          />
+        </div>
+        <SliceZone slices={page.data.slices} components={components} />
+      </div>
+
+      <div className={"flex flex-col gap-4 md:max-w-[17rem]"}>
+        <p
+          className={
+            "text-primary-darker font-display text-[2.625rem] uppercase leading-[3rem]"
+          }
+        >
+          More <span className={"text-brand"}>Stories</span>
+        </p>
+        <CuratedPosts className={"md:grid-cols-1"} />
+      </div>
+    </div>
+  );
 }
 
 export async function generateMetadata({

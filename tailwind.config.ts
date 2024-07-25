@@ -19,6 +19,7 @@ const config = {
     },
     colors: {
       primary: "#003A28",
+      "primary-darker": "#002A1D",
       secondary: "#38DAA6",
       brand: "#008359",
       "brand-secondary": "#BCFFE9",

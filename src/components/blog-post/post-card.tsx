@@ -3,6 +3,7 @@ import Arrow from "../ui/arrow";
 import { Badge } from "../ui/badge";
 import { PrismicLink, PrismicRichText } from "@prismicio/react";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
+import { formatDate } from "@/lib/utils";
 
 export default function PostCard({ post }: { post: Content.BlogPostDocument }) {
   return (
@@ -15,7 +16,7 @@ export default function PostCard({ post }: { post: Content.BlogPostDocument }) {
       <div className="relative flex h-[12.5rem] items-center justify-center overflow-hidden rounded-[5px] bg-input">
         <PrismicNextImage
           field={post.data.featured_image}
-          className={"absolute inset-0 object-cover"}
+          className={"absolute inset-0 h-full w-full object-cover"}
         />
       </div>
 
@@ -49,7 +50,11 @@ export default function PostCard({ post }: { post: Content.BlogPostDocument }) {
 
           <span className="text-gray flex gap-1 text-[11px] leading-5">
             <span>{post.data.author}</span>|
-            <span>{post.data.publication_date}</span>
+            <span>
+              {post.data.publication_date
+                ? formatDate(post.data.publication_date)
+                : ""}
+            </span>
           </span>
 
           <div className="flex flex-grow items-end gap-4">
