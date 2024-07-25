@@ -1,3 +1,4 @@
+import PartnerWithUsForm from "@/components/partnership/partner-with-us-form";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
@@ -42,6 +43,10 @@ const PartnershipForm = ({ slice }: PartnershipFormProps): JSX.Element => {
               ),
             }}
           />
+        </div>
+
+        <div className={"md:flex md:justify-end"}>
+          <PartnerWithUsForm />
         </div>
       </div>
     </section>
