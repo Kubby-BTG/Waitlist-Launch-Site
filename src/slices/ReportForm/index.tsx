@@ -28,7 +28,7 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
     >
       <div
         className={
-          "relative mx-auto w-full max-w-[44rem] bg-gradient-to-b from-[#003A28] to-[#57BF99] px-8 pb-[7.5rem] pt-[4.5rem] md:overflow-visible md:rounded-3xl md:pb-[14rem] md:pt-20"
+          "relative mx-auto w-full max-w-[44rem] bg-primary px-8 pb-[7.5rem] pt-[4.5rem] md:overflow-visible md:rounded-3xl md:pb-[14rem] md:pt-20"
         }
       >
         {/* Decorations */}
@@ -193,7 +193,9 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
           loop
           autoPlay
           muted
-          className={"absolute bottom-0 right-0"}
+          className={
+            "absolute bottom-0 right-0 h-[140px] md:bottom-9 md:h-[204px]"
+          }
         ></video>
       </div>
     </section>
