@@ -1,3 +1,5 @@
+import Arrow from "@/components/ui/arrow";
+import { Button } from "@/components/ui/button";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 
@@ -15,9 +17,31 @@ const FeaturedBlogPosts = ({ slice }: FeaturedBlogPostsProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
+      className={"bg-background py-16 md:py-[9.5rem]"}
     >
-      Placeholder component for featured_blog_posts (variation:{" "}
-      {slice.variation}) Slices
+      <div className="container flex flex-col gap-14">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-1">
+            <span className={"text-xs uppercase leading-5 text-primary"}>
+              {slice.primary.subheading}
+            </span>
+            <h2
+              className={
+                "font-display text-[3.25rem] font-extrabold uppercase leading-[3.5rem] text-primary"
+              }
+            >
+              {slice.primary.heading}
+            </h2>
+          </div>
+
+          <div>
+            <Button variant={"outline"} className={"flex items-center gap-1"}>
+              <span>{slice.primary.button_text}</span>
+              <Arrow className={"flex-none"} />
+            </Button>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
