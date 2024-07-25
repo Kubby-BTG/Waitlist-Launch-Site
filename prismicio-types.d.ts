@@ -1269,6 +1269,16 @@ export interface TextWithImageSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   body: prismic.RichTextField;
+
+  /**
+   * Animation File Name field in *TextWithImage → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_with_image.default.primary.animation_file_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  animation_file_name: prismic.KeyTextField;
 }
 
 /**

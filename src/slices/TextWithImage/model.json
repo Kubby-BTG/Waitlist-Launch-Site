@@ -37,6 +37,13 @@
             "allowTargetBlank": true,
             "multi": "paragraph,strong,em,hyperlink"
           }
+        },
+        "animation_file_name": {
+          "type": "Text",
+          "config": {
+            "label": "Animation File Name",
+            "placeholder": ""
+          }
         }
       },
       "items": {}

@@ -19,10 +19,18 @@ const TextWithImage = ({ slice }: TextWithImageProps): JSX.Element => {
       className={"bg-background py-16"}
     >
       <div className="container flex grid-cols-8 flex-col-reverse gap-10 md:grid md:gap-0">
-        <PrismicNextImage
+        {/* <PrismicNextImage
           field={slice.primary.image}
           className={"md:col-span-4"}
-        />
+        /> */}
+
+        <video
+          src={"/animations/" + slice.primary.animation_file_name}
+          className={"md:col-span-4"}
+          autoPlay
+          muted
+          loop
+        ></video>
 
         <div className="flex flex-col gap-4 md:col-span-3 md:col-start-6 md:justify-center">
           <PrismicRichText
