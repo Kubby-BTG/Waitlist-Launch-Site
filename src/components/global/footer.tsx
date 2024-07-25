@@ -39,7 +39,7 @@ export default async function Footer() {
               field={settings.data.cta_body}
               components={{
                 paragraph: ({ children }) => (
-                  <p className={"text-minimal text-sm leading-6"}>{children}</p>
+                  <p className={"text-sm leading-6 text-minimal"}>{children}</p>
                 ),
               }}
             />
@@ -71,7 +71,9 @@ export default async function Footer() {
                 <PrismicNextLink
                   field={item.link}
                   key={i}
-                  className={"text-sm text-white"}
+                  className={
+                    "text-sm text-white hover:underline hover:underline-offset-4"
+                  }
                 >
                   {item.label}
                 </PrismicNextLink>
@@ -83,7 +85,9 @@ export default async function Footer() {
                 <PrismicNextLink
                   field={item.link}
                   key={i}
-                  className={"text-sm text-white"}
+                  className={
+                    "text-sm text-white hover:underline hover:underline-offset-4"
+                  }
                 >
                   {item.label}
                 </PrismicNextLink>
@@ -115,7 +119,9 @@ export default async function Footer() {
                 <PrismicNextLink
                   field={item.link}
                   key={i}
-                  className={"text-sm text-white"}
+                  className={
+                    "text-sm text-white hover:underline hover:underline-offset-4"
+                  }
                 >
                   {item.label}
                 </PrismicNextLink>
@@ -140,7 +146,7 @@ export default async function Footer() {
                 field={settings.data.cta_body}
                 components={{
                   paragraph: ({ children }) => (
-                    <p className={"text-minimal text-sm leading-6"}>
+                    <p className={"text-sm leading-6 text-minimal"}>
                       {children}
                     </p>
                   ),
@@ -163,7 +169,9 @@ export default async function Footer() {
                 <PrismicNextLink
                   field={item.link}
                   key={i}
-                  className={"text-sm text-white"}
+                  className={
+                    "text-sm text-white hover:underline hover:underline-offset-4"
+                  }
                 >
                   {item.label}
                 </PrismicNextLink>
