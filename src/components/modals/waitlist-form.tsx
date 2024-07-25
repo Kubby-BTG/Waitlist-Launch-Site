@@ -35,7 +35,9 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
       <DialogContent
         className={cn(
           "flex px-6 py-8 md:px-8",
-          isSent ? "w-[calc(100vw-6.5rem)] max-w-[17.5rem] py-6" : "",
+          isSent
+            ? "max-w-[17.5rem] max-md:w-[calc(100vw-6.5rem)] md:max-w-[32.875rem]"
+            : "",
         )}
       >
         {/* Filling state */}
