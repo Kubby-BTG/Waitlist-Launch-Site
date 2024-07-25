@@ -34,9 +34,14 @@ export default function Navbar({
           {/* Kubby Logo */}
           <KubbyLogo />
           {/* Desktop Navlinks */}
-          <ul className="hidden items-center gap-6 md:flex">
+          <ul className="hidden items-center gap-4 md:flex">
             {navigation.map((item, i) => (
-              <li key={i} className={"text-lg font-bold text-white"}>
+              <li
+                key={i}
+                className={
+                  "ease-kubby transition-500 rounded-full bg-white/0 px-4 py-1.5 text-lg font-medium leading-5 text-white transition-colors hover:bg-white/5"
+                }
+              >
                 <PrismicNextLink field={item.link}>
                   {item.label}
                 </PrismicNextLink>
