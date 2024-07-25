@@ -23,6 +23,7 @@ export type ReportFormProps = SliceComponentProps<Content.ReportFormSlice>;
 const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
   return (
     <section
+      id={"report-form"}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className={"relative bg-background py-12 md:py-32"}

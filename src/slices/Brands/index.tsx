@@ -13,6 +13,7 @@ export type Brands = SliceComponentProps<Content.SocialProofsSlice>;
 const Brands = ({ slice }: Brands): JSX.Element => {
   return (
     <section
+      id={"brands"}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className={"bg-background py-16"}

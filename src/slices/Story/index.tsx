@@ -13,6 +13,7 @@ export type StoryProps = SliceComponentProps<Content.StorySlice>;
 const Story = ({ slice }: StoryProps): JSX.Element => {
   return (
     <section
+      id={"story"}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className={"bg-primary py-14 md:py-[9.5rem]"}
@@ -24,7 +25,7 @@ const Story = ({ slice }: StoryProps): JSX.Element => {
           </span>
           <h2
             className={
-              "text-light font-display text-5xl font-extrabold uppercase leading-[2.625rem] md:text-[3.5rem] md:leading-[3.25rem]"
+              "font-display text-5xl font-extrabold uppercase leading-[2.625rem] text-light md:text-[3.5rem] md:leading-[3.25rem]"
             }
           >
             {slice.primary.heading}
