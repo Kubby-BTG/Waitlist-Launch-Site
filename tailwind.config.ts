@@ -37,6 +37,10 @@ const config = {
       minimal: "#CFD6D9",
       gray: "#474B4D",
     },
+    boxShadow: {
+      none: "0 0 0 rgba(0,0,0,0)",
+      expand: "0 5rem 8rem rgba(0,0,0,.12)",
+    },
     extend: {
       fontFamily: {
         sans: ["var(--font-dm-sans)", "sans-serif"],
@@ -55,6 +59,9 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      transitionTimingFunction: {
+        kubby: "cubic-bezier(0.22,1,0.36,1)",
       },
     },
   },

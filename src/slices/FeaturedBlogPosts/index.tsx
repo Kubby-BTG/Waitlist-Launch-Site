@@ -1,4 +1,4 @@
-import PostCard from "@/components/blog-post/post-card";
+import CuratedPosts from "@/components/blog-post/curated-posts";
 import Arrow from "@/components/ui/arrow";
 import { Button } from "@/components/ui/button";
 import { Content } from "@prismicio/client";
@@ -43,11 +43,7 @@ const FeaturedBlogPosts = ({ slice }: FeaturedBlogPostsProps): JSX.Element => {
           </div>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-3">
-          {Array.from({ length: 3 }).map((_, index) => (
-            <PostCard key={index} />
-          ))}
-        </div>
+        <CuratedPosts />
       </div>
     </section>
   );
