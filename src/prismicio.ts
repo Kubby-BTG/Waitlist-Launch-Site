@@ -20,6 +20,10 @@ const routes: prismic.ClientConfig["routes"] = [
     path: "/",
   },
   {
+    type: "partnership",
+    path: "/partnership",
+  },
+  {
     type: "blog_post",
     path: "/blog/:uid",
   },
