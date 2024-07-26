@@ -4,6 +4,86 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type BlogFeedDocumentDataSlicesSlice =
+  | FilteredBlogCollectionsSlice
+  | CallToActionSlice
+  | BlogCollectionsSlice
+  | BlogHeroSlice;
+
+/**
+ * Content for Blog Feed documents
+ */
+interface BlogFeedDocumentData {
+  /**
+   * Title field in *Blog Feed*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_feed.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Slice Zone field in *Blog Feed*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_feed.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<BlogFeedDocumentDataSlicesSlice> /**
+   * Meta Title field in *Blog Feed*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: blog_feed.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Blog Feed*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: blog_feed.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Blog Feed*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_feed.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Blog Feed document from Prismic
+ *
+ * - **API ID**: `blog_feed`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type BlogFeedDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<BlogFeedDocumentData>,
+    "blog_feed",
+    Lang
+  >;
+
 /**
  * Item in *Blog Post → Tags*
  */
@@ -600,10 +680,111 @@ export type SettingsDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
+  | BlogFeedDocument
   | BlogPostDocument
   | HomepageDocument
   | PartnershipDocument
   | SettingsDocument;
+
+/**
+ * Primary content in *BlogCollections → Default → Primary*
+ */
+export interface BlogCollectionsSliceDefaultPrimary {
+  /**
+   * Heading field in *BlogCollections → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_collections.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.RichTextField;
+}
+
+/**
+ * Default variation for BlogCollections Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlogCollectionsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<BlogCollectionsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *BlogCollections*
+ */
+type BlogCollectionsSliceVariation = BlogCollectionsSliceDefault;
+
+/**
+ * BlogCollections Shared Slice
+ *
+ * - **API ID**: `blog_collections`
+ * - **Description**: BlogCollections
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlogCollectionsSlice = prismic.SharedSlice<
+  "blog_collections",
+  BlogCollectionsSliceVariation
+>;
+
+/**
+ * Primary content in *BlogHero → Default → Primary*
+ */
+export interface BlogHeroSliceDefaultPrimary {
+  /**
+   * Heading field in *BlogHero → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_hero.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Body field in *BlogHero → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_hero.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  body: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for BlogHero Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlogHeroSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<BlogHeroSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *BlogHero*
+ */
+type BlogHeroSliceVariation = BlogHeroSliceDefault;
+
+/**
+ * BlogHero Shared Slice
+ *
+ * - **API ID**: `blog_hero`
+ * - **Description**: BlogHero
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlogHeroSlice = prismic.SharedSlice<
+  "blog_hero",
+  BlogHeroSliceVariation
+>;
 
 /**
  * Primary content in *CallToAction → Default → Primary*
@@ -888,6 +1069,52 @@ type FeaturesSliceVariation = FeaturesSliceDefault;
 export type FeaturesSlice = prismic.SharedSlice<
   "features",
   FeaturesSliceVariation
+>;
+
+/**
+ * Primary content in *FilteredBlogCollections → Default → Primary*
+ */
+export interface FilteredBlogCollectionsSliceDefaultPrimary {
+  /**
+   * Heading field in *FilteredBlogCollections → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: filtered_blog_collections.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.RichTextField;
+}
+
+/**
+ * Default variation for FilteredBlogCollections Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FilteredBlogCollectionsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FilteredBlogCollectionsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *FilteredBlogCollections*
+ */
+type FilteredBlogCollectionsSliceVariation =
+  FilteredBlogCollectionsSliceDefault;
+
+/**
+ * FilteredBlogCollections Shared Slice
+ *
+ * - **API ID**: `filtered_blog_collections`
+ * - **Description**: FilteredBlogCollections
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FilteredBlogCollectionsSlice = prismic.SharedSlice<
+  "filtered_blog_collections",
+  FilteredBlogCollectionsSliceVariation
 >;
 
 /**
@@ -1321,6 +1548,9 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      BlogFeedDocument,
+      BlogFeedDocumentData,
+      BlogFeedDocumentDataSlicesSlice,
       BlogPostDocument,
       BlogPostDocumentData,
       BlogPostDocumentDataTagsItem,
@@ -1338,6 +1568,14 @@ declare module "@prismicio/client" {
       SettingsDocumentDataMainNavigationItem,
       SettingsDocumentDataSecondaryNavigationItem,
       AllDocumentTypes,
+      BlogCollectionsSlice,
+      BlogCollectionsSliceDefaultPrimary,
+      BlogCollectionsSliceVariation,
+      BlogCollectionsSliceDefault,
+      BlogHeroSlice,
+      BlogHeroSliceDefaultPrimary,
+      BlogHeroSliceVariation,
+      BlogHeroSliceDefault,
       CallToActionSlice,
       CallToActionSliceDefaultPrimary,
       CallToActionSliceVariation,
@@ -1355,6 +1593,10 @@ declare module "@prismicio/client" {
       FeaturesSliceDefaultPrimary,
       FeaturesSliceVariation,
       FeaturesSliceDefault,
+      FilteredBlogCollectionsSlice,
+      FilteredBlogCollectionsSliceDefaultPrimary,
+      FilteredBlogCollectionsSliceVariation,
+      FilteredBlogCollectionsSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
