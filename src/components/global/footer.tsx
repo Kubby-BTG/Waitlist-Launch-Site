@@ -4,6 +4,7 @@ import { PrismicRichText } from "@prismicio/react";
 import { Button } from "../ui/button";
 import Arrow from "../ui/arrow";
 import KubbyLogo from "../ui/kubby-logo";
+import WaitlistForm from "../modals/waitlist-form";
 
 export default async function Footer() {
   const client = createClient();
@@ -45,10 +46,15 @@ export default async function Footer() {
             />
 
             <div>
-              <Button variant={"accent"} className={"flex items-center gap-1"}>
-                <span>{settings.data.cta_button_text}</span>
-                <Arrow className={"flex-none"} />
-              </Button>
+              <WaitlistForm>
+                <Button
+                  variant={"accent"}
+                  className={"flex items-center gap-1"}
+                >
+                  <span>{settings.data.cta_button_text}</span>
+                  <Arrow className={"flex-none"} />
+                </Button>
+              </WaitlistForm>
             </div>
           </div>
           {/* Mobile Nav */}
@@ -154,13 +160,15 @@ export default async function Footer() {
               />
 
               <div>
-                <Button
-                  variant={"accent"}
-                  className={"flex items-center gap-1"}
-                >
-                  <span>{settings.data.cta_button_text}</span>
-                  <Arrow className={"flex-none"} />
-                </Button>
+                <WaitlistForm>
+                  <Button
+                    variant={"accent"}
+                    className={"flex items-center gap-1"}
+                  >
+                    <span>{settings.data.cta_button_text}</span>
+                    <Arrow className={"flex-none"} />
+                  </Button>
+                </WaitlistForm>
               </div>
             </div>
 
