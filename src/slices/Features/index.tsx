@@ -15,7 +15,7 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={"bg-background py-16 md:py-36"}
+      className={"bg-background py-16"}
     >
       <div className="container flex flex-col gap-6">
         <PrismicRichText
@@ -50,7 +50,7 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
             {slice.primary.items.map((item, i) => (
               <div
                 key={i}
-                className="hover:shadow-expand ease-kubby flex flex-col gap-8 rounded-lg bg-background-secondary px-8 py-6 shadow-none transition-all duration-500 hover:bg-white/80 md:gap-14"
+                className="flex flex-col gap-8 rounded-lg bg-background-secondary px-8 py-6 shadow-none transition-all duration-500 ease-kubby hover:bg-white/80 hover:shadow-expand md:gap-14"
               >
                 <div className="flex size-10 items-center justify-center rounded bg-background-icon">
                   <PrismicNextImage field={item.icon} />
