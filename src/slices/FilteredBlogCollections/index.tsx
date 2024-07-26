@@ -1,4 +1,6 @@
 import CuratedPosts from "@/components/blog-post/curated-posts";
+import FilteredPosts from "@/components/blog-post/filtered-posts";
+
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
@@ -34,6 +36,8 @@ const FilteredBlogCollections = ({
             ),
           }}
         />
+
+        <FilteredPosts />
 
         <CuratedPosts limit={6} />
       </div>
