@@ -1,4 +1,6 @@
-import { useState } from "react";
+"use client";
+
+import { useRef, useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -10,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
+import { useMeasure } from "react-use";
 
 interface ISelectProps {
   values: {
@@ -27,6 +30,8 @@ const MultiSelect = ({
   selectedItems,
   setSelectedItems,
 }: ISelectProps) => {
+  const [ref, { width }] = useMeasure<HTMLButtonElement>();
+
   const handleSelectChange = (value: string) => {
     if (!selectedItems.includes(value)) {
       setSelectedItems((prev) => [...prev, value]);
@@ -41,9 +46,12 @@ const MultiSelect = ({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className={"w-full"}>
-        <span className="relative flex min-h-12 w-full flex-col items-start rounded-md border border-primary/30 px-4 py-2 text-primary">
-          <span className={cn("text-xs font-bold leading-3")}>{label}</span>
+      <DropdownMenuTrigger className={"w-full"} asChild>
+        <button
+          ref={ref}
+          className="relative flex min-h-12 w-full flex-col items-start rounded-md border border-primary/30 px-4 py-2 text-primary"
+        >
+          <span className={cn("text-xs font-semibold leading-3")}>{label}</span>
           <span className={"-mb-1 w-full truncate text-start"}>
             {selectedItems.length > 0 &&
             !(selectedItems.length === values.length)
@@ -54,11 +62,16 @@ const MultiSelect = ({
           <span className="absolute inset-y-0 right-2 flex flex-col justify-center text-primary">
             <ChevronDown />
           </span>
-        </span>
+        </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className="inset-x-0 w-full"
+        className="inset-x-0 max-h-[50vh] w-full space-y-3 overflow-y-auto"
         onCloseAutoFocus={(e) => e.preventDefault()}
+        sideOffset={6}
+        align={"start"}
+        style={{
+          width: `${width + 34}px`,
+        }}
       >
         <DropdownMenuCheckboxItem
           onSelect={(e) => e.preventDefault()}

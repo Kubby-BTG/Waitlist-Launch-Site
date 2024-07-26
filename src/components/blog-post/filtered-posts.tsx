@@ -13,7 +13,7 @@ export default function FilteredPosts() {
   return (
     <>
       {/* Filter */}
-      <div className="flex flex-col gap-2 md:flex-row">
+      <div className="flex flex-col gap-2 md:flex-row md:gap-6">
         {/* Platform */}
         <div className={"relative w-full md:max-w-[15.5rem]"}>
           <MultiSelect
@@ -34,7 +34,7 @@ export default function FilteredPosts() {
               key: category,
               value: category,
             }))}
-            label={"Platform"}
+            label={"Category"}
             selectedItems={selectedCategories}
             setSelectedItems={setSelectedCategories}
           />
@@ -47,13 +47,13 @@ export default function FilteredPosts() {
               key: topic,
               value: topic,
             }))}
-            label={"Platform"}
+            label={"Topic"}
             selectedItems={selectedTopics}
             setSelectedItems={setSelectedTopics}
           />
         </div>
 
-        <Button>Filter</Button>
+        <Button className={"md:h-[3.125rem] md:px-6"}>Filter</Button>
       </div>
     </>
   );
