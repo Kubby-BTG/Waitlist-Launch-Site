@@ -202,7 +202,7 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
           autoPlay
           muted
           className={
-            "absolute bottom-0 right-0 h-[140px] md:bottom-9 md:h-[204px]"
+            "absolute bottom-0 right-0 h-[140px] md:-bottom-1.5 md:h-[204px]"
           }
         ></video>
       </div>
