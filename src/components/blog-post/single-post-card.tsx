@@ -14,7 +14,7 @@ export default function SinglePostCard({
     <PrismicNextLink
       document={post}
       className={
-        "group flex w-full flex-col gap-6 rounded-lg bg-background-secondary p-4 pb-6 shadow-none transition-all duration-500 ease-kubby hover:bg-white/80 hover:shadow-expand md:grid md:grid-cols-2 md:gap-2 md:pb-4"
+        "group flex w-full flex-col gap-6 rounded-lg bg-background-secondary p-4 pb-8 shadow-none transition-all duration-500 ease-kubby hover:bg-white/80 hover:shadow-expand md:grid md:grid-cols-2 md:gap-2 md:pb-4"
       }
     >
       <div className="relative flex min-h-[23.5rem] items-center justify-center overflow-hidden rounded-[5px] bg-input">
