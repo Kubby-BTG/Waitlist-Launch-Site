@@ -26,7 +26,9 @@ export default function SinglePostCard({
 
       <div className="flex flex-grow flex-col gap-2 justify-self-stretch px-6 text-black/80 md:px-12 md:py-8">
         <div className="flex items-center justify-between">
-          <p className={"text-sm uppercase leading-6"}>{post.data.category}</p>
+          <p className={"text-sm uppercase leading-6"}>
+            Blog/{post.data.category}
+          </p>
 
           <div className="flex size-8 items-center justify-center rounded-full border border-input text-black transition-all duration-500 ease-kubby group-hover:border-transparent group-hover:bg-primary group-hover:text-white">
             <Arrow className={"size-4"} />

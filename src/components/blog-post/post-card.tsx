@@ -22,7 +22,9 @@ export default function PostCard({ post }: { post: Content.BlogPostDocument }) {
 
       <div className="flex flex-grow flex-col gap-6 justify-self-stretch text-black/80">
         <div className="flex items-center justify-between">
-          <p className={"text-xs uppercase leading-6"}>{post.data.category}</p>
+          <p className={"text-xs uppercase leading-6"}>
+            Blog/{post.data.category}
+          </p>
 
           <div className="flex size-8 items-center justify-center rounded-full border border-input text-black transition-all duration-500 ease-kubby group-hover:border-transparent group-hover:bg-primary group-hover:text-white">
             <Arrow className={"size-4"} />
