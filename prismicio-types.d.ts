@@ -150,17 +150,6 @@ interface BlogPostDocumentData {
   publication_date: prismic.DateField;
 
   /**
-   * Category field in *Blog Post*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: blog_post.category
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  category: prismic.KeyTextField;
-
-  /**
    * Tags field in *Blog Post*
    *
    * - **Field Type**: Group
@@ -181,6 +170,19 @@ interface BlogPostDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   author: prismic.KeyTextField;
+
+  /**
+   * Category field in *Blog Post*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_post.category
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  category: prismic.SelectField<
+    "E-Commerce" | "Packages" | "Sustainability" | "Spaces" | "Updates"
+  >;
 
   /**
    * Slice Zone field in *Blog Post*

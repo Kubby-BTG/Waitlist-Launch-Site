@@ -45,13 +45,6 @@
           "placeholder": ""
         }
       },
-      "category": {
-        "type": "Text",
-        "config": {
-          "label": "Category",
-          "placeholder": ""
-        }
-      },
       "tags": {
         "type": "Group",
         "config": {
@@ -73,6 +66,20 @@
         "config": {
           "label": "Author",
           "placeholder": ""
+        }
+      },
+      "category": {
+        "type": "Select",
+        "config": {
+          "label": "Category",
+          "placeholder": "",
+          "options": [
+            "E-Commerce",
+            "Packages",
+            "Sustainability",
+            "Spaces",
+            "Updates"
+          ]
         }
       },
       "slices": {
