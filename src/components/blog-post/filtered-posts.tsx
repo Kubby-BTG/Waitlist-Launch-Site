@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { MultiSelect } from "@/components/ui/multi-select";
+import MultiSelect from "@/components/ui/multi-select";
 
 import { Fragment, useState } from "react";
 import CuratedPosts from "@/components/blog-post/curated-posts";
@@ -16,21 +16,30 @@ export default function FilteredPosts() {
       <div className="flex flex-col gap-2 md:flex-row">
         {/* Platform */}
         <div className={"relative w-full md:max-w-[15.5rem]"}>
-          <MultiSelect
+          {/* <MultiSelect
             options={platforms.map((platform) => ({
               label: platform,
               value: platform,
             }))}
             defaultValue={[]}
-            onValueChange={(val) => setSelectedPlatforms(val)}
+            onValueChange={(val) => console.log(val)}
             value={selectedPlatforms}
             placeholder={"Platform"}
+          /> */}
+          <MultiSelect
+            values={platforms.map((platform) => ({
+              key: platform,
+              value: platform,
+            }))}
+            placeholder={"Platform"}
+            selectedItems={selectedPlatforms}
+            setSelectedItems={setSelectedPlatforms}
           />
         </div>
 
         {/* Category */}
         <div className={"relative w-full md:max-w-[15.5rem]"}>
-          <MultiSelect
+          {/* <MultiSelect
             options={categories.map((category) => ({
               label: category,
               value: category,
@@ -39,18 +48,18 @@ export default function FilteredPosts() {
             onValueChange={(val) => setSelectedCategories(val)}
             value={selectedCategories}
             placeholder={"Category"}
-          />
+          /> */}
         </div>
 
         {/* Topic */}
         <div className={"relative w-full md:max-w-[15.5rem]"}>
-          <MultiSelect
+          {/* <MultiSelect
             options={topics.map((topic) => ({ label: topic, value: topic }))}
             defaultValue={[]}
             onValueChange={(val) => setSelectedTopics(val)}
             value={selectedTopics}
             placeholder={"Topic"}
-          />
+          /> */}
         </div>
 
         <Button>Filter</Button>
