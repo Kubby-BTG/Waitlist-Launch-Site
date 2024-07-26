@@ -20,7 +20,7 @@ export default function HeroVideo() {
     <div className={"relative"}>
       <video
         ref={videoRef}
-        src="/animations/waitlist.webm"
+        src="/animations/waitlist_increased.webm"
         muted
         loop
         autoPlay
