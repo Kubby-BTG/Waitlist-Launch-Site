@@ -51,17 +51,6 @@ export default function PartnerWithUsForm() {
           placeholder={"Your company name"}
         />
       </div>
-      <div className={"flex w-full flex-col gap-1"}>
-        <label htmlFor="business-address" className={"text-sm text-black"}>
-          Business Address
-        </label>
-        <Input
-          type="text"
-          id={"business-address"}
-          required
-          placeholder={"Your address"}
-        />
-      </div>
 
       <Button type={"submit"}>Continue</Button>
 
