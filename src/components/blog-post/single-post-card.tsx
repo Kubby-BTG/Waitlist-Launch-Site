@@ -58,16 +58,16 @@ export default function SinglePostCard({
             }}
           />
 
-          {/* <span className="flex gap-1 text-[11px] leading-5 text-gray">
+          <span className="flex gap-1 text-[11px] leading-5 text-gray">
             <span>{post.data.author}</span>|
             <span>
               {post.data.publication_date
                 ? formatDate(post.data.publication_date)
                 : ""}
             </span>
-          </span> */}
+          </span>
 
-          <div className="hidden flex-grow items-start gap-4 md:flex">
+          <div className="flex flex-grow items-start gap-4">
             {post.data.tags.map((tag, i) => (
               <Badge key={i}>{tag.label}</Badge>
             ))}
