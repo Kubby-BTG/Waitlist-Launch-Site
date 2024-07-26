@@ -18,7 +18,7 @@ const FeaturedBlogPosts = ({ slice }: FeaturedBlogPostsProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={"bg-background py-16 md:py-[9.5rem]"}
+      className={"bg-background py-16"}
     >
       <div className="container flex flex-col gap-14">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">

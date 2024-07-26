@@ -20,7 +20,7 @@ const FilteredBlogCollections = ({
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={"bg-background py-16 md:py-32"}
+      className={"bg-background py-16"}
     >
       <div className="container flex flex-col gap-10">
         <PrismicRichText
