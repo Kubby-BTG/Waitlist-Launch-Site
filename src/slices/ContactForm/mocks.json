@@ -1,0 +1,19 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "depend",
+				"type": "Text"
+			},
+			"body": {
+				"__TYPE__": "FieldContent",
+				"value": "either",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]
