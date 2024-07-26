@@ -39,11 +39,18 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
             src="/decorations/scribble.svg"
             alt=""
             className="h-full object-cover"
+            loading={"lazy"}
+            decoding={"async"}
           />
         </div>
 
         <div className="absolute right-0 top-1/2 -translate-y-1/2 pt-32 md:pt-24">
-          <img src="/decorations/box-pattern.svg" alt="" />
+          <img
+            src="/decorations/box-pattern.svg"
+            alt=""
+            loading={"lazy"}
+            decoding={"async"}
+          />
         </div>
 
         <div className="absolute left-0 top-1/2 hidden -translate-y-full md:block">
@@ -51,15 +58,29 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
             src="/decorations/ku-sticker.svg"
             alt=""
             className={"-translate-x-1/2"}
+            loading={"lazy"}
+            decoding={"async"}
           />
         </div>
 
         <div className="absolute bottom-14 left-1 block md:hidden">
-          <img src="/decorations/ku-sticker.svg" alt="" className={""} />
+          <img
+            src="/decorations/ku-sticker.svg"
+            alt=""
+            className={""}
+            loading={"lazy"}
+            decoding={"async"}
+          />
         </div>
 
         <div className="absolute -right-24 bottom-1/2 block hidden -translate-y-40 md:block">
-          <img src="/decorations/star.svg" alt="" className={""} />
+          <img
+            src="/decorations/star.svg"
+            alt=""
+            className={""}
+            loading={"lazy"}
+            decoding={"async"}
+          />
         </div>
 
         {/* Content */}
