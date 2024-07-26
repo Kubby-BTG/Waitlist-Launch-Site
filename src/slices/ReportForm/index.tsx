@@ -193,7 +193,7 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
               />
             </div>
 
-            <Button>Send Package</Button>
+            <Button>Report Delivery</Button>
           </form>
         </div>
         <video
