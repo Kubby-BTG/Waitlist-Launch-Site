@@ -35,7 +35,7 @@ export default function PartnerWithUsForm() {
 
       <div className={"flex w-full flex-col gap-1"}>
         <label htmlFor="email" className={"text-sm text-black"}>
-          Email
+          Work Email
         </label>
         <Input type="email" id={"email"} required placeholder={"Your email"} />
       </div>
