@@ -8,20 +8,22 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { ChevronDown } from "lucide-react";
 
 interface ISelectProps {
   values: {
     key: string;
     value: string;
   }[];
-  placeholder: string;
+  label: string;
   selectedItems: string[];
   setSelectedItems: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const MultiSelect = ({
   values,
-  placeholder,
+  label,
   selectedItems,
   setSelectedItems,
 }: ISelectProps) => {
@@ -39,15 +41,34 @@ const MultiSelect = ({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="flex gap-2 font-bold">
-          <span>{placeholder}</span>
-        </Button>
+      <DropdownMenuTrigger className={"w-full"}>
+        <span className="relative flex min-h-12 w-full flex-col items-start rounded-md border border-primary/30 px-4 py-2 text-primary">
+          <span className={cn("text-xs font-bold leading-3")}>{label}</span>
+          <span className={"-mb-1 w-full truncate text-start"}>
+            {selectedItems.length > 0 &&
+            !(selectedItems.length === values.length)
+              ? selectedItems.join(", ")
+              : "All"}
+          </span>
+
+          <span className="absolute inset-y-0 right-2 flex flex-col justify-center text-primary">
+            <ChevronDown />
+          </span>
+        </span>
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className="w-56"
+        className="inset-x-0 w-full"
         onCloseAutoFocus={(e) => e.preventDefault()}
       >
+        <DropdownMenuCheckboxItem
+          onSelect={(e) => e.preventDefault()}
+          checked={selectedItems.length === values.length}
+          onCheckedChange={(checked) =>
+            setSelectedItems(checked ? values.map((v) => v.key) : [])
+          }
+        >
+          All
+        </DropdownMenuCheckboxItem>
         {values.map((value, index) => (
           <DropdownMenuCheckboxItem
             key={index}

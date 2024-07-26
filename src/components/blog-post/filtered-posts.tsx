@@ -16,22 +16,12 @@ export default function FilteredPosts() {
       <div className="flex flex-col gap-2 md:flex-row">
         {/* Platform */}
         <div className={"relative w-full md:max-w-[15.5rem]"}>
-          {/* <MultiSelect
-            options={platforms.map((platform) => ({
-              label: platform,
-              value: platform,
-            }))}
-            defaultValue={[]}
-            onValueChange={(val) => console.log(val)}
-            value={selectedPlatforms}
-            placeholder={"Platform"}
-          /> */}
           <MultiSelect
             values={platforms.map((platform) => ({
               key: platform,
               value: platform,
             }))}
-            placeholder={"Platform"}
+            label={"Platform"}
             selectedItems={selectedPlatforms}
             setSelectedItems={setSelectedPlatforms}
           />
@@ -39,27 +29,28 @@ export default function FilteredPosts() {
 
         {/* Category */}
         <div className={"relative w-full md:max-w-[15.5rem]"}>
-          {/* <MultiSelect
-            options={categories.map((category) => ({
-              label: category,
+          <MultiSelect
+            values={categories.map((category) => ({
+              key: category,
               value: category,
             }))}
-            defaultValue={[]}
-            onValueChange={(val) => setSelectedCategories(val)}
-            value={selectedCategories}
-            placeholder={"Category"}
-          /> */}
+            label={"Platform"}
+            selectedItems={selectedCategories}
+            setSelectedItems={setSelectedCategories}
+          />
         </div>
 
         {/* Topic */}
         <div className={"relative w-full md:max-w-[15.5rem]"}>
-          {/* <MultiSelect
-            options={topics.map((topic) => ({ label: topic, value: topic }))}
-            defaultValue={[]}
-            onValueChange={(val) => setSelectedTopics(val)}
-            value={selectedTopics}
-            placeholder={"Topic"}
-          /> */}
+          <MultiSelect
+            values={topics.map((topic) => ({
+              key: topic,
+              value: topic,
+            }))}
+            label={"Platform"}
+            selectedItems={selectedTopics}
+            setSelectedItems={setSelectedTopics}
+          />
         </div>
 
         <Button>Filter</Button>
