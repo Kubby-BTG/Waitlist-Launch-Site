@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { PhoneInput } from "@/components/ui/phone-input";
 import { Textarea } from "@/components/ui/textarea";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
@@ -49,12 +50,13 @@ const ContactForm = ({ slice }: ContactFormProps): JSX.Element => {
             <label htmlFor="phone" className={"text-sm text-black"}>
               Phone
             </label>
-            <Input
+            {/* <Input
               type="number"
               id={"phone"}
               required
               placeholder={"Phone number"}
-            />
+            /> */}
+            <PhoneInput defaultCountry={"US"} />
           </div>
           <div className={"flex w-full flex-col gap-1"}>
             <label htmlFor="message" className={"text-sm text-black"}>
