@@ -1,13 +1,15 @@
-import { createClient } from "@/prismicio";
 import PostCard from "./post-card";
 import { cn } from "@/lib/utils";
+import { getLatestBlogPosts } from "@/prismic/blog-post";
 
 export default async function CuratedPosts({
   className,
+  limit = 3,
 }: {
   className?: string;
+  limit?: number;
 }) {
-  const latestPosts = await getLatestBlogPosts();
+  const latestPosts = await getLatestBlogPosts(limit);
 
   return (
     <div className={cn("grid gap-4 md:grid-cols-3", className)}>
@@ -16,16 +18,4 @@ export default async function CuratedPosts({
       ))}
     </div>
   );
-}
-
-async function getLatestBlogPosts() {
-  const client = createClient();
-  const posts = await client.getAllByType("blog_post", {
-    orderings: {
-      field: "document.first_publication_date",
-      direction: "desc",
-    },
-    limit: 3,
-  });
-  return posts;
 }

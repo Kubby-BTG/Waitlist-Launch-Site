@@ -28,7 +28,7 @@ const TextWithImage = ({ slice }: TextWithImageProps): JSX.Element => {
           <video
             src={"/animations/" + slice.primary.animation_file_name}
             // TODO: Remove the scaling later
-            className={"scale-[1.1]"}
+            // className={"scale-[1.1]"}
             autoPlay
             muted
             loop
