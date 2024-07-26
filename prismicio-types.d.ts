@@ -185,6 +185,18 @@ interface BlogPostDocumentData {
   >;
 
   /**
+   * Featured Post field in *Blog Post*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: blog_post.featured_post
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  featured_post: prismic.BooleanField;
+
+  /**
    * Slice Zone field in *Blog Post*
    *
    * - **Field Type**: Slice Zone
