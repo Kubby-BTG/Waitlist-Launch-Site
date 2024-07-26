@@ -33,37 +33,17 @@ const ContactForm = ({ slice }: ContactFormProps): JSX.Element => {
 
         <form className="flex w-full flex-col gap-4 rounded-lg bg-white p-6 md:p-8">
           <div className={"flex w-full flex-col gap-1"}>
-            <label htmlFor="first-name" className={"text-sm text-black"}>
-              First name
+            <label htmlFor="name" className={"text-sm text-black"}>
+              Name
             </label>
-            <Input
-              type="text"
-              id={"first-name"}
-              required
-              placeholder={"First name"}
-            />
+            <Input type="text" id={"name"} required placeholder={"Name"} />
           </div>
-          <div className={"flex w-full flex-col gap-1"}>
-            <label htmlFor="last-name" className={"text-sm text-black"}>
-              Last name
-            </label>
-            <Input
-              type="text"
-              id={"last-name"}
-              required
-              placeholder={"Last name"}
-            />
-          </div>
+
           <div className={"flex w-full flex-col gap-1"}>
             <label htmlFor="email" className={"text-sm text-black"}>
-              Work Email
+              Email
             </label>
-            <Input
-              type="email"
-              id={"email"}
-              required
-              placeholder={"Work email"}
-            />
+            <Input type="email" id={"email"} required placeholder={"Email"} />
           </div>
           <div className={"flex w-full flex-col gap-1"}>
             <label htmlFor="phone" className={"text-sm text-black"}>
