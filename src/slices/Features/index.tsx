@@ -46,7 +46,7 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
           />
         </div>
 
-        <div className="grid gap-4 md:grid-cols-3 md:gap-6">
+        <div className="grid gap-4 md:grid-cols-2 md:gap-6">
           <>
             {slice.primary.items.map((item, i) => (
               <div
