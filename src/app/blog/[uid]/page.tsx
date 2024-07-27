@@ -27,7 +27,7 @@ export default async function Page({ params }: { params: Params }) {
               heading1: ({ children }) => (
                 <h1
                   className={
-                    "text-[1.5rem] font-bold leading-10 text-primary md:-mb-4 md:text-[3rem] md:leading-[4rem]"
+                    "text-[2rem] font-bold leading-[2rem] text-primary"
                   }
                 >
                   {children}
@@ -35,7 +35,7 @@ export default async function Page({ params }: { params: Params }) {
               ),
             }}
           />
-          <span className="text-gray flex gap-1 text-[11px] leading-5 md:text-sm md:leading-5">
+          <span className="flex gap-1 text-[11px] leading-5 text-gray md:text-sm md:leading-5">
             <span>{page.data.author}</span>|
             <span>
               {page.data.publication_date
@@ -56,7 +56,7 @@ export default async function Page({ params }: { params: Params }) {
       <div className={"flex flex-col gap-4 md:max-w-[17rem]"}>
         <p
           className={
-            "text-primary-darker font-display text-[2.625rem] uppercase leading-[3rem]"
+            "font-display text-[2.625rem] uppercase leading-[3rem] text-primary-darker"
           }
         >
           More <span className={"text-brand"}>Stories</span>
