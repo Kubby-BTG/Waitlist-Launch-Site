@@ -20,28 +20,53 @@
             "thumbnails": []
           }
         },
-        "heading": {
+        "first_heading": {
           "type": "StructuredText",
           "config": {
-            "label": "Heading",
+            "label": "First Heading",
             "placeholder": "",
             "allowTargetBlank": true,
             "multi": "heading2,strong"
           }
         },
-        "body": {
+        "first_body": {
           "type": "StructuredText",
           "config": {
-            "label": "Body",
+            "label": "First Body",
             "placeholder": "",
             "allowTargetBlank": true,
             "multi": "paragraph,strong,em,hyperlink"
           }
         },
-        "animation_file_name": {
+        "first_animation_file_name": {
           "type": "Text",
           "config": {
-            "label": "Animation File Name",
+            "label": "First Animation File Name",
+            "placeholder": ""
+          }
+        },
+        "second_heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Second Heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading2,strong"
+          }
+        },
+        "second_body": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Second Body",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "second_animation_file": {
+          "type": "Text",
+          "config": {
+            "label": "Second Animation File",
             "placeholder": ""
           }
         }

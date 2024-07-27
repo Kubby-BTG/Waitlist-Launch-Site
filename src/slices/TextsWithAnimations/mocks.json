@@ -26,31 +26,58 @@
 				"__TYPE__": "ImageContent",
 				"thumbnails": {}
 			},
-			"heading": {
+			"first_heading": {
 				"__TYPE__": "StructuredTextContent",
 				"value": [
 					{
 						"type": "heading2",
 						"content": {
-							"text": "Prove"
+							"text": "Surrounded"
 						}
 					}
 				]
 			},
-			"body": {
+			"first_body": {
 				"__TYPE__": "StructuredTextContent",
 				"value": [
 					{
 						"type": "paragraph",
 						"content": {
-							"text": "Tempor nostrud commodo ullamco in eu id ut esse ex velit voluptate culpa veniam labore. Amet do sit mollit do pariatur adipisicing. Exercitation velit eiusmod elit ut commodo consequat tempor nostrud sit deserunt velit ex incididunt officia."
+							"text": "Veniam quis adipisicing sit. Nostrud ex reprehenderit anim anim minim."
 						}
 					}
 				]
 			},
-			"animation_file_name": {
+			"first_animation_file_name": {
 				"__TYPE__": "FieldContent",
-				"value": "die",
+				"value": "favorite",
+				"type": "Text"
+			},
+			"second_heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Replace"
+						}
+					}
+				]
+			},
+			"second_body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Amet laboris elit eu eu consequat sint elit. Ea cupidatat labore laborum fugiat enim id nulla duis. Esse est nisi commodo aliqua."
+						}
+					}
+				]
+			},
+			"second_animation_file": {
+				"__TYPE__": "FieldContent",
+				"value": "pack",
 				"type": "Text"
 			}
 		},

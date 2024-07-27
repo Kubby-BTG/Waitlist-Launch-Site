@@ -1624,34 +1624,64 @@ export interface TextWithImageSliceDefaultPrimary {
   image: prismic.ImageField<never>;
 
   /**
-   * Heading field in *TextsWithAnimations → Default → Primary*
+   * First Heading field in *TextsWithAnimations → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: text_with_image.default.primary.heading
+   * - **API ID Path**: text_with_image.default.primary.first_heading
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  heading: prismic.RichTextField;
+  first_heading: prismic.RichTextField;
 
   /**
-   * Body field in *TextsWithAnimations → Default → Primary*
+   * First Body field in *TextsWithAnimations → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: text_with_image.default.primary.body
+   * - **API ID Path**: text_with_image.default.primary.first_body
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  body: prismic.RichTextField;
+  first_body: prismic.RichTextField;
 
   /**
-   * Animation File Name field in *TextsWithAnimations → Default → Primary*
+   * First Animation File Name field in *TextsWithAnimations → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: text_with_image.default.primary.animation_file_name
+   * - **API ID Path**: text_with_image.default.primary.first_animation_file_name
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  animation_file_name: prismic.KeyTextField;
+  first_animation_file_name: prismic.KeyTextField;
+
+  /**
+   * Second Heading field in *TextsWithAnimations → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_with_image.default.primary.second_heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  second_heading: prismic.RichTextField;
+
+  /**
+   * Second Body field in *TextsWithAnimations → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_with_image.default.primary.second_body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  second_body: prismic.RichTextField;
+
+  /**
+   * Second Animation File field in *TextsWithAnimations → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_with_image.default.primary.second_animation_file
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  second_animation_file: prismic.KeyTextField;
 }
 
 /**
