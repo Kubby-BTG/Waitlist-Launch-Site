@@ -75,7 +75,7 @@ const TextsWithAnimations = ({
         /> */}
             <div className="overflow-hidden md:col-span-4">
               <video
-                src={"/animations/" + slice.primary.first_animation_file_name}
+                src={"/animations/" + slice.primary.second_animation_file}
                 // TODO: Remove the scaling later
                 // className={"scale-[1.1]"}
                 autoPlay
@@ -85,7 +85,7 @@ const TextsWithAnimations = ({
             </div>
             <div className="flex flex-col gap-4 md:col-span-3 md:col-start-6 md:justify-center">
               <PrismicRichText
-                field={slice.primary.first_heading}
+                field={slice.primary.second_heading}
                 components={{
                   heading2: ({ children }) => (
                     <h2 className="font-display text-[2.625rem] font-extrabold uppercase leading-[3rem] text-primary md:text-[3.25rem] md:leading-[3.5rem]">
@@ -98,7 +98,7 @@ const TextsWithAnimations = ({
                 }}
               />
               <PrismicRichText
-                field={slice.primary.first_body}
+                field={slice.primary.second_body}
                 components={{
                   paragraph: ({ children }) => (
                     <p className={"text-sm text-black/80"}> {children}</p>
