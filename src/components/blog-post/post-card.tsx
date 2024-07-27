@@ -13,7 +13,7 @@ export default function PostCard({ post }: { post: Content.BlogPostDocument }) {
         "group flex w-full flex-col gap-4 rounded-lg bg-background-secondary p-4 pb-6 shadow-none transition-all duration-500 ease-kubby hover:bg-white/80 hover:shadow-expand"
       }
     >
-      <div className="relative flex h-[12.5rem] items-center justify-center overflow-hidden rounded-[5px] bg-input">
+      <div className="relative flex aspect-[5/3] w-full items-center justify-center overflow-hidden rounded-[5px] bg-input">
         <PrismicNextImage
           field={post.data.featured_image}
           className={"absolute inset-0 h-full w-full object-cover"}
