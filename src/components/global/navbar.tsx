@@ -40,7 +40,7 @@ export default function Navbar({
     <div className="bg-primary">
       <nav
         className={
-          "container flex h-12 items-center justify-between max-md:h-[50px]"
+          "container flex h-[68px] items-center justify-between max-md:h-[64px]"
         }
       >
         <div className={"flex items-center gap-8"}>
@@ -67,7 +67,7 @@ export default function Navbar({
         </div>
 
         <WaitlistForm>
-          <Button variant={"accent"} className={"max-md:hidden"}>
+          <Button variant={"accent"} size={"sm"} className={"max-md:hidden"}>
             Join Waitlist
           </Button>
         </WaitlistForm>

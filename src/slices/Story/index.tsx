@@ -18,7 +18,7 @@ const Story = ({ slice }: StoryProps): JSX.Element => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className={
-        "scroll-mt-[50px] bg-primary py-14 md:scroll-mt-[48px] md:py-[9.5rem]"
+        "scroll-mt-[64px] bg-primary py-14 md:scroll-mt-[68px] md:py-[9.5rem]"
       }
     >
       <div className="container flex grid-cols-2 flex-col gap-4 md:grid md:items-center">
