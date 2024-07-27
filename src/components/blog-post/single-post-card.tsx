@@ -17,14 +17,14 @@ export default function SinglePostCard({
         "group flex w-full flex-col gap-6 rounded-lg bg-background-secondary p-4 pb-8 shadow-none transition-all duration-500 ease-kubby hover:bg-white/80 hover:shadow-expand md:grid md:grid-cols-2 md:gap-2 md:pb-4"
       }
     >
-      <div className="relative flex min-h-[23.5rem] items-center justify-center overflow-hidden rounded-[5px] bg-input">
+      <div className="relative flex aspect-[8/5] min-h-[23.5rem] items-center justify-center overflow-hidden rounded-[5px] bg-input">
         <PrismicNextImage
           field={post.data.featured_image}
           className={"absolute inset-0 h-full w-full object-cover"}
         />
       </div>
 
-      <div className="flex flex-grow flex-col gap-2 justify-self-stretch px-6 text-black/80 md:px-12 md:py-8">
+      <div className="_md:px-12 flex flex-grow flex-col gap-2 justify-self-stretch px-6 text-black/80 md:px-24 md:py-8">
         <div className="flex items-center justify-between">
           <p className={"text-sm uppercase leading-6"}>
             Blog/{post.data.category}
