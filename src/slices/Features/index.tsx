@@ -46,23 +46,23 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
           />
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-4 md:grid-cols-3 md:gap-6">
           <>
             {slice.primary.items.map((item, i) => (
               <div
                 key={i}
-                className="flex flex-col gap-8 rounded-lg bg-background-secondary px-8 py-6 shadow-none transition-all duration-500 ease-kubby hover:bg-white/80 hover:shadow-expand md:gap-14"
+                className="flex flex-col gap-12 rounded-2xl bg-background-secondary px-6 py-6 shadow-none transition-all duration-500 ease-kubby hover:bg-white/80 hover:shadow-expand sm:gap-14 md:gap-16 lg:gap-[2rem] xl:gap-24"
               >
-                <div className="flex size-10 items-center justify-center rounded bg-background-icon">
+                <div className="flex size-10 items-center justify-center rounded-lg bg-background-icon">
                   <PrismicNextImage field={item.icon} />
                 </div>
 
-                <div className="flex flex-col gap-4">
-                  <h3 className="text-base font-bold">
+                <div className="flex flex-col gap-5">
+                  <h3 className="text-base font-bold text-primary-darker [font-size:_clamp(1.125rem,1.428vw,1.4rem)]">
                     <>{item.heading}</>
                   </h3>
 
-                  <p className={"text-sm text-black/80"}>
+                  <p className={"text-base text-black/80"}>
                     <>{item.body}</>
                   </p>
                 </div>
