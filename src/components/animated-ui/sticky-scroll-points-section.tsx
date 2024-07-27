@@ -37,7 +37,7 @@ export default function StickyScrollPointsSection({
     <motion.div
       className={"hidden py-16 md:block"}
       animate={{
-        backgroundColor: isScrollEnd ? "#99ddc7" : "#f9f3e8",
+        backgroundColor: isScrollEnd ? "#99ddc780" : "#f9f3e8",
       }}
       transition={{
         type: "spring",

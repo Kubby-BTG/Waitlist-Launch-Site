@@ -67,7 +67,7 @@ const TextsWithAnimations = ({
             </div>
           </div>
         </div>
-        <div className="bg-accent py-12">
+        <div className="bg-accent/50 py-12">
           <div className="container flex grid-cols-8 flex-col-reverse gap-10 md:grid md:gap-0">
             {/* <PrismicNextImage
           field={slice.primary.image}
