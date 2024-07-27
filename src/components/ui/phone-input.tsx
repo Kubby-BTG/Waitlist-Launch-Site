@@ -118,18 +118,23 @@ const CountrySelect = ({
           />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[300px] bg-white p-0" align={"start"}>
+      <PopoverContent
+        className="w-full max-w-[calc(100vw-96px)] border-input bg-white p-0 md:max-w-none"
+        align={"start"}
+      >
         <Command>
           <CommandList>
             <ScrollArea className="h-72">
               <CommandInput placeholder="Search country..." />
-              <CommandEmpty>No country found.</CommandEmpty>
+              <CommandEmpty className={"p-4 text-center text-input-foreground"}>
+                No country found.
+              </CommandEmpty>
               <CommandGroup>
                 {options
                   .filter((x) => x.value)
                   .map((option) => (
                     <CommandItem
-                      className="gap-2"
+                      className="cursor-pointer gap-2 hover:bg-input-secondary"
                       key={option.value}
                       onSelect={() => handleSelect(option.value)}
                     >

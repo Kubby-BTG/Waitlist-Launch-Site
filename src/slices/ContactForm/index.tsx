@@ -1,3 +1,4 @@
+import ContactUsForm from "@/components/contact/contact-us-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PhoneInput } from "@/components/ui/phone-input";
@@ -32,41 +33,7 @@ const ContactForm = ({ slice }: ContactFormProps): JSX.Element => {
           <p className="text-sm leading-6 text-black">{slice.primary.body}</p>
         </div>
 
-        <form className="flex w-full flex-col gap-4 rounded-lg bg-white p-6 md:p-8">
-          <div className={"flex w-full flex-col gap-1"}>
-            <label htmlFor="name" className={"text-sm text-black"}>
-              Name
-            </label>
-            <Input type="text" id={"name"} required placeholder={"Name"} />
-          </div>
-
-          <div className={"flex w-full flex-col gap-1"}>
-            <label htmlFor="email" className={"text-sm text-black"}>
-              Email
-            </label>
-            <Input type="email" id={"email"} required placeholder={"Email"} />
-          </div>
-          <div className={"flex w-full flex-col gap-1"}>
-            <label htmlFor="phone" className={"text-sm text-black"}>
-              Phone
-            </label>
-            {/* <Input
-              type="number"
-              id={"phone"}
-              required
-              placeholder={"Phone number"}
-            /> */}
-            <PhoneInput defaultCountry={"US"} />
-          </div>
-          <div className={"flex w-full flex-col gap-1"}>
-            <label htmlFor="message" className={"text-sm text-black"}>
-              Message
-            </label>
-            <Textarea placeholder={"What do you want to say"} rows={6} />
-          </div>
-
-          <Button>Send Message</Button>
-        </form>
+        <ContactUsForm />
       </div>
     </section>
   );
