@@ -39,7 +39,9 @@ export default function Navbar({
   return (
     <div className="bg-primary">
       <nav
-        className={"container flex items-center justify-between py-[1.125rem]"}
+        className={
+          "container flex h-12 items-center justify-between max-md:h-[50px]"
+        }
       >
         <div className={"flex items-center gap-8"}>
           {/* Kubby Logo */}
@@ -53,7 +55,7 @@ export default function Navbar({
               <li
                 key={i}
                 className={
-                  "ease-kubby transition-500 rounded-full bg-white/0 px-4 py-[0.325rem] text-[0.938rem] font-medium leading-5 text-white transition-colors hover:bg-white/5"
+                  "transition-500 rounded-full bg-white/0 px-4 py-[0.325rem] text-[0.938rem] font-medium leading-5 text-white transition-colors ease-kubby hover:bg-white/5"
                 }
               >
                 <PrismicNextLink field={item.link}>
