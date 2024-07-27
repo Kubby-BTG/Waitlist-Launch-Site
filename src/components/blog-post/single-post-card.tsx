@@ -17,7 +17,7 @@ export default function SinglePostCard({
         "group flex w-full flex-col gap-6 rounded-lg bg-background-secondary p-3 pb-8 shadow-none transition-all duration-500 ease-kubby hover:bg-white/80 hover:shadow-expand lg:grid lg:grid-cols-2 lg:gap-2 lg:pb-4"
       }
     >
-      <div className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-[5px] bg-input lg:aspect-auto lg:min-h-[23.5rem] xl:aspect-[4/3]">
+      <div className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-[5px] bg-input lg:aspect-auto lg:min-h-[23.5rem] xl:aspect-[12/8]">
         <PrismicNextImage
           field={post.data.featured_image}
           className={"absolute inset-0 h-full w-full object-cover"}
@@ -42,7 +42,7 @@ export default function SinglePostCard({
               heading1: ({ children }) => (
                 <h2
                   className={
-                    "font-display text-[2.5rem] font-extrabold uppercase leading-[3.125rem] text-primary lg:leading-[0.85] lg:[font-size:_clamp(3rem,4.76vw,5rem)]"
+                    "font-display text-[3rem] font-extrabold uppercase leading-[3.125rem] text-primary lg:leading-[0.85] lg:[font-size:_clamp(3rem,4.76vw,5rem)]"
                   }
                 >
                   {children}
