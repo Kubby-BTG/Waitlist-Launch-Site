@@ -17,7 +17,7 @@ const PartnershipForm = ({ slice }: PartnershipFormProps): JSX.Element => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className={
-        "bg-primary pb-32 pt-10 md:flex md:min-h-[calc(90vh-124px)] md:items-center md:py-10"
+        "_md:min-h-[calc(90vh-124px)] bg-primary pb-32 pt-10 md:flex md:items-center md:py-28"
       }
     >
       <div className="container flex grid-cols-2 flex-col gap-8 md:grid md:items-center md:gap-0">
