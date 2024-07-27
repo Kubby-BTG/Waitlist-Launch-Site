@@ -1,3 +1,4 @@
+import DoubleSlideUpText from "@/components/animated-ui/double-slide-up-text";
 import { Content } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
@@ -23,7 +24,7 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
           components={{
             heading2: ({ children }) => (
               <h2 className="font-display text-[2.625rem] font-extrabold uppercase leading-[3rem] text-primary md:text-[5rem] md:leading-[3.5rem]">
-                {children}
+                <DoubleSlideUpText>{children}</DoubleSlideUpText>
               </h2>
             ),
             strong: ({ children }) => (

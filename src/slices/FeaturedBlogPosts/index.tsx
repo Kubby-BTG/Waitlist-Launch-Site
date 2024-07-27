@@ -1,3 +1,4 @@
+import DoubleSlideUpText from "@/components/animated-ui/double-slide-up-text";
 import CuratedPosts from "@/components/blog-post/curated-posts";
 import Arrow from "@/components/ui/arrow";
 import { Button } from "@/components/ui/button";
@@ -32,7 +33,7 @@ const FeaturedBlogPosts = ({ slice }: FeaturedBlogPostsProps): JSX.Element => {
                 "font-display text-[3.25rem] font-extrabold uppercase leading-[3.5rem] text-primary"
               }
             >
-              {slice.primary.heading}
+              <DoubleSlideUpText>{slice.primary.heading}</DoubleSlideUpText>
             </h2>
           </div>
 

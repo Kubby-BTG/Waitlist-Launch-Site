@@ -1,3 +1,4 @@
+import DoubleSlideUpText from "@/components/animated-ui/double-slide-up-text";
 import { Content } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
@@ -30,7 +31,7 @@ const Story = ({ slice }: StoryProps): JSX.Element => {
               "font-display text-5xl font-extrabold uppercase leading-[2.625rem] text-light md:text-[3.5rem] md:leading-[3.25rem]"
             }
           >
-            {slice.primary.heading}
+            <DoubleSlideUpText>{slice.primary.heading}</DoubleSlideUpText>
           </h2>
           <PrismicRichText
             field={slice.primary.body}
