@@ -14,18 +14,18 @@ export default function SinglePostCard({
     <PrismicNextLink
       document={post}
       className={
-        "group flex w-full flex-col gap-6 rounded-lg bg-background-secondary p-4 pb-8 shadow-none transition-all duration-500 ease-kubby hover:bg-white/80 hover:shadow-expand md:grid md:grid-cols-2 md:gap-2 md:pb-4"
+        "group flex w-full flex-col gap-6 rounded-lg bg-background-secondary p-3 pb-8 shadow-none transition-all duration-500 ease-kubby hover:bg-white/80 hover:shadow-expand lg:grid lg:grid-cols-2 lg:gap-2 lg:pb-4"
       }
     >
-      <div className="relative flex aspect-[8/5] min-h-[23.5rem] items-center justify-center overflow-hidden rounded-[5px] bg-input">
+      <div className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-[5px] bg-input lg:aspect-auto lg:min-h-[23.5rem] xl:aspect-[4/3]">
         <PrismicNextImage
           field={post.data.featured_image}
           className={"absolute inset-0 h-full w-full object-cover"}
         />
       </div>
 
-      <div className="_md:px-12 flex flex-grow flex-col gap-2 justify-self-stretch px-6 text-black/80 md:px-24 md:py-8">
-        <div className="flex items-center justify-between">
+      <div className="_lg:px-12 flex flex-grow flex-col gap-2 justify-self-stretch px-3.5 text-black/80 lg:px-20 lg:py-8 xl:px-24">
+        <div className="flex items-center justify-between lg:mb-4">
           <p className={"text-sm uppercase leading-6"}>
             Blog/{post.data.category}
           </p>
@@ -42,7 +42,7 @@ export default function SinglePostCard({
               heading1: ({ children }) => (
                 <h2
                   className={
-                    "font-display text-[2.5rem] font-extrabold uppercase leading-[3.125rem] text-primary md:text-[4rem] md:leading-none"
+                    "font-display text-[2.5rem] font-extrabold uppercase leading-[3.125rem] text-primary lg:text-[4rem] lg:leading-none"
                   }
                 >
                   {children}
