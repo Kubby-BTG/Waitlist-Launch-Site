@@ -1,7 +1,7 @@
 {
   "id": "text_with_image",
   "type": "SharedSlice",
-  "name": "TextWithImage",
+  "name": "TextsWithAnimations",
   "description": "TextWithImage",
   "variations": [
     {

@@ -5,13 +5,15 @@ import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 /**
  * Props for `TextWithImage`.
  */
-export type TextWithImageProps =
+export type TextsWithAnimationsProps =
   SliceComponentProps<Content.TextWithImageSlice>;
 
 /**
  * Component for "TextWithImage" Slices.
  */
-const TextWithImage = ({ slice }: TextWithImageProps): JSX.Element => {
+const TextsWithAnimations = ({
+  slice,
+}: TextsWithAnimationsProps): JSX.Element => {
   return (
     <section
       data-slice-type={slice.slice_type}
@@ -63,4 +65,4 @@ const TextWithImage = ({ slice }: TextWithImageProps): JSX.Element => {
   );
 };
 
-export default TextWithImage;
+export default TextsWithAnimations;

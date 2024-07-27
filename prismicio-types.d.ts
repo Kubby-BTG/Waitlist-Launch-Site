@@ -1610,11 +1610,11 @@ type StorySliceVariation = StorySliceDefault;
 export type StorySlice = prismic.SharedSlice<"story", StorySliceVariation>;
 
 /**
- * Primary content in *TextWithImage → Default → Primary*
+ * Primary content in *TextsWithAnimations → Default → Primary*
  */
 export interface TextWithImageSliceDefaultPrimary {
   /**
-   * Image field in *TextWithImage → Default → Primary*
+   * Image field in *TextsWithAnimations → Default → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -1624,7 +1624,7 @@ export interface TextWithImageSliceDefaultPrimary {
   image: prismic.ImageField<never>;
 
   /**
-   * Heading field in *TextWithImage → Default → Primary*
+   * Heading field in *TextsWithAnimations → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -1634,7 +1634,7 @@ export interface TextWithImageSliceDefaultPrimary {
   heading: prismic.RichTextField;
 
   /**
-   * Body field in *TextWithImage → Default → Primary*
+   * Body field in *TextsWithAnimations → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -1644,7 +1644,7 @@ export interface TextWithImageSliceDefaultPrimary {
   body: prismic.RichTextField;
 
   /**
-   * Animation File Name field in *TextWithImage → Default → Primary*
+   * Animation File Name field in *TextsWithAnimations → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -1655,7 +1655,7 @@ export interface TextWithImageSliceDefaultPrimary {
 }
 
 /**
- * Default variation for TextWithImage Slice
+ * Default variation for TextsWithAnimations Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
@@ -1668,12 +1668,12 @@ export type TextWithImageSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
- * Slice variation for *TextWithImage*
+ * Slice variation for *TextsWithAnimations*
  */
 type TextWithImageSliceVariation = TextWithImageSliceDefault;
 
 /**
- * TextWithImage Shared Slice
+ * TextsWithAnimations Shared Slice
  *
  * - **API ID**: `text_with_image`
  * - **Description**: TextWithImage
