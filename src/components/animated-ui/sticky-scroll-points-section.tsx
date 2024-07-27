@@ -96,13 +96,7 @@ export default function StickyScrollPointsSection({
               field={slice.primary.first_body}
               components={{
                 paragraph: ({ children }) => (
-                  <p
-                    className={
-                      "text-base leading-[1.44] text-black/80 md:text-lg md:leading-[1.44] lg:text-xl lg:leading-[1.44] xl:text-[1.375rem] xl:leading-[1.44]"
-                    }
-                  >
-                    {children}
-                  </p>
+                  <p className={"text-sm text-black/80"}>{children}</p>
                 ),
               }}
             />
@@ -130,13 +124,7 @@ export default function StickyScrollPointsSection({
               field={slice.primary.second_body}
               components={{
                 paragraph: ({ children }) => (
-                  <p
-                    className={
-                      "text-base leading-[1.44] text-black/80 md:text-lg md:leading-[1.44] lg:text-xl lg:leading-[1.44] xl:text-[1.375rem] xl:leading-[1.44]"
-                    }
-                  >
-                    {children}
-                  </p>
+                  <p className={"text-sm text-black/80"}>{children}</p>
                 ),
               }}
             />
