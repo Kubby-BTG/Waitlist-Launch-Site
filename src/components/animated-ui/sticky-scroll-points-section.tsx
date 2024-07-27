@@ -76,7 +76,7 @@ export default function StickyScrollPointsSection({
           <motion.div
             className="flex flex-col gap-4 md:col-start-6 md:justify-center"
             animate={{
-              opacity: isScrollEnd ? 0.5 : 1,
+              opacity: isScrollEnd ? 0.4 : 1,
             }}
           >
             <PrismicRichText
@@ -110,7 +110,7 @@ export default function StickyScrollPointsSection({
           <motion.div
             className="flex flex-col gap-4 md:col-span-3 md:col-start-6 md:justify-center"
             animate={{
-              opacity: isScrollEnd ? 1 : 0.5,
+              opacity: isScrollEnd ? 1 : 0.4,
             }}
           >
             <PrismicRichText
