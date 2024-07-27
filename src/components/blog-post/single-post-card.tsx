@@ -42,7 +42,7 @@ export default function SinglePostCard({
               heading1: ({ children }) => (
                 <h2
                   className={
-                    "font-display text-[2.5rem] font-extrabold uppercase leading-[3.125rem] text-primary lg:text-[4rem] lg:leading-none"
+                    "font-display text-[2.5rem] font-extrabold uppercase leading-[3.125rem] text-primary lg:leading-[0.85] lg:[font-size:_clamp(3rem,4.76vw,5rem)]"
                   }
                 >
                   {children}
@@ -55,12 +55,12 @@ export default function SinglePostCard({
             field={post.data.description}
             components={{
               paragraph: ({ children }) => (
-                <p className={"text-sm leading-6"}>{children}</p>
+                <p className={"text-sm leading-6 md:text-base"}>{children}</p>
               ),
             }}
           />
 
-          <span className="flex gap-1 text-[11px] leading-5 text-gray">
+          <span className="flex gap-1 text-[11px] leading-5 text-gray md:hidden">
             <span>{post.data.author}</span>|
             <span>
               {post.data.publication_date
@@ -74,6 +74,15 @@ export default function SinglePostCard({
               <Badge key={i}>{tag.label}</Badge>
             ))}
           </div>
+
+          <span className="mt-auto hidden gap-1 text-[11px] leading-5 text-gray md:flex">
+            <span>{post.data.author}</span>|
+            <span>
+              {post.data.publication_date
+                ? formatDate(post.data.publication_date)
+                : ""}
+            </span>
+          </span>
         </div>
       </div>
     </PrismicNextLink>
