@@ -1,3 +1,4 @@
+import DoubleSlideUpText from "@/components/animated-ui/double-slide-up-text";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -84,18 +85,18 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
         </div>
 
         {/* Content */}
-        <div className="relative mx-auto flex w-full max-w-[26rem] flex-col gap-6 md:gap-2.5">
-          <div className={"flex flex-col gap-1"}>
+        <div className="relative flex w-full flex-col gap-6 md:gap-16">
+          <div className={"mx-auto flex max-w-[32rem] flex-col gap-1"}>
             <PrismicRichText
               field={slice.primary.heading}
               components={{
                 heading2: ({ children }) => (
-                  <h2 className="text-center font-display text-[2.625rem] font-extrabold uppercase leading-[3rem] text-white md:text-[4rem] md:leading-[4rem]">
-                    {children}
+                  <h2 className="flex flex-col items-center text-center font-display text-[3rem] font-extrabold uppercase leading-[2.5rem] text-white">
+                    <DoubleSlideUpText>{children}</DoubleSlideUpText>
                   </h2>
                 ),
                 strong: ({ children }) => (
-                  <strong className="text-secondary">{children}</strong>
+                  <strong className="block text-secondary">{children}</strong>
                 ),
               }}
             />
@@ -119,10 +120,10 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
               </a>
             </div>
           </div>
-          <form className="flex flex-col gap-4 rounded-lg bg-white p-8">
+          <form className="mx-auto flex w-full max-w-[26rem] flex-col gap-4 rounded-lg bg-white p-8">
             <h3
               className={
-                "font-display text-[2rem] font-extrabold leading-[2.5rem] text-primary"
+                "font-display text-[2rem] font-extrabold uppercase leading-[2.5rem] text-background-icon"
               }
             >
               <>{slice.primary.form_title}</>

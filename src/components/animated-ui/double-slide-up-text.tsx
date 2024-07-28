@@ -1,15 +1,18 @@
 "use client";
 
 import { ReactNode } from "react";
-import { motion, MotionConfig } from "framer-motion";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 export default function DoubleSlideUpText({
   children,
+  className,
 }: {
   children: ReactNode;
+  className?: string;
 }) {
   return (
-    <span className={"relative flex overflow-hidden py-0.5"}>
+    <span className={cn("relative flex overflow-hidden py-0.5", className)}>
       {/* Main text */}
       <motion.span
         viewport={{ once: true }}
