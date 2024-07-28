@@ -60,11 +60,11 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
                 </div>
 
                 <div className="flex flex-col gap-5">
-                  <h3 className="body-2 font-bold text-primary">
+                  <h3 className="_body-2 text-lg font-bold text-primary">
                     <>{item.heading}</>
                   </h3>
 
-                  <p className={"text-base text-primary"}>
+                  <p className={"text-lg text-primary"}>
                     <>{item.body}</>
                   </p>
                 </div>
