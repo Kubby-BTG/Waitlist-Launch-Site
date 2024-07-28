@@ -17,10 +17,10 @@ export default async function Page({ params }: { params: Params }) {
     .catch(() => notFound());
 
   return (
-    <div className="flex flex-col gap-10 py-16 md:flex-row md:gap-20 md:pb-14 md:pt-12">
+    <div className="flex flex-col gap-10 py-16 lg:flex-row lg:gap-20 lg:pb-14 lg:pt-12">
       <div className="flex w-full flex-grow flex-col gap-10">
         {/* Above section */}
-        <div className={"flex flex-col gap-4 md:mt-16 md:gap-10"}>
+        <div className={"flex flex-col gap-4 lg:mt-16 lg:gap-10"}>
           <PrismicRichText
             field={page.data.title}
             components={{
@@ -35,7 +35,7 @@ export default async function Page({ params }: { params: Params }) {
               ),
             }}
           />
-          <span className="flex gap-1 text-[11px] leading-5 text-gray md:text-sm md:leading-5">
+          <span className="flex gap-1 text-sm leading-5 text-primary">
             <span>{page.data.author}</span>|
             <span>
               {page.data.publication_date
@@ -44,7 +44,7 @@ export default async function Page({ params }: { params: Params }) {
             </span>
           </span>
         </div>
-        <div className="relative aspect-video max-w-[50rem] overflow-hidden rounded-[5px] md:rounded-lg">
+        <div className="relative aspect-video max-w-[50rem] overflow-hidden rounded-[5px] lg:rounded-lg">
           <PrismicNextImage
             field={page.data.featured_image}
             className={"absolute inset-0 object-cover"}
@@ -57,7 +57,7 @@ export default async function Page({ params }: { params: Params }) {
         </div>
       </div>
 
-      <div className={"flex flex-col gap-4 md:max-w-[24rem]"}>
+      <div className={"flex flex-col gap-4 lg:max-w-[24rem]"}>
         <p
           className={
             "font-display text-[2.625rem] uppercase leading-[3rem] text-primary-darker"
@@ -65,7 +65,7 @@ export default async function Page({ params }: { params: Params }) {
         >
           More <span className={"text-brand"}>Stories</span>
         </p>
-        <CuratedPosts className={"md:grid-cols-1"} />
+        <CuratedPosts className={"md:grid-cols-2 lg:grid-cols-1"} />
       </div>
     </div>
   );
