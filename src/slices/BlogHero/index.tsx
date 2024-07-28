@@ -18,16 +18,16 @@ const BlogHero = ({ slice }: BlogHeroProps): JSX.Element => {
       data-slice-variation={slice.variation}
       className={"bg-background py-10"}
     >
-      <div className="container flex flex-col gap-8 md:gap-16">
+      <div className="container flex flex-col gap-16 md:gap-20 2xl:gap-24">
         <div className="flex flex-col gap-4 md:gap-6">
           <h1
             className={
-              "font-display text-[4rem] font-extrabold uppercase leading-[5rem] text-primary md:text-[6rem] md:leading-[5rem]"
+              "heading-2 text-primary [font-size:_clamp(4rem,6.548vw,6.875rem)]"
             }
           >
             <DoubleSlideUpText>{slice.primary.heading}</DoubleSlideUpText>
           </h1>
-          <p className="max-w-[35rem] text-sm leading-6 text-black">
+          <p className="body-2 max-w-prose text-primary">
             {slice.primary.body}
           </p>
         </div>
