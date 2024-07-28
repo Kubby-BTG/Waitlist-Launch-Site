@@ -23,31 +23,26 @@ const FeaturedBlogPosts = ({ slice }: FeaturedBlogPostsProps): JSX.Element => {
       className={"bg-background py-16"}
     >
       <div className="container flex flex-col gap-14">
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div className="flex flex-col gap-1">
-            <span className={"text-xs uppercase leading-5 text-primary"}>
-              {slice.primary.subheading}
-            </span>
-            <h2
-              className={
-                "font-display text-[3.25rem] font-extrabold uppercase leading-[3.5rem] text-primary"
-              }
-            >
+        <div className="flex flex-col gap-6 md:gap-10">
+          <span className={"text-xs uppercase leading-5 text-primary"}>
+            {slice.primary.subheading}
+          </span>
+          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <h2 className="heading-2 text-primary">
               <DoubleSlideUpText>{slice.primary.heading}</DoubleSlideUpText>
             </h2>
-          </div>
-
-          <div>
-            <Button
-              variant={"outline"}
-              className={"flex items-center gap-1"}
-              asChild
-            >
-              <Link href={"/blog"}>
-                <span>{slice.primary.button_text}</span>
-                <Arrow className={"flex-none"} />
-              </Link>
-            </Button>
+            <div className={"flex justify-start"}>
+              <Button
+                variant={"outline"}
+                className={"flex items-center gap-1"}
+                asChild
+              >
+                <Link href={"/blog"}>
+                  <span>{slice.primary.button_text}</span>
+                  <Arrow className={"flex-none"} />
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
 
