@@ -27,7 +27,7 @@ export default async function Footer() {
               field={settings.data.cta_heading}
               components={{
                 heading2: ({ children }) => (
-                  <h2 className="font-display text-[4.25rem] font-extrabold uppercase leading-[4.5rem] text-white">
+                  <h2 className="heading-3 text-balance text-white">
                     {children}
                   </h2>
                 ),
