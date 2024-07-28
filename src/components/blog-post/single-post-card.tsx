@@ -24,9 +24,9 @@ export default function SinglePostCard({
         />
       </div>
 
-      <div className="_lg:px-12 flex flex-grow flex-col gap-2 justify-self-stretch px-3.5 text-black/80 lg:px-20 lg:py-8 xl:px-24">
+      <div className="_lg:px-12 flex flex-grow flex-col gap-2 justify-self-stretch px-3.5 text-primary lg:px-20 lg:py-8 xl:px-24">
         <div className="flex items-center justify-between lg:mb-4">
-          <p className={"text-sm uppercase leading-6"}>
+          <p className={"text-sm font-medium uppercase leading-6"}>
             Blog/{post.data.category}
           </p>
 
@@ -55,12 +55,14 @@ export default function SinglePostCard({
             field={post.data.description}
             components={{
               paragraph: ({ children }) => (
-                <p className={"text-sm leading-6 md:text-base"}>{children}</p>
+                <p className={"text-balance pr-2 text-base md:text-lg"}>
+                  {children}
+                </p>
               ),
             }}
           />
 
-          <span className="flex gap-1 text-[11px] leading-5 text-gray md:hidden">
+          <span className="flex gap-1 text-sm leading-5 text-primary">
             <span>{post.data.author}</span>|
             <span>
               {post.data.publication_date
@@ -75,14 +77,14 @@ export default function SinglePostCard({
             ))}
           </div>
 
-          <span className="mt-auto hidden gap-1 text-[11px] leading-5 text-gray md:flex">
+          {/* <span className="mt-auto hidden gap-1 text-[11px] leading-5 text-gray md:flex">
             <span>{post.data.author}</span>|
             <span>
               {post.data.publication_date
                 ? formatDate(post.data.publication_date)
                 : ""}
             </span>
-          </span>
+          </span> */}
         </div>
       </div>
     </PrismicNextLink>
