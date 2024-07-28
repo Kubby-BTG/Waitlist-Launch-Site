@@ -27,6 +27,9 @@ export default async function Page({ params }: { params: Params }) {
               "mx-auto flex w-full max-w-[50rem] flex-col gap-4 lg:mt-16 lg:gap-10"
             }
           >
+            <p className={"text-xs font-medium uppercase leading-6"}>
+              Blog/{page.data.category}
+            </p>
             <PrismicRichText
               field={page.data.title}
               components={{
