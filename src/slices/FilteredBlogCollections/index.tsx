@@ -1,3 +1,4 @@
+import DoubleSlideUpText from "@/components/animated-ui/double-slide-up-text";
 import CuratedPosts from "@/components/blog-post/curated-posts";
 import FilteredPosts from "@/components/blog-post/filtered-posts";
 
@@ -28,7 +29,7 @@ const FilteredBlogCollections = ({
           components={{
             heading2: ({ children }) => (
               <h2 className="font-display text-[4rem] font-extrabold uppercase leading-[3.5rem] text-primary md:text-[5rem] md:leading-[3.5rem]">
-                {children}
+                <DoubleSlideUpText>{children}</DoubleSlideUpText>
               </h2>
             ),
             strong: ({ children }) => (

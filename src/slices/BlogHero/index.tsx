@@ -1,3 +1,4 @@
+import DoubleSlideUpText from "@/components/animated-ui/double-slide-up-text";
 import SingleFeaturedBlogPost from "@/components/blog-post/single-featured-blog-post";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
@@ -24,7 +25,7 @@ const BlogHero = ({ slice }: BlogHeroProps): JSX.Element => {
               "font-display text-[4rem] font-extrabold uppercase leading-[5rem] text-primary md:text-[6rem] md:leading-[5rem]"
             }
           >
-            {slice.primary.heading}
+            <DoubleSlideUpText>{slice.primary.heading}</DoubleSlideUpText>
           </h1>
           <p className="max-w-[35rem] text-sm leading-6 text-black">
             {slice.primary.body}
