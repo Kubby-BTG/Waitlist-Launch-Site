@@ -53,7 +53,7 @@ export default async function Page({ params }: { params: Params }) {
         <SliceZone slices={page.data.slices} components={components} />
       </div>
 
-      <div className={"flex flex-col gap-4 md:max-w-[17rem]"}>
+      <div className={"flex flex-col gap-4 md:max-w-[24rem]"}>
         <p
           className={
             "font-display text-[2.625rem] uppercase leading-[3rem] text-primary-darker"
