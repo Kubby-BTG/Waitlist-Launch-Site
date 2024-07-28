@@ -52,7 +52,7 @@ export default async function Page({ params }: { params: Params }) {
               className={"absolute inset-0 object-cover"}
             />
           </div>
-          <div className="relative grid max-w-[50rem]">
+          <div className="relative grid max-w-[50rem] lg:pr-10">
             <SliceZone slices={page.data.slices} components={components} />
 
             <SocialMediaShareButtons />

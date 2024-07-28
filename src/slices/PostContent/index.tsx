@@ -19,9 +19,7 @@ const PostContent = ({ slice }: PostContentProps): JSX.Element => {
       <PrismicRichText
         field={slice.primary.rich_text}
         components={{
-          paragraph: ({ children }) => (
-            <p className="max-w-[35rem] text-sm leading-5">{children}</p>
-          ),
+          paragraph: ({ children }) => <p className="text-lg">{children}</p>,
         }}
       />
     </section>
