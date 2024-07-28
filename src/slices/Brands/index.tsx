@@ -16,7 +16,7 @@ const Brands = ({ slice }: Brands): JSX.Element => {
       id={"brands"}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={"scroll-mt-[64px] bg-background py-16 md:scroll-mt-[68px]"}
+      className={"scroll-mt-[64px] bg-background py-16 md:scroll-mt-[64px]"}
     >
       <div className="container flex grid-cols-12 flex-col gap-10 md:grid md:gap-4">
         <p
