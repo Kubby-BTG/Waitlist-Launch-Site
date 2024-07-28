@@ -1,4 +1,5 @@
 import DoubleSlideUpText from "@/components/animated-ui/double-slide-up-text";
+import Marquee from "@/components/animated-ui/marquee";
 import { Content } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
@@ -16,7 +17,7 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={"relative z-[1] overflow-y-visible bg-background py-16"}
+      className={"relative z-[1] overflow-x-hidden bg-background py-16"}
     >
       <div className="container flex flex-col gap-5">
         <PrismicRichText
@@ -45,13 +46,14 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
             }}
           />
         </div>
-
-        <div className="mt-6 grid gap-4 md:grid-cols-2 md:gap-6">
+      </div>
+      <div className="mt-6 overflow-y-visible">
+        <Marquee pauseOnHover className={"overflow-visible"}>
           <>
             {slice.primary.items.map((item, i) => (
               <div
                 key={i}
-                className="flex flex-col gap-12 rounded-2xl bg-background-secondary px-6 py-6 shadow-none transition-all duration-500 ease-kubby hover:bg-white/80 hover:shadow-expand sm:gap-14 md:gap-16 lg:gap-[2rem] xl:gap-24"
+                className="flex w-[300px] flex-col gap-12 rounded-2xl bg-background-secondary px-6 py-6 shadow-none transition-all duration-500 ease-kubby hover:bg-white/80 hover:shadow-expand sm:gap-14 md:w-[400px] md:gap-16 lg:gap-[2rem] xl:w-[500px] xl:gap-24"
               >
                 <div className="flex size-12 items-center justify-center rounded-lg bg-background-icon">
                   <PrismicNextImage field={item.icon} />
@@ -69,7 +71,7 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
               </div>
             ))}
           </>
-        </div>
+        </Marquee>
       </div>
     </section>
   );
