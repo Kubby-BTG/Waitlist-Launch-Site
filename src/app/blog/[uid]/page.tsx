@@ -52,7 +52,7 @@ export default async function Page({ params }: { params: Params }) {
               className={"absolute inset-0 object-cover"}
             />
           </div>
-          <div className="relative max-w-[50rem]">
+          <div className="relative grid max-w-[50rem]">
             <SliceZone slices={page.data.slices} components={components} />
 
             <SocialMediaShareButtons />
@@ -78,7 +78,7 @@ export default async function Page({ params }: { params: Params }) {
 
 const SocialMediaShareButtons = () => {
   return (
-    <div className="absolute right-0 top-0 flex flex-col gap-4">
+    <div className="relative flex gap-4 max-lg:row-start-1 max-lg:mb-6 lg:absolute lg:right-0 lg:top-0 lg:flex-col">
       <a href="#">
         <span className="sr-only">Facebook</span>
         <svg
