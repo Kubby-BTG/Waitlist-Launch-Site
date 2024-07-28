@@ -85,13 +85,13 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
         </div>
 
         {/* Content */}
-        <div className="relative flex w-full flex-col gap-6 md:gap-16">
+        <div className="relative flex w-full flex-col gap-6 md:gap-10">
           <div className={"mx-auto flex max-w-[32rem] flex-col gap-1"}>
             <PrismicRichText
               field={slice.primary.heading}
               components={{
                 heading2: ({ children }) => (
-                  <h2 className="flex flex-col items-center text-center font-display text-[3rem] font-extrabold uppercase leading-[2.5rem] text-white">
+                  <h2 className="heading-3 flex flex-col items-center text-center text-white">
                     <DoubleSlideUpText>{children}</DoubleSlideUpText>
                   </h2>
                 ),
