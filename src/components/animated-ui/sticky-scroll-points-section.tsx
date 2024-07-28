@@ -94,7 +94,7 @@ export default function StickyScrollPointsSection({
               field={slice.primary.first_body}
               components={{
                 paragraph: ({ children }) => (
-                  <p className={"body-2 text-primary opacity-70"}>{children}</p>
+                  <p className={"body-3 text-primary opacity-70"}>{children}</p>
                 ),
               }}
             />
@@ -120,7 +120,7 @@ export default function StickyScrollPointsSection({
               field={slice.primary.second_body}
               components={{
                 paragraph: ({ children }) => (
-                  <p className={"body-2 text-primary opacity-70"}>{children}</p>
+                  <p className={"body-3 text-primary opacity-70"}>{children}</p>
                 ),
               }}
             />

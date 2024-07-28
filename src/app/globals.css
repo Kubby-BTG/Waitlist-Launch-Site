@@ -7,6 +7,10 @@
     @apply font-display font-extrabold uppercase leading-[0.85] -tracking-[0.01em] [font-size:_clamp(4rem,8.57vw,8.5rem)];
   }
 
+  .heading-2 {
+    @apply font-display font-extrabold uppercase leading-[0.85] -tracking-[0.01em] [font-size:_clamp(3.375rem,5.95vw,6.25rem)];
+  }
+
   .heading-3 {
     @apply font-display font-extrabold uppercase leading-[0.85] -tracking-[0.01em] [font-size:_clamp(3rem,4.76vw,5rem)];
   }
@@ -16,6 +20,10 @@
   }
 
   .body-2 {
+    @apply font-normal leading-normal tracking-[0.02em] [font-size:_clamp(1.125rem,1.428vw,1.5rem)];
+  }
+
+  .body-3 {
     @apply text-base font-medium leading-[1.44] -tracking-[0.01em] md:text-lg md:leading-[1.44] lg:text-xl lg:leading-[1.44] 2xl:text-[1.375rem] 2xl:leading-[1.44];
   }
 }

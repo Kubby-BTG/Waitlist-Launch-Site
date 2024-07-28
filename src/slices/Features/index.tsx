@@ -18,12 +18,12 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
       data-slice-variation={slice.variation}
       className={"relative z-[1] overflow-y-visible bg-background py-16"}
     >
-      <div className="container flex flex-col gap-6">
+      <div className="container flex flex-col gap-5">
         <PrismicRichText
           field={slice.primary.heading}
           components={{
             heading2: ({ children }) => (
-              <h2 className="font-display text-[2.625rem] font-extrabold uppercase leading-[3rem] text-primary md:text-[5rem] md:leading-[3.5rem]">
+              <h2 className="heading-2 text-primary">
                 <DoubleSlideUpText>{children}</DoubleSlideUpText>
               </h2>
             ),
@@ -38,7 +38,7 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
             field={slice.primary.body}
             components={{
               paragraph: ({ children }) => (
-                <p className={"text-sm text-black/80 md:col-span-3"}>
+                <p className={"body-2 text-primary md:col-span-3"}>
                   {children}
                 </p>
               ),
@@ -46,7 +46,7 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
           />
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 md:gap-6">
+        <div className="mt-6 grid gap-4 md:grid-cols-2 md:gap-6">
           <>
             {slice.primary.items.map((item, i) => (
               <div
