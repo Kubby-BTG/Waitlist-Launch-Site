@@ -7,6 +7,10 @@
     @apply font-display font-extrabold uppercase leading-[0.85] -tracking-[0.01em] [font-size:_clamp(4rem,8.57vw,8.5rem)];
   }
 
+  .heading-3 {
+    @apply font-display font-extrabold uppercase leading-[0.85] -tracking-[0.01em] [font-size:_clamp(3rem,4.76vw,5rem)];
+  }
+
   .body-1 {
     @apply text-base font-normal leading-normal tracking-[0.02em] lg:text-lg lg:leading-normal 2xl:text-xl 2xl:leading-normal;
   }

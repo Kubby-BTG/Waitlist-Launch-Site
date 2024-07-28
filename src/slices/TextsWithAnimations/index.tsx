@@ -46,9 +46,7 @@ const TextsWithAnimations = ({
                 field={slice.primary.first_heading}
                 components={{
                   heading2: ({ children }) => (
-                    <h2 className="font-display text-[2.625rem] font-extrabold uppercase leading-[3rem] text-primary md:text-[3.25rem] md:leading-[3.5rem]">
-                      {children}
-                    </h2>
+                    <h2 className="heading-3 text-primary">{children}</h2>
                   ),
                   strong: ({ children }) => (
                     <strong className="text-brand">{children}</strong>
@@ -90,9 +88,7 @@ const TextsWithAnimations = ({
                 field={slice.primary.second_heading}
                 components={{
                   heading2: ({ children }) => (
-                    <h2 className="font-display text-[2.625rem] font-extrabold uppercase leading-[3rem] text-primary md:text-[3.25rem] md:leading-[3.5rem]">
-                      {children}
-                    </h2>
+                    <h2 className="heading-3 text-primary">{children}</h2>
                   ),
                   strong: ({ children }) => (
                     <strong className="text-brand">{children}</strong>

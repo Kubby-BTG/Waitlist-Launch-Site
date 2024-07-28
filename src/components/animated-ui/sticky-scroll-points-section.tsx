@@ -83,9 +83,7 @@ export default function StickyScrollPointsSection({
               field={slice.primary.first_heading}
               components={{
                 heading2: ({ children }) => (
-                  <h2 className="font-display font-extrabold uppercase leading-[0.85] text-primary [font-size:_clamp(3rem,4.76vw,5rem)]">
-                    {children}
-                  </h2>
+                  <h2 className="heading-3 text-primary">{children}</h2>
                 ),
                 strong: ({ children }) => (
                   <strong className="text-brand">{children}</strong>
@@ -111,9 +109,7 @@ export default function StickyScrollPointsSection({
               field={slice.primary.second_heading}
               components={{
                 heading2: ({ children }) => (
-                  <h2 className="font-display font-extrabold uppercase leading-[0.85] text-primary [font-size:_clamp(3rem,4.76vw,5rem)]">
-                    {children}
-                  </h2>
+                  <h2 className="heading-3 text-primary">{children}</h2>
                 ),
                 strong: ({ children }) => (
                   <strong className="text-brand">{children}</strong>
