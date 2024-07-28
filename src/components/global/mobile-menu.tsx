@@ -3,7 +3,7 @@
 import { createPortal } from "react-dom";
 import KubbyLogo from "../ui/kubby-logo";
 import { Dispatch, ReactNode, SetStateAction } from "react";
-import { GroupField, LinkField } from "@prismicio/client";
+import { asLink, GroupField, LinkField } from "@prismicio/client";
 import {
   SettingsDocumentDataNavigationItem,
   Simplify,
@@ -12,6 +12,7 @@ import { PrismicNextLink } from "@prismicio/next";
 import { Button } from "../ui/button";
 import Arrow from "../ui/arrow";
 import WaitlistForm from "../modals/waitlist-form";
+import { TransitionLink } from "../animated-ui/transition-link";
 
 export default function MobileMenu({
   setIsOpen,
@@ -66,9 +67,12 @@ export default function MobileMenu({
               "border-b border-b-background-muted py-1 font-display text-[3rem] font-extrabold uppercase leading-[2.5rem] text-primary"
             }
           >
-            <PrismicNextLink field={item.link} onClick={() => setIsOpen(false)}>
+            <TransitionLink
+              href={asLink(item.link) as string}
+              onClick={() => setIsOpen(false)}
+            >
               {item.label}
-            </PrismicNextLink>
+            </TransitionLink>
           </li>
         ))}
         <li
@@ -76,9 +80,12 @@ export default function MobileMenu({
             "border-b border-b-background-muted py-1 font-display text-[3rem] font-extrabold uppercase leading-[2.5rem] text-primary"
           }
         >
-          <PrismicNextLink field={reportLink} onClick={() => setIsOpen(false)}>
+          <TransitionLink
+            href={asLink(reportLink) as string}
+            onClick={() => setIsOpen(false)}
+          >
             Report Delivery Issue
-          </PrismicNextLink>
+          </TransitionLink>
         </li>
       </ul>
 

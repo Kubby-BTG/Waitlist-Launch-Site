@@ -7,6 +7,7 @@ import { createClient } from "@/prismicio";
 import Header from "@/components/global/header";
 import Footer from "@/components/global/footer";
 import AnimatedLayout from "@/components/animated-ui/animated-layout";
+import ExitAnimationWrapper from "@/components/animated-ui/exit-animation-wrapper";
 
 const DMSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
 
@@ -44,6 +45,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          <ExitAnimationWrapper />
         </AnimatedLayout>
       </body>
     </html>

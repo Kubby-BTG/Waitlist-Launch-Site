@@ -1,7 +1,7 @@
 "use client";
 
-import { GroupField, LinkField } from "@prismicio/client";
-import { PrismicNextLink } from "@prismicio/next";
+import { asLink, GroupField, LinkField } from "@prismicio/client";
+// import { PrismicNextLink } from "@prismicio/next";
 import {
   SettingsDocumentDataNavigationItem,
   Simplify,
@@ -11,9 +11,10 @@ import KubbyLogo from "../ui/kubby-logo";
 import { ReactNode, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { useLockBodyScroll } from "react-use";
-import Link from "next/link";
+// import Link from "next/link";
 import WaitlistForm from "../modals/waitlist-form";
 import { usePathname } from "next/navigation";
+import { TransitionLink } from "../animated-ui/transition-link";
 
 const MobileMenu = dynamic(() => import("./mobile-menu"), { ssr: false });
 
@@ -45,10 +46,10 @@ export default function Navbar({
       >
         <div className={"flex items-center gap-8"}>
           {/* Kubby Logo */}
-          <Link href={"/"}>
+          <TransitionLink href={"/"}>
             <KubbyLogo />
             <span className="sr-only">Go home</span>
-          </Link>
+          </TransitionLink>
           {/* Desktop Navlinks */}
           <ul className="hidden items-center gap-4 md:flex">
             {navigation.map((item, i) => (
@@ -58,9 +59,12 @@ export default function Navbar({
                   "transition-500 rounded-full bg-white/0 px-4 py-[0.325rem] text-[0.938rem] font-medium leading-5 text-white transition-colors ease-kubby hover:bg-white/5"
                 }
               >
-                <PrismicNextLink field={item.link}>
+                {/* <PrismicNextLink field={item.link}>
                   {item.label}
-                </PrismicNextLink>
+                </PrismicNextLink> */}
+                <TransitionLink href={asLink(item.link) as string}>
+                  {item.label}
+                </TransitionLink>
               </li>
             ))}
           </ul>
