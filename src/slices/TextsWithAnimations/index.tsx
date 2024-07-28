@@ -60,7 +60,10 @@ const TextsWithAnimations = ({
                 field={slice.primary.first_body}
                 components={{
                   paragraph: ({ children }) => (
-                    <p className={"text-sm text-black/80"}> {children}</p>
+                    <p className={"body-2 text-primary opacity-70"}>
+                      {" "}
+                      {children}
+                    </p>
                   ),
                 }}
               />
@@ -101,7 +104,10 @@ const TextsWithAnimations = ({
                 field={slice.primary.second_body}
                 components={{
                   paragraph: ({ children }) => (
-                    <p className={"text-sm text-black/80"}> {children}</p>
+                    <p className={"body-2 text-primary opacity-70"}>
+                      {" "}
+                      {children}
+                    </p>
                   ),
                 }}
               />

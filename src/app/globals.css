@@ -10,4 +10,8 @@
   .body-1 {
     @apply text-base font-normal leading-normal tracking-[0.02em] lg:text-lg lg:leading-normal 2xl:text-xl 2xl:leading-normal;
   }
+
+  .body-2 {
+    @apply text-base font-medium leading-[1.44] -tracking-[0.01em] md:text-lg md:leading-[1.44] lg:text-xl lg:leading-[1.44] 2xl:text-[1.375rem] 2xl:leading-[1.44];
+  }
 }

@@ -74,7 +74,7 @@ export default function StickyScrollPointsSection({
         </div>
         <div className="flex w-full flex-col md:col-span-4 md:col-start-8 md:mb-72 md:gap-52">
           <motion.div
-            className="flex flex-col gap-4 md:col-start-6 md:justify-center"
+            className="flex flex-col gap-4 md:col-start-6 md:justify-center md:gap-5"
             animate={{
               opacity: isScrollEnd ? 0.4 : 1,
             }}
@@ -96,7 +96,7 @@ export default function StickyScrollPointsSection({
               field={slice.primary.first_body}
               components={{
                 paragraph: ({ children }) => (
-                  <p className={"text-sm text-black/80"}>{children}</p>
+                  <p className={"body-2 text-primary opacity-70"}>{children}</p>
                 ),
               }}
             />
@@ -124,7 +124,7 @@ export default function StickyScrollPointsSection({
               field={slice.primary.second_body}
               components={{
                 paragraph: ({ children }) => (
-                  <p className={"text-sm text-black/80"}>{children}</p>
+                  <p className={"body-2 text-primary opacity-70"}>{children}</p>
                 ),
               }}
             />
