@@ -26,9 +26,7 @@ const PartnershipForm = ({ slice }: PartnershipFormProps): JSX.Element => {
             field={slice.primary.heading}
             components={{
               heading1: ({ children }) => (
-                <h1 className="font-display text-[3.25rem] font-extrabold uppercase leading-[3.5rem] text-white md:text-[6rem] md:leading-[5.5rem]">
-                  {children}
-                </h1>
+                <h1 className="heading-2 text-white">{children}</h1>
               ),
               strong: ({ children }) => (
                 <strong className="text-secondary">{children}</strong>
@@ -39,7 +37,9 @@ const PartnershipForm = ({ slice }: PartnershipFormProps): JSX.Element => {
             field={slice.primary.body}
             components={{
               paragraph: ({ children }) => (
-                <p className="text-base text-white">{children}</p>
+                <p className="body-1 text-cream max-w-[31.25rem] text-balance opacity-70">
+                  {children}
+                </p>
               ),
             }}
           />

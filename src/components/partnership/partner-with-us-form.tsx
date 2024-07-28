@@ -17,7 +17,7 @@ export default function PartnerWithUsForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex w-full flex-col gap-4 rounded-lg bg-white p-8 md:max-w-[26rem]"
+      className="flex w-full flex-col gap-4 rounded-lg bg-white p-8 md:max-w-[32rem]"
     >
       <div className="flex items-center gap-1">
         <PartnerIcon />
