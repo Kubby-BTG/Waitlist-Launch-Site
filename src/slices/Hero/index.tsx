@@ -36,16 +36,18 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
               ),
             }}
           />
-          <PrismicRichText
-            field={slice.primary.body}
-            components={{
-              paragraph: ({ children }) => (
-                <p className="body-1 text-cream max-w-[31.25rem] text-balance opacity-70">
-                  {children}
-                </p>
-              ),
-            }}
-          />
+          <div>
+            <PrismicRichText
+              field={slice.primary.body}
+              components={{
+                paragraph: ({ children }) => (
+                  <p className="body-1 text-cream max-w-[31.25rem] text-balance opacity-70">
+                    {children}
+                  </p>
+                ),
+              }}
+            />
+          </div>
 
           <div className={"mt-4"}>
             <WaitlistForm>

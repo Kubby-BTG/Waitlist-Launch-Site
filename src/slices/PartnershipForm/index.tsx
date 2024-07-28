@@ -33,16 +33,18 @@ const PartnershipForm = ({ slice }: PartnershipFormProps): JSX.Element => {
               ),
             }}
           />
-          <PrismicRichText
-            field={slice.primary.body}
-            components={{
-              paragraph: ({ children }) => (
-                <p className="body-1 text-cream max-w-[31.25rem] text-balance opacity-70">
-                  {children}
-                </p>
-              ),
-            }}
-          />
+          <div>
+            <PrismicRichText
+              field={slice.primary.body}
+              components={{
+                paragraph: ({ children }) => (
+                  <p className="body-1 text-cream _text-balance max-w-[40rem] opacity-70 md:pr-12 xl:pr-16">
+                    {children}
+                  </p>
+                ),
+              }}
+            />
+          </div>
         </div>
 
         <div className={"md:flex md:justify-end"}>
