@@ -38,6 +38,7 @@ const config = {
       minimal: "#CFD6D9",
       gray: "#474B4D",
       accent: "#99ddc7",
+      cream: "#f9f3e8",
     },
     boxShadow: {
       none: "0 0 0 rgba(0,0,0,0)",

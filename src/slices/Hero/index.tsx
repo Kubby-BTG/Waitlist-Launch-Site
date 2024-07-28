@@ -24,14 +24,12 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
       }
     >
       <div className="container flex grid-cols-2 flex-col gap-8 md:grid md:items-center md:gap-0">
-        <div className="flex flex-col gap-6 md:pr-10">
+        <div className="flex flex-col gap-6 md:pr-6">
           <PrismicRichText
             field={slice.primary.heading}
             components={{
               heading1: ({ children }) => (
-                <h1 className="font-display text-[4rem] font-extrabold uppercase leading-none text-white md:text-[6rem] md:leading-[5rem]">
-                  {children}
-                </h1>
+                <h1 className="heading-1 text-white">{children}</h1>
               ),
               strong: ({ children }) => (
                 <strong className="text-secondary">{children}</strong>
@@ -42,7 +40,9 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
             field={slice.primary.body}
             components={{
               paragraph: ({ children }) => (
-                <p className="text-sm text-white md:text-base">{children}</p>
+                <p className="body-1 text-cream max-w-[31.25rem] opacity-70">
+                  {children}
+                </p>
               ),
             }}
           />
