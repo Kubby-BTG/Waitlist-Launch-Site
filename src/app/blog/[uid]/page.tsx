@@ -20,9 +20,13 @@ export default async function Page({ params }: { params: Params }) {
   return (
     <PageWrapper>
       <div className="flex flex-col gap-10 py-16 lg:flex-row lg:gap-20 lg:pb-14 lg:pt-12">
-        <div className="flex w-full flex-grow flex-col gap-10">
+        <div className="flex w-full flex-grow flex-col items-center gap-10">
           {/* Above section */}
-          <div className={"flex flex-col gap-4 lg:mt-16 lg:gap-10"}>
+          <div
+            className={
+              "mx-auto flex w-full max-w-[50rem] flex-col gap-4 lg:mt-16 lg:gap-10"
+            }
+          >
             <PrismicRichText
               field={page.data.title}
               components={{
@@ -46,7 +50,7 @@ export default async function Page({ params }: { params: Params }) {
               </span>
             </span>
           </div>
-          <div className="relative aspect-video max-w-[50rem] overflow-hidden rounded-[5px] lg:rounded-lg">
+          <div className="relative aspect-video w-full max-w-[50rem] overflow-hidden rounded-[5px] lg:rounded-lg">
             <PrismicNextImage
               field={page.data.featured_image}
               className={"absolute inset-0 object-cover"}
@@ -55,7 +59,7 @@ export default async function Page({ params }: { params: Params }) {
           <div className="relative grid max-w-[50rem] lg:pr-10">
             <SliceZone slices={page.data.slices} components={components} />
 
-            <SocialMediaShareButtons />
+            {/* <SocialMediaShareButtons /> */}
           </div>
         </div>
 
