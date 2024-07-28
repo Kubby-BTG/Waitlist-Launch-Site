@@ -22,29 +22,31 @@ const Story = ({ slice }: StoryProps): JSX.Element => {
       }
     >
       <div className="container flex grid-cols-2 flex-col gap-4 md:grid md:items-center">
-        <div className="flex flex-col gap-4 text-white md:gap-6">
+        <div className="flex flex-col gap-4 text-white md:gap-6 md:pr-10 lg:pr-12 2xl:pr-16">
           <span className={"text-base font-bold uppercase"}>
             {slice.primary.subheading}
           </span>
-          <h2
-            className={
-              "font-display text-5xl font-extrabold uppercase leading-[2.625rem] text-light md:text-[3.5rem] md:leading-[3.25rem]"
-            }
-          >
+          <h2 className={"heading-3 text-balance text-light"}>
             <DoubleSlideUpText>{slice.primary.heading}</DoubleSlideUpText>
           </h2>
           <PrismicRichText
             field={slice.primary.body}
             components={{
               paragraph: ({ children }) => (
-                <p className={"text-sm leading-6 text-white"}> {children}</p>
+                <p
+                  className={
+                    "body-1 text-cream max-w-[43.75rem] text-balance opacity-70"
+                  }
+                >
+                  {children}
+                </p>
               ),
             }}
           />
         </div>
         <PrismicNextImage
           field={slice.primary.image}
-          className={"h-[384px] rounded-2xl"}
+          className={"min-h-[384px] rounded-2xl"}
         />
       </div>
     </section>
