@@ -7,6 +7,7 @@ import { components } from "@/slices";
 import { formatDate } from "@/lib/utils";
 import { PrismicNextImage } from "@prismicio/next";
 import CuratedPosts from "@/components/blog-post/curated-posts";
+import PageWrapper from "@/components/animated-ui/page-wrapper";
 
 type Params = { uid: string };
 
@@ -17,57 +18,59 @@ export default async function Page({ params }: { params: Params }) {
     .catch(() => notFound());
 
   return (
-    <div className="flex flex-col gap-10 py-16 lg:flex-row lg:gap-20 lg:pb-14 lg:pt-12">
-      <div className="flex w-full flex-grow flex-col gap-10">
-        {/* Above section */}
-        <div className={"flex flex-col gap-4 lg:mt-16 lg:gap-10"}>
-          <PrismicRichText
-            field={page.data.title}
-            components={{
-              heading1: ({ children }) => (
-                <h1
-                  className={
-                    "text-[2rem] font-bold leading-[2rem] text-primary"
-                  }
-                >
-                  {children}
-                </h1>
-              ),
-            }}
-          />
-          <span className="flex gap-1 text-sm leading-5 text-primary">
-            <span>{page.data.author}</span>|
-            <span>
-              {page.data.publication_date
-                ? formatDate(page.data.publication_date)
-                : ""}
+    <PageWrapper>
+      <div className="flex flex-col gap-10 py-16 lg:flex-row lg:gap-20 lg:pb-14 lg:pt-12">
+        <div className="flex w-full flex-grow flex-col gap-10">
+          {/* Above section */}
+          <div className={"flex flex-col gap-4 lg:mt-16 lg:gap-10"}>
+            <PrismicRichText
+              field={page.data.title}
+              components={{
+                heading1: ({ children }) => (
+                  <h1
+                    className={
+                      "text-[2rem] font-bold leading-[2rem] text-primary"
+                    }
+                  >
+                    {children}
+                  </h1>
+                ),
+              }}
+            />
+            <span className="flex gap-1 text-sm leading-5 text-primary">
+              <span>{page.data.author}</span>|
+              <span>
+                {page.data.publication_date
+                  ? formatDate(page.data.publication_date)
+                  : ""}
+              </span>
             </span>
-          </span>
-        </div>
-        <div className="relative aspect-video max-w-[50rem] overflow-hidden rounded-[5px] lg:rounded-lg">
-          <PrismicNextImage
-            field={page.data.featured_image}
-            className={"absolute inset-0 object-cover"}
-          />
-        </div>
-        <div className="relative max-w-[50rem]">
-          <SliceZone slices={page.data.slices} components={components} />
+          </div>
+          <div className="relative aspect-video max-w-[50rem] overflow-hidden rounded-[5px] lg:rounded-lg">
+            <PrismicNextImage
+              field={page.data.featured_image}
+              className={"absolute inset-0 object-cover"}
+            />
+          </div>
+          <div className="relative max-w-[50rem]">
+            <SliceZone slices={page.data.slices} components={components} />
 
-          <SocialMediaShareButtons />
+            <SocialMediaShareButtons />
+          </div>
+        </div>
+
+        <div className={"flex flex-col gap-4 lg:max-w-[24rem]"}>
+          <p
+            className={
+              "font-display text-[2.625rem] uppercase leading-[3rem] text-primary-darker"
+            }
+          >
+            More <span className={"text-brand"}>Stories</span>
+          </p>
+          <CuratedPosts className={"md:grid-cols-2 lg:grid-cols-1"} />
         </div>
       </div>
-
-      <div className={"flex flex-col gap-4 lg:max-w-[24rem]"}>
-        <p
-          className={
-            "font-display text-[2.625rem] uppercase leading-[3rem] text-primary-darker"
-          }
-        >
-          More <span className={"text-brand"}>Stories</span>
-        </p>
-        <CuratedPosts className={"md:grid-cols-2 lg:grid-cols-1"} />
-      </div>
-    </div>
+    </PageWrapper>
   );
 }
 

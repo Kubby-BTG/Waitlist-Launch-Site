@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { createClient } from "@/prismicio";
 import Header from "@/components/global/header";
 import Footer from "@/components/global/footer";
+import AnimatedLayout from "@/components/animated-ui/animated-layout";
 
 const DMSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
 
@@ -39,9 +40,11 @@ export default function RootLayout({
       <body
         className={cn(DMSans.variable, TTBluescreens.variable, "font-sans")}
       >
-        <Header />
-        {children}
-        <Footer />
+        <AnimatedLayout>
+          <Header />
+          {children}
+          <Footer />
+        </AnimatedLayout>
       </body>
     </html>
   );
