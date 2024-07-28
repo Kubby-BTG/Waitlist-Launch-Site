@@ -58,12 +58,12 @@ export default function MobileMenu({
         </div>
       </div>
       {/* Nav */}
-      <ul className="flex flex-col">
+      <ul className="mt-10 flex flex-col">
         {navigation.map((item, i) => (
           <li
             key={i}
             className={
-              "border-b border-b-background-muted py-6 text-sm font-bold text-black/80"
+              "border-b border-b-background-muted py-1 font-display text-[3rem] font-extrabold uppercase leading-[2.5rem] text-primary"
             }
           >
             <PrismicNextLink field={item.link} onClick={() => setIsOpen(false)}>
@@ -71,7 +71,11 @@ export default function MobileMenu({
             </PrismicNextLink>
           </li>
         ))}
-        <li className={"py-6 text-sm font-bold text-black/80"}>
+        <li
+          className={
+            "border-b border-b-background-muted py-1 font-display text-[3rem] font-extrabold uppercase leading-[2.5rem] text-primary"
+          }
+        >
           <PrismicNextLink field={reportLink} onClick={() => setIsOpen(false)}>
             Report Delivery Issue
           </PrismicNextLink>
@@ -80,8 +84,12 @@ export default function MobileMenu({
 
       <div className={"w-full"}>
         <WaitlistForm>
-          <Button className={"flex w-full items-center gap-1"}>
-            <span>Join Our Waitlist</span>
+          <Button
+            className={
+              "flex w-full items-center gap-1 bg-primary hover:bg-primary/80"
+            }
+          >
+            <span>Join Waitlist</span>
             <Arrow className={"flex-none"} />
           </Button>
         </WaitlistForm>
