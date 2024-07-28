@@ -40,14 +40,14 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
             field={slice.primary.body}
             components={{
               paragraph: ({ children }) => (
-                <p className="body-1 text-cream max-w-[31.25rem] opacity-70">
+                <p className="body-1 text-cream max-w-[31.25rem] text-balance opacity-70">
                   {children}
                 </p>
               ),
             }}
           />
 
-          <div>
+          <div className={"mt-4"}>
             <WaitlistForm>
               <Button variant={"accent"} className={"flex items-center gap-1"}>
                 <span>{slice.primary.button_text}</span>
