@@ -6,7 +6,7 @@ import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import { formatDate } from "@/lib/utils";
 import { PrismicNextImage } from "@prismicio/next";
-import CuratedPosts from "@/components/blog-post/curated-posts";
+// import CuratedPosts from "@/components/blog-post/curated-posts";
 import PageWrapper from "@/components/animated-ui/page-wrapper";
 
 type Params = { uid: string };
@@ -59,7 +59,7 @@ export default async function Page({ params }: { params: Params }) {
           </div>
         </div>
 
-        <div
+        {/* <div
           className={"flex flex-col gap-4 lg:max-w-[24rem] xl:max-w-[26rem]"}
         >
           <p
@@ -70,7 +70,7 @@ export default async function Page({ params }: { params: Params }) {
             More <span className={"text-brand"}>Stories</span>
           </p>
           <CuratedPosts className={"md:grid-cols-2 lg:grid-cols-1"} />
-        </div>
+        </div> */}
       </div>
     </PageWrapper>
   );
