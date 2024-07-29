@@ -17,7 +17,7 @@ const Map = ({ slice }: MapProps): JSX.Element => {
       className={"relative bg-background py-16"}
     >
       <div className="absolute inset-0 translate-y-1/2 bg-primary"></div>
-      <div className="container">
+      <div className="container max-md:px-0">
         <div
           className={
             "relative h-[600px] w-full overflow-hidden md:h-[640px] md:rounded-2xl"
