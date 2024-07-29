@@ -36,7 +36,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
         className={cn(
           "flex px-6 py-8 md:px-8",
           isSent
-            ? "max-w-[17.5rem] max-md:w-[calc(100vw-6.5rem)] md:max-w-[36rem]"
+            ? "_max-w-[17.5rem] _max-md:w-[calc(100vw-6.5rem)] md:max-w-[36rem]"
             : "",
         )}
       >
