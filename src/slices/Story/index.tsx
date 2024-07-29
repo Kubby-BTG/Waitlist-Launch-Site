@@ -26,7 +26,7 @@ const Story = ({ slice }: StoryProps): JSX.Element => {
           <span className={"text-base font-bold uppercase"}>
             {slice.primary.subheading}
           </span>
-          <h2 className={"heading-3 text-balance text-light"}>
+          <h2 className={"heading-3 text-light md:text-balance"}>
             <DoubleSlideUpText>{slice.primary.heading}</DoubleSlideUpText>
           </h2>
           <PrismicRichText
@@ -35,7 +35,7 @@ const Story = ({ slice }: StoryProps): JSX.Element => {
               paragraph: ({ children }) => (
                 <p
                   className={
-                    "body-1 text-cream max-w-[43.75rem] text-balance opacity-70"
+                    "body-1 max-w-[43.75rem] text-cream opacity-70 md:text-balance"
                   }
                 >
                   {children}
