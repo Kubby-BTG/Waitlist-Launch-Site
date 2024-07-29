@@ -18,6 +18,7 @@ const TextsWithAnimations = ({
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
+      className={"bg-background"}
     >
       {/* Desktop */}
       <StickyScrollPointsSection slice={slice} />
