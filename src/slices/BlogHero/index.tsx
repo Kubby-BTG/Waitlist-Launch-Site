@@ -16,7 +16,7 @@ const BlogHero = ({ slice }: BlogHeroProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={"bg-background py-10"}
+      className={"bg-background py-12 pt-14"}
     >
       <div className="container flex flex-col gap-16 md:gap-20 2xl:gap-24">
         <div className="flex flex-col gap-4 md:gap-6">
