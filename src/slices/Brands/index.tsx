@@ -18,16 +18,16 @@ const Brands = ({ slice }: Brands): JSX.Element => {
       data-slice-variation={slice.variation}
       className={"scroll-mt-[64px] bg-background py-16 md:scroll-mt-[64px]"}
     >
-      <div className="container flex grid-cols-12 flex-col gap-10 md:grid md:gap-4">
+      <div className="container flex grid-cols-12 flex-col gap-10 lg:grid lg:gap-4">
         <p
           className={
-            "max-w-[20.625rem] text-center text-base font-medium text-black/80 md:col-span-2 md:text-start"
+            "text-center text-base font-medium text-black/80 lg:col-span-2 lg:max-w-[20.625rem] lg:text-start"
           }
         >
           {slice.primary.text}
         </p>
 
-        <div className="grid grid-cols-3 gap-8 px-1 py-8 md:col-span-3 md:col-start-8 md:gap-16 md:py-4">
+        <div className="grid grid-cols-3 gap-8 px-1 py-8 sm:gap-14 lg:col-span-3 lg:col-start-8 lg:gap-16 lg:py-4">
           <>
             {slice.primary.brands.map((item, i) => (
               <PrismicNextImage key={i} field={item.brand_logo} />
