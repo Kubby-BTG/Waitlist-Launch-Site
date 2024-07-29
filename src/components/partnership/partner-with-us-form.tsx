@@ -41,6 +41,18 @@ export default function PartnerWithUsForm() {
       </div>
 
       <div className={"flex w-full flex-col gap-1"}>
+        <label htmlFor="work-address" className={"text-sm text-black"}>
+          Work Address
+        </label>
+        <Input
+          type="text"
+          id={"work-address"}
+          required
+          placeholder={"Your Address"}
+        />
+      </div>
+
+      <div className={"flex w-full flex-col gap-1"}>
         <label htmlFor="company-name" className={"text-sm text-black"}>
           Company
         </label>
