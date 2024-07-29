@@ -102,6 +102,7 @@ export default async function Footer() {
 
             <p className={"text-[0.625rem] leading-5 text-white"}>
               {settings.data.copyright}
+              <span className="block">Patents Pending</span>
             </p>
           </div>
 
@@ -188,6 +189,7 @@ export default async function Footer() {
 
             <p className={"text-xs leading-5 text-white"}>
               {settings.data.copyright}
+              <span className="block">Patents Pending</span>
             </p>
           </div>
         </div>
