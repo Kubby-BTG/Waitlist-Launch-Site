@@ -19,8 +19,11 @@ export default async function Page({ params }: { params: Params }) {
 
   return (
     <PageWrapper>
-      <div className="flex flex-col gap-10 py-16 lg:flex-row lg:gap-20 lg:pb-14 lg:pt-12">
-        <div className="flex w-full flex-grow flex-col items-center gap-10">
+      <div className="container relative mx-auto flex flex-col gap-10 py-16 lg:flex-row lg:gap-20 lg:pb-14 lg:pt-12">
+        <div className="absolute left-0 top-28 hidden lg:block">
+          <SocialMediaShareButtons />
+        </div>
+        <div className="relative flex w-full flex-grow flex-col items-center gap-10">
           {/* Above section */}
           <div
             className={
@@ -85,8 +88,13 @@ export default async function Page({ params }: { params: Params }) {
 
 const SocialMediaShareButtons = () => {
   return (
-    <div className="relative flex gap-4 max-lg:row-start-1 max-lg:mb-6 lg:absolute lg:right-0 lg:top-0 lg:flex-col">
-      <a href="#">
+    <div className="flex gap-4 max-lg:row-start-1 max-lg:mb-6 lg:flex-col">
+      <a
+        href="#"
+        className={
+          "flex size-10 items-center justify-center rounded-full border border-primary/50"
+        }
+      >
         <span className="sr-only">Facebook</span>
         <svg
           width="28"
@@ -94,6 +102,7 @@ const SocialMediaShareButtons = () => {
           viewBox="0 0 28 28"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className={"size-6"}
         >
           <g clipPath="url(#clip0_380_21698)">
             <path
@@ -113,7 +122,12 @@ const SocialMediaShareButtons = () => {
           </defs>
         </svg>
       </a>
-      <a href="#">
+      <a
+        href="#"
+        className={
+          "flex size-10 items-center justify-center rounded-full border border-primary/50"
+        }
+      >
         <span className="sr-only">Linkedin</span>
         <svg
           width="28"
@@ -121,6 +135,7 @@ const SocialMediaShareButtons = () => {
           viewBox="0 0 28 28"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className={"size-6"}
         >
           <g clipPath="url(#clip0_380_21702)">
             <path
@@ -140,7 +155,12 @@ const SocialMediaShareButtons = () => {
           </defs>
         </svg>
       </a>
-      <a href="#">
+      <a
+        href="#"
+        className={
+          "flex size-10 items-center justify-center rounded-full border border-primary/50"
+        }
+      >
         <span className="sr-only">X</span>
         <svg
           width="28"
@@ -148,6 +168,7 @@ const SocialMediaShareButtons = () => {
           viewBox="0 0 28 28"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className={"size-6"}
         >
           <g clipPath="url(#clip0_380_21706)">
             <path
@@ -167,7 +188,12 @@ const SocialMediaShareButtons = () => {
           </defs>
         </svg>
       </a>
-      <a href="#">
+      <a
+        href="#"
+        className={
+          "flex size-10 items-center justify-center rounded-full border border-primary/50"
+        }
+      >
         <span className="sr-only">Instagram</span>
         <svg
           width="28"
@@ -175,6 +201,7 @@ const SocialMediaShareButtons = () => {
           viewBox="0 0 28 28"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className={"size-6"}
         >
           <g clipPath="url(#clip0_380_21710)">
             <path
