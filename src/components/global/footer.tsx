@@ -5,6 +5,8 @@ import { Button } from "../ui/button";
 import Arrow from "../ui/arrow";
 import KubbyLogo from "../ui/kubby-logo";
 import WaitlistForm from "../modals/waitlist-form";
+import { TransitionLink } from "../animated-ui/transition-link";
+import { asLink } from "@prismicio/client";
 
 export default async function Footer() {
   const client = createClient();
@@ -74,15 +76,15 @@ export default async function Footer() {
 
             <div className="flex flex-col gap-4">
               {settings.data.main_navigation.map((item, i) => (
-                <PrismicNextLink
-                  field={item.link}
+                <TransitionLink
+                  href={asLink(item.link) as string}
                   key={i}
                   className={
                     "text-sm text-white hover:underline hover:underline-offset-4"
                   }
                 >
                   {item.label}
-                </PrismicNextLink>
+                </TransitionLink>
               ))}
             </div>
 
@@ -123,15 +125,15 @@ export default async function Footer() {
 
             <div className="flex flex-col gap-2">
               {settings.data.main_navigation.map((item, i) => (
-                <PrismicNextLink
-                  field={item.link}
+                <TransitionLink
+                  href={asLink(item.link) as string}
                   key={i}
                   className={
                     "text-sm text-white hover:underline hover:underline-offset-4"
                   }
                 >
                   {item.label}
-                </PrismicNextLink>
+                </TransitionLink>
               ))}
             </div>
 
