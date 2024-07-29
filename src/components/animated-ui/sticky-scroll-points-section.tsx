@@ -26,7 +26,7 @@ export default function StickyScrollPointsSection({
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest > 0.9) {
+    if (latest > 0.8) {
       setIsScrollEnd(true);
     } else {
       setIsScrollEnd(false);
@@ -36,9 +36,11 @@ export default function StickyScrollPointsSection({
   return (
     <motion.div
       className={"hidden min-h-[80vh] py-16 md:block"}
-      animate={{
-        backgroundColor: isScrollEnd ? "#99ddc780" : "#f9f3e8",
-      }}
+      animate={
+        {
+          // backgroundColor: isScrollEnd ? "#99ddc780" : "#f9f3e8",
+        }
+      }
       transition={{
         type: "spring",
         stiffness: 400,
@@ -52,7 +54,7 @@ export default function StickyScrollPointsSection({
           className={"md:col-span-4"}
         /> */}
         <div className="md:col-span-6">
-          <div className="sticky top-20">
+          <div className="sticky top-20 overflow-hidden">
             <AnimatePresence>
               {!isScrollEnd ? (
                 <motion.video
@@ -60,6 +62,10 @@ export default function StickyScrollPointsSection({
                   autoPlay
                   muted
                   loop
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className={"scale-[1.02]"}
                 ></motion.video>
               ) : (
                 <motion.video
@@ -67,12 +73,16 @@ export default function StickyScrollPointsSection({
                   autoPlay
                   muted
                   loop
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className={"scale-[1.02]"}
                 ></motion.video>
               )}
             </AnimatePresence>
           </div>
         </div>
-        <div className="flex w-full flex-col md:col-span-5 md:col-start-8 md:mb-72 md:gap-52">
+        <div className="flex w-full flex-col md:col-span-5 md:col-start-8 md:mb-96 md:gap-52">
           <motion.div
             className="flex flex-col gap-4 md:col-start-6 md:justify-center md:gap-5"
             animate={{
