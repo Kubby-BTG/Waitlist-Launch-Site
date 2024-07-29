@@ -72,7 +72,7 @@ export default function StickyScrollPointsSection({
             </AnimatePresence>
           </div>
         </div>
-        <div className="flex w-full flex-col md:col-span-4 md:col-start-8 md:mb-72 md:gap-52">
+        <div className="flex w-full flex-col md:col-span-5 md:col-start-8 md:mb-72 md:gap-52">
           <motion.div
             className="flex flex-col gap-4 md:col-start-6 md:justify-center md:gap-5"
             animate={{
