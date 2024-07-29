@@ -17,7 +17,9 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={"relative z-[1] overflow-x-hidden bg-background py-16"}
+      className={
+        "relative z-[1] overflow-x-hidden bg-background py-12 md:py-16"
+      }
     >
       <div className="container flex flex-col gap-5">
         <PrismicRichText

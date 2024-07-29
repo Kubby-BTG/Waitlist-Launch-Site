@@ -39,6 +39,7 @@ const TextsWithAnimations = ({
                 autoPlay
                 muted
                 loop
+                className={"scale-[1.02]"}
               ></video>
             </div>
             <div className="flex flex-col gap-4 md:col-span-3 md:col-start-6 md:justify-center">
@@ -67,7 +68,7 @@ const TextsWithAnimations = ({
             </div>
           </div>
         </div>
-        <div className="bg-accent/50 py-12">
+        <div className="bg-background py-12">
           <div className="container flex grid-cols-8 flex-col-reverse gap-10 md:grid md:gap-0">
             {/* <PrismicNextImage
           field={slice.primary.image}
@@ -81,6 +82,7 @@ const TextsWithAnimations = ({
                 autoPlay
                 muted
                 loop
+                className={"scale-[1.02]"}
               ></video>
             </div>
             <div className="flex flex-col gap-4 md:col-span-3 md:col-start-6 md:justify-center">
