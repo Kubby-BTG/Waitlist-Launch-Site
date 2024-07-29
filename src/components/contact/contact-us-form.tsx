@@ -37,10 +37,14 @@ export default function ContactUsForm() {
         </div>
       </div>
       <div className={"flex w-full flex-col gap-1"}>
-        <label htmlFor="message" className={"text-sm text-black"}>
-          Message
+        <label htmlFor="comments" className={"text-sm text-black"}>
+          Comments
         </label>
-        <Textarea placeholder={"What do you want to say"} rows={6} />
+        <Textarea
+          id={"comments"}
+          placeholder={"What do you want to say"}
+          rows={6}
+        />
       </div>
 
       <Button>Send Message</Button>
