@@ -15,7 +15,7 @@ const Map = ({ slice }: MapProps): JSX.Element => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={"relative bg-background py-16"}
+      className={"relative overflow-hidden bg-background py-16"}
     >
       <div className="absolute inset-0 translate-y-1/2 bg-primary"></div>
       <div className="container relative max-md:px-0">
