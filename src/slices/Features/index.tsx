@@ -53,7 +53,7 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
             {slice.primary.items.map((item, i) => (
               <div
                 key={i}
-                className="flex w-[300px] flex-col gap-12 rounded-2xl bg-background-secondary px-6 py-6 shadow-none transition-all duration-500 ease-kubby hover:bg-white/80 hover:shadow-expand sm:gap-14 md:w-[400px] md:gap-16 lg:gap-[2rem] xl:w-[500px] xl:gap-24"
+                className="flex w-[350px] flex-col gap-12 rounded-2xl bg-background-secondary px-6 py-6 shadow-none transition-all duration-500 ease-kubby hover:bg-white/80 hover:shadow-expand sm:gap-14 md:w-[400px] md:gap-16 lg:gap-[2rem] xl:w-[500px] xl:gap-24"
               >
                 <div className="flex size-12 items-center justify-center rounded-lg bg-background-icon">
                   <PrismicNextImage field={item.icon} />
