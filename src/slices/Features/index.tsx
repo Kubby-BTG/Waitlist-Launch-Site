@@ -48,8 +48,31 @@ const Features = ({ slice }: FeaturesProps): JSX.Element => {
             }}
           />
         </div>
+
+        <div className="mt-6 grid gap-4 md:hidden">
+          {slice.primary.items.map((item, i) => (
+            <div
+              key={i}
+              className="flex w-full flex-col gap-12 rounded-2xl bg-background-secondary px-6 py-6 shadow-none transition-all duration-500 ease-kubby hover:bg-white/80 hover:shadow-expand sm:gap-14 md:w-[400px] md:gap-16 lg:gap-[2rem] xl:w-[500px] xl:gap-24"
+            >
+              <div className="flex size-12 items-center justify-center rounded-lg bg-background-icon">
+                <PrismicNextImage field={item.icon} />
+              </div>
+
+              <div className="flex flex-col gap-5">
+                <h3 className="_body-2 text-lg font-bold text-primary">
+                  <>{item.heading}</>
+                </h3>
+
+                <p className={"text-lg text-primary"}>
+                  <>{item.body}</>
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="mt-6 overflow-y-visible">
+      <div className="mt-6 overflow-y-visible max-md:hidden">
         <Marquee pauseOnHover className={"overflow-visible"}>
           <>
             {slice.primary.items.map((item, i) => (
