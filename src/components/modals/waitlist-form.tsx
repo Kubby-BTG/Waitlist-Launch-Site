@@ -36,7 +36,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
         className={cn(
           "flex px-6 py-8 md:px-8",
           isSent
-            ? "max-w-[17.5rem] max-md:w-[calc(100vw-6.5rem)] md:max-w-[32.875rem]"
+            ? "max-w-[17.5rem] max-md:w-[calc(100vw-6.5rem)] md:max-w-[36rem]"
             : "",
         )}
       >
@@ -112,8 +112,8 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
             </div>
           </>
         ) : (
-          <div className={"grid gap-8 md:grid-cols-2"}>
-            <div className="flex flex-col justify-start gap-2 max-md:row-start-2 md:pb-8">
+          <div className={"grid gap-8 md:flex md:items-start"}>
+            <div className="flex flex-col justify-start gap-2 max-md:row-start-2 md:w-full md:max-w-48 md:pb-8">
               <h1
                 className={
                   "w-full font-display text-[3.25rem] uppercase leading-[3.5rem] text-primary max-md:text-center"
@@ -132,13 +132,13 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
             </div>
 
             {/* Animation */}
-            <div className={"flex items-end max-md:row-start-1"}>
+            <div className={"flex items-end max-md:row-start-1 md:w-full"}>
               <video
                 src="/animations/kube-on-green.webm"
                 autoPlay
                 loop
                 muted
-                className={"h-full object-cover"}
+                className={"object-cover md:min-h-[16rem]"}
               ></video>
             </div>
           </div>
