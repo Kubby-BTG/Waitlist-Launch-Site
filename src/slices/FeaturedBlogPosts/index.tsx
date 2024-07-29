@@ -1,10 +1,10 @@
 import DoubleSlideUpText from "@/components/animated-ui/double-slide-up-text";
+import { TransitionLink } from "@/components/animated-ui/transition-link";
 import CuratedPosts from "@/components/blog-post/curated-posts";
 import Arrow from "@/components/ui/arrow";
 import { Button } from "@/components/ui/button";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
-import Link from "next/link";
 
 /**
  * Props for `FeaturedBlogPosts`.
@@ -37,10 +37,10 @@ const FeaturedBlogPosts = ({ slice }: FeaturedBlogPostsProps): JSX.Element => {
                 className={"flex items-center gap-1"}
                 asChild
               >
-                <Link href={"/blog"}>
+                <TransitionLink href={"/blog"}>
                   <span>{slice.primary.button_text}</span>
                   <Arrow className={"flex-none"} />
-                </Link>
+                </TransitionLink>
               </Button>
             </div>
           </div>
