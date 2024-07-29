@@ -33,17 +33,12 @@ const TextsWithAnimations = ({
           className={"md:col-span-4"}
         /> */}
             <div className="overflow-hidden md:col-span-4">
-              <video
-                src={"/animations/" + slice.primary.first_animation_file_name}
-                // TODO: Remove the scaling later
-                // className={"scale-[1.1]"}
-                autoPlay
-                muted
-                loop
-                className={"scale-[1.02]"}
-                // @ts-ignore
-                playsinline
-              ></video>
+              <video autoPlay muted loop className={"scale-[1.02]"} playsInline>
+                <source
+                  src={"/animations/" + slice.primary.first_animation_file_name}
+                  type="video/mp4"
+                />
+              </video>
             </div>
             <div className="flex flex-col gap-4 md:col-span-3 md:col-start-6 md:justify-center">
               <PrismicRichText
@@ -78,17 +73,12 @@ const TextsWithAnimations = ({
           className={"md:col-span-4"}
         /> */}
             <div className="overflow-hidden md:col-span-4">
-              <video
-                src={"/animations/" + slice.primary.second_animation_file}
-                // TODO: Remove the scaling later
-                // className={"scale-[1.1]"}
-                autoPlay
-                muted
-                loop
-                className={"scale-[1.02]"}
-                // @ts-ignore
-                playsinline
-              ></video>
+              <video autoPlay muted loop className={"scale-[1.02]"} playsInline>
+                <source
+                  src={"/animations/" + slice.primary.second_animation_file}
+                  type="video/mp4"
+                />
+              </video>
             </div>
             <div className="flex flex-col gap-4 md:col-span-3 md:col-start-6 md:justify-center">
               <PrismicRichText
