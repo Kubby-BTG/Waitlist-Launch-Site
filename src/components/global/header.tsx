@@ -1,8 +1,9 @@
 import { createClient } from "@/prismicio";
-import { PrismicNextLink } from "@prismicio/next";
 import Navbar from "./navbar";
 import StickyHeaderWrapper from "../animated-ui/sticky-header-wrapper";
 import PostCard from "../blog-post/post-card";
+import { TransitionLink } from "../animated-ui/transition-link";
+import { asLink } from "@prismicio/client";
 
 export default async function Header() {
   const client = createClient();
@@ -16,12 +17,12 @@ export default async function Header() {
       <header>
         <div className="flex items-center justify-center gap-2 bg-background-invert py-3 text-white">
           <p className="text-sm">Issue with your delivery {">"}</p>
-          <PrismicNextLink
-            field={settings.data.report_link}
+          <TransitionLink
+            href={asLink(settings.data.report_link) as string}
             className={"text-sm font-medium text-secondary underline"}
           >
             Report it here
-          </PrismicNextLink>
+          </TransitionLink>
         </div>
         {/* Navbar */}
         <Navbar
