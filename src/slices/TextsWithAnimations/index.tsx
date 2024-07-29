@@ -41,6 +41,8 @@ const TextsWithAnimations = ({
                 muted
                 loop
                 className={"scale-[1.02]"}
+                // @ts-ignore
+                playsinline
               ></video>
             </div>
             <div className="flex flex-col gap-4 md:col-span-3 md:col-start-6 md:justify-center">
@@ -84,6 +86,8 @@ const TextsWithAnimations = ({
                 muted
                 loop
                 className={"scale-[1.02]"}
+                // @ts-ignore
+                playsinline
               ></video>
             </div>
             <div className="flex flex-col gap-4 md:col-span-3 md:col-start-6 md:justify-center">
