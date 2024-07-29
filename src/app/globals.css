@@ -15,6 +15,10 @@
     @apply font-display font-extrabold uppercase leading-[0.85] -tracking-[0.01em] [font-size:_clamp(3rem,4.76vw,5rem)];
   }
 
+  .heading-blog {
+    @apply font-bold leading-[1] -tracking-[0.015em] [font-size:_clamp(2rem,3.27vw,3.438rem)];
+  }
+
   .body-1 {
     @apply text-base font-normal leading-normal tracking-[0.02em] lg:text-lg lg:leading-normal 2xl:text-xl 2xl:leading-normal;
   }

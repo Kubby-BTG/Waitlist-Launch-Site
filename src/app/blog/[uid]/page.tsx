@@ -8,6 +8,8 @@ import { formatDate } from "@/lib/utils";
 import { PrismicNextImage } from "@prismicio/next";
 // import CuratedPosts from "@/components/blog-post/curated-posts";
 import PageWrapper from "@/components/animated-ui/page-wrapper";
+import { TransitionLink } from "@/components/animated-ui/transition-link";
+import KubbyLogo from "@/components/ui/kubby-logo";
 
 type Params = { uid: string };
 
@@ -25,27 +27,25 @@ export default async function Page({ params }: { params: Params }) {
         </div>
         <div className="relative w-full gap-10 lg:col-span-8 lg:col-start-3">
           {/* Above section */}
-          <div
-            className={"mx-auto flex w-full flex-col gap-4 lg:mt-16 lg:gap-10"}
-          >
-            <p className={"text-xs font-medium uppercase leading-6"}>
-              Blog/{page.data.category}
+          <div className={"mx-auto flex w-full flex-col lg:mt-16"}>
+            <p
+              className={
+                "mb-[clamp(1.5rem,2.381vw,2.5rem)] flex items-center gap-3 text-sm font-medium uppercase leading-6 text-primary opacity-70"
+              }
+            >
+              <TransitionLink href={"/blog"}>Blog</TransitionLink>{" "}
+              <KubbyLogo iconOnly className={"size-3 text-primary"} />
+              {page.data.category}
             </p>
             <PrismicRichText
               field={page.data.title}
               components={{
                 heading1: ({ children }) => (
-                  <h1
-                    className={
-                      "text-[2rem] font-bold leading-[2rem] text-primary"
-                    }
-                  >
-                    {children}
-                  </h1>
+                  <h1 className={"heading-blog text-primary"}>{children}</h1>
                 ),
               }}
             />
-            <span className="flex gap-1 text-sm leading-5 text-primary">
+            <span className="mt-6 flex gap-1 text-sm leading-5 text-primary">
               <span>{page.data.author}</span>|
               <span>
                 {page.data.publication_date
@@ -54,13 +54,13 @@ export default async function Page({ params }: { params: Params }) {
               </span>
             </span>
           </div>
-          <div className="relative aspect-video w-full overflow-hidden rounded-[5px] lg:rounded-lg">
+          <div className="relative mt-[clamp(1.5rem,2.381vw,2.5rem)] aspect-video w-full overflow-hidden rounded-[5px] lg:rounded-lg">
             <PrismicNextImage
               field={page.data.featured_image}
               className={"absolute inset-0 object-cover"}
             />
           </div>
-          <div className="relative grid lg:pr-10">
+          <div className="relative mt-[clamp(2rem,3.571vw,3.75rem)] grid lg:pr-10">
             <SliceZone slices={page.data.slices} components={components} />
 
             {/* <SocialMediaShareButtons /> */}
