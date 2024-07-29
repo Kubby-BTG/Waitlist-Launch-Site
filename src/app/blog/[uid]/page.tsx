@@ -19,16 +19,14 @@ export default async function Page({ params }: { params: Params }) {
 
   return (
     <PageWrapper>
-      <div className="container relative mx-auto flex flex-col gap-10 py-16 lg:flex-row lg:gap-20 lg:pb-14 lg:pt-12">
+      <div className="container relative mx-auto grid py-16 lg:grid-cols-12 lg:pb-14 lg:pt-12">
         <div className="absolute left-0 top-28 hidden lg:block">
           <SocialMediaShareButtons />
         </div>
-        <div className="relative flex w-full flex-grow flex-col items-center gap-10">
+        <div className="relative w-full gap-10 lg:col-span-8 lg:col-start-3">
           {/* Above section */}
           <div
-            className={
-              "mx-auto flex w-full max-w-[50rem] flex-col gap-4 lg:mt-16 lg:gap-10"
-            }
+            className={"mx-auto flex w-full flex-col gap-4 lg:mt-16 lg:gap-10"}
           >
             <p className={"text-xs font-medium uppercase leading-6"}>
               Blog/{page.data.category}
@@ -56,13 +54,13 @@ export default async function Page({ params }: { params: Params }) {
               </span>
             </span>
           </div>
-          <div className="relative aspect-video w-full max-w-[50rem] overflow-hidden rounded-[5px] lg:rounded-lg">
+          <div className="relative aspect-video w-full overflow-hidden rounded-[5px] lg:rounded-lg">
             <PrismicNextImage
               field={page.data.featured_image}
               className={"absolute inset-0 object-cover"}
             />
           </div>
-          <div className="relative grid max-w-[50rem] lg:pr-10">
+          <div className="relative grid lg:pr-10">
             <SliceZone slices={page.data.slices} components={components} />
 
             {/* <SocialMediaShareButtons /> */}
