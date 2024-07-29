@@ -38,7 +38,7 @@ const PartnershipForm = ({ slice }: PartnershipFormProps): JSX.Element => {
               field={slice.primary.body}
               components={{
                 paragraph: ({ children }) => (
-                  <p className="body-1 text-cream _text-balance max-w-[40rem] opacity-70 md:pr-12 xl:pr-16">
+                  <p className="body-1 _text-balance max-w-[50rem] text-cream opacity-70 md:pr-12 xl:pr-16">
                     {children}
                   </p>
                 ),
