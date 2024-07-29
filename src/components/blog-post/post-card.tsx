@@ -4,6 +4,7 @@ import { Badge } from "../ui/badge";
 import { PrismicRichText } from "@prismicio/react";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { formatDate } from "@/lib/utils";
+import KubbyLogo from "../ui/kubby-logo";
 
 export default function PostCard({ post }: { post: Content.BlogPostDocument }) {
   return (
@@ -22,8 +23,14 @@ export default function PostCard({ post }: { post: Content.BlogPostDocument }) {
 
       <div className="flex flex-grow flex-col gap-5 justify-self-stretch px-3.5 text-primary sm:px-4 lg:px-6">
         <div className="flex items-center justify-between">
-          <p className={"text-xs font-medium uppercase leading-6"}>
-            Blog/{post.data.category}
+          <p
+            className={
+              "flex items-center gap-2.5 text-xs font-medium uppercase leading-6 text-primary"
+            }
+          >
+            <span>Blog</span>{" "}
+            <KubbyLogo iconOnly className={"size-2.5 text-primary"} />
+            {post.data.category}
           </p>
 
           <div className="flex size-8 items-center justify-center rounded-full border border-input text-black transition-all duration-500 ease-kubby group-hover:border-transparent group-hover:bg-primary group-hover:text-white">
