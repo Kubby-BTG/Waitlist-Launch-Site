@@ -12,6 +12,7 @@ export const components = {
   features: dynamic(() => import("./Features")),
   filtered_blog_collections: dynamic(() => import("./FilteredBlogCollections")),
   hero: dynamic(() => import("./Hero")),
+  map: dynamic(() => import("./Map")),
   partnership_form: dynamic(() => import("./PartnershipForm")),
   report_form: dynamic(() => import("./ReportForm")),
   social_proofs: dynamic(() => import("./Brands")),

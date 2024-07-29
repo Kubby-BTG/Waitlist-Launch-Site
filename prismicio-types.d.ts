@@ -332,6 +332,7 @@ export type ContactDocument<Lang extends string = string> =
   >;
 
 type HomepageDocumentDataSlicesSlice =
+  | MapSlice
   | FeaturedBlogPostsSlice
   | CallToActionSlice
   | StorySlice
@@ -1336,6 +1337,33 @@ type HeroSliceVariation = HeroSliceDefault;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
+ * Default variation for Map Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MapSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *Map*
+ */
+type MapSliceVariation = MapSliceDefault;
+
+/**
+ * Map Shared Slice
+ *
+ * - **API ID**: `map`
+ * - **Description**: Map
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type MapSlice = prismic.SharedSlice<"map", MapSliceVariation>;
+
+/**
  * Primary content in *PartnershipForm → Default → Primary*
  */
 export interface PartnershipFormSliceDefaultPrimary {
@@ -1784,6 +1812,9 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      MapSlice,
+      MapSliceVariation,
+      MapSliceDefault,
       PartnershipFormSlice,
       PartnershipFormSliceDefaultPrimary,
       PartnershipFormSliceVariation,
