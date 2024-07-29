@@ -78,7 +78,7 @@ export default function FilterIssuesForm({
             <label htmlFor="shipping-carrier" className={"text-sm text-black"}>
               Carriers
             </label>
-            <Select>
+            <Select required>
               <SelectTrigger className="w-full" id={"shipping-carrier"}>
                 <SelectValue placeholder="Select..." />
               </SelectTrigger>
@@ -99,7 +99,7 @@ export default function FilterIssuesForm({
             <label htmlFor="issue-type" className={"text-sm text-black"}>
               Issue type
             </label>
-            <Select>
+            <Select required>
               <SelectTrigger className="w-full" id={"issue-type"}>
                 <SelectValue placeholder="Select..." />
               </SelectTrigger>
@@ -118,7 +118,7 @@ export default function FilterIssuesForm({
             <label htmlFor="state" className={"text-sm text-black"}>
               State
             </label>
-            <Select>
+            <Select required>
               <SelectTrigger className="w-full" id={"state"}>
                 <SelectValue placeholder="Select..." />
               </SelectTrigger>
