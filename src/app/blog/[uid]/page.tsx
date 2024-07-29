@@ -60,6 +60,9 @@ export default async function Page({ params }: { params: Params }) {
               className={"absolute inset-0 object-cover"}
             />
           </div>
+          <div className="mt-6 flex justify-center lg:hidden">
+            <SocialMediaShareButtons />
+          </div>
           <div className="relative mt-[clamp(2rem,3.571vw,3.75rem)] grid lg:pr-10">
             <SliceZone slices={page.data.slices} components={components} />
 
@@ -86,7 +89,7 @@ export default async function Page({ params }: { params: Params }) {
 
 const SocialMediaShareButtons = () => {
   return (
-    <div className="flex gap-4 max-lg:row-start-1 max-lg:mb-6 lg:flex-col">
+    <div className="flex gap-4 max-lg:row-start-1 lg:flex-col">
       <a
         href="#"
         className={
