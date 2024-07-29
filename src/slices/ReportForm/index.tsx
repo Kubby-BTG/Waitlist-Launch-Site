@@ -215,7 +215,7 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
               />
             </div>
 
-            <Button variant={"secondary"}>Report Delivery</Button>
+            <Button>Report Delivery</Button>
           </form>
         </div>
         <video
