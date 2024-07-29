@@ -1,10 +1,18 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, Fragment, useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import KubbyLogo from "../ui/kubby-logo";
 import RegisteredPartnership from "../modals/registered-partnership";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 export default function PartnerWithUsForm() {
   const [isSent, setIsSent] = useState(false);
@@ -41,15 +49,50 @@ export default function PartnerWithUsForm() {
       </div>
 
       <div className={"flex w-full flex-col gap-1"}>
-        <label htmlFor="work-address" className={"text-sm text-black"}>
-          Work Address
+        <label htmlFor="address" className={"text-sm text-black"}>
+          Address
         </label>
         <Input
           type="text"
-          id={"work-address"}
+          id={"address"}
           required
           placeholder={"Your Address"}
         />
+      </div>
+
+      <div className={"flex w-full flex-col gap-1"}>
+        <label htmlFor="state" className={"text-sm text-black"}>
+          State
+        </label>
+        <Select>
+          <SelectTrigger className="w-full" id={"state"}>
+            <SelectValue placeholder="Select..." />
+          </SelectTrigger>
+          <SelectContent>
+            {usStates.map((state, i) => (
+              <Fragment key={i}>
+                {i > 0 && <SelectSeparator />}
+                <SelectItem key={i} value={state}>
+                  {state}
+                </SelectItem>
+              </Fragment>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className={"flex w-full flex-col gap-1"}>
+        <label htmlFor="city" className={"text-sm text-black"}>
+          City
+        </label>
+        <Input type="text" id={"city"} required placeholder={"Your City"} />
+      </div>
+
+      <div className={"flex w-full flex-col gap-1"}>
+        <label htmlFor="zipcode" className={"text-sm text-black"}>
+          Zipcode
+        </label>
+        <Input type="text" id={"city"} required placeholder={"Zipcode"} />
       </div>
 
       <div className={"flex w-full flex-col gap-1"}>
@@ -106,3 +149,56 @@ const PartnerIcon = () => (
     />
   </svg>
 );
+
+const usStates = [
+  "Alabama",
+  "Alaska",
+  "Arizona",
+  "Arkansas",
+  "California",
+  "Colorado",
+  "Connecticut",
+  "Delaware",
+  "Florida",
+  "Georgia",
+  "Hawaii",
+  "Idaho",
+  "Illinois",
+  "Indiana",
+  "Iowa",
+  "Kansas",
+  "Kentucky",
+  "Louisiana",
+  "Maine",
+  "Maryland",
+  "Massachusetts",
+  "Michigan",
+  "Minnesota",
+  "Mississippi",
+  "Missouri",
+  "Montana",
+  "Nebraska",
+  "Nevada",
+  "New Hampshire",
+  "New Jersey",
+  "New Mexico",
+  "New York",
+  "North Carolina",
+  "North Dakota",
+  "Ohio",
+  "Oklahoma",
+  "Oregon",
+  "Pennsylvania",
+  "Rhode Island",
+  "South Carolina",
+  "South Dakota",
+  "Tennessee",
+  "Texas",
+  "Utah",
+  "Vermont",
+  "Virginia",
+  "Washington",
+  "West Virginia",
+  "Wisconsin",
+  "Wyoming",
+];
