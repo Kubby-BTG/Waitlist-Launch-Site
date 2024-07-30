@@ -41,7 +41,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
               field={slice.primary.body}
               components={{
                 paragraph: ({ children }) => (
-                  <p className="body-1 text-cream max-w-[31.25rem] text-balance opacity-70">
+                  <p className="body-1 text-cream opacity-70 max-md:inline md:max-w-[31.25rem] md:text-balance">
                     {children}
                   </p>
                 ),
