@@ -65,11 +65,28 @@ export default function DeliveryIssuesMap() {
               </HoverCardTrigger>
               <HoverCardContent
                 side={"top"}
+                sideOffset={12}
                 forceMount
-                className="flex h-[84px] w-[171px] flex-col justify-between rounded-lg bg-background-invert p-3 text-white"
+                className="flex h-fit w-fit flex-col items-center gap-2 rounded-lg border-none bg-black px-3 py-3 font-sans text-white"
               >
-                <div className="text-lg font-bold">32 - Delivery Issues</div>
-                <div className="flex items-center space-x-2 text-sm">
+                <div className="absolute bottom-0 translate-y-[80%]">
+                  <svg
+                    width="14"
+                    height="9"
+                    viewBox="0 0 14 9"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8.73649 7.96115C7.9687 9.30478 6.0313 9.30478 5.26351 7.96115L0.709874 -0.00772253C-0.0520192 -1.34104 0.910715 -3 2.44636 -3L11.5536 -3C13.0893 -3 14.052 -1.34103 13.2901 -0.0077215L8.73649 7.96115Z"
+                      fill="black"
+                    />
+                  </svg>
+                </div>
+                <div className="text-sm">
+                  <span className="font-bold">32</span> - Delivery Issues
+                </div>
+                <div className="flex items-center gap-1 rounded-lg bg-[#2F3233] px-2 py-1 text-sm text-white">
                   <PinIcon />
                   <span>Dallas, TX (75226)</span>
                 </div>
