@@ -36,7 +36,7 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
       >
         {/* Decorations */}
 
-        {/* <video
+        <video
           autoPlay
           loop
           muted
@@ -46,7 +46,7 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
           playsInline
         >
           <source src="/animations/kube-on-pen.webm" type="video/webm" />
-        </video> */}
+        </video>
 
         <div className="absolute inset-0 py-20">
           <img
@@ -233,7 +233,7 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
           </form>
         </div>
 
-        {/* <video
+        <video
           src="/animations/kube-on-pen.webm"
           loop
           autoPlay
@@ -241,7 +241,7 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
           className={
             "pointer-events-none absolute bottom-0 right-0 h-[140px] max-md:hidden md:-bottom-1.5 md:h-[204px]"
           }
-        ></video> */}
+        ></video>
       </div>
     </section>
   );

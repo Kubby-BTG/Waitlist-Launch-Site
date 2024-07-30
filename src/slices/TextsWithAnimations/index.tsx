@@ -33,7 +33,7 @@ const TextsWithAnimations = ({
           className={"md:col-span-4"}
         /> */}
             <div className="overflow-hidden md:col-span-4">
-              {/* <video
+              <video
                 autoPlay
                 muted
                 loop
@@ -44,7 +44,7 @@ const TextsWithAnimations = ({
                   src={"/animations/" + slice.primary.first_animation_file_name}
                   type="video/webm"
                 />
-              </video> */}
+              </video>
             </div>
             <div className="flex flex-col gap-4 md:col-span-3 md:col-start-6 md:justify-center">
               <PrismicRichText
@@ -79,7 +79,7 @@ const TextsWithAnimations = ({
           className={"md:col-span-4"}
         /> */}
             <div className="overflow-hidden md:col-span-4">
-              {/* <video
+              <video
                 autoPlay
                 muted
                 loop
@@ -90,7 +90,7 @@ const TextsWithAnimations = ({
                   src={"/animations/" + slice.primary.second_animation_file}
                   type="video/webm"
                 />
-              </video> */}
+              </video>
             </div>
             <div className="flex flex-col gap-4 md:col-span-3 md:col-start-6 md:justify-center">
               <PrismicRichText

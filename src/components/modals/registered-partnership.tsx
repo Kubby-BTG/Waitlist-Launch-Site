@@ -23,13 +23,13 @@ export default function RegisteredPartnership({
         <div className={"grid gap-8 md:grid-cols-2"}>
           {/* Animation */}
           <div className={"flex items-end"}>
-            {/* <video
+            <video
               src="/animations/kube-on-green.webm"
               autoPlay
               loop
               muted
               className={"pointer-events-none h-full object-cover"}
-            ></video> */}
+            ></video>
           </div>
 
           <div className="flex flex-col justify-end gap-2 md:pt-8">
