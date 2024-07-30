@@ -58,7 +58,7 @@ export default function PostCard({ post }: { post: Content.BlogPostDocument }) {
               field={post.data.description}
               components={{
                 paragraph: ({ children }) => (
-                  <p className={"_text-balance pr-2 text-base md:text-lg"}>
+                  <p className={"_text-balance text-base md:pr-2 md:text-lg"}>
                     {children}
                   </p>
                 ),
