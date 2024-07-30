@@ -224,6 +224,7 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
                 id={"delivery-date"}
                 required
                 placeholder={"dd/mm/yyyy"}
+                className={"min-w-[99%]"}
               />
             </div>
 
