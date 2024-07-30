@@ -13,7 +13,7 @@ const useIsIOS = (): boolean => {
     checkIsIOS();
   }, []);
 
-  return isIOS;
+  return isIOS ?? false;
 };
 
 export default useIsIOS;
