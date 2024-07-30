@@ -43,6 +43,7 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
           className={
             "pointer-events-none absolute bottom-0 right-0 h-[140px] md:-bottom-1.5 md:hidden md:h-[204px]"
           }
+          playsInline
         >
           <source src="/animations/kube_on_pen.mp4" type="video/mp4" />
         </video>
