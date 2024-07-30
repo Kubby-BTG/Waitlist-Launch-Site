@@ -26,8 +26,8 @@ export default function MobileMenu({
   post?: ReactNode;
 }) {
   return createPortal(
-    <div className="fixed inset-0 z-50 flex flex-col gap-8 overflow-y-auto bg-background px-6 py-8 md:hidden">
-      <div className="flex items-center justify-between">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-background md:hidden">
+      <div className="sticky top-0 flex h-16 items-center justify-between bg-background px-6">
         <KubbyLogo iconOnly />
         <div className="md:hidden">
           <button
@@ -58,51 +58,53 @@ export default function MobileMenu({
           </button>
         </div>
       </div>
-      {/* Nav */}
-      <ul className="mt-10 flex flex-col">
-        {navigation.map((item, i) => (
+      <div className="flex flex-col gap-8 px-6 pb-8">
+        {/* Nav */}
+        <ul className="mt-10 flex flex-col">
+          {navigation.map((item, i) => (
+            <li
+              key={i}
+              className={
+                "border-b border-b-background-muted py-1 font-display text-[3rem] font-extrabold uppercase leading-[2.5rem] text-primary"
+              }
+            >
+              <TransitionLink
+                href={asLink(item.link) as string}
+                onClick={() => setIsOpen(false)}
+              >
+                {item.label}
+              </TransitionLink>
+            </li>
+          ))}
           <li
-            key={i}
             className={
               "border-b border-b-background-muted py-1 font-display text-[3rem] font-extrabold uppercase leading-[2.5rem] text-primary"
             }
           >
             <TransitionLink
-              href={asLink(item.link) as string}
+              href={asLink(reportLink) as string}
               onClick={() => setIsOpen(false)}
             >
-              {item.label}
+              Report Delivery Issue
             </TransitionLink>
           </li>
-        ))}
-        <li
-          className={
-            "border-b border-b-background-muted py-1 font-display text-[3rem] font-extrabold uppercase leading-[2.5rem] text-primary"
-          }
-        >
-          <TransitionLink
-            href={asLink(reportLink) as string}
-            onClick={() => setIsOpen(false)}
-          >
-            Report Delivery Issue
-          </TransitionLink>
-        </li>
-      </ul>
+        </ul>
 
-      <div className={"w-full"}>
-        <WaitlistForm>
-          <Button
-            className={
-              "flex w-full items-center gap-1 bg-primary hover:bg-primary/80"
-            }
-          >
-            <span>Join Waitlist</span>
-            <Arrow className={"flex-none"} />
-          </Button>
-        </WaitlistForm>
+        <div className={"w-full"}>
+          <WaitlistForm>
+            <Button
+              className={
+                "flex w-full items-center gap-1 bg-primary hover:bg-primary/80"
+              }
+            >
+              <span>Join Waitlist</span>
+              <Arrow className={"flex-none"} />
+            </Button>
+          </WaitlistForm>
+        </div>
+
+        {post}
       </div>
-
-      {post}
     </div>,
     document.body,
   );
