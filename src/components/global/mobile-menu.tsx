@@ -8,7 +8,7 @@ import {
   SettingsDocumentDataNavigationItem,
   Simplify,
 } from "../../../prismicio-types";
-import { PrismicNextLink } from "@prismicio/next";
+// import { PrismicNextLink } from "@prismicio/next";
 import { Button } from "../ui/button";
 import Arrow from "../ui/arrow";
 import WaitlistForm from "../modals/waitlist-form";
@@ -27,8 +27,11 @@ export default function MobileMenu({
 }) {
   return createPortal(
     <div className="fixed inset-0 z-50 overflow-y-auto bg-background md:hidden">
-      <div className="sticky top-0 flex h-16 items-center justify-between bg-background px-6">
-        <KubbyLogo iconOnly />
+      <div className="relative flex h-16 items-center justify-between bg-background px-6">
+        <TransitionLink href={"/"} onClick={() => setIsOpen(false)}>
+          <span className="sr-only">Home</span>
+          <KubbyLogo iconOnly />
+        </TransitionLink>
         <div className="md:hidden">
           <button
             className="flex size-9 items-center justify-center rounded bg-background-muted"
