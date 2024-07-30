@@ -45,7 +45,7 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
           }
           playsInline
         >
-          <source src="/animations/kube_on_pen.mp4" type="video/mp4" />
+          <source src="/animations/kube-on-pen.webm" type="video/webm" />
         </video>
 
         <div className="absolute inset-0 py-20">
