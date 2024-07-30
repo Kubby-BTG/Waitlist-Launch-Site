@@ -47,6 +47,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
             <form
               onSubmit={handleSubmit}
               className={"flex w-full flex-col gap-4"}
+              autoComplete={"off"}
             >
               <div className="flex w-full items-center gap-8">
                 <h1
