@@ -107,13 +107,13 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
 
             {/* Animation */}
             <div className={"hidden w-[17rem] flex-none md:flex md:items-end"}>
-              <video
+              {/* <video
                 src="/animations/kube-on-red.webm"
                 autoPlay
                 loop
                 muted
                 className={"pointer-events-none h-full object-cover"}
-              ></video>
+              ></video> */}
             </div>
           </>
         ) : (

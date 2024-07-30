@@ -18,7 +18,7 @@ export default function HeroVideo() {
 
   return (
     <div className={"relative"}>
-      <video
+      {/* <video
         ref={videoRef}
         muted
         loop
@@ -27,7 +27,7 @@ export default function HeroVideo() {
         className={"pointer-events-none"}
       >
         <source src="/animations/waitlist_increased.webm" type="video/webm" />
-      </video>
+      </video> */}
       <button
         className={
           "absolute bottom-0 right-0 flex size-10 items-center justify-center rounded-full bg-background text-background-icon md:size-12 md:translate-y-full"
