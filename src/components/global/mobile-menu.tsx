@@ -26,7 +26,7 @@ export default function MobileMenu({
   post?: ReactNode;
 }) {
   return createPortal(
-    <div className="fixed inset-0 z-50 h-screen overflow-auto bg-background md:hidden">
+    <div className="fixed inset-0 z-50 h-screen overflow-auto bg-background [-webkit-overflow-scrolling:touch] md:hidden">
       <div className="relative flex h-16 items-center justify-between bg-background px-6">
         <TransitionLink href={"/"} onClick={() => setIsOpen(false)}>
           <span className="sr-only">Home</span>
