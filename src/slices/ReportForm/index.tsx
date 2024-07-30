@@ -31,10 +31,22 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
     >
       <div
         className={
-          "relative mx-auto w-full max-w-[44rem] bg-primary px-8 pb-[7.5rem] pt-[4.5rem] md:overflow-visible md:rounded-3xl md:pb-[14rem] md:pt-20"
+          "relative mx-auto w-full max-w-[44rem] bg-primary px-8 pb-[8.5rem] pt-[4.5rem] md:overflow-visible md:rounded-3xl md:pb-[14rem] md:pt-20"
         }
       >
         {/* Decorations */}
+
+        <video
+          autoPlay
+          loop
+          muted
+          className={
+            "absolute bottom-0 right-0 h-[140px] md:-bottom-1.5 md:hidden md:h-[204px]"
+          }
+        >
+          <source src="/animations/kube_on_pen.mp4" type="video/mp4" />
+        </video>
+
         <div className="absolute inset-0 py-20">
           <img
             src="/decorations/scribble.svg"
@@ -218,13 +230,14 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
             <Button>Report Delivery</Button>
           </form>
         </div>
+
         <video
           src="/animations/kube-on-pen.webm"
           loop
           autoPlay
           muted
           className={
-            "absolute bottom-0 right-0 h-[140px] md:-bottom-1.5 md:h-[204px]"
+            "absolute bottom-0 right-0 h-[140px] max-md:hidden md:-bottom-1.5 md:h-[204px]"
           }
         ></video>
       </div>
