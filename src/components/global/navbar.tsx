@@ -15,6 +15,7 @@ import { useLockBodyScroll } from "react-use";
 import WaitlistForm from "../modals/waitlist-form";
 import { usePathname } from "next/navigation";
 import { TransitionLink } from "../animated-ui/transition-link";
+import useIsIOS from "@/hooks/use-ios";
 
 const MobileMenu = dynamic(() => import("./mobile-menu"), { ssr: false });
 
@@ -29,9 +30,11 @@ export default function Navbar({
 }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const isIos = useIsIOS();
+
   const pathname = usePathname();
 
-  useLockBodyScroll(isMobileMenuOpen);
+  useLockBodyScroll(isMobileMenuOpen && !isIos);
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
