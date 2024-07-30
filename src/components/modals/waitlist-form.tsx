@@ -57,6 +57,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
                   Join Our Waitlist
                 </h1>
                 <DialogClose
+                  type={"button"}
                   className={
                     "flex size-8 flex-none items-center justify-center rounded-full bg-input-secondary text-black"
                   }
@@ -97,7 +98,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
                 </Select>
               </div>
 
-              <Button>Join Waitlist</Button>
+              <Button type={"submit"}>Join Waitlist</Button>
             </form>
 
             {/* Animation */}
