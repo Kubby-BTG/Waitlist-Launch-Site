@@ -27,7 +27,7 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
       id={"report-form"}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className={"relative bg-background py-12 md:py-32"}
+      className={"relative bg-background pt-12 md:py-32"}
     >
       <div
         className={
