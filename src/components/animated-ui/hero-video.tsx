@@ -26,7 +26,7 @@ export default function HeroVideo() {
         playsInline
         className={"pointer-events-none"}
       >
-        <source src="/animations/waitlist_increased.webm" type="video/webm" />
+        <source src="/animations/waitlist.mp4" type="video/mp4" />
       </video>
       <button
         className={

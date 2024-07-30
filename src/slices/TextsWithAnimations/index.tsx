@@ -42,7 +42,7 @@ const TextsWithAnimations = ({
               >
                 <source
                   src={"/animations/" + slice.primary.first_animation_file_name}
-                  type="video/webm"
+                  type="video/mp4"
                 />
               </video>
             </div>
@@ -88,7 +88,7 @@ const TextsWithAnimations = ({
               >
                 <source
                   src={"/animations/" + slice.primary.second_animation_file}
-                  type="video/webm"
+                  type="video/mp4"
                 />
               </video>
             </div>
