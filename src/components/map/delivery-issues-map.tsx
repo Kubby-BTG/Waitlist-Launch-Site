@@ -2,11 +2,24 @@
 
 import FilterIssuesForm from "../modals/filter-issues-form";
 import { Button } from "../ui/button";
-import { APIProvider, Map } from "@vis.gl/react-google-maps";
+import {
+  AdvancedMarker,
+  APIProvider,
+  Map,
+  Marker,
+  Pin,
+} from "@vis.gl/react-google-maps";
 import FilterIcon from "./filter-icon";
 import { useState } from "react";
 import PinIcon from "./pin-icon";
 import ShowDeliveryNearYouForm from "../modals/show-delivery-near-you-form";
+
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "../ui/hover-card";
 
 export default function DeliveryIssuesMap() {
   const [isShowFilterForm, setIsShowFilterForm] = useState(false);
@@ -37,10 +50,33 @@ export default function DeliveryIssuesMap() {
           defaultZoom={13}
           defaultCenter={{ lat: -33.860664, lng: 151.208138 }}
           disableDefaultUI
+          mapId={"19cefe5f097a79a6"}
           //   onCameraChanged={ (ev: MapCameraChangedEvent) =>
           //     console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
           //   }
-        ></Map>
+        >
+          <AdvancedMarker
+            position={{ lat: -33.860664, lng: 151.208138 }}
+            //   ref={marker => setMarkerRef(marker, poi.key)}
+          >
+            <HoverCard open={true}>
+              <HoverCardTrigger>
+                <img src={"/markers/cube.svg"} alt="" className={"size-8"} />
+              </HoverCardTrigger>
+              <HoverCardContent
+                side={"top"}
+                forceMount
+                className="flex h-[84px] w-[171px] flex-col justify-between rounded-lg bg-background-invert p-3 text-white"
+              >
+                <div className="text-lg font-bold">32 - Delivery Issues</div>
+                <div className="flex items-center space-x-2 text-sm">
+                  <PinIcon />
+                  <span>Dallas, TX (75226)</span>
+                </div>
+              </HoverCardContent>
+            </HoverCard>
+          </AdvancedMarker>
+        </Map>
 
         <div className="absolute left-6 top-8 flex flex-wrap gap-2 md:gap-4">
           <Button
