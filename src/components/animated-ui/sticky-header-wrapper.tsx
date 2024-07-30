@@ -21,7 +21,7 @@ export default function StickyHeaderWrapper({
   });
   return (
     <motion.div
-      className={"sticky top-0 z-10"}
+      className={"z-10 max-md:bg-primary md:sticky md:top-0"}
       animate={{
         top: isScrolledDown ? -48 : 0,
       }}
