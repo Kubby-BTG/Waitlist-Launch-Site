@@ -112,7 +112,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
                 autoPlay
                 loop
                 muted
-                className={"h-full object-cover"}
+                className={"pointer-events-none h-full object-cover"}
               ></video>
             </div>
           </>
@@ -143,7 +143,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
                 autoPlay
                 loop
                 muted
-                className={"h-full object-cover"}
+                className={"pointer-events-none h-full object-cover"}
               ></video>
             </div>
           </div>

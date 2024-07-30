@@ -41,7 +41,7 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
           loop
           muted
           className={
-            "absolute bottom-0 right-0 h-[140px] md:-bottom-1.5 md:hidden md:h-[204px]"
+            "pointer-events-none absolute bottom-0 right-0 h-[140px] md:-bottom-1.5 md:hidden md:h-[204px]"
           }
         >
           <source src="/animations/kube_on_pen.mp4" type="video/mp4" />
@@ -238,7 +238,7 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
           autoPlay
           muted
           className={
-            "absolute bottom-0 right-0 h-[140px] max-md:hidden md:-bottom-1.5 md:h-[204px]"
+            "pointer-events-none absolute bottom-0 right-0 h-[140px] max-md:hidden md:-bottom-1.5 md:h-[204px]"
           }
         ></video>
       </div>

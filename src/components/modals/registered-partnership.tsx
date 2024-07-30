@@ -28,7 +28,7 @@ export default function RegisteredPartnership({
               autoPlay
               loop
               muted
-              className={"h-full object-cover"}
+              className={"pointer-events-none h-full object-cover"}
             ></video>
           </div>
 

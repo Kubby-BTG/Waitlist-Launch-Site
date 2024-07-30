@@ -33,7 +33,13 @@ const TextsWithAnimations = ({
           className={"md:col-span-4"}
         /> */}
             <div className="overflow-hidden md:col-span-4">
-              <video autoPlay muted loop className={"scale-[1.02]"} playsInline>
+              <video
+                autoPlay
+                muted
+                loop
+                className={"pointer-events-none scale-[1.02]"}
+                playsInline
+              >
                 <source
                   src={"/animations/" + slice.primary.first_animation_file_name}
                   type="video/mp4"
@@ -73,7 +79,13 @@ const TextsWithAnimations = ({
           className={"md:col-span-4"}
         /> */}
             <div className="overflow-hidden md:col-span-4">
-              <video autoPlay muted loop className={"scale-[1.02]"} playsInline>
+              <video
+                autoPlay
+                muted
+                loop
+                className={"pointer-events-none scale-[1.02]"}
+                playsInline
+              >
                 <source
                   src={"/animations/" + slice.primary.second_animation_file}
                   type="video/mp4"
