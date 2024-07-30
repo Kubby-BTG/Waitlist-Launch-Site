@@ -68,6 +68,9 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
                 </DialogClose>
               </div>
 
+              {/* Fix for IOS */}
+              <input type="hidden" aria-hidden="true" />
+
               <div className={"flex w-full flex-col gap-1"}>
                 <label htmlFor="email" className={"text-sm text-black"}>
                   Email
