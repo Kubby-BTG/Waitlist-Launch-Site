@@ -10,6 +10,7 @@ interface PageWrapperProps {
 const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
   return (
     <motion.div
+      key={"wrap-01-page-001"}
       initial="hidden"
       animate="enter"
       exit="exit"
@@ -17,6 +18,7 @@ const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
     >
       {children}
       <motion.div
+        key={"wrap-01-page-002"}
         className="pointer-events-none fixed inset-0 z-50 bg-background-secondary"
         variants={{
           hidden: { x: 0 },

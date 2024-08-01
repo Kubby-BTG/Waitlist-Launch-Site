@@ -17,8 +17,8 @@ export default function FilteredPosts() {
         {/* Platform */}
         <div className={"relative w-full md:max-w-[15.5rem]"}>
           <MultiSelect
-            values={platforms.map((platform) => ({
-              key: platform,
+            values={platforms.map((platform, i) => ({
+              key: `${platform}__${i}`,
               value: platform,
             }))}
             label={"Platform"}
@@ -30,8 +30,8 @@ export default function FilteredPosts() {
         {/* Category */}
         <div className={"relative w-full md:max-w-[15.5rem]"}>
           <MultiSelect
-            values={categories.map((category) => ({
-              key: category,
+            values={categories.map((category, i) => ({
+              key: `${category}__${i}`,
               value: category,
             }))}
             label={"Category"}
@@ -43,8 +43,8 @@ export default function FilteredPosts() {
         {/* Topic */}
         <div className={"relative w-full md:max-w-[15.5rem]"}>
           <MultiSelect
-            values={topics.map((topic) => ({
-              key: topic,
+            values={topics.map((topic, i) => ({
+              key: `${topic}__${i}`,
               value: topic,
             }))}
             label={"Topic"}

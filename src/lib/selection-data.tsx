@@ -26,10 +26,10 @@ export const deliveryCompanies = [
     name: "USPS",
     logo: "/carriers/USPS.svg",
   },
-].map((company) => ({
+].map((company, i) => ({
   value: company.name.toLowerCase(),
   element: (
-    <span key={company.name} className="flex items-center gap-x-2">
+    <span key={`${company.name}__k${i}`} className="flex items-center gap-x-2">
       <img
         src={company.logo}
         alt={`${company.name} logo`}

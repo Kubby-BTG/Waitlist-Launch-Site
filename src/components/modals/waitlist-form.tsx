@@ -23,8 +23,8 @@ import { cn } from "@/lib/utils";
 export default function WaitlistForm({ children }: { children: ReactNode }) {
   const [isSent, setIsSent] = useState(false);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = () => {
+    // event.preventDefault();
     setIsSent(true);
   };
 
@@ -45,7 +45,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
           <>
             {/* Form */}
             <form
-              onSubmit={handleSubmit}
+              // onSubmit={handleSubmit}
               className={"flex w-full flex-col gap-4"}
               autoComplete={"off"}
             >
@@ -102,7 +102,15 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
                 </Select>
               </div>
 
-              <Button type={"submit"}>Join Waitlist</Button>
+              <Button
+                type={"button"}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleSubmit();
+                }}
+              >
+                Join Waitlist
+              </Button>
             </form>
 
             {/* Animation */}
