@@ -42,10 +42,12 @@ export default function RootLayout({
         className={cn(DMSans.variable, TTBluescreens.variable, "font-sans")}
       >
         <AnimatedLayout>
-          <Header />
-          {children}
-          <Footer />
-          <ExitAnimationWrapper />
+          <>
+            <Header />
+            {children}
+            <Footer />
+            <ExitAnimationWrapper />
+          </>
         </AnimatedLayout>
       </body>
     </html>

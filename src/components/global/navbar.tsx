@@ -74,7 +74,12 @@ export default function Navbar({
         </div>
 
         <WaitlistForm>
-          <Button variant={"accent"} size={"sm"} className={"max-md:hidden"}>
+          <Button
+            type={"button"}
+            variant={"accent"}
+            size={"sm"}
+            className={"max-md:hidden"}
+          >
             Join Waitlist
           </Button>
         </WaitlistForm>

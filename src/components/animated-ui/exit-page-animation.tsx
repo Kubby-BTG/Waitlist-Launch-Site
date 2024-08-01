@@ -25,11 +25,13 @@ const ExitPageAnimation = () => {
   return (
     <>
       <motion.div
+       key={"exit-page-001"}
         className="fixed inset-0 z-50 flex items-center justify-center bg-secondary"
         initial={{ y: "100%" }}
         animate={controlsBack}
       ></motion.div>
       <motion.div
+         key={"exit-page-002"}
         className="fixed inset-0 z-50 flex items-center justify-center bg-background-secondary"
         initial={{ y: "100%" }}
         animate={controlsFront}

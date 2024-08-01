@@ -132,10 +132,10 @@ const CountrySelect = ({
               <CommandGroup>
                 {options
                   .filter((x) => x.value)
-                  .map((option) => (
+                  .map((option,i) => (
                     <CommandItem
                       className="cursor-pointer gap-2 hover:bg-input-secondary"
-                      key={option.value}
+                      key={`${option.value}__${i}`}
                       onSelect={() => handleSelect(option.value)}
                     >
                       <FlagComponent

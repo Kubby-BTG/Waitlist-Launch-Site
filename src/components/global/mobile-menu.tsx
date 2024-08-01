@@ -96,6 +96,7 @@ export default function MobileMenu({
           <div className={"w-full"}>
             <WaitlistForm>
               <Button
+                type={"button"}
                 className={
                   "flex w-full items-center gap-1 bg-primary hover:bg-primary/80"
                 }

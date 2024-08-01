@@ -35,6 +35,7 @@ export default function StickyScrollPointsSection({
 
   return (
     <motion.div
+      key={"ticky-02-page-001"}
       className={"hidden min-h-[80vh] py-16 md:block"}
       animate={
         {
@@ -66,9 +67,11 @@ export default function StickyScrollPointsSection({
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   className={"scale-[1.02]"}
+                  key={"ticky-v-01-pg-001"}
                 ></motion.video>
               ) : (
                 <motion.video
+                  key={"ticky-v-01-pg-002"}
                   src={"/animations/" + slice.primary.second_animation_file}
                   autoPlay
                   muted
@@ -84,6 +87,7 @@ export default function StickyScrollPointsSection({
         </div>
         <div className="flex w-full flex-col md:col-span-5 md:col-start-8 md:mb-96 md:gap-52">
           <motion.div
+            key={"ticky-02-page1-002"}
             className="flex flex-col gap-4 md:col-start-6 md:justify-center md:gap-5"
             animate={{
               opacity: isScrollEnd ? 0.4 : 1,
@@ -110,6 +114,7 @@ export default function StickyScrollPointsSection({
             />
           </motion.div>
           <motion.div
+            key={"ticky-02-page2-003"}
             className="flex flex-col gap-4 md:col-span-3 md:col-start-6 md:justify-center"
             animate={{
               opacity: isScrollEnd ? 1 : 0.4,
