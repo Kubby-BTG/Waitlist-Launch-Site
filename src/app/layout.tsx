@@ -12,7 +12,7 @@ import ExitAnimationWrapper from "@/components/animated-ui/exit-animation-wrappe
 const DMSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
 
 const TTBluescreens = localFont({
-  src: "../fonts/tt-bluescreens-trial-webfont/TT Bluescreens Trial ExtraBold.woff",
+  src: "../fonts/tt-bluescreens-trial-webfont/TT-Bluescreens-Trial-ExtraBold.woff",
   weight: "800",
   variable: "--font-tt-bluescreens",
 });
