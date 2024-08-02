@@ -20,10 +20,7 @@ const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
       <motion.div
         key={"wrap-01-page-002"}
         className="pointer-events-none fixed inset-0 z-50 bg-background-secondary"
-        variants={{
-          hidden: { x: 0 },
-          enter: { x: "100%" },
-        }}
+        variants={{ hidden: { x: 0 }, enter: { x: "100%" } }}
         transition={{ ease: [0.22, 1, 0.36, 1], duration: 1.5 }}
       />
     </motion.div>
