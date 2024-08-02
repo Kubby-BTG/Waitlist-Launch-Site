@@ -14,6 +14,7 @@ import {
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import AppModalDialog from "../ui/dialog-custom";
+import { Video } from "lucide-react";
 
 export default function WaitlistForm({ children }: { children: ReactNode }) {
   const [isSent, setIsSent] = useState(false);
@@ -115,13 +116,14 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
               <div
                 className={"hidden w-[17rem] flex-none md:flex md:items-end"}
               >
-                <video
+                {/* <video
                   src="/animations/kube-on-red.webm"
                   autoPlay
                   loop
                   muted
                   className={"pointer-events-none h-full object-cover"}
-                />
+                /> */}
+                <Video className={"size-44"} />
               </div>
             </>
           ) : (
@@ -151,13 +153,14 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
 
               {/* Animation */}
               <div className={"flex items-end max-md:row-start-1"}>
-                <video
+                {/* <video
                   src="/animations/kube-on-green.webm"
                   autoPlay
                   loop
                   muted
                   className={"pointer-events-none h-full object-cover"}
-                />
+                /> */}
+                <Video className={"size-44"} />
               </div>
             </div>
           )}
