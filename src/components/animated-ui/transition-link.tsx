@@ -33,7 +33,7 @@ export const TransitionLink: React.FC<TransitionLinkProps> = ({
     // body?.classList.add("page-transition");
     show();
 
-    await sleep(1200);
+    await sleep(800);
     onClick?.(e);
 
     router.push(href);
