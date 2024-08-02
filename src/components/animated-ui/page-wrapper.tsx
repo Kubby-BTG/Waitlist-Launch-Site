@@ -25,7 +25,7 @@ const PageWrapper: React.FC<PageWrapperProps> = ({ children }) => {
           enter: { x: "100%" },
         }}
         transition={{ ease: [0.22, 1, 0.36, 1], duration: 1.5 }}
-      ></motion.div>
+      />
     </motion.div>
   );
 };

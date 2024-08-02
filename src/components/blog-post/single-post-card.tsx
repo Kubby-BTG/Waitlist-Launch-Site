@@ -22,6 +22,7 @@ export default function SinglePostCard({
         <PrismicNextImage
           field={post.data.featured_image}
           className={"absolute inset-0 h-full w-full object-cover"}
+          alt=""
         />
       </div>
 

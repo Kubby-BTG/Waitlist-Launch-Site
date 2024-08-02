@@ -1,18 +1,29 @@
 "use client";
 
-import React from "react";
-import { AnimatePresence } from "framer-motion";
+import React, { useContext, useRef, PropsWithChildren } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { LayoutRouterContext } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
-interface AnimatedLayoutProps {
-  children: React.ReactNode;
-}
+export default function AnimatedLayout({ children }: PropsWithChildren<{}>) {
+  const pathname = usePathname();
 
-const AnimatedLayout: React.FC<AnimatedLayoutProps> = ({ children }) => {
   return (
-    <AnimatePresence mode="wait" initial={false}>
-      {children}
+    <AnimatePresence>
+      <motion.div key={pathname}>
+        <FrozenRouter>{children}</FrozenRouter>
+      </motion.div>
     </AnimatePresence>
   );
-};
+}
 
-export default AnimatedLayout;
+function FrozenRouter({ children }: PropsWithChildren<{}>) {
+  const context = useContext(LayoutRouterContext);
+  const frozen = useRef(context).current;
+
+  return (
+    <LayoutRouterContext.Provider value={frozen}>
+      {children}
+    </LayoutRouterContext.Provider>
+  );
+}

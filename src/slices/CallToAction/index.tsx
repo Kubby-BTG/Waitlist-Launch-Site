@@ -29,6 +29,7 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
           <PrismicNextImage
             field={slice.primary.image}
             className={"h-36 w-full object-cover md:w-60"}
+            alt=""
           />
           <div className="flex w-full flex-col gap-2 p-6 md:flex-row md:items-center md:p-8">
             <p className={"w-full text-lg font-medium leading-6 text-white"}>

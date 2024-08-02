@@ -5,6 +5,9 @@ import {
   DialogClose,
   DialogTrigger,
   DialogContent,
+  DialogTitle,
+  VisuallyHidden,
+  DialogDescription,
 } from "../ui/dialog";
 import { X } from "lucide-react";
 import { FormEvent, Fragment, ReactNode, useState } from "react";
@@ -33,13 +36,22 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
       <DialogTrigger asChild>{children}</DialogTrigger>
 
       <DialogContent
-        className={cn(
+        className={cn([
           "flex px-6 py-8 md:px-8",
-          isSent
-            ? "_max-w-[17.5rem] _max-md:w-[calc(100vw-6.5rem)] md:max-w-[32.875rem]"
-            : "",
-        )}
+          {
+            "_max-w-[17.5rem] _max-md:w-[calc(100vw-6.5rem)] md:max-w-[32.875rem]":
+              isSent,
+          },
+        ])}
       >
+        <VisuallyHidden asChild>
+          <DialogTitle>Waitlist Form</DialogTitle>
+        </VisuallyHidden>
+
+        <VisuallyHidden asChild>
+          <DialogDescription>Waitlist Form</DialogDescription>
+        </VisuallyHidden>
+
         {/* Filling state */}
         {!isSent ? (
           <>

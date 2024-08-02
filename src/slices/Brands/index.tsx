@@ -30,7 +30,7 @@ const Brands = ({ slice }: Brands): JSX.Element => {
         <div className="grid grid-cols-3 gap-8 px-1 py-8 sm:gap-14 lg:col-span-4 lg:col-start-8 lg:gap-16 lg:py-4">
           <>
             {slice.primary.brands.map((item, i) => (
-              <PrismicNextImage key={i} field={item.brand_logo} />
+              <PrismicNextImage key={i} field={item.brand_logo} alt="" />
             ))}
           </>
         </div>

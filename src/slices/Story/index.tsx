@@ -47,6 +47,7 @@ const Story = ({ slice }: StoryProps): JSX.Element => {
         <PrismicNextImage
           field={slice.primary.image}
           className={"min-h-[384px] rounded-2xl"}
+          alt=""
         />
       </div>
     </section>

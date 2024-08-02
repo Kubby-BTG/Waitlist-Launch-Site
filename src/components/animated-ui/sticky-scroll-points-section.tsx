@@ -53,6 +53,7 @@ export default function StickyScrollPointsSection({
         {/* <PrismicNextImage
           field={slice.primary.image}
           className={"md:col-span-4"}
+           alt=""
         /> */}
         <div className="md:col-span-6">
           <div className="sticky top-20 overflow-hidden">
@@ -67,11 +68,11 @@ export default function StickyScrollPointsSection({
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   className={"scale-[1.02]"}
-                  key={"ticky-v-01-pg-001"}
-                ></motion.video>
+                  key={"sticky-vh-01-pg-001"}
+                />
               ) : (
                 <motion.video
-                  key={"ticky-v-01-pg-002"}
+                  key={"ticky-vs-01-pg-002"}
                   src={"/animations/" + slice.primary.second_animation_file}
                   autoPlay
                   muted
@@ -80,7 +81,7 @@ export default function StickyScrollPointsSection({
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   className={"scale-[1.02]"}
-                ></motion.video>
+                />
               )}
             </AnimatePresence>
           </div>
