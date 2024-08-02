@@ -18,6 +18,7 @@ export default function PostCard({ post }: { post: Content.BlogPostDocument }) {
         <PrismicNextImage
           field={post.data.featured_image}
           className={"absolute inset-0 h-full w-full object-cover"}
+           alt=""
         />
       </div>
 

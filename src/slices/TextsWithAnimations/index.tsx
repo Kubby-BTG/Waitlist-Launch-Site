@@ -31,6 +31,7 @@ const TextsWithAnimations = ({
             {/* <PrismicNextImage
           field={slice.primary.image}
           className={"md:col-span-4"}
+           alt=""
         /> */}
             <div className="overflow-hidden md:col-span-4">
               <video
@@ -77,6 +78,7 @@ const TextsWithAnimations = ({
             {/* <PrismicNextImage
           field={slice.primary.image}
           className={"md:col-span-4"}
+           alt=""
         /> */}
             <div className="overflow-hidden md:col-span-4">
               <video

@@ -61,7 +61,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
 
         {/* Hero Video */}
         <HeroVideo />
-        {/* <PrismicNextImage field={slice.primary.image} /> */}
+        {/* <PrismicNextImage field={slice.primary.image}  alt="" /> */}
       </div>
     </section>
   );

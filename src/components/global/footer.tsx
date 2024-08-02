@@ -19,6 +19,7 @@ export default async function Footer() {
         <PrismicNextImage
           field={settings.data.background_image}
           className={"h-full w-full object-cover"}
+          alt=""
         />
       </div>
       <div className="container relative">
@@ -68,7 +69,7 @@ export default async function Footer() {
                 {settings.data.social_media.map((item, i) => (
                   <PrismicNextLink field={item.media_link} key={i}>
                     <span className="sr-only">{item.media_name}</span>
-                    <PrismicNextImage field={item.media_icon} />
+                    <PrismicNextImage field={item.media_icon} alt="" />
                   </PrismicNextLink>
                 ))}
               </div>
@@ -117,7 +118,7 @@ export default async function Footer() {
                 {settings.data.social_media.map((item, i) => (
                   <PrismicNextLink field={item.media_link} key={i}>
                     <span className="sr-only">{item.media_name}</span>
-                    <PrismicNextImage field={item.media_icon} />
+                    <PrismicNextImage field={item.media_icon} alt="" />
                   </PrismicNextLink>
                 ))}
               </div>

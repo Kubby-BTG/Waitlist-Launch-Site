@@ -15,13 +15,10 @@ export default function DoubleSlideUpText({
     <span className={cn("relative flex overflow-hidden py-0.5", className)}>
       {/* Main text */}
       <motion.span
+        key={"double-slide-pf-001-001"}
         viewport={{ once: true }}
-        initial={{
-          y: "100%",
-        }}
-        whileInView={{
-          y: "0",
-        }}
+        initial={{ y: "100%" }}
+        whileInView={{ y: "0" }}
         transition={{
           type: "spring",
           stiffness: 400,
@@ -34,6 +31,7 @@ export default function DoubleSlideUpText({
       </motion.span>
       {/* Doubling text */}
       <motion.span
+        key={"double-slide-pl-009-003"}
         viewport={{ once: true }}
         initial={{
           y: "100%",

@@ -58,6 +58,7 @@ export default async function Page({ params }: { params: Params }) {
             <PrismicNextImage
               field={page.data.featured_image}
               className={"absolute inset-0 object-cover"}
+              alt=""
             />
           </div>
           <div className="mt-6 flex justify-center lg:hidden">
