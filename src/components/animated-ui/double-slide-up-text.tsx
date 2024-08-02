@@ -33,12 +33,8 @@ export default function DoubleSlideUpText({
       <motion.span
         key={"double-slide-pl-009-003"}
         viewport={{ once: true }}
-        initial={{
-          y: "100%",
-        }}
-        whileInView={{
-          y: "0",
-        }}
+        initial={{ y: "100%" }}
+        whileInView={{ y: "0" }}
         transition={{
           type: "spring",
           stiffness: 400,

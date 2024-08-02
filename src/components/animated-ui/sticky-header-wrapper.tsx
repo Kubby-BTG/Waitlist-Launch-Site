@@ -19,6 +19,7 @@ export default function StickyHeaderWrapper({
       setIscrolledDown(false);
     }
   });
+
   return (
     <motion.div
       className={"z-10 max-md:bg-primary md:sticky md:top-0"}
