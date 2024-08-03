@@ -18,6 +18,22 @@ const initialValue: Partial<IWaitList> = {
   reasonForJoining: "",
 };
 
+async function postData(formData: any) {
+  const res = await fetch("/api/waitlist", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+
 export default function WaitlistForm({ children }: { children: ReactNode }) {
   const [isSent, setIsSent] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -33,16 +49,17 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
         AlertModalService.warning(validationResult.firstError);
         return;
       }
-
-      // const authData = await loginUser({ ...validationResult.validatedData });
-
       console.log({ sendValue_validatedData: validationResult.validatedData });
+
+      const apiData = await postData({ ...validationResult.validatedData });
+
+      console.log({ response: apiData });
 
       setFormData({ ...initialValue });
       setIsSent(true);
     } catch (error) {
       // notification.error({ error });
-      AlertModalService.error("Not saved. Error occured");
+      AlertModalService.error({ title: "Not saved. Error occured" });
     }
   }
 
