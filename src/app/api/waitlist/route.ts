@@ -13,6 +13,6 @@ export async function GET(request: Request) {
   return NextResponse.json({ data: result });
 }
 
-export async function K__GET(request: NextRequest) {
-  const requestHeaders = new Headers(request.headers);
-}
+// export async function K__GET(request: NextRequest) {
+//   const requestHeaders = new Headers(request.headers);
+// }
