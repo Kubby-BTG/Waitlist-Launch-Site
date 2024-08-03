@@ -1,17 +1,11 @@
 import Airtable, { FieldSet, Record as AirtableRecord } from "airtable";
 import type { AirtableBase } from "airtable/lib/airtable_base";
-import { AppConfig } from "../helpers/constants";
+import { AppConfig } from "../utils/constants";
 
 const ApiUrls = {
   BASES: "https://api.airtable.com/v0/meta/bases",
   createTable: (baseId: string) => `${ApiUrls.BASES}/${baseId}/tables`,
-  updateTable: ({
-    baseId,
-    tableIdOrName,
-  }: {
-    baseId: string;
-    tableIdOrName: string;
-  }) => {
+  updateTable: ({ baseId, tableIdOrName }: { baseId: string; tableIdOrName: string }) => {
     return `${ApiUrls.BASES}/${baseId}/tables/${tableIdOrName}`;
   },
 };
@@ -96,10 +90,7 @@ export abstract class AirtableServiceBase<T extends IBaseRecord> {
     }
   }
 
-  async findRecordBase({
-    pageSize,
-    fields,
-  }: { pageSize?: number; fields?: (keyof T)[] } = {}) {
+  async findRecordBase({ pageSize, fields }: { pageSize?: number; fields?: (keyof T)[] } = {}) {
     return new Promise<T[]>((resolve, reject) => {
       const results: any[] = [];
 
