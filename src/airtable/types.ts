@@ -64,7 +64,7 @@ export interface IRecordListResponse<T> {
   records: IRecords<T>[];
 }
 
-export interface IQueryParameters<T> {
+export interface IQueryParameters<T = any> {
   pageSize?: number;
   maxRecords?: number;
   offset?: string;

@@ -1,5 +1,5 @@
-import { AirtableServiceBase } from "./base";
-import { IWaitList } from "./types";
+import { AirtableServiceBase } from "../base";
+import { IWaitList } from "../types";
 
 class WaitlistApiServiceBase extends AirtableServiceBase<IWaitList> {
   constructor() {

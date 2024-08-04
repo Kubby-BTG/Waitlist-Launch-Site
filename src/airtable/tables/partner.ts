@@ -1,5 +1,5 @@
-import { AirtableServiceBase } from "./base";
-import { IPartner } from "./types";
+import { AirtableServiceBase } from "../base";
+import { IPartner } from "../types";
 
 class PartnersApiServiceBase extends AirtableServiceBase<IPartner> {
   constructor() {

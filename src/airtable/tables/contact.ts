@@ -1,5 +1,5 @@
-import { AirtableServiceBase } from "./base";
-import { IContact } from "./types";
+import { AirtableServiceBase } from "../base";
+import { IContact } from "../types";
 
 class ContactApiServiceBase extends AirtableServiceBase<IContact> {
   constructor() {
