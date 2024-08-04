@@ -13,7 +13,9 @@ export async function POST(req: Request) {
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const result = await DeliveryIssuesApiService.findRecordBase({
-    pageSize: 20,
+    query: {
+      pageSize: 20,
+    },
   });
   return NextResponse.json({ data: result });
 }

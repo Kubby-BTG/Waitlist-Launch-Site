@@ -1,0 +1,29 @@
+{
+  "name": "delivery_issues",
+  "fields": [
+    {
+      "name": "email",
+      "type": "email"
+    },
+    {
+      "name": "zipcode",
+      "type": "singleLineText"
+    },
+    {
+      "name": "issue",
+      "type": "singleLineText"
+    },
+    {
+      "name": "shipping_carrier",
+      "type": "singleLineText"
+    },
+    {
+      "name": "purchase_store_name",
+      "type": "singleLineText"
+    },
+    {
+      "name": "delivery_name",
+      "type": "singleLineText"
+    }
+  ]
+}
