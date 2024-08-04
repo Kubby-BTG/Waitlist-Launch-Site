@@ -1,37 +1,30 @@
 "use client";
 
-import {
-  Dialog,
-  DialogClose,
-  DialogTrigger,
-  DialogContent,
-} from "../ui/dialog";
+import { Dialog, DialogClose, DialogContent } from "../ui/dialog";
 import { X } from "lucide-react";
-import {
-  Dispatch,
-  FormEvent,
-  Fragment,
-  ReactNode,
-  SetStateAction,
-  useState,
-} from "react";
+import { Dispatch, Fragment, SetStateAction, useEffect, useState } from "react";
 import { Input } from "../ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectSeparator,
-  SelectTrigger,
-  SelectValue,
-} from "../ui/select";
+import { Select, SelectContent, SelectItem, SelectSeparator, SelectTrigger, SelectValue } from "../ui/select";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import FilterIcon from "../map/filter-icon";
-import {
-  deliveryCompanies,
-  deliveryIssues,
-  usStates,
-} from "@/lib/selection-data";
+import { deliveryCompanies } from "@/lib/selection-data";
+import { deliveryIssues, usStates } from "@/utils/constants";
+import { AlertModalService } from "../../utils/alert-service";
+
+interface IFilterIssuesForm {
+  shipping_carrier: string;
+  issue: string;
+  state: string;
+  city: string;
+}
+
+const initialValue: Partial<IFilterIssuesForm> = {
+  shipping_carrier: "",
+  issue: "",
+  state: "",
+  city: "",
+};
 
 export default function FilterIssuesForm({
   setIsOpen,
@@ -40,34 +33,47 @@ export default function FilterIssuesForm({
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   isOpen: boolean;
 }) {
+  const [formData, setFormData] = useState<Partial<IFilterIssuesForm>>({ ...initialValue });
+
+  useEffect(() => {
+    console.log({ formData });
+  }, [formData]);
+
+  const handleFormDataChange = ({ fieldName, val }: { fieldName: keyof IFilterIssuesForm; val: any }) => {
+    setFormData((prev) => ({ ...prev, [fieldName]: val }));
+  };
+
+  async function handleSubmit() {
+    try {
+      setFormData({ ...initialValue });
+
+      setIsOpen(false);
+    } catch (error) {
+      AlertModalService.error({ title: "Not saved. Error occured" });
+    }
+  }
+
   return (
     <Dialog onOpenChange={setIsOpen} open={isOpen}>
-      {/* <DialogTrigger asChild>{children}</DialogTrigger> */}
-
       <DialogContent
-        className={cn(
+        className={cn([
+          //
           "flex px-6 py-8 md:max-w-[26rem] md:px-8",
-          isOpen ? "_max-w-[17.5rem] _max-md:w-[calc(100vw-6.5rem)]" : "",
-        )}
+          isOpen && "_max-w-[17.5rem] _max-md:w-[calc(100vw-6.5rem)]",
+        ])}
       >
         {/* Form */}
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setIsOpen(false);
-          }}
-          className={"flex w-full flex-col gap-4"}
-        >
+        <form className={"flex w-full flex-col gap-4"}>
           <div className="flex w-full items-center gap-8">
-            <h1
-              className={"flex w-full items-center gap-2 text-base font-bold"}
-            >
+            <h1 className={"flex w-full items-center gap-2 text-base font-bold"}>
               <FilterIcon className={"size-5"} /> Filter issues by
             </h1>
             <DialogClose
-              className={
-                "flex size-8 flex-none items-center justify-center rounded-full bg-input-secondary text-black"
-              }
+              className={cn([
+                //
+                "flex size-8 flex-none items-center justify-center",
+                "rounded-full bg-input-secondary text-black",
+              ])}
             >
               <span className="sr-only">Close</span>
               <X className={"size-4"} />
@@ -78,7 +84,11 @@ export default function FilterIssuesForm({
             <label htmlFor="shipping-carrier" className={"text-sm text-black"}>
               Carriers
             </label>
-            <Select required>
+            <Select
+              required={true}
+              value={formData.shipping_carrier}
+              onValueChange={(val) => handleFormDataChange({ fieldName: "shipping_carrier", val: val })}
+            >
               <SelectTrigger className="w-full" id={"shipping-carrier"}>
                 <SelectValue placeholder="Select..." />
               </SelectTrigger>
@@ -99,7 +109,11 @@ export default function FilterIssuesForm({
             <label htmlFor="issue-type" className={"text-sm text-black"}>
               Issue type
             </label>
-            <Select required>
+            <Select
+              required={true}
+              value={formData.issue}
+              onValueChange={(val) => handleFormDataChange({ fieldName: "issue", val: val })}
+            >
               <SelectTrigger className="w-full" id={"issue-type"}>
                 <SelectValue placeholder="Select..." />
               </SelectTrigger>
@@ -118,7 +132,11 @@ export default function FilterIssuesForm({
             <label htmlFor="state" className={"text-sm text-black"}>
               State
             </label>
-            <Select required>
+            <Select
+              required={true}
+              value={formData.state}
+              onValueChange={(val) => handleFormDataChange({ fieldName: "state", val: val })}
+            >
               <SelectTrigger className="w-full" id={"state"}>
                 <SelectValue placeholder="Select..." />
               </SelectTrigger>
@@ -139,11 +157,33 @@ export default function FilterIssuesForm({
             <label htmlFor="zipcode" className={"text-sm text-black"}>
               Zipcode
             </label>
-            <Input type="text" id={"city"} required placeholder={"Zipcode"} />
+            <Input
+              type="text"
+              value={formData.city}
+              onChange={(e) => handleFormDataChange({ fieldName: "city", val: e.target.value })}
+              id={"city"}
+              required
+              placeholder={"Zipcode"}
+            />
           </div>
 
-          <Button type={"submit"}>Filter Issues On Map</Button>
-          <Button variant={"ghost"} type={"reset"}>
+          <Button
+            type={"button"}
+            onClick={(e) => {
+              e.preventDefault();
+              handleSubmit().catch(() => {});
+            }}
+          >
+            Filter Issues On Map
+          </Button>
+
+          <Button
+            variant={"ghost"}
+            type="button"
+            onClick={() => {
+              setFormData({ ...initialValue });
+            }}
+          >
             Clear Filter
           </Button>
         </form>

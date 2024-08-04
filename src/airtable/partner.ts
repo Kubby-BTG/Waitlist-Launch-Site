@@ -1,7 +1,7 @@
 import { AirtableServiceBase } from "./base";
-import { IWaitList } from "./types";
+import { IPartner } from "./types";
 
-class PartnersApiServiceBase extends AirtableServiceBase<IWaitList> {
+class PartnersApiServiceBase extends AirtableServiceBase<IPartner> {
   constructor() {
     super({ tableName: "partners" });
   }

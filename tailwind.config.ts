@@ -2,12 +2,7 @@ import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
-  content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-  ],
+  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
   theme: {
     container: {
@@ -39,6 +34,10 @@ const config = {
       gray: "#474B4D",
       accent: "#99ddc7",
       cream: "#f9f3e8",
+      //
+      danger: "#dc2626",
+      success: "#22c55e",
+      warning: "#ffc409",
     },
     boxShadow: {
       none: "0 0 0 rgba(0,0,0,0)",

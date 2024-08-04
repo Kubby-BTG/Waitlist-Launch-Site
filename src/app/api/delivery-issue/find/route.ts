@@ -7,14 +7,3 @@ export async function POST(req: Request) {
   const result = await DeliveryIssuesApiService.createRecordBase({ recordData });
   return NextResponse.json({ data: result });
 }
-
-// export async function GET(request: Request) {
-//   const { searchParams } = new URL(request.url);
-
-//   const result = await DeliveryIssuesApiService.findRecordBase({
-//     query: {
-//       pageSize: 20,
-//     },
-//   });
-//   return NextResponse.json({ data: result });
-// }
