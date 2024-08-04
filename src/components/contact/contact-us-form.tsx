@@ -22,9 +22,9 @@ export default function ContactUsForm() {
   const [formData, setFormData] = useState<Partial<IContact>>({ ...initialValue });
   const { postData, isBusy } = useAppFormPost();
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
+  // useEffect(() => {
+  //   console.log(formData);
+  // }, [formData]);
 
   async function handleSubmit() {
     try {

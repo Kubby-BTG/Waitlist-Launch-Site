@@ -20,20 +20,20 @@ export type ReportFormProps = SliceComponentProps<Content.ReportFormSlice>;
 
 const initialValue: Partial<IDeliveryIssue> = {
   email: "",
-  createdTime: "",
   issue: "",
   purchase_store_name: "",
   shipping_carrier: "",
   zipcode: "",
+  delivery_date: "",
 };
 
 const ReportFormBase = ({ slice }: { slice: ReportFormProps["slice"] }): JSX.Element => {
   const [formData, setFormData] = useState<Partial<IDeliveryIssue>>({ ...initialValue });
   const { postData, isBusy } = useAppFormPost();
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
+  // useEffect(() => {
+  //   console.log(formData);
+  // }, [formData]);
 
   async function handleSubmit() {
     try {
@@ -191,8 +191,6 @@ const ReportFormBase = ({ slice }: { slice: ReportFormProps["slice"] }): JSX.Ele
           />
         </div>
 
-        {/* <Button>Report Delivery</Button> */}
-
         <Button
           type={"button"}
           disabled={isBusy}
@@ -226,7 +224,7 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
       >
         {/* Decorations */}
 
-        <video
+        {/* <video
           autoPlay
           loop
           muted
@@ -234,7 +232,7 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
           playsInline
         >
           <source src="/animations/kube_on_pen.mp4" type="video/mp4" />
-        </video>
+        </video> */}
 
         <div className="absolute inset-0 py-20">
           <img src="/decorations/scribble.svg" alt="" className="h-full object-cover" loading={"lazy"} decoding={"async"} />
@@ -259,13 +257,13 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
         {/* Content */}
         <ReportFormBase slice={slice} />
 
-        <video
+        {/* <video
           src="/animations/kube-on-pen.webm"
           loop
           autoPlay
           muted
           className={"pointer-events-none absolute bottom-0 right-0 h-[140px] max-md:hidden md:-bottom-1.5 md:h-[204px]"}
-        />
+        /> */}
       </div>
     </section>
   );

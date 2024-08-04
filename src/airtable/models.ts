@@ -100,6 +100,8 @@ export function getContactSchema() {
       .min(2, { message: "name is required" })
       .trim(),
 
+    phone: z.string().optional(),
+
     comment: z.string().optional(),
   });
   return schema;

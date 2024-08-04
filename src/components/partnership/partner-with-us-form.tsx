@@ -28,9 +28,9 @@ export default function PartnerWithUsForm() {
   const [formData, setFormData] = useState<Partial<IPartner>>({ ...initialValue });
   const { postData, isBusy } = useAppFormPost();
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
+  // useEffect(() => {
+  //   console.log(formData);
+  // }, [formData]);
 
   async function handleSubmit() {
     try {
