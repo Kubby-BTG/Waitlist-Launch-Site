@@ -25,3 +25,5 @@ export async function generateMetadata(): Promise<Metadata> {
     description: page.data.meta_description,
   };
 }
+
+// Redeploy
