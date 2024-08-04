@@ -7,7 +7,7 @@ export interface IDeliveryIssue {
   issue: string;
   shipping_carrier: string;
   purchase_store_name: string;
-  delivery_name: string;
+  delivery_date: string;
 }
 
 export interface IWaitList {
@@ -18,12 +18,22 @@ export interface IWaitList {
   reasonForJoining: string;
 }
 
+export interface IContact {
+  id: string;
+  createdTime: string;
+  //
+  email: string;
+  name: string;
+  phone: string;
+  comment: string;
+}
+
 export interface IPartner {
   id: string;
   createdTime: string;
   //
   name: string;
-  work_email: string;
+  email: string;
   address: string;
   state: string;
   city: string;
@@ -65,23 +75,3 @@ export interface IQueryParameters<T> {
   fields?: (keyof T)[];
   cellFormat?: "json" | "string";
 }
-
-// "records": [
-//   {
-//     "createdTime": "2022-09-12T21:03:48.000Z",
-//     "fields": {
-//       "Address": "333 Post St",
-//       "Name": "Union Square",
-//       "Visited": true
-//     },
-//     "id": "rec560UJdUtocSouk"
-//   },
-//   {
-//     "createdTime": "2022-09-12T21:03:48.000Z",
-//     "fields": {
-//       "Address": "1 Ferry Building",
-//       "Name": "Ferry Building"
-//     },
-//     "id": "rec3lbPRG4aVqkeOQ"
-//   }
-// ]

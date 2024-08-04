@@ -1,10 +1,10 @@
 import { NextResponse, NextRequest } from "next/server";
-import { WaitlistApiService } from "@/airtable/waitlist";
+import { ContactApiService } from "@/airtable/contact";
 
 export async function POST(request: Request) {
   const recordData = await request.json();
 
-  const result = await WaitlistApiService.createRecordBase({ recordData });
+  const result = await ContactApiService.createRecordBase({ recordData });
 
   return NextResponse.json({ data: result });
 }

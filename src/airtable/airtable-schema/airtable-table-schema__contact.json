@@ -6,8 +6,16 @@
       "type": "email"
     },
     {
-      "name": "reasonForJoining",
+      "name": "name",
       "type": "singleLineText"
+    },
+    {
+      "name": "phone",
+      "type": "phoneNumber"
+    },
+    {
+      "name": "comment",
+      "type": "multilineText"
     }
   ]
 }

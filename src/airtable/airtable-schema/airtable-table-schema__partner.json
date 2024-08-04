@@ -2,7 +2,7 @@
   "name": "partners",
   "fields": [
     {
-      "name": "work_email",
+      "name": "email",
       "type": "email"
     },
     {

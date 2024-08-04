@@ -1,52 +1,98 @@
 "use client";
 
-import { FormEvent, Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import KubbyLogo from "../ui/kubby-logo";
 import RegisteredPartnership from "../modals/registered-partnership";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectSeparator,
-  SelectTrigger,
-  SelectValue,
-} from "../ui/select";
+import { Select, SelectContent, SelectItem, SelectSeparator, SelectTrigger, SelectValue } from "../ui/select";
 import { usStates } from "@/lib/selection-data";
+import { IPartner } from "../../airtable/types";
+import useAppFormPost from "../../hooks/useAppFormPost";
+import { getPartnerSchema } from "../../airtable/models";
+import { ZodValidationHelper } from "../../utils/zod-validation-helper";
+import { AlertModalService } from "../../utils/alert-service";
+
+const initialValue: Partial<IPartner> = {
+  email: "",
+  address: "",
+  city: "",
+  company: "",
+  name: "",
+  state: "",
+  zipcode: "",
+};
 
 export default function PartnerWithUsForm() {
   const [isSent, setIsSent] = useState(false);
+  const [formData, setFormData] = useState<Partial<IPartner>>({ ...initialValue });
+  const { postData, isBusy } = useAppFormPost();
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setIsSent(true);
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
+
+  async function handleSubmit() {
+    try {
+      const schema = getPartnerSchema();
+
+      const validationResult = ZodValidationHelper.validate({ schema, input: formData });
+
+      if (validationResult.firstError) {
+        AlertModalService.warning(validationResult.firstError);
+        return;
+      }
+
+      const apiData = await postData({
+        url: "/api/partner",
+        formData: validationResult.validatedData,
+      });
+
+      setFormData({ ...initialValue });
+      setIsSent(true);
+    } catch (error) {
+      AlertModalService.error({ title: "Not saved. Error occured" });
+    }
+  }
+
+  const handleFormDataChange = ({ fieldName, val }: { fieldName: keyof IPartner; val: any }) => {
+    setFormData((prev) => ({ ...prev, [fieldName]: val }));
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex w-full flex-col gap-4 rounded-lg bg-white p-8 md:max-w-[32rem]"
-    >
+    <form onSubmit={handleSubmit} className="flex w-full flex-col gap-4 rounded-lg bg-white p-8 md:max-w-[32rem]">
       <div className="flex items-center gap-1">
         <PartnerIcon />
-        <p className="w-full text-base font-semibold text-black">
-          Partner with us
-        </p>
+        <p className="w-full text-base font-semibold text-black">Partner with us</p>
         <KubbyLogo iconOnly className={"size-7"} />
       </div>
+
       <div className={"flex w-full flex-col gap-1"}>
         <label htmlFor="name" className={"text-sm text-black"}>
           Name
         </label>
-        <Input type="text" id={"name"} required placeholder={"Your name"} />
+        <Input
+          type="text"
+          value={formData.name}
+          onChange={(e) => handleFormDataChange({ fieldName: "name", val: e.target.value })}
+          id={"name"}
+          required
+          placeholder={"Your name"}
+        />
       </div>
 
       <div className={"flex w-full flex-col gap-1"}>
         <label htmlFor="email" className={"text-sm text-black"}>
           Work Email
         </label>
-        <Input type="email" id={"email"} required placeholder={"Your email"} />
+        <Input
+          type="email"
+          value={formData.email}
+          onChange={(e) => handleFormDataChange({ fieldName: "email", val: e.target.value })}
+          id={"email"}
+          required
+          placeholder={"Your email"}
+        />
       </div>
 
       <div className={"flex w-full flex-col gap-1"}>
@@ -55,6 +101,8 @@ export default function PartnerWithUsForm() {
         </label>
         <Input
           type="text"
+          value={formData.address}
+          onChange={(e) => handleFormDataChange({ fieldName: "address", val: e.target.value })}
           id={"address"}
           required
           placeholder={"Your Address"}
@@ -65,7 +113,7 @@ export default function PartnerWithUsForm() {
         <label htmlFor="state" className={"text-sm text-black"}>
           State
         </label>
-        <Select>
+        <Select value={formData.state} onValueChange={(val) => handleFormDataChange({ fieldName: "state", val })}>
           <SelectTrigger className="w-full" id={"state"}>
             <SelectValue placeholder="Select..." />
           </SelectTrigger>
@@ -86,14 +134,28 @@ export default function PartnerWithUsForm() {
         <label htmlFor="city" className={"text-sm text-black"}>
           City
         </label>
-        <Input type="text" id={"city"} required placeholder={"Your City"} />
+        <Input
+          type="text"
+          value={formData.city}
+          onChange={(e) => handleFormDataChange({ fieldName: "city", val: e.target.value })}
+          id={"city"}
+          required
+          placeholder={"Your City"}
+        />
       </div>
 
       <div className={"flex w-full flex-col gap-1"}>
         <label htmlFor="zipcode" className={"text-sm text-black"}>
           Zipcode
         </label>
-        <Input type="text" id={"city"} required placeholder={"Zipcode"} />
+        <Input
+          type="text"
+          value={formData.zipcode}
+          onChange={(e) => handleFormDataChange({ fieldName: "zipcode", val: e.target.value })}
+          id={"city"}
+          required
+          placeholder={"Zipcode"}
+        />
       </div>
 
       <div className={"flex w-full flex-col gap-1"}>
@@ -102,13 +164,24 @@ export default function PartnerWithUsForm() {
         </label>
         <Input
           type="text"
+          value={formData.company}
+          onChange={(e) => handleFormDataChange({ fieldName: "company", val: e.target.value })}
           id={"company-name"}
           required
           placeholder={"Your company name"}
         />
       </div>
 
-      <Button type={"submit"}>Continue</Button>
+      <Button
+        type={"button"}
+        disabled={isBusy}
+        onClick={(e) => {
+          e.preventDefault();
+          handleSubmit().catch(() => {});
+        }}
+      >
+        {isBusy ? "Continue" : "Continue"}
+      </Button>
 
       <RegisteredPartnership setIsSent={setIsSent} isSent={isSent} />
     </form>
@@ -116,14 +189,7 @@ export default function PartnerWithUsForm() {
 }
 
 const PartnerIcon = () => (
-  <svg
-    width="20"
-    height="21"
-    viewBox="0 0 20 21"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className={"flex-none"}
-  >
+  <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg" className={"flex-none"}>
     <path
       fillRule="evenodd"
       clipRule="evenodd"

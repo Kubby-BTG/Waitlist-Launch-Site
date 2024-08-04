@@ -22,8 +22,14 @@
       "type": "singleLineText"
     },
     {
-      "name": "delivery_name",
-      "type": "singleLineText"
+      "name": "delivery_date",
+      "type": "date",
+      "options": {
+        "dateFormat": {
+          "format": "YYYY-MM-DD",
+          "name": "iso"
+        }
+      }
     }
   ]
 }
