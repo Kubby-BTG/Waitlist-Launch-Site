@@ -10,10 +10,25 @@ import ShowDeliveryNearYouForm from "../modals/show-delivery-near-you-form";
 
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "../ui/hover-card";
 import { AppConfig } from "../../utils/constants";
+import { AlertModalService } from "../../utils/alert-service";
+import useAppFormPost from "@/hooks/useAppFormPost";
 
 export default function DeliveryIssuesMap() {
   const [isShowFilterForm, setIsShowFilterForm] = useState(false);
   const [isShowShowDeliveryIssuesForm, setIsShowShowDeliveryIssues] = useState(false);
+  // const [zipcode, setZipcode] = useState("");
+  const { postData, isBusy } = useAppFormPost();
+
+  async function handleFindByZipcode(zipcode: string) {
+    try {
+      const apiData = await postData({
+        url: "/api/delivery-issue/find",
+        formData: { zipcode },
+      });
+    } catch (error) {
+      AlertModalService.error({ title: "Could not filter. Error occured" });
+    }
+  }
 
   return (
     <APIProvider apiKey={AppConfig.NEXT_PUBLIC_GOOGLE_MAP_KEY} onLoad={() => console.log("Maps API has loaded.")}>
@@ -66,6 +81,7 @@ export default function DeliveryIssuesMap() {
             className={"gap-1 rounded-full bg-background-icon text-sm font-normal hover:bg-background-icon/80"}
             size={"sm"}
             onClick={() => setIsShowShowDeliveryIssues(true)}
+            disabled={isBusy}
           >
             <PinIcon />
             Show delivery issues near you
@@ -75,6 +91,7 @@ export default function DeliveryIssuesMap() {
             className={"gap-1 rounded-full bg-background-icon text-sm font-normal hover:bg-background-icon/80"}
             size={"sm"}
             onClick={() => setIsShowFilterForm(true)}
+            disabled={isBusy}
           >
             <FilterIcon />
             Filter issues
@@ -83,7 +100,14 @@ export default function DeliveryIssuesMap() {
           {/* Modals */}
           <FilterIssuesForm setIsOpen={setIsShowFilterForm} isOpen={isShowFilterForm} />
 
-          <ShowDeliveryNearYouForm isOpen={isShowShowDeliveryIssuesForm} setIsOpen={setIsShowShowDeliveryIssues} />
+          <ShowDeliveryNearYouForm
+            handleDone={(zipcode) => {
+              setIsShowShowDeliveryIssues(false);
+              handleFindByZipcode(zipcode);
+            }}
+            isOpen={isShowShowDeliveryIssuesForm}
+            setIsOpen={setIsShowShowDeliveryIssues}
+          />
         </div>
       </div>
     </APIProvider>

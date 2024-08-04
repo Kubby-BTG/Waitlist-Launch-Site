@@ -12,14 +12,17 @@ import PinIcon from "../map/pin-icon";
 export default function ShowDeliveryNearYouForm({
   setIsOpen,
   isOpen,
+  handleDone,
 }: {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   isOpen: boolean;
+  handleDone: (zipcode: string) => void;
 }) {
   const [zipcode, setZipcode] = useState("");
 
   const submitDelivery = () => {
-    setIsOpen(false);
+    handleDone(zipcode);
+    // setIsOpen(false);
   };
 
   return (
