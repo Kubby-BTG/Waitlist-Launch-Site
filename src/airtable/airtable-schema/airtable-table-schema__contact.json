@@ -1,0 +1,21 @@
+{
+  "name": "contacts",
+  "fields": [
+    {
+      "name": "email",
+      "type": "email"
+    },
+    {
+      "name": "name",
+      "type": "singleLineText"
+    },
+    {
+      "name": "phone",
+      "type": "phoneNumber"
+    },
+    {
+      "name": "comment",
+      "type": "multilineText"
+    }
+  ]
+}

@@ -1,28 +1,102 @@
-import Airtable, { FieldSet, Record as AirtableRecord } from "airtable";
-import type { AirtableBase } from "airtable/lib/airtable_base";
 import { AppConfig } from "../utils/constants";
+import { ICreateRecordsRequest, ICreateRecordsResponse, IQueryParameters, IRecordListResponse, IRecords } from "./types";
+
+function joinUrlAndParams({ url, params }: { url: string; params: Record<string, string> | undefined }) {
+  if (!(params && typeof params === "object" && Object.keys(params).length)) {
+    return url;
+  }
+  const param01 = new URLSearchParams(params);
+
+  const url01 = new URL(url);
+
+  param01.forEach((value, name) => {
+    url01.searchParams.append(name, value);
+  });
+
+  return url01.toString();
+}
+
+function getHeaders() {
+  return {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${AppConfig.KUBBY_WEB_AIRTABLE_ACCESS_TOKEN}`,
+  };
+}
+
+async function getData({ url, query }: { url: string; query?: Record<string, any> }) {
+  const res = await fetch(joinUrlAndParams({ url, params: query }), {
+    method: "GET",
+    headers: getHeaders(),
+  });
+
+  if (!res.ok) {
+    throw new Error("Error occured");
+  }
+
+  return res.json();
+}
+
+async function deleteData({ url }: { url: string }) {
+  const res = await fetch(url, {
+    method: "DELTE",
+    headers: getHeaders(),
+  });
+
+  if (!res.ok) {
+    throw new Error("Error occured");
+  }
+
+  return res.json();
+}
+
+async function postOrPutData({ formData, url, method }: { formData: any; url: string; method: "POST" | "PUT" }) {
+  const res = await fetch(url, {
+    method: method,
+    headers: getHeaders(),
+    body: JSON.stringify(formData),
+  });
+
+  if (!res.ok) {
+    throw new Error("Error occured");
+  }
+  return res.json();
+}
+
+async function putData({ formData, url }: { formData: any; url: string }) {
+  return postOrPutData({ formData, method: "PUT", url });
+}
+
+async function postData({ formData, url }: { formData: any; url: string }) {
+  return postOrPutData({ formData, method: "POST", url });
+}
 
 const ApiUrls = {
-  BASES: "https://api.airtable.com/v0/meta/bases",
-  createTable: (baseId: string) => `${ApiUrls.BASES}/${baseId}/tables`,
-  updateTable: ({ baseId, tableIdOrName }: { baseId: string; tableIdOrName: string }) => {
-    return `${ApiUrls.BASES}/${baseId}/tables/${tableIdOrName}`;
+  BASE_URL: "https://api.airtable.com/v0",
+  // createTable: (baseId: string) => `${ApiUrls.BASE_URL}/meta/bases/${baseId}/tables`,
+  // updateTable: ({ baseId, tableIdOrName }: { baseId: string; tableIdOrName: string }) => {
+  //   return `${ApiUrls.BASE_URL}/meta/bases/${baseId}/tables/${tableIdOrName}`;
+  // },
+  createRecord: ({ baseId, tableIdOrName }: { baseId: string; tableIdOrName: string }) => {
+    return `${ApiUrls.BASE_URL}/${baseId}/${tableIdOrName}`;
+  },
+  getRecords: ({ baseId, tableIdOrName }: { baseId: string; tableIdOrName: string }) => {
+    return `${ApiUrls.BASE_URL}/${baseId}/${tableIdOrName}`;
+  },
+  updateRecord: ({ baseId, tableIdOrName, recordId }: { baseId: string; tableIdOrName: string; recordId: string }) => {
+    return `${ApiUrls.BASE_URL}/${baseId}/${tableIdOrName}/${recordId}`;
+  },
+  getRecordById: ({ baseId, tableIdOrName, recordId }: { baseId: string; tableIdOrName: string; recordId: string }) => {
+    return `${ApiUrls.BASE_URL}/${baseId}/${tableIdOrName}/${recordId}`;
+  },
+  deleteRecordById: ({ baseId, tableIdOrName, recordId }: { baseId: string; tableIdOrName: string; recordId: string }) => {
+    return `${ApiUrls.BASE_URL}/${baseId}/${tableIdOrName}/${recordId}`;
   },
 };
 
-let __base: AirtableBase | undefined;
-
-function getInstance() {
-  if (__base) {
-    return __base;
-  }
-  __base = new Airtable({
-    apiKey: AppConfig.KUBBY_WEB_AIRTABLE_ACCESS_TOKEN,
-  }).base(AppConfig.KUBBY_WEB_AIRTABLE_DATABASE);
-  return __base;
-}
-
-type IBaseRecord = { id: string } & Record<string, any>;
+type IBaseRecord = {
+  id: string;
+  createdTime: string;
+} & Record<string, any>;
 
 export abstract class AirtableServiceBase<T extends IBaseRecord> {
   private readonly tableName: string;
@@ -31,19 +105,30 @@ export abstract class AirtableServiceBase<T extends IBaseRecord> {
     this.tableName = tableName;
   }
 
-  private getTable() {
-    return getInstance()(this.tableName);
-  }
-
-  private formatMergeRecord(result: AirtableRecord<FieldSet>) {
+  private formatMergeRecord(result: IRecords<T>) {
     return { ...result.fields, id: result.id } as T;
   }
 
-  async createRecordBase({ recordData }: { recordData: Partial<T> }) {
+  async createRecordBase({ recordData }: { recordData: T }) {
     try {
-      const result = await this.getTable().create(recordData);
+      const records: ICreateRecordsRequest<T>[] = [
+        {
+          fields: recordData,
+        },
+      ];
 
-      return this.formatMergeRecord(result);
+      const url = ApiUrls.createRecord({
+        baseId: AppConfig.KUBBY_WEB_AIRTABLE_DATABASE,
+        tableIdOrName: this.tableName,
+      });
+
+      const result = (await postData({ formData: { records }, url })) as ICreateRecordsResponse<T>;
+
+      if (!result?.records?.length) {
+        return null;
+      }
+
+      return this.formatMergeRecord(result.records[0]);
     } catch (error) {
       console.error(error);
       throw error;
@@ -52,9 +137,20 @@ export abstract class AirtableServiceBase<T extends IBaseRecord> {
 
   async deleteRecordBase({ recordId }: { recordId: string }) {
     try {
-      const result = await this.getTable().destroy(recordId);
+      const url = ApiUrls.deleteRecordById({
+        baseId: AppConfig.KUBBY_WEB_AIRTABLE_DATABASE,
+        tableIdOrName: this.tableName,
+        recordId,
+      });
 
-      return this.formatMergeRecord(result);
+      type IResult = {
+        deleted: boolean;
+        id: string;
+      };
+
+      const result = (await deleteData({ url })) as IResult;
+
+      return result;
     } catch (error) {
       console.error(error);
       throw error;
@@ -67,10 +163,19 @@ export abstract class AirtableServiceBase<T extends IBaseRecord> {
         return null;
       }
 
-      const result = await this.getTable().update(recordData.id, {
+      const url = ApiUrls.updateRecord({
+        baseId: AppConfig.KUBBY_WEB_AIRTABLE_DATABASE,
+        tableIdOrName: this.tableName,
+        recordId: recordData.id,
+      });
+
+      const record01 = {
         ...recordData,
         id: undefined,
-      });
+        createdTime: undefined,
+      };
+
+      const result = (await putData({ formData: record01, url })) as IRecords<T>;
 
       return this.formatMergeRecord(result);
     } catch (error) {
@@ -81,45 +186,38 @@ export abstract class AirtableServiceBase<T extends IBaseRecord> {
 
   async getByRecordIdBase({ recordId }: { recordId: string }) {
     try {
-      const result = await this.getTable().find(recordId);
+      const url = ApiUrls.getRecordById({
+        baseId: AppConfig.KUBBY_WEB_AIRTABLE_DATABASE,
+        tableIdOrName: this.tableName,
+        recordId,
+      });
 
-      return this.formatMergeRecord(result);
+      const result = (await getData({ url })) as IRecords<T>;
+
+      return result;
     } catch (error) {
       console.error(error);
       throw error;
     }
   }
 
-  async findRecordBase({ pageSize, fields }: { pageSize?: number; fields?: (keyof T)[] } = {}) {
-    return new Promise<T[]>((resolve, reject) => {
-      const results: any[] = [];
+  async findRecordBase({ query }: { query?: IQueryParameters<T> } = {}) {
+    try {
+      const url = ApiUrls.getRecords({
+        baseId: AppConfig.KUBBY_WEB_AIRTABLE_DATABASE,
+        tableIdOrName: this.tableName,
+      });
 
-      this.getTable()
-        .select({
-          pageSize,
-          fields: fields?.length ? (fields as string[]) : undefined,
-        })
-        .eachPage(
-          (records, fetchNextPage) => {
-            const records01 = records?.map((record) => {
-              // console.log("Retrieved record:", record);
-              return this.formatMergeRecord(record);
-            });
+      const result = (await getData({ url, query })) as IRecordListResponse<T>;
 
-            if (records01?.length) results.push(...records01);
+      if (!result?.records?.length) {
+        return [];
+      }
 
-            if (records?.length && pageSize && records.length >= pageSize) {
-              fetchNextPage();
-            } else {
-              resolve(results);
-            }
-          },
-          (err) => {
-            reject(err);
-          },
-        );
-    });
+      return result.records.map((item) => this.formatMergeRecord(item));
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   }
 }
-
-// export const AirtableService = new AirtableServiceBase();

@@ -1,0 +1,13 @@
+{
+  "name": "contacts",
+  "fields": [
+    {
+      "name": "email",
+      "type": "email"
+    },
+    {
+      "name": "reasonForJoining",
+      "type": "singleLineText"
+    }
+  ]
+}

@@ -12,6 +12,7 @@ import { IWaitList } from "../../airtable/types";
 import { ZodValidationHelper } from "../../utils/zod-validation-helper";
 import { getWaitlistSchema } from "../../airtable/models";
 import { AlertModalService } from "../../utils/alert-service";
+import useAppFormPost from "../../hooks/useAppFormPost";
 
 const initialValue: Partial<IWaitList> = {
   email: "",
@@ -22,6 +23,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
   const [isSent, setIsSent] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState<Partial<IWaitList>>({ ...initialValue });
+  const { postData, isBusy } = useAppFormPost();
 
   async function handleSubmit() {
     try {
@@ -34,21 +36,17 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
         return;
       }
 
-      // const authData = await loginUser({ ...validationResult.validatedData });
-
-      console.log({ sendValue_validatedData: validationResult.validatedData });
+      const apiData = await postData({
+        url: "/api/waitlist",
+        formData: validationResult.validatedData,
+      });
 
       setFormData({ ...initialValue });
       setIsSent(true);
     } catch (error) {
-      // notification.error({ error });
-      AlertModalService.error("Not saved. Error occured");
+      AlertModalService.error({ title: "Not saved. Error occured" });
     }
   }
-
-  useEffect(() => {
-    console.log({ formData });
-  }, [formData]);
 
   const handleFormDataChange = ({ fieldName, val }: { fieldName: keyof IWaitList; val: any }) => {
     setFormData((prev) => ({ ...prev, [fieldName]: val }));
@@ -131,12 +129,13 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
 
                 <Button
                   type={"button"}
+                  disabled={isBusy}
                   onClick={(e) => {
                     e.preventDefault();
                     handleSubmit().catch(() => {});
                   }}
                 >
-                  Join Waitlist
+                  {isBusy ? "Joining Waitlist..." : "Join Waitlist"}
                 </Button>
               </form>
 

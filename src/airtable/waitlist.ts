@@ -7,7 +7,7 @@ class WaitlistApiServiceBase extends AirtableServiceBase<IWaitList> {
   }
 
   find() {
-    return super.findRecordBase({ fields: ["email"], pageSize: 900 });
+    return super.findRecordBase({ query: { fields: ["email"], pageSize: 900 } });
   }
 }
 

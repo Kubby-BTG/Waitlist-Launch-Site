@@ -1,0 +1,33 @@
+{
+  "name": "partners",
+  "fields": [
+    {
+      "name": "email",
+      "type": "email"
+    },
+    {
+      "name": "name",
+      "type": "singleLineText"
+    },
+    {
+      "name": "address",
+      "type": "singleLineText"
+    },
+    {
+      "name": "state",
+      "type": "singleLineText"
+    },
+    {
+      "name": "city",
+      "type": "singleLineText"
+    },
+    {
+      "name": "zipcode",
+      "type": "singleLineText"
+    },
+    {
+      "name": "company",
+      "type": "singleLineText"
+    }
+  ]
+}
