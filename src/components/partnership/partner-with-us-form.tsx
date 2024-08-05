@@ -10,8 +10,9 @@ import { IPartner } from "../../airtable/types";
 import useAppFormPost from "../../hooks/useAppFormPost";
 import { getPartnerSchema } from "../../airtable/models";
 import { ZodValidationHelper } from "../../utils/zod-validation-helper";
-import { AlertModalService } from "../../utils/alert-service";
 import { usStates } from "../../utils/constants";
+import AppAlertDialog from "../ui/AppAlertDialog";
+import useAppAlertDialog from "../../hooks/useAppAlertDialog";
 
 const initialValue: Partial<IPartner> = {
   email: "",
@@ -27,6 +28,7 @@ export default function PartnerWithUsForm() {
   const [isSent, setIsSent] = useState(false);
   const [formData, setFormData] = useState<Partial<IPartner>>({ ...initialValue });
   const { postData, isBusy } = useAppFormPost();
+  const { alertMessages, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
 
   // useEffect(() => {
   //   console.log(formData);
@@ -39,7 +41,7 @@ export default function PartnerWithUsForm() {
       const validationResult = ZodValidationHelper.validate({ schema, input: formData });
 
       if (validationResult.firstError) {
-        AlertModalService.warning(validationResult.firstError);
+        openAlertDialog.warning({ title: validationResult.firstError });
         return;
       }
 
@@ -51,7 +53,7 @@ export default function PartnerWithUsForm() {
       setFormData({ ...initialValue });
       setIsSent(true);
     } catch (error) {
-      AlertModalService.error({ title: "Not saved. Error occured" });
+      openAlertDialog.error({ title: "Not saved. Error occured" });
     }
   }
 
@@ -60,131 +62,142 @@ export default function PartnerWithUsForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex w-full flex-col gap-4 rounded-lg bg-white p-8 md:max-w-[32rem]">
-      <div className="flex items-center gap-1">
-        <PartnerIcon />
-        <p className="w-full text-base font-semibold text-black">Partner with us</p>
-        <KubbyLogo iconOnly className={"size-7"} />
-      </div>
-
-      <div className={"flex w-full flex-col gap-1"}>
-        <label htmlFor="name" className={"text-sm text-black"}>
-          Name
-        </label>
-        <Input
-          type="text"
-          value={formData.name}
-          onChange={(e) => handleFormDataChange({ fieldName: "name", val: e.target.value })}
-          id={"name"}
-          required
-          placeholder={"Your name"}
+    <>
+      {isAlertOpen ? (
+        <AppAlertDialog
+          description={alertMessages.description}
+          handleCancel={() => closeAlertDialog()}
+          open={isAlertOpen}
+          title={alertMessages.title}
         />
-      </div>
+      ) : null}
 
-      <div className={"flex w-full flex-col gap-1"}>
-        <label htmlFor="email" className={"text-sm text-black"}>
-          Work Email
-        </label>
-        <Input
-          type="email"
-          value={formData.email}
-          onChange={(e) => handleFormDataChange({ fieldName: "email", val: e.target.value })}
-          id={"email"}
-          required
-          placeholder={"Your email"}
-        />
-      </div>
+      <form onSubmit={handleSubmit} className="flex w-full flex-col gap-4 rounded-lg bg-white p-8 md:max-w-[32rem]">
+        <div className="flex items-center gap-1">
+          <PartnerIcon />
+          <p className="w-full text-base font-semibold text-black">Partner with us</p>
+          <KubbyLogo iconOnly className={"size-7"} />
+        </div>
 
-      <div className={"flex w-full flex-col gap-1"}>
-        <label htmlFor="address" className={"text-sm text-black"}>
-          Address
-        </label>
-        <Input
-          type="text"
-          value={formData.address}
-          onChange={(e) => handleFormDataChange({ fieldName: "address", val: e.target.value })}
-          id={"address"}
-          required
-          placeholder={"Your Address"}
-        />
-      </div>
+        <div className={"flex w-full flex-col gap-1"}>
+          <label htmlFor="name" className={"text-sm text-black"}>
+            Name
+          </label>
+          <Input
+            type="text"
+            value={formData.name}
+            onChange={(e) => handleFormDataChange({ fieldName: "name", val: e.target.value })}
+            id={"name"}
+            required
+            placeholder={"Your name"}
+          />
+        </div>
 
-      <div className={"flex w-full flex-col gap-1"}>
-        <label htmlFor="state" className={"text-sm text-black"}>
-          State
-        </label>
-        <Select value={formData.state} onValueChange={(val) => handleFormDataChange({ fieldName: "state", val })}>
-          <SelectTrigger className="w-full" id={"state"}>
-            <SelectValue placeholder="Select..." />
-          </SelectTrigger>
-          <SelectContent>
-            {usStates.map((state, i) => (
-              <Fragment key={i}>
-                {i > 0 && <SelectSeparator />}
-                <SelectItem key={i} value={state}>
-                  {state}
-                </SelectItem>
-              </Fragment>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
+        <div className={"flex w-full flex-col gap-1"}>
+          <label htmlFor="email" className={"text-sm text-black"}>
+            Work Email
+          </label>
+          <Input
+            type="email"
+            value={formData.email}
+            onChange={(e) => handleFormDataChange({ fieldName: "email", val: e.target.value })}
+            id={"email"}
+            required
+            placeholder={"Your email"}
+          />
+        </div>
 
-      <div className={"flex w-full flex-col gap-1"}>
-        <label htmlFor="city" className={"text-sm text-black"}>
-          City
-        </label>
-        <Input
-          type="text"
-          value={formData.city}
-          onChange={(e) => handleFormDataChange({ fieldName: "city", val: e.target.value })}
-          id={"city"}
-          required
-          placeholder={"Your City"}
-        />
-      </div>
+        <div className={"flex w-full flex-col gap-1"}>
+          <label htmlFor="address" className={"text-sm text-black"}>
+            Address
+          </label>
+          <Input
+            type="text"
+            value={formData.address}
+            onChange={(e) => handleFormDataChange({ fieldName: "address", val: e.target.value })}
+            id={"address"}
+            required
+            placeholder={"Your Address"}
+          />
+        </div>
 
-      <div className={"flex w-full flex-col gap-1"}>
-        <label htmlFor="zipcode" className={"text-sm text-black"}>
-          Zipcode
-        </label>
-        <Input
-          type="text"
-          value={formData.zipcode}
-          onChange={(e) => handleFormDataChange({ fieldName: "zipcode", val: e.target.value })}
-          id={"city"}
-          required
-          placeholder={"Zipcode"}
-        />
-      </div>
+        <div className={"flex w-full flex-col gap-1"}>
+          <label htmlFor="state" className={"text-sm text-black"}>
+            State
+          </label>
+          <Select value={formData.state} onValueChange={(val) => handleFormDataChange({ fieldName: "state", val })}>
+            <SelectTrigger className="w-full" id={"state"}>
+              <SelectValue placeholder="Select..." />
+            </SelectTrigger>
+            <SelectContent>
+              {usStates.map((state, i) => (
+                <Fragment key={i}>
+                  {i > 0 && <SelectSeparator />}
+                  <SelectItem key={i} value={state}>
+                    {state}
+                  </SelectItem>
+                </Fragment>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
 
-      <div className={"flex w-full flex-col gap-1"}>
-        <label htmlFor="company-name" className={"text-sm text-black"}>
-          Company
-        </label>
-        <Input
-          type="text"
-          value={formData.company}
-          onChange={(e) => handleFormDataChange({ fieldName: "company", val: e.target.value })}
-          id={"company-name"}
-          required
-          placeholder={"Your company name"}
-        />
-      </div>
+        <div className={"flex w-full flex-col gap-1"}>
+          <label htmlFor="city" className={"text-sm text-black"}>
+            City
+          </label>
+          <Input
+            type="text"
+            value={formData.city}
+            onChange={(e) => handleFormDataChange({ fieldName: "city", val: e.target.value })}
+            id={"city"}
+            required
+            placeholder={"Your City"}
+          />
+        </div>
 
-      <Button
-        type={"button"}
-        disabled={isBusy}
-        onClick={(e) => {
-          e.preventDefault();
-          handleSubmit().catch(() => {});
-        }}
-      >
-        {isBusy ? "Continue..." : "Continue"}
-      </Button>
+        <div className={"flex w-full flex-col gap-1"}>
+          <label htmlFor="zipcode" className={"text-sm text-black"}>
+            Zipcode
+          </label>
+          <Input
+            type="text"
+            value={formData.zipcode}
+            onChange={(e) => handleFormDataChange({ fieldName: "zipcode", val: e.target.value })}
+            id={"city"}
+            required
+            placeholder={"Zipcode"}
+          />
+        </div>
 
-      <RegisteredPartnership setIsSent={setIsSent} isSent={isSent} />
-    </form>
+        <div className={"flex w-full flex-col gap-1"}>
+          <label htmlFor="company-name" className={"text-sm text-black"}>
+            Company
+          </label>
+          <Input
+            type="text"
+            value={formData.company}
+            onChange={(e) => handleFormDataChange({ fieldName: "company", val: e.target.value })}
+            id={"company-name"}
+            required
+            placeholder={"Your company name"}
+          />
+        </div>
+
+        <Button
+          type={"button"}
+          disabled={isBusy}
+          onClick={(e) => {
+            e.preventDefault();
+            handleSubmit().catch(() => {});
+          }}
+        >
+          {isBusy ? "Continue..." : "Continue"}
+        </Button>
+
+        <RegisteredPartnership setIsSent={setIsSent} isSent={isSent} />
+      </form>
+    </>
   );
 }
 

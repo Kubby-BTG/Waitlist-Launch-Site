@@ -11,9 +11,10 @@ import { Video } from "lucide-react";
 import { IWaitList } from "../../airtable/types";
 import { ZodValidationHelper } from "../../utils/zod-validation-helper";
 import { getWaitlistSchema } from "../../airtable/models";
-import { AlertModalService } from "../../utils/alert-service";
 import useAppFormPost from "../../hooks/useAppFormPost";
 import { reasonsForJoining } from "../../utils/constants";
+import useAppAlertDialog from "../../hooks/useAppAlertDialog";
+import AppAlertDialog from "../ui/AppAlertDialog";
 
 const initialValue: Partial<IWaitList> = {
   email: "",
@@ -25,6 +26,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState<Partial<IWaitList>>({ ...initialValue });
   const { postData, isBusy } = useAppFormPost();
+  const { alertMessages, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
 
   async function handleSubmit() {
     try {
@@ -33,7 +35,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
       const validationResult = ZodValidationHelper.validate({ schema, input: formData });
 
       if (validationResult.firstError) {
-        AlertModalService.warning(validationResult.firstError);
+        openAlertDialog.warning({ title: validationResult.firstError });
         return;
       }
 
@@ -45,7 +47,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
       setFormData({ ...initialValue });
       setIsSent(true);
     } catch (error) {
-      AlertModalService.error({ title: "Not saved. Error occured" });
+      openAlertDialog.error({ title: "Not saved. Error occured" });
     }
   }
 
@@ -55,6 +57,14 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
 
   return (
     <>
+      {isAlertOpen ? (
+        <AppAlertDialog
+          description={alertMessages.description}
+          handleCancel={() => closeAlertDialog()}
+          open={isAlertOpen}
+          title={alertMessages.title}
+        />
+      ) : null}
       <div
         onClick={() => {
           setIsOpen(true);
