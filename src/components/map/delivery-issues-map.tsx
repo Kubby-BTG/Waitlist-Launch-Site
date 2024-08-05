@@ -27,7 +27,6 @@ export default function DeliveryIssuesMap() {
   async function handleFindByManyParams(params: Partial<IFilterIssueParams>) {
     try {
       const filter01: string[] = [];
-      console.log({ params });
 
       if (params) {
         Object.entries(params).forEach(([key, val]) => {
@@ -45,13 +44,15 @@ export default function DeliveryIssuesMap() {
         return;
       }
 
-      console.log({ filter01 });
-
-      const apiData = await postData({
+      const apiData = await postData<IDeliveryIssue[]>({
         url: "/api/delivery-issue/find",
         formData: { filterByFormula: `AND(${filter01.join(",")})` },
       });
-      console.log({ apiData });
+
+      AlertModalService.info({
+        title: `${apiData.length} issue(s) found`,
+        text: apiData.length ? "Note: Map location mark not implimented yet" : undefined,
+      });
 
       setIsShowFilterForm(false);
     } catch (error) {
@@ -65,15 +66,12 @@ export default function DeliveryIssuesMap() {
         url: "/api/delivery-issue/find",
         formData: {},
       });
-      console.log({ apiData });
 
       if (apiData?.length) {
         setDeliveryIssue({ count: apiData.length, location: "Unknown Location" });
       } else {
         setDeliveryIssue({ count: 0, location: "" });
       }
-
-      // setIsShowShowDeliveryIssues(false);
     } catch (error) {
       // AlertModalService.error({ title: "Could not filter. Error occured" });
     }
@@ -81,15 +79,22 @@ export default function DeliveryIssuesMap() {
 
   async function handleFindByZipcode(zipcode: string) {
     try {
-      const apiData = await postData({
+      const apiData = await postData<IDeliveryIssue[]>({
         url: "/api/delivery-issue/find",
         formData: { filterByFormula: `{zipcode}="${zipcode}"` },
       });
-      console.log({ apiData });
+
+      if (apiData?.length) {
+        setDeliveryIssue({ count: apiData.length, location: "Unknown Location" });
+      } else {
+        setDeliveryIssue({ count: 0, location: "" });
+      }
+
+      AlertModalService.info({ title: `${apiData.length} issue(s) found` });
 
       setIsShowShowDeliveryIssues(false);
     } catch (error) {
-      AlertModalService.error({ title: "Could not filter. Error occured" });
+      AlertModalService.error({ title: "Error occured. Could not filter" });
     }
   }
 
