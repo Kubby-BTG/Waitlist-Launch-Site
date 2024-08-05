@@ -6,12 +6,18 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectSeparator } from "@/components/ui/select";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import useAppFormPost from "../../hooks/useAppFormPost";
 import { IDeliveryIssue } from "../../airtable/types";
 import { ZodValidationHelper } from "../../utils/zod-validation-helper";
 import { AlertModalService } from "../../utils/alert-service";
 import { getDeliveryIssueSchema } from "../../airtable/models";
+import { deliveryCompanies } from "../../lib/selection-data";
+import { deliveryIssues } from "@/utils/constants";
+
+function FormRequiredTag() {
+  return <span className="text-danger select-none pl-1">*</span>;
+}
 
 /**
  * Props for `ReportForm`.
@@ -98,7 +104,8 @@ const ReportFormBase = ({ slice }: { slice: ReportFormProps["slice"] }): JSX.Ele
 
         <div className={"flex w-full flex-col gap-1"}>
           <label htmlFor="email" className={"text-sm text-black"}>
-            Email*
+            Email
+            <FormRequiredTag />
           </label>
           <Input
             type="email"
@@ -111,7 +118,8 @@ const ReportFormBase = ({ slice }: { slice: ReportFormProps["slice"] }): JSX.Ele
         </div>
         <div className={"flex w-full flex-col gap-1"}>
           <label htmlFor="zipcode" className={"text-sm text-black"}>
-            Zipcode*
+            Zipcode
+            <FormRequiredTag />
           </label>
           <Input
             type="text"
@@ -124,7 +132,8 @@ const ReportFormBase = ({ slice }: { slice: ReportFormProps["slice"] }): JSX.Ele
         </div>
         <div className={"flex w-full flex-col gap-1"}>
           <label htmlFor="delivery-issue" className={"text-sm text-black"}>
-            Delivery Issue*
+            Delivery Issue
+            <FormRequiredTag />
           </label>
           <Select value={formData.issue} onValueChange={(val) => handleFormDataChange({ fieldName: "issue", val })}>
             <SelectTrigger className="w-full" id={"delivery-issue"}>
@@ -142,7 +151,8 @@ const ReportFormBase = ({ slice }: { slice: ReportFormProps["slice"] }): JSX.Ele
         </div>
         <div className={"flex w-full flex-col gap-1"}>
           <label htmlFor="shipping-carrier" className={"text-sm text-black"}>
-            Shipping Carrier*
+            Shipping Carrier
+            <FormRequiredTag />
           </label>
           <Select
             value={formData.shipping_carrier}
@@ -165,7 +175,8 @@ const ReportFormBase = ({ slice }: { slice: ReportFormProps["slice"] }): JSX.Ele
         </div>
         <div className={"flex w-full flex-col gap-1"}>
           <label htmlFor="purchase-store" className={"text-sm text-black"}>
-            Purchase store*
+            Purchase store
+            <FormRequiredTag />
           </label>
           <Input
             type="text"
@@ -178,7 +189,8 @@ const ReportFormBase = ({ slice }: { slice: ReportFormProps["slice"] }): JSX.Ele
         </div>
         <div className={"flex w-full flex-col gap-1"}>
           <label htmlFor="delivery-date" className={"text-sm text-black"}>
-            Delivery Date*
+            Delivery Date
+            <FormRequiredTag />
           </label>
           <Input
             type="date"
@@ -268,44 +280,5 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
     </section>
   );
 };
-
-const deliveryIssues = [
-  //
-  "Stolen/Lost Package",
-  "Missed Delivery",
-  "Damaged Item",
-  "Incorrect Address/Wrong Address",
-];
-
-const deliveryCompanies = [
-  {
-    name: "Amazon",
-    logo: "/carriers/amazon.svg",
-  },
-  {
-    name: "UPS",
-    logo: "/carriers/UPS.svg",
-  },
-  {
-    name: "Fedex",
-    logo: "/carriers/FedEx.svg",
-  },
-  {
-    name: "DHL",
-    logo: "/carriers/DHL.svg",
-  },
-  {
-    name: "USPS",
-    logo: "/carriers/USPS.svg",
-  },
-].map((company, i) => ({
-  value: company.name.toLowerCase(),
-  element: (
-    <span key={`${company.name}__tk${i}`} className="flex items-center gap-x-2">
-      <img src={company.logo} alt={`${company.name} logo`} className="h-6 w-6 object-contain" loading="lazy" decoding={"async"} />
-      <span>{company.name}</span>
-    </span>
-  ),
-}));
 
 export default ReportForm;

@@ -26,11 +26,7 @@ const AppModalDialog = ({ className, isOpen, children }: IProps) => {
           "overflow-y-auto overflow-x-hidden outline-none focus:outline-none",
         ])}
       >
-        <div
-          className={cn(["relative mx-auto my-6 w-auto max-w-3xl", className])}
-        >
-          {children}
-        </div>
+        <div className={cn(["relative mx-auto my-6 w-auto max-w-3xl", className])}>{children}</div>
       </div>
       <div className={cn(["fixed inset-0 z-40 bg-black/50"])}></div>
     </MountModalPortal>
@@ -45,7 +41,6 @@ AppModalDialog.Content = ({ className, children }: IPropChild) => {
         "shadow-lg fixed left-[50%] top-[50%] z-50 grid w-[calc(100vw-3rem)] max-w-md",
         "translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg",
         "border border-minimal bg-white p-6 duration-200",
-        "",
         "md:w-full md:max-w-[43.5rem]",
         className,
       ])}
@@ -56,44 +51,21 @@ AppModalDialog.Content = ({ className, children }: IPropChild) => {
 };
 
 AppModalDialog.Header = ({ className, children }: IPropChild) => {
-  return (
-    <div
-      className={cn([
-        "flex flex-col space-y-1.5 text-center sm:text-left",
-        className,
-      ])}
-    >
-      {children}
-    </div>
-  );
+  return <div className={cn(["flex flex-col space-y-1.5 text-center sm:text-left", className])}>{children}</div>;
 };
 
 AppModalDialog.HeaderTitle = ({ className, children }: IPropChild) => {
-  return (
-    <div
-      className={cn([
-        "text-lg font-semibold leading-none tracking-tight",
-        className,
-      ])}
-    >
-      {children}
-    </div>
-  );
+  return <div className={cn(["text-lg font-semibold leading-none tracking-tight", className])}>{children}</div>;
 };
 
-AppModalDialog.CloseButton = ({
-  className,
-  handleClick,
-}: {
-  className?: string;
-  handleClick: () => void;
-}) => {
+AppModalDialog.CloseButton = ({ className, handleClick }: { className?: string; handleClick: () => void }) => {
   return (
     <button
       onClick={() => handleClick()}
       type={"button"}
       className={cn([
-        "flex size-8 flex-none items-center justify-center rounded-full bg-input-secondary text-black",
+        "flex size-8 flex-none items-center justify-center rounded-full",
+        "bg-input-secondary text-black",
         className,
       ])}
     >
@@ -104,16 +76,16 @@ AppModalDialog.CloseButton = ({
 };
 
 AppModalDialog.Body = ({ className, children }: IPropChild) => {
-  return (
-    <div className={cn(["relative flex-auto p-6", className])}>{children}</div>
-  );
+  return <div className={cn(["relative flex-auto p-6", className])}>{children}</div>;
 };
 
 AppModalDialog.Footer = ({ className, children }: IPropChild) => {
   return (
     <div
       className={cn([
-        "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
+        //
+        "flex flex-col-reverse",
+        "sm:flex-row sm:justify-end sm:space-x-2",
         className,
       ])}
     >

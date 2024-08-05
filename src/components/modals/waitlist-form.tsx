@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useState } from "react";
 import { Input } from "../ui/input";
 import { Select, SelectContent, SelectItem, SelectSeparator, SelectTrigger, SelectValue } from "../ui/select";
 
@@ -13,6 +13,7 @@ import { ZodValidationHelper } from "../../utils/zod-validation-helper";
 import { getWaitlistSchema } from "../../airtable/models";
 import { AlertModalService } from "../../utils/alert-service";
 import useAppFormPost from "../../hooks/useAppFormPost";
+import { reasonsForJoining } from "../../utils/constants";
 
 const initialValue: Partial<IWaitList> = {
   email: "",
@@ -94,8 +95,8 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
                   </label>
                   <Input
                     type="email"
-                    value={formData.email}
                     id={"email"}
+                    value={formData.email}
                     onChange={(e) => handleFormDataChange({ fieldName: "email", val: e.target.value })}
                     required
                     placeholder={"Your email"}
@@ -112,9 +113,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
                     onValueChange={(val) => handleFormDataChange({ fieldName: "reasonForJoining", val: val })}
                   >
                     <SelectTrigger className="w-full" id={"reason"}>
-                      <SelectValue placeholder="Select..." aria-label={formData.reasonForJoining}>
-                        {formData.reasonForJoining}
-                      </SelectValue>
+                      <SelectValue placeholder="Select..."></SelectValue>
                     </SelectTrigger>
                     <SelectContent>
                       {reasonsForJoining.map((issue, i) => (
@@ -189,12 +188,3 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
     </>
   );
 }
-
-const reasonsForJoining = [
-  { text: "Package Theft/Lost Packages", value: "Package Theft/Lost Packages" },
-  { text: "Missed/Late Delivery", value: "Missed/Late Delivery" },
-  { text: "Seamless Shopping", value: "Seamless Shopping" },
-  { text: "Sustainable Delivery", value: "Sustainable Delivery" },
-  { text: "New Delivery Experience", value: "New Delivery Experience" },
-  // { text: "Select...", value: "" },
-];

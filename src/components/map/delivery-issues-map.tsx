@@ -1,117 +1,164 @@
 "use client";
 
-import FilterIssuesForm from "../modals/filter-issues-form";
+import FilterIssuesForm, { IFilterIssueParams } from "../modals/filter-issues-form";
 import { Button } from "../ui/button";
-import {
-  AdvancedMarker,
-  APIProvider,
-  Map,
-  Marker,
-  Pin,
-} from "@vis.gl/react-google-maps";
+import { AdvancedMarker, APIProvider, Map } from "@vis.gl/react-google-maps";
 import FilterIcon from "./filter-icon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PinIcon from "./pin-icon";
 import ShowDeliveryNearYouForm from "../modals/show-delivery-near-you-form";
 
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "../ui/hover-card";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "../ui/hover-card";
+import { AppConfig } from "../../utils/constants";
+import { AlertModalService } from "../../utils/alert-service";
+import useAppFormPost from "@/hooks/useAppFormPost";
+import { IDeliveryIssue } from "../../airtable/types";
 
 export default function DeliveryIssuesMap() {
   const [isShowFilterForm, setIsShowFilterForm] = useState(false);
-  const [isShowShowDeliveryIssuesForm, setIsShowShowDeliveryIssues] =
-    useState(false);
+  const [isShowShowDeliveryIssuesForm, setIsShowShowDeliveryIssues] = useState(false);
+  const [deliveryIssue, setDeliveryIssue] = useState({ count: 0, location: "" });
+  const { postData, isBusy } = useAppFormPost();
+
+  useEffect(() => {
+    getAllDeliveryIssues().catch(() => {});
+  }, []);
+
+  async function handleFindByManyParams(params: Partial<IFilterIssueParams>) {
+    try {
+      const filter01: string[] = [];
+      console.log({ params });
+
+      if (params) {
+        Object.entries(params).forEach(([key, val]) => {
+          if (key && val) {
+            if (typeof val === "string") {
+              filter01.push(`{${key}}="${val}"`);
+            } else {
+              filter01.push(`{${key}}=${val}`);
+            }
+          }
+        });
+      }
+
+      if (!filter01?.length) {
+        return;
+      }
+
+      console.log({ filter01 });
+
+      const apiData = await postData({
+        url: "/api/delivery-issue/find",
+        formData: { filterByFormula: `AND(${filter01.join(",")})` },
+      });
+      console.log({ apiData });
+
+      setIsShowFilterForm(false);
+    } catch (error) {
+      AlertModalService.error({ title: "Could not filter. Error occured" });
+    }
+  }
+
+  async function getAllDeliveryIssues() {
+    try {
+      const apiData = await postData<IDeliveryIssue[]>({
+        url: "/api/delivery-issue/find",
+        formData: {},
+      });
+      console.log({ apiData });
+
+      if (apiData?.length) {
+        setDeliveryIssue({ count: apiData.length, location: "Unknown Location" });
+      } else {
+        setDeliveryIssue({ count: 0, location: "" });
+      }
+
+      // setIsShowShowDeliveryIssues(false);
+    } catch (error) {
+      // AlertModalService.error({ title: "Could not filter. Error occured" });
+    }
+  }
+
+  async function handleFindByZipcode(zipcode: string) {
+    try {
+      const apiData = await postData({
+        url: "/api/delivery-issue/find",
+        formData: { filterByFormula: `{zipcode}="${zipcode}"` },
+      });
+      console.log({ apiData });
+
+      setIsShowShowDeliveryIssues(false);
+    } catch (error) {
+      AlertModalService.error({ title: "Could not filter. Error occured" });
+    }
+  }
 
   return (
-    <APIProvider
-      apiKey={"AIzaSyCsMCSpSDnkL8mxz18R2XI_BU31cZTvjyc"}
-      onLoad={() => console.log("Maps API has loaded.")}
-    >
-      <div
-        className={
-          "relative h-[600px] w-full overflow-hidden md:h-[640px] md:rounded-2xl"
-        }
-      >
-        {/* <iframe
-          // width="450"
-          // height="250"
-          className={"h-full w-full"}
-          frameBorder="0"
-          referrerPolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCsMCSpSDnkL8mxz18R2XI_BU31cZTvjyc&q=Eiffel+Tower,Paris+France"
-          allowFullScreen
-        /> */}
-
+    <APIProvider apiKey={AppConfig.NEXT_PUBLIC_GOOGLE_MAP_KEY} onLoad={() => console.log("Maps API has loaded.")}>
+      <div className={"relative h-[600px] w-full overflow-hidden md:h-[640px] md:rounded-2xl"}>
         <Map
           defaultZoom={13}
           defaultCenter={{ lat: -33.860664, lng: 151.208138 }}
-          disableDefaultUI
+          disableDefaultUI={true}
           mapId={"19cefe5f097a79a6"}
           //   onCameraChanged={ (ev: MapCameraChangedEvent) =>
           //     console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
           //   }
         >
-          <AdvancedMarker
-            position={{ lat: -33.860664, lng: 151.208138 }}
-            //   ref={marker => setMarkerRef(marker, poi.key)}
-          >
-            <HoverCard open={true}>
-              <HoverCardTrigger>
-                <img src={"/markers/cube.svg"} alt="" className={"size-8"} />
-              </HoverCardTrigger>
-              <HoverCardContent
-                side={"top"}
-                sideOffset={12}
-                forceMount
-                className="flex h-fit w-fit flex-col items-center gap-2 rounded-lg border-none bg-black px-3 py-3 font-sans text-white"
+          {deliveryIssue.count ? (
+            <>
+              <AdvancedMarker
+                position={{ lat: -33.860664, lng: 151.208138 }}
+                // ref={marker => setMarkerRef(marker, poi.key)}
               >
-                <div className="absolute bottom-0 translate-y-[80%]">
-                  <svg
-                    width="14"
-                    height="9"
-                    viewBox="0 0 14 9"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+                <HoverCard open={true}>
+                  <HoverCardTrigger>
+                    <img src={"/markers/cube.svg"} alt="" className={"size-8"} />
+                  </HoverCardTrigger>
+                  <HoverCardContent
+                    side={"top"}
+                    sideOffset={12}
+                    forceMount={true}
+                    className="flex h-fit w-fit flex-col items-center gap-2 rounded-lg border-none bg-black px-3 py-3 font-sans text-white"
                   >
-                    <path
-                      d="M8.73649 7.96115C7.9687 9.30478 6.0313 9.30478 5.26351 7.96115L0.709874 -0.00772253C-0.0520192 -1.34104 0.910715 -3 2.44636 -3L11.5536 -3C13.0893 -3 14.052 -1.34103 13.2901 -0.0077215L8.73649 7.96115Z"
-                      fill="black"
-                    />
-                  </svg>
-                </div>
-                <div className="text-sm">
-                  <span className="font-bold">32</span> - Delivery Issues
-                </div>
-                <div className="flex items-center gap-1 rounded-lg bg-[#2F3233] px-2 py-1 text-sm text-white">
-                  <PinIcon />
-                  <span>Dallas, TX (75226)</span>
-                </div>
-              </HoverCardContent>
-            </HoverCard>
-          </AdvancedMarker>
+                    <div className="absolute bottom-0 translate-y-[80%]">
+                      <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M8.73649 7.96115C7.9687 9.30478 6.0313 9.30478 5.26351 7.96115L0.709874 -0.00772253C-0.0520192 -1.34104 0.910715 -3 2.44636 -3L11.5536 -3C13.0893 -3 14.052 -1.34103 13.2901 -0.0077215L8.73649 7.96115Z"
+                          fill="black"
+                        />
+                      </svg>
+                    </div>
+                    <div className="text-sm">
+                      <span className="font-bold">{deliveryIssue.count}</span> - Delivery Issues
+                    </div>
+                    <div className="flex items-center gap-1 rounded-lg bg-[#2F3233] px-2 py-1 text-sm text-white">
+                      <PinIcon />
+                      <span>{deliveryIssue.location}</span>
+                    </div>
+                  </HoverCardContent>
+                </HoverCard>
+              </AdvancedMarker>
+            </>
+          ) : null}
         </Map>
 
         <div className="absolute left-6 top-8 flex flex-wrap gap-2 md:gap-4">
           <Button
-            className={
-              "gap-1 rounded-full bg-background-icon text-sm font-normal hover:bg-background-icon/80"
-            }
+            className={"gap-1 rounded-full bg-background-icon text-sm font-normal hover:bg-background-icon/80"}
             size={"sm"}
             onClick={() => setIsShowShowDeliveryIssues(true)}
+            disabled={isBusy}
           >
             <PinIcon />
             Show delivery issues near you
           </Button>
+
           <Button
-            className={
-              "gap-1 rounded-full bg-background-icon text-sm font-normal hover:bg-background-icon/80"
-            }
+            className={"gap-1 rounded-full bg-background-icon text-sm font-normal hover:bg-background-icon/80"}
             size={"sm"}
             onClick={() => setIsShowFilterForm(true)}
+            disabled={isBusy}
           >
             <FilterIcon />
             Filter issues
@@ -119,25 +166,24 @@ export default function DeliveryIssuesMap() {
 
           {/* Modals */}
           <FilterIssuesForm
+            handleDone={(filters) => {
+              handleFindByManyParams(filters);
+            }}
+            isBusy={isBusy}
             setIsOpen={setIsShowFilterForm}
             isOpen={isShowFilterForm}
           />
 
           <ShowDeliveryNearYouForm
+            isBusy={isBusy}
+            handleDone={(zipcode) => {
+              handleFindByZipcode(zipcode);
+            }}
             isOpen={isShowShowDeliveryIssuesForm}
             setIsOpen={setIsShowShowDeliveryIssues}
           />
         </div>
       </div>
-      {/* <iframe
-        className="airtable-embed"
-        src="https://airtable.com/embed/appONobAhMDlkHoh9/shreOcqx2hvnBo9cI?viewControls=on"
-        frameBorder="0"
-        // onMouseWheel=""
-        width="100%"
-        height="533"
-        style={{ background: "transparent", border: "1px solid #ccc" }}
-      ></iframe> */}
     </APIProvider>
   );
 }

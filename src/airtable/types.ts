@@ -64,14 +64,15 @@ export interface IRecordListResponse<T> {
   records: IRecords<T>[];
 }
 
-export interface IQueryParameters<T> {
+export interface IQueryParameters<T = any> {
   pageSize?: number;
   maxRecords?: number;
   offset?: string;
   sort?: {
-    field?: string;
+    field?: keyof T;
     direction?: "asc" | "desc";
-  };
+  }[];
   fields?: (keyof T)[];
   cellFormat?: "json" | "string";
+  filterByFormula?: string;
 }

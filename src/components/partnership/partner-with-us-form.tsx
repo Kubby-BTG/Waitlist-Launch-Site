@@ -1,17 +1,17 @@
 "use client";
 
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import KubbyLogo from "../ui/kubby-logo";
 import RegisteredPartnership from "../modals/registered-partnership";
 import { Select, SelectContent, SelectItem, SelectSeparator, SelectTrigger, SelectValue } from "../ui/select";
-import { usStates } from "@/lib/selection-data";
 import { IPartner } from "../../airtable/types";
 import useAppFormPost from "../../hooks/useAppFormPost";
 import { getPartnerSchema } from "../../airtable/models";
 import { ZodValidationHelper } from "../../utils/zod-validation-helper";
 import { AlertModalService } from "../../utils/alert-service";
+import { usStates } from "../../utils/constants";
 
 const initialValue: Partial<IPartner> = {
   email: "",
@@ -180,7 +180,7 @@ export default function PartnerWithUsForm() {
           handleSubmit().catch(() => {});
         }}
       >
-        {isBusy ? "Continue" : "Continue"}
+        {isBusy ? "Continue..." : "Continue"}
       </Button>
 
       <RegisteredPartnership setIsSent={setIsSent} isSent={isSent} />
