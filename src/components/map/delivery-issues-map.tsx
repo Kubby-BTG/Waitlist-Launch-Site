@@ -10,14 +10,16 @@ import ShowDeliveryNearYouForm from "../modals/show-delivery-near-you-form";
 
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "../ui/hover-card";
 import { AppConfig } from "../../utils/constants";
-import { AlertModalService } from "../../utils/alert-service";
 import useAppFormPost from "@/hooks/useAppFormPost";
 import { IDeliveryIssue } from "../../airtable/types";
+import AppAlertDialog from "../ui/AppAlertDialog";
+import useAppAlertDialog from "../../hooks/useAppAlertDialog";
 
 export default function DeliveryIssuesMap() {
   const [isShowFilterForm, setIsShowFilterForm] = useState(false);
   const [isShowShowDeliveryIssuesForm, setIsShowShowDeliveryIssues] = useState(false);
   const [deliveryIssue, setDeliveryIssue] = useState({ count: 0, location: "" });
+  const { alertMessages, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
   const { postData, isBusy } = useAppFormPost();
 
   useEffect(() => {
@@ -49,14 +51,14 @@ export default function DeliveryIssuesMap() {
         formData: { filterByFormula: `AND(${filter01.join(",")})` },
       });
 
-      AlertModalService.info({
+      openAlertDialog.info({
         title: `${apiData.length} issue(s) found`,
-        text: apiData.length ? "Note: Map location mark not implimented yet" : undefined,
+        description: apiData.length ? "Note: Map location mark not implimented yet" : undefined,
       });
 
       setIsShowFilterForm(false);
     } catch (error) {
-      AlertModalService.error({ title: "Could not filter. Error occured" });
+      openAlertDialog.error({ title: "Could not filter. Error occured" });
     }
   }
 
@@ -73,7 +75,7 @@ export default function DeliveryIssuesMap() {
         setDeliveryIssue({ count: 0, location: "" });
       }
     } catch (error) {
-      // AlertModalService.error({ title: "Could not filter. Error occured" });
+      openAlertDialog.error({ title: "Could not filter. Error occured" });
     }
   }
 
@@ -90,11 +92,11 @@ export default function DeliveryIssuesMap() {
         setDeliveryIssue({ count: 0, location: "" });
       }
 
-      AlertModalService.info({ title: `${apiData.length} issue(s) found` });
+      openAlertDialog.info({ title: `${apiData.length} issue(s) found` });
 
       setIsShowShowDeliveryIssues(false);
     } catch (error) {
-      AlertModalService.error({ title: "Error occured. Could not filter" });
+      openAlertDialog.error({ title: "Error occured. Could not filter" });
     }
   }
 
@@ -188,6 +190,15 @@ export default function DeliveryIssuesMap() {
             setIsOpen={setIsShowShowDeliveryIssues}
           />
         </div>
+
+        {isAlertOpen ? (
+          <AppAlertDialog
+            description={alertMessages.description}
+            handleCancel={() => closeAlertDialog()}
+            open={isAlertOpen}
+            title={alertMessages.title}
+          />
+        ) : null}
       </div>
     </APIProvider>
   );

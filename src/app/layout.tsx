@@ -38,9 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={"scroll-smooth"}>
-      <body
-        className={cn(DMSans.variable, TTBluescreens.variable, "font-sans")}
-      >
+      <body className={cn(DMSans.variable, TTBluescreens.variable, "font-sans")}>
         <AnimatedLayout>
           <Header />
           {children}
