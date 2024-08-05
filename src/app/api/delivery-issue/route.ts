@@ -5,7 +5,7 @@ export async function POST(req: Request) {
   const recordData = await req.json();
 
   const result = await DeliveryIssuesApiService.createRecordBase({ recordData });
-  return NextResponse.json({ data: result });
+  return NextResponse.json(result);
 }
 
 // export async function GET(request: Request) {

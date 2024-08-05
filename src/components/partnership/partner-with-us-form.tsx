@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import KubbyLogo from "../ui/kubby-logo";

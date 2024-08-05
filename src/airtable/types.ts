@@ -69,9 +69,10 @@ export interface IQueryParameters<T = any> {
   maxRecords?: number;
   offset?: string;
   sort?: {
-    field?: string;
+    field?: keyof T;
     direction?: "asc" | "desc";
-  };
+  }[];
   fields?: (keyof T)[];
   cellFormat?: "json" | "string";
+  filterByFormula?: string;
 }

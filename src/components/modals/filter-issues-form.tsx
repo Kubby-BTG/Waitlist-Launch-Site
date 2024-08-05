@@ -1,6 +1,6 @@
 "use client";
 
-import { Dialog, DialogClose, DialogContent } from "../ui/dialog";
+import { Dialog, DialogClose, DialogContent, DialogTitle } from "../ui/dialog";
 import { X } from "lucide-react";
 import { Dispatch, Fragment, SetStateAction, useEffect, useState } from "react";
 import { Input } from "../ui/input";
@@ -12,46 +12,49 @@ import { deliveryCompanies } from "@/lib/selection-data";
 import { deliveryIssues, usStates } from "@/utils/constants";
 import { AlertModalService } from "../../utils/alert-service";
 
-interface IFilterIssuesForm {
+export interface IFilterIssueParams {
   shipping_carrier: string;
   issue: string;
   state: string;
-  city: string;
+  zipcode: string;
 }
 
-const initialValue: Partial<IFilterIssuesForm> = {
+const initialValue: Partial<IFilterIssueParams> = {
   shipping_carrier: "",
   issue: "",
   state: "",
-  city: "",
+  zipcode: "",
 };
 
 export default function FilterIssuesForm({
   setIsOpen,
   isOpen,
+  isBusy,
+  handleDone,
 }: {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   isOpen: boolean;
+  isBusy?: boolean;
+  handleDone: (params: Partial<IFilterIssueParams>) => void;
 }) {
-  const [formData, setFormData] = useState<Partial<IFilterIssuesForm>>({ ...initialValue });
+  const [formData, setFormData] = useState<Partial<IFilterIssueParams>>({ ...initialValue });
 
   useEffect(() => {
     console.log({ formData });
   }, [formData]);
 
-  const handleFormDataChange = ({ fieldName, val }: { fieldName: keyof IFilterIssuesForm; val: any }) => {
-    setFormData((prev) => ({ ...prev, [fieldName]: val }));
-  };
-
   async function handleSubmit() {
     try {
+      handleDone({ ...formData });
       setFormData({ ...initialValue });
-
-      setIsOpen(false);
     } catch (error) {
       AlertModalService.error({ title: "Not saved. Error occured" });
     }
   }
+
+  const handleFormDataChange = ({ fieldName, val }: { fieldName: keyof IFilterIssueParams; val: any }) => {
+    setFormData((prev) => ({ ...prev, [fieldName]: val }));
+  };
 
   return (
     <Dialog onOpenChange={setIsOpen} open={isOpen}>
@@ -62,6 +65,7 @@ export default function FilterIssuesForm({
           isOpen && "_max-w-[17.5rem] _max-md:w-[calc(100vw-6.5rem)]",
         ])}
       >
+        <DialogTitle className="sr-only">Delivery Issue</DialogTitle>
         {/* Form */}
         <form className={"flex w-full flex-col gap-4"}>
           <div className="flex w-full items-center gap-8">
@@ -129,6 +133,50 @@ export default function FilterIssuesForm({
           </div>
 
           <div className={"flex w-full flex-col gap-1"}>
+            <label htmlFor="zipcode" className={"text-sm text-black"}>
+              Zipcode
+            </label>
+            <Input
+              type="text"
+              value={formData.zipcode}
+              onChange={(e) => handleFormDataChange({ fieldName: "zipcode", val: e.target.value })}
+              id={"city"}
+              required
+              placeholder={"Zipcode"}
+            />
+          </div>
+
+          <Button
+            type={"button"}
+            disabled={isBusy}
+            onClick={(e) => {
+              e.preventDefault();
+              handleSubmit().catch(() => {});
+            }}
+          >
+            Filter Issues On Map
+          </Button>
+
+          <Button
+            type="button"
+            variant={"ghost"}
+            disabled={isBusy}
+            onClick={() => {
+              setFormData({ ...initialValue });
+            }}
+          >
+            Clear Filter
+          </Button>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+/*
+
+
+          <div className={"flex w-full flex-col gap-1"}>
             <label htmlFor="state" className={"text-sm text-black"}>
               State
             </label>
@@ -153,41 +201,4 @@ export default function FilterIssuesForm({
             </Select>
           </div>
 
-          <div className={"flex w-full flex-col gap-1"}>
-            <label htmlFor="zipcode" className={"text-sm text-black"}>
-              Zipcode
-            </label>
-            <Input
-              type="text"
-              value={formData.city}
-              onChange={(e) => handleFormDataChange({ fieldName: "city", val: e.target.value })}
-              id={"city"}
-              required
-              placeholder={"Zipcode"}
-            />
-          </div>
-
-          <Button
-            type={"button"}
-            onClick={(e) => {
-              e.preventDefault();
-              handleSubmit().catch(() => {});
-            }}
-          >
-            Filter Issues On Map
-          </Button>
-
-          <Button
-            variant={"ghost"}
-            type="button"
-            onClick={() => {
-              setFormData({ ...initialValue });
-            }}
-          >
-            Clear Filter
-          </Button>
-        </form>
-      </DialogContent>
-    </Dialog>
-  );
-}
+*/

@@ -17,7 +17,7 @@ export default function useAppFormPost(ms?: number) {
     });
   }
 
-  async function postData({ formData, url }: { formData: any; url: string }) {
+  async function postData<T = any>({ formData, url }: { formData: any; url: string }) {
     try {
       increaseActions();
       const res = await fetch(url, {
@@ -32,7 +32,7 @@ export default function useAppFormPost(ms?: number) {
         throw new Error("Failed to fetch data");
       }
 
-      const data = await res.json();
+      const data = (await res.json()) as T;
       decreaseActions();
       return data;
     } catch (error) {

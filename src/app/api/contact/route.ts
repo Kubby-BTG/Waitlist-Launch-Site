@@ -6,5 +6,5 @@ export async function POST(request: Request) {
 
   const result = await ContactApiService.createRecordBase({ recordData });
 
-  return NextResponse.json({ data: result });
+  return NextResponse.json(result);
 }

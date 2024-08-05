@@ -6,5 +6,5 @@ export async function POST(req: Request) {
   const query = (await req.json()) as IQueryParameters<IDeliveryIssue>;
 
   const result = await DeliveryIssuesApiService.findRecordBase({ query });
-  return NextResponse.json({ data: result });
+  return NextResponse.json(result);
 }
