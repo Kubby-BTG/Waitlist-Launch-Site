@@ -14,22 +14,24 @@ interface LatLng {
   lng: number;
 }
 
-export interface IGoogleGeocodeResult extends google.maps.GeocoderResult {
-  // address_components: {
-  //   long_name: string;
-  //   short_name: string;
-  //   types: string[];
-  // }[];
-  // formatted_address: string;
-  // geometry: {
-  //   bounds: Bounds;
-  //   location: LatLng;
-  //   location_type: string;
-  //   viewport: Bounds;
-  // };
-  // place_id: string;
-  // postcode_localities: string[];
-  // types: string[];
+export interface IGoogleGeocodeResultAPI extends google.maps.GeocoderResult{}
+
+export interface IGoogleGeocodeResult  {
+  address_components: {
+    long_name: string;
+    short_name: string;
+    types: string[];
+  }[];
+  formatted_address: string;
+  geometry: {
+    bounds: Bounds;
+    location: LatLng;
+    location_type: string;
+    viewport: Bounds;
+  };
+  place_id: string;
+  postcode_localities: string[];
+  types: string[];
 }
 
 // https://maps.googleapis.com/maps/api/geocode/json?address=92101&key=AIzaSyCsMCSpSDnkL8mxz18R2XI_BU31cZTvjyc

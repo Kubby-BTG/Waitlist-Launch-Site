@@ -32,9 +32,16 @@ class GoogleMapServiceBase {
       return null;
     }
 
+    // if (typeof results[0]?.geometry?.location?.lat === "function") {
+    //   return {
+    //     lat: results[0].geometry.location.lat(),
+    //     lng: results[0].geometry.location.lng(),
+    //   };
+    // }
+
     return {
-      lat: results[0].geometry.location.lat(),
-      lng: results[0].geometry.location.lng(),
+      lat: results[0].geometry.location.lat,
+      lng: results[0].geometry.location.lng,
     };
   }
 
