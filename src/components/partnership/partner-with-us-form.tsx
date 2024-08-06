@@ -11,8 +11,7 @@ import useAppFormPost from "../../hooks/useAppFormPost";
 import { getPartnerSchema } from "../../airtable/models";
 import { ZodValidationHelper } from "../../utils/zod-validation-helper";
 import { usStates } from "../../utils/constants";
-import AppAlertDialog from "../ui/AppAlertDialog";
-import useAppAlertDialog from "../../hooks/useAppAlertDialog";
+import AppAlertDialog, { useAppAlertDialog } from "../ui/AppAlertDialog";
 
 const initialValue: Partial<IPartner> = {
   email: "",
@@ -28,7 +27,7 @@ export default function PartnerWithUsForm() {
   const [isSent, setIsSent] = useState(false);
   const [formData, setFormData] = useState<Partial<IPartner>>({ ...initialValue });
   const { postData, isBusy } = useAppFormPost();
-  const { alertMessages, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
+  const { alertOptions, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
 
   // useEffect(() => {
   //   console.log(formData);
@@ -63,14 +62,7 @@ export default function PartnerWithUsForm() {
 
   return (
     <>
-      {isAlertOpen ? (
-        <AppAlertDialog
-          description={alertMessages.description}
-          handleCancel={() => closeAlertDialog()}
-          open={isAlertOpen}
-          title={alertMessages.title}
-        />
-      ) : null}
+      <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertOptions} />
 
       <form onSubmit={handleSubmit} className="flex w-full flex-col gap-4 rounded-lg bg-white p-8 md:max-w-[32rem]">
         <div className="flex items-center gap-1">

@@ -8,10 +8,9 @@ import { Select, SelectContent, SelectItem, SelectSeparator, SelectTrigger, Sele
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import FilterIcon from "../map/filter-icon";
-import { deliveryCompanies } from "@/lib/selection-data";
-import { deliveryIssues, usStates } from "@/utils/constants";
-import useAppAlertDialog from "../../hooks/useAppAlertDialog";
-import AppAlertDialog from "../ui/AppAlertDialog";
+import { deliveryIssues } from "@/utils/constants";
+import AppAlertDialog, { useAppAlertDialog } from "../ui/AppAlertDialog";
+import { deliveryCompaniesWithLogo } from "../../utils/selection-data";
 
 export interface IFilterIssueParams {
   shipping_carrier: string;
@@ -39,7 +38,7 @@ export default function FilterIssuesForm({
   handleDone: (params: Partial<IFilterIssueParams>) => void;
 }) {
   const [formData, setFormData] = useState<Partial<IFilterIssueParams>>({ ...initialValue });
-  const { alertMessages, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
+  const { alertOptions, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
 
   useEffect(() => {
     console.log({ formData });
@@ -60,6 +59,8 @@ export default function FilterIssuesForm({
 
   return (
     <>
+      <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertOptions} />
+
       <Dialog onOpenChange={setIsOpen} open={isOpen}>
         <DialogContent
           className={cn([
@@ -100,7 +101,7 @@ export default function FilterIssuesForm({
                   <SelectValue placeholder="Select..." />
                 </SelectTrigger>
                 <SelectContent>
-                  {deliveryCompanies.map((company, i) => (
+                  {deliveryCompaniesWithLogo.map((company, i) => (
                     <Fragment key={i}>
                       {i > 0 && <SelectSeparator />}
                       <SelectItem key={i} value={company.value}>
@@ -173,43 +174,6 @@ export default function FilterIssuesForm({
           </form>
         </DialogContent>
       </Dialog>
-
-      {isAlertOpen ? (
-        <AppAlertDialog
-          description={alertMessages.description}
-          handleCancel={() => closeAlertDialog()}
-          open={isAlertOpen}
-          title={alertMessages.title}
-        />
-      ) : null}
     </>
   );
 }
-
-/*
-          <div className={"flex w-full flex-col gap-1"}>
-            <label htmlFor="state" className={"text-sm text-black"}>
-              State
-            </label>
-            <Select
-              required={true}
-              value={formData.state}
-              onValueChange={(val) => handleFormDataChange({ fieldName: "state", val: val })}
-            >
-              <SelectTrigger className="w-full" id={"state"}>
-                <SelectValue placeholder="Select..." />
-              </SelectTrigger>
-              <SelectContent>
-                {usStates.map((state, i) => (
-                  <Fragment key={i}>
-                    {i > 0 && <SelectSeparator />}
-                    <SelectItem key={i} value={state}>
-                      {state}
-                    </SelectItem>
-                  </Fragment>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-*/

@@ -29,6 +29,29 @@ export const reasonsForJoining = [
   { text: "New Delivery Experience", value: "New Delivery Experience" },
 ];
 
+export const deliveryCompanies = [
+  {
+    name: "Amazon",
+    logoUrl: "/carriers/amazon.svg",
+  },
+  {
+    name: "UPS",
+    logoUrl: "/carriers/UPS.svg",
+  },
+  {
+    name: "Fedex",
+    logoUrl: "/carriers/FedEx.svg",
+  },
+  {
+    name: "DHL",
+    logoUrl: "/carriers/DHL.svg",
+  },
+  {
+    name: "USPS",
+    logoUrl: "/carriers/USPS.svg",
+  },
+];
+
 export const usStates = [
   "Alabama",
   "Alaska",

@@ -11,11 +11,10 @@ import useAppFormPost from "../../hooks/useAppFormPost";
 import { IDeliveryIssue } from "../../airtable/types";
 import { ZodValidationHelper } from "../../utils/zod-validation-helper";
 import { getDeliveryIssueSchema } from "../../airtable/models";
-import { deliveryCompanies } from "../../lib/selection-data";
+import { deliveryCompaniesWithLogo } from "../../utils/selection-data";
 import { deliveryIssues } from "@/utils/constants";
 import AppDatePicker from "@/components/ui/AppDatePicker";
-import AppAlertDialog from "../../components/ui/AppAlertDialog";
-import useAppAlertDialog from "../../hooks/useAppAlertDialog";
+import AppAlertDialog, { useAppAlertDialog } from "../../components/ui/AppAlertDialog";
 
 function FormRequiredTag() {
   return <span className="select-none pl-1 text-danger">*</span>;
@@ -38,7 +37,7 @@ const initialValue: Partial<IDeliveryIssue> = {
 const ReportFormBase = ({ slice }: { slice: ReportFormProps["slice"] }): JSX.Element => {
   const [formData, setFormData] = useState<Partial<IDeliveryIssue>>({ ...initialValue });
   const { postData, isBusy } = useAppFormPost();
-  const { alertMessages, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
+  const { alertOptions, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
 
   // useEffect(() => {
   //   console.log(formData);
@@ -72,14 +71,7 @@ const ReportFormBase = ({ slice }: { slice: ReportFormProps["slice"] }): JSX.Ele
 
   return (
     <>
-      {isAlertOpen ? (
-        <AppAlertDialog
-          description={alertMessages.description}
-          handleCancel={() => closeAlertDialog()}
-          open={isAlertOpen}
-          title={alertMessages.title}
-        />
-      ) : null}
+      <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertOptions} />
 
       <div className="relative flex w-full flex-col gap-6 md:gap-10">
         <div className={"mx-auto flex max-w-[32rem] flex-col gap-1"}>
@@ -175,7 +167,7 @@ const ReportFormBase = ({ slice }: { slice: ReportFormProps["slice"] }): JSX.Ele
                 <SelectValue placeholder="Select..." />
               </SelectTrigger>
               <SelectContent>
-                {deliveryCompanies.map((company, i) => (
+                {deliveryCompaniesWithLogo.map((company, i) => (
                   <Fragment key={i}>
                     {i > 0 && <SelectSeparator />}
                     <SelectItem key={i} value={company.value}>

@@ -9,8 +9,7 @@ import { IContact } from "../../airtable/types";
 import useAppFormPost from "../../hooks/useAppFormPost";
 import { getContactSchema } from "../../airtable/models";
 import { ZodValidationHelper } from "../../utils/zod-validation-helper";
-import useAppAlertDialog from "../../hooks/useAppAlertDialog";
-import AppAlertDialog from "../ui/AppAlertDialog";
+import AppAlertDialog, { useAppAlertDialog } from "../ui/AppAlertDialog";
 
 const initialValue: Partial<IContact> = {
   email: "",
@@ -22,7 +21,7 @@ const initialValue: Partial<IContact> = {
 export default function ContactUsForm() {
   const [formData, setFormData] = useState<Partial<IContact>>({ ...initialValue });
   const { postData, isBusy } = useAppFormPost();
-  const { alertMessages, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
+  const { alertOptions, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
 
   // useEffect(() => {
   //   console.log(formData);
@@ -124,14 +123,7 @@ export default function ContactUsForm() {
         </Button>
       </form>
 
-      {isAlertOpen ? (
-        <AppAlertDialog
-          description={alertMessages.description}
-          handleCancel={() => closeAlertDialog()}
-          open={isAlertOpen}
-          title={alertMessages.title}
-        />
-      ) : null}
+      <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertOptions} />
     </>
   );
 }

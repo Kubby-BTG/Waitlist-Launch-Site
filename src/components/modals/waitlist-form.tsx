@@ -13,8 +13,7 @@ import { ZodValidationHelper } from "../../utils/zod-validation-helper";
 import { getWaitlistSchema } from "../../airtable/models";
 import useAppFormPost from "../../hooks/useAppFormPost";
 import { reasonsForJoining } from "../../utils/constants";
-import useAppAlertDialog from "../../hooks/useAppAlertDialog";
-import AppAlertDialog from "../ui/AppAlertDialog";
+import AppAlertDialog, { useAppAlertDialog } from "../ui/AppAlertDialog";
 
 const initialValue: Partial<IWaitList> = {
   email: "",
@@ -26,7 +25,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState<Partial<IWaitList>>({ ...initialValue });
   const { postData, isBusy } = useAppFormPost();
-  const { alertMessages, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
+  const { alertOptions, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
 
   async function handleSubmit() {
     try {
@@ -57,14 +56,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
 
   return (
     <>
-      {isAlertOpen ? (
-        <AppAlertDialog
-          description={alertMessages.description}
-          handleCancel={() => closeAlertDialog()}
-          open={isAlertOpen}
-          title={alertMessages.title}
-        />
-      ) : null}
+      <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertOptions} />
       <div
         onClick={() => {
           setIsOpen(true);
