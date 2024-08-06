@@ -158,6 +158,16 @@ export default function DeliveryIssuesMap() {
         // GoogleMapService.getGeocodeAddressByZipcode(params01.zipcode)
         //   .then((res) => console.log(res))
         //   .catch((e) => console.error(e));
+      } else if (params01.zipcode) {
+        const result01 = await GoogleMapService.getGeocodeAddressByZipcode(params01.zipcode);
+
+        const results02 = GoogleMapService.getFirtstLocation(result01);
+
+        if (results02) {
+          setUserZoom(zoomLevels.DEFAULT);
+          setCenter(results02);
+          restartMap();
+        }
       } else {
         centerToUsa();
       }
