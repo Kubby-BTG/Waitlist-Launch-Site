@@ -11,7 +11,7 @@ import useAppFormPost from "../../hooks/useAppFormPost";
 import { IDeliveryIssue } from "../../airtable/types";
 import { ZodValidationHelper } from "../../utils/zod-validation-helper";
 import { getDeliveryIssueSchema } from "../../airtable/models";
-import { deliveryCompanies } from "../../lib/selection-data";
+import { deliveryCompaniesWithLogo } from "../../utils/selection-data";
 import { deliveryIssues } from "@/utils/constants";
 import AppDatePicker from "@/components/ui/AppDatePicker";
 import AppAlertDialog, { useAppAlertDialog } from "../../components/ui/AppAlertDialog";
@@ -167,7 +167,7 @@ const ReportFormBase = ({ slice }: { slice: ReportFormProps["slice"] }): JSX.Ele
                 <SelectValue placeholder="Select..." />
               </SelectTrigger>
               <SelectContent>
-                {deliveryCompanies.map((company, i) => (
+                {deliveryCompaniesWithLogo.map((company, i) => (
                   <Fragment key={i}>
                     {i > 0 && <SelectSeparator />}
                     <SelectItem key={i} value={company.value}>

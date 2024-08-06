@@ -8,9 +8,9 @@ import { Select, SelectContent, SelectItem, SelectSeparator, SelectTrigger, Sele
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import FilterIcon from "../map/filter-icon";
-import { deliveryCompanies } from "@/lib/selection-data";
 import { deliveryIssues } from "@/utils/constants";
 import AppAlertDialog, { useAppAlertDialog } from "../ui/AppAlertDialog";
+import { deliveryCompaniesWithLogo } from "../../utils/selection-data";
 
 export interface IFilterIssueParams {
   shipping_carrier: string;
@@ -101,7 +101,7 @@ export default function FilterIssuesForm({
                   <SelectValue placeholder="Select..." />
                 </SelectTrigger>
                 <SelectContent>
-                  {deliveryCompanies.map((company, i) => (
+                  {deliveryCompaniesWithLogo.map((company, i) => (
                     <Fragment key={i}>
                       {i > 0 && <SelectSeparator />}
                       <SelectItem key={i} value={company.value}>

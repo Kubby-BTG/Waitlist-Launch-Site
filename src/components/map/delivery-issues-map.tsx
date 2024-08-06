@@ -2,32 +2,95 @@
 
 import FilterIssuesForm, { IFilterIssueParams } from "../modals/filter-issues-form";
 import { Button } from "../ui/button";
-import { AdvancedMarker, APIProvider, Map } from "@vis.gl/react-google-maps";
+import { AdvancedMarker, APIProvider, Map, Marker, useMapsLibrary, useMap } from "@vis.gl/react-google-maps";
+
 import FilterIcon from "./filter-icon";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import PinIcon from "./pin-icon";
 import ShowDeliveryNearYouForm from "../modals/show-delivery-near-you-form";
 
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "../ui/hover-card";
-import { AppConfig } from "../../utils/constants";
+import { AppConfig, deliveryCompanies } from "../../utils/constants";
 import useAppFormPost from "@/hooks/useAppFormPost";
 import { IDeliveryIssue } from "../../airtable/types";
 import AppAlertDialog, { useAppAlertDialog } from "../ui/AppAlertDialog";
+import { GoogleMapService } from "../../utils/google-map-service";
+
+type IssueInfo = {
+  count: number | null;
+  location: string;
+  issue?: string;
+  carrierLogo?: string;
+};
+const initialData: IssueInfo = { count: null, location: "", issue: "", carrierLogo: "" };
+
+const zoomLevels = {
+  USA: 5,
+  DEFAULT: 13,
+};
+
+const centerPoints = {
+  USA: {
+    lat: 39.77486255876189,
+    lng: -101.80094565458676,
+  },
+};
 
 export default function DeliveryIssuesMap() {
   const [isShowFilterForm, setIsShowFilterForm] = useState(false);
   const [isShowShowDeliveryIssuesForm, setIsShowShowDeliveryIssues] = useState(false);
-  const [deliveryIssue, setDeliveryIssue] = useState({ count: 0, location: "" });
+  const [deliveryIssue, setDeliveryIssue] = useState<IssueInfo>({ ...initialData });
   const { alertOptions, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
   const { postData, isBusy } = useAppFormPost();
+  const map = useMap();
+  const [userZoom, setUserZoom] = useState(zoomLevels.USA);
+  const geocodingLib = useMapsLibrary("geocoding");
+
+  const geocoder = useMemo(() => geocodingLib && new geocodingLib.Geocoder(), [geocodingLib]);
+
+  const [center, setCenter] = useState(centerPoints.USA);
 
   useEffect(() => {
-    getAllDeliveryIssues().catch(() => {});
+    // getAllDeliveryIssues().catch(() => {});
   }, []);
+
+  function centerToUsa() {
+    // Chicago
+    if (!map) return;
+    setUserZoom(zoomLevels.USA);
+    setCenter(centerPoints.USA);
+  }
+
+  useEffect(() => {
+    if (!map) return;
+    map.setCenter(center);
+  }, [center]);
+
+  useEffect(() => {
+    if (!map) return;
+    map.setZoom(userZoom);
+  }, [userZoom]);
+
+  useEffect(() => {
+    if (!map) return;
+    // do something with the map instance
+
+    // map.getCenter();
+
+    // var bounds =
+    // map.fitBounds(bounds);
+  }, [map]);
+
+  function getDeliveryCompanyByName(name: string | undefined) {
+    if (!name) return undefined;
+    return deliveryCompanies.find((f) => f?.name?.toLowerCase() === name?.toLowerCase());
+  }
 
   async function handleFindByManyParams(params: Partial<IFilterIssueParams>) {
     try {
       const filter01: string[] = [];
+
+      const params01: Partial<IFilterIssueParams> = {};
 
       if (params) {
         Object.entries(params).forEach(([key, val]) => {
@@ -37,11 +100,13 @@ export default function DeliveryIssuesMap() {
             } else {
               filter01.push(`{${key}}=${val}`);
             }
+            params01[key as keyof IFilterIssueParams] = val;
           }
         });
       }
 
       if (!filter01?.length) {
+        openAlertDialog.warning({ title: "You must select filter parameter(s) to proceed" });
         return;
       }
 
@@ -50,12 +115,53 @@ export default function DeliveryIssuesMap() {
         formData: { filterByFormula: `AND(${filter01.join(",")})` },
       });
 
+      const carrierLogo = getDeliveryCompanyByName(params01.shipping_carrier)?.logoUrl || "";
+      const issue01 = params01.issue || "Delivery issues";
+
+      const options01: IssueInfo = {
+        count: null,
+        issue: issue01,
+        location: "",
+        carrierLogo,
+      };
+
+      if (Object.keys(params01).length === 1) {
+        if (params01.shipping_carrier || params01.zipcode || params01.issue) {
+          /*
+          The total amount of (delivery issues)  is "only"  related:
+            - when they look up just the postal/zip code
+            - when they look up just shipping carrier
+            - when they look up just an delivery issue
+      */
+          options01.count = apiData.length;
+        }
+      }
+
+      if (params01.zipcode) {
+        const result01 = await GoogleMapService.getGeocodeAddressByZipcode(params01.zipcode);
+
+        const results02 = GoogleMapService.getFirtstLocation(result01);
+        console.log({ results02 });
+
+        if (results02) {
+          setUserZoom(zoomLevels.DEFAULT);
+          setCenter(results02);
+        }
+
+        // GoogleMapService.getGeocodeAddressByZipcode(params01.zipcode)
+        //   .then((res) => console.log(res))
+        //   .catch((e) => console.error(e));
+      }
+
+      setDeliveryIssue(options01);
+
       openAlertDialog.info({
         title: `${apiData.length} issue(s) found`,
-        description: apiData.length ? "Note: Map location mark not implimented yet" : undefined,
+        // description: apiData.length ? "Note: Map location mark not implimented yet" : undefined,
       });
 
       setIsShowFilterForm(false);
+      setIsShowShowDeliveryIssues(false);
     } catch (error) {
       openAlertDialog.error({ title: "Could not filter. Error occured" });
     }
@@ -71,31 +177,10 @@ export default function DeliveryIssuesMap() {
       if (apiData?.length) {
         setDeliveryIssue({ count: apiData.length, location: "Unknown Location" });
       } else {
-        setDeliveryIssue({ count: 0, location: "" });
+        setDeliveryIssue({ ...initialData });
       }
     } catch (error) {
       openAlertDialog.error({ title: "Could not filter. Error occured" });
-    }
-  }
-
-  async function handleFindByZipcode(zipcode: string) {
-    try {
-      const apiData = await postData<IDeliveryIssue[]>({
-        url: "/api/delivery-issue/find",
-        formData: { filterByFormula: `{zipcode}="${zipcode}"` },
-      });
-
-      if (apiData?.length) {
-        setDeliveryIssue({ count: apiData.length, location: "Unknown Location" });
-      } else {
-        setDeliveryIssue({ count: 0, location: "" });
-      }
-
-      openAlertDialog.info({ title: `${apiData.length} issue(s) found` });
-
-      setIsShowShowDeliveryIssues(false);
-    } catch (error) {
-      openAlertDialog.error({ title: "Error occured. Could not filter" });
     }
   }
 
@@ -103,23 +188,26 @@ export default function DeliveryIssuesMap() {
     <APIProvider apiKey={AppConfig.NEXT_PUBLIC_GOOGLE_MAP_KEY} onLoad={() => console.log("Maps API has loaded.")}>
       <div className={"relative h-[600px] w-full overflow-hidden md:h-[640px] md:rounded-2xl"}>
         <Map
-          defaultZoom={13}
-          defaultCenter={{ lat: -33.860664, lng: 151.208138 }}
+          defaultZoom={zoomLevels.USA}
+          defaultCenter={centerPoints.USA}
           disableDefaultUI={true}
           mapId={"19cefe5f097a79a6"}
           //   onCameraChanged={ (ev: MapCameraChangedEvent) =>
           //     console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
           //   }
         >
-          {deliveryIssue.count ? (
-            <>
-              <AdvancedMarker
-                position={{ lat: -33.860664, lng: 151.208138 }}
-                // ref={marker => setMarkerRef(marker, poi.key)}
-              >
+          <>
+            {/* <Marker position={{ lat: 32.9618763, lng: -96.99609249999999 }} /> */}
+
+            {/* <AdvancedMarker position={center}>
+              <img src={deliveryIssue.carrierLogo || "/markers/cube.svg"} alt="" className={"size-8"} />
+            </AdvancedMarker> */}
+
+            {deliveryIssue.issue && (
+              <AdvancedMarker position={center}>
                 <HoverCard open={true}>
                   <HoverCardTrigger>
-                    <img src={"/markers/cube.svg"} alt="" className={"size-8"} />
+                    <img src={deliveryIssue.carrierLogo || "/markers/cube.svg"} alt="" className={"size-8"} />
                   </HoverCardTrigger>
                   <HoverCardContent
                     side={"top"}
@@ -136,17 +224,20 @@ export default function DeliveryIssuesMap() {
                       </svg>
                     </div>
                     <div className="text-sm">
-                      <span className="font-bold">{deliveryIssue.count}</span> - Delivery Issues
+                      {deliveryIssue.count && <span className="font-bold"> {deliveryIssue.count} - </span>}
+                      {deliveryIssue.issue && <span className="font-bold"> {deliveryIssue.issue}</span>}
                     </div>
-                    <div className="flex items-center gap-1 rounded-lg bg-[#2F3233] px-2 py-1 text-sm text-white">
-                      <PinIcon />
-                      <span>{deliveryIssue.location}</span>
-                    </div>
+                    {deliveryIssue.location && (
+                      <div className="flex items-center gap-1 rounded-lg bg-[#2F3233] px-2 py-1 text-sm text-white">
+                        <PinIcon />
+                        <span>{deliveryIssue.location}</span>
+                      </div>
+                    )}
                   </HoverCardContent>
                 </HoverCard>
               </AdvancedMarker>
-            </>
-          ) : null}
+            )}
+          </>
         </Map>
 
         <div className="absolute left-6 top-8 flex flex-wrap gap-2 md:gap-4">
@@ -182,9 +273,7 @@ export default function DeliveryIssuesMap() {
 
           <ShowDeliveryNearYouForm
             isBusy={isBusy}
-            handleDone={(zipcode) => {
-              handleFindByZipcode(zipcode);
-            }}
+            handleDone={(zipcode) => zipcode && handleFindByManyParams({ zipcode })}
             isOpen={isShowShowDeliveryIssuesForm}
             setIsOpen={setIsShowShowDeliveryIssues}
           />
@@ -195,240 +284,3 @@ export default function DeliveryIssuesMap() {
     </APIProvider>
   );
 }
-
-const mapStyles = [
-  {
-    featureType: "all",
-    elementType: "labels",
-    stylers: [
-      {
-        visibility: "off",
-      },
-    ],
-  },
-  {
-    featureType: "administrative",
-    elementType: "all",
-    stylers: [
-      {
-        visibility: "off",
-      },
-    ],
-  },
-  {
-    featureType: "administrative",
-    elementType: "labels.text",
-    stylers: [
-      {
-        visibility: "off",
-      },
-    ],
-  },
-  {
-    featureType: "landscape",
-    elementType: "all",
-    stylers: [
-      {
-        visibility: "simplified",
-      },
-      {
-        hue: "#0066ff",
-      },
-      {
-        saturation: 74,
-      },
-      {
-        lightness: 100,
-      },
-    ],
-  },
-  {
-    featureType: "landscape",
-    elementType: "labels.text",
-    stylers: [
-      {
-        visibility: "off",
-      },
-    ],
-  },
-  {
-    featureType: "poi",
-    elementType: "all",
-    stylers: [
-      {
-        visibility: "simplified",
-      },
-    ],
-  },
-  {
-    featureType: "poi",
-    elementType: "labels.text",
-    stylers: [
-      {
-        visibility: "off",
-      },
-    ],
-  },
-  {
-    featureType: "poi.attraction",
-    elementType: "all",
-    stylers: [
-      {
-        visibility: "off",
-      },
-    ],
-  },
-  {
-    featureType: "poi.business",
-    elementType: "all",
-    stylers: [
-      {
-        visibility: "simplified",
-      },
-    ],
-  },
-  {
-    featureType: "poi.business",
-    elementType: "labels",
-    stylers: [
-      {
-        visibility: "off",
-      },
-    ],
-  },
-  {
-    featureType: "road",
-    elementType: "all",
-    stylers: [
-      {
-        visibility: "off",
-      },
-    ],
-  },
-  {
-    featureType: "road",
-    elementType: "labels.text",
-    stylers: [
-      {
-        visibility: "off",
-      },
-    ],
-  },
-  {
-    featureType: "road.highway",
-    elementType: "all",
-    stylers: [
-      {
-        visibility: "simplified",
-      },
-      {
-        weight: 0.6,
-      },
-      {
-        saturation: -85,
-      },
-      {
-        lightness: 61,
-      },
-    ],
-  },
-  {
-    featureType: "road.highway",
-    elementType: "geometry",
-    stylers: [
-      {
-        visibility: "on",
-      },
-    ],
-  },
-  {
-    featureType: "road.highway",
-    elementType: "labels",
-    stylers: [
-      {
-        visibility: "off",
-      },
-    ],
-  },
-  {
-    featureType: "road.highway",
-    elementType: "labels.text",
-    stylers: [
-      {
-        visibility: "off",
-      },
-    ],
-  },
-  {
-    featureType: "road.arterial",
-    elementType: "all",
-    stylers: [
-      {
-        visibility: "off",
-      },
-    ],
-  },
-  {
-    featureType: "road.arterial",
-    elementType: "labels",
-    stylers: [
-      {
-        visibility: "off",
-      },
-    ],
-  },
-  {
-    featureType: "road.local",
-    elementType: "all",
-    stylers: [
-      {
-        visibility: "on",
-      },
-    ],
-  },
-  {
-    featureType: "road.local",
-    elementType: "labels",
-    stylers: [
-      {
-        visibility: "off",
-      },
-    ],
-  },
-  {
-    featureType: "transit",
-    elementType: "all",
-    stylers: [
-      {
-        visibility: "simplified",
-      },
-    ],
-  },
-  {
-    featureType: "transit",
-    elementType: "labels",
-    stylers: [
-      {
-        visibility: "off",
-      },
-    ],
-  },
-  {
-    featureType: "water",
-    elementType: "all",
-    stylers: [
-      {
-        visibility: "simplified",
-      },
-      {
-        color: "#5f94ff",
-      },
-      {
-        lightness: 26,
-      },
-      {
-        gamma: 5.86,
-      },
-    ],
-  },
-];

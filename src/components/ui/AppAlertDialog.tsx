@@ -11,10 +11,12 @@ const AlertDialogOverlay = forwardRef<
   React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Overlay>
 >(({ className, ...props }, ref) => (
   <AlertDialogPrimitive.Overlay
-    className={cn(
-      "fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+    className={cn([
+      "fixed inset-0 z-50 bg-black/80",
+      "data-[state=open]:animate-in data-[state=closed]:animate-out",
+      "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
       className,
-    )}
+    ])}
     {...props}
     ref={ref}
   />
@@ -29,10 +31,17 @@ const AlertDialogContent = forwardRef<
     <AlertDialogOverlay className="bg-black/50" />
     <AlertDialogPrimitive.Content
       ref={ref}
-      className={cn(
-        "border-slate-200 shadow-lg dark:border-slate-800 dark:bg-slate-950 fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-white p-6 duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg",
+      className={cn([
+        "border-slate-200 shadow-lg dark:border-slate-800 dark:bg-slate-950 fixed left-[50%] top-[50%]",
+        "z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-white p-6",
+        "duration-200",
+        "data-[state=open]:animate-in data-[state=closed]:animate-out",
+        "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95",
+        "data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2",
+        "data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2",
+        "data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg",
         className,
-      )}
+      ])}
       {...props}
     />
   </AlertDialogPrimitive.Portal>
@@ -40,12 +49,12 @@ const AlertDialogContent = forwardRef<
 AlertDialogContent.displayName = AlertDialogPrimitive.Content.displayName;
 
 const AlertDialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn("flex flex-col space-y-2 text-center sm:text-left", className)} {...props} />
+  <div className={cn(["flex flex-col space-y-2 text-center sm:text-left", className])} {...props} />
 );
 AlertDialogHeader.displayName = "AlertDialogHeader";
 
 const AlertDialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn("flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2", className)} {...props} />
+  <div className={cn(["flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2", className])} {...props} />
 );
 AlertDialogFooter.displayName = "AlertDialogFooter";
 
@@ -63,7 +72,7 @@ const AlertDialogDescription = forwardRef<
 >(({ className, ...props }, ref) => (
   <AlertDialogPrimitive.Description
     ref={ref}
-    className={cn("text-slate-500 dark:text-slate-400 text-sm", className)}
+    className={cn(["text-slate-500 dark:text-slate-400 text-sm", className])}
     {...props}
   />
 ));
@@ -92,6 +101,7 @@ AlertDialogCancel.displayName = AlertDialogPrimitive.Cancel.displayName;
 type IConfig = {
   description?: string;
   title: string;
+  type?: "warning" | "error" | "info" | "success";
 };
 
 export default function AppAlertDialog({
@@ -149,10 +159,10 @@ export function useAppAlertDialog() {
 
   return {
     openAlertDialog: {
-      warning: (props: IConfig) => openAlertDialog(props),
-      info: (props: IConfig) => openAlertDialog(props),
-      success: (props: IConfig) => openAlertDialog(props),
-      error: (props: IConfig) => openAlertDialog(props),
+      warning: (props: IConfig) => openAlertDialog({ ...props, type: "warning" }),
+      info: (props: IConfig) => openAlertDialog({ ...props, type: "info" }),
+      success: (props: IConfig) => openAlertDialog({ ...props, type: "success" }),
+      error: (props: IConfig) => openAlertDialog({ ...props, type: "error" }),
     },
     closeAlertDialog,
     alertOptions: alertOptions,
