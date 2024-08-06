@@ -26,7 +26,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState<Partial<IWaitList>>({ ...initialValue });
   const { postData, isBusy } = useAppFormPost();
-  const { alertMessages, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
+  const { alertOptions, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
 
   async function handleSubmit() {
     try {
@@ -57,7 +57,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertMessages} />
+      <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertOptions} />
       <div
         onClick={() => {
           setIsOpen(true);

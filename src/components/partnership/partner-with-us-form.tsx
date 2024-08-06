@@ -28,7 +28,7 @@ export default function PartnerWithUsForm() {
   const [isSent, setIsSent] = useState(false);
   const [formData, setFormData] = useState<Partial<IPartner>>({ ...initialValue });
   const { postData, isBusy } = useAppFormPost();
-  const { alertMessages, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
+  const { alertOptions, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
 
   // useEffect(() => {
   //   console.log(formData);
@@ -63,7 +63,7 @@ export default function PartnerWithUsForm() {
 
   return (
     <>
-      <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertMessages} />
+      <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertOptions} />
 
       <form onSubmit={handleSubmit} className="flex w-full flex-col gap-4 rounded-lg bg-white p-8 md:max-w-[32rem]">
         <div className="flex items-center gap-1">

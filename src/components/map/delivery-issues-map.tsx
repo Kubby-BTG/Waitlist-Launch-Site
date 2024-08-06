@@ -19,7 +19,7 @@ export default function DeliveryIssuesMap() {
   const [isShowFilterForm, setIsShowFilterForm] = useState(false);
   const [isShowShowDeliveryIssuesForm, setIsShowShowDeliveryIssues] = useState(false);
   const [deliveryIssue, setDeliveryIssue] = useState({ count: 0, location: "" });
-  const { alertMessages, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
+  const { alertOptions, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
   const { postData, isBusy } = useAppFormPost();
 
   useEffect(() => {
@@ -191,7 +191,7 @@ export default function DeliveryIssuesMap() {
           />
         </div>
 
-        <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertMessages} />
+        <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertOptions} />
       </div>
     </APIProvider>
   );

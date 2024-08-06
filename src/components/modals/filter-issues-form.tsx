@@ -39,7 +39,7 @@ export default function FilterIssuesForm({
   handleDone: (params: Partial<IFilterIssueParams>) => void;
 }) {
   const [formData, setFormData] = useState<Partial<IFilterIssueParams>>({ ...initialValue });
-  const { alertMessages, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
+  const { alertOptions, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
 
   useEffect(() => {
     console.log({ formData });
@@ -174,7 +174,7 @@ export default function FilterIssuesForm({
         </DialogContent>
       </Dialog>
 
-      <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertMessages} />
+      <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertOptions} />
     </>
   );
 }

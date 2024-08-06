@@ -38,7 +38,7 @@ const initialValue: Partial<IDeliveryIssue> = {
 const ReportFormBase = ({ slice }: { slice: ReportFormProps["slice"] }): JSX.Element => {
   const [formData, setFormData] = useState<Partial<IDeliveryIssue>>({ ...initialValue });
   const { postData, isBusy } = useAppFormPost();
-  const { alertMessages, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
+  const { alertOptions, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
 
   // useEffect(() => {
   //   console.log(formData);
@@ -72,7 +72,7 @@ const ReportFormBase = ({ slice }: { slice: ReportFormProps["slice"] }): JSX.Ele
 
   return (
     <>
-      <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertMessages} />
+      <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertOptions} />
 
       <div className="relative flex w-full flex-col gap-6 md:gap-10">
         <div className={"mx-auto flex max-w-[32rem] flex-col gap-1"}>

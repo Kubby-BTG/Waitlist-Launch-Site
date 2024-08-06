@@ -22,7 +22,7 @@ const initialValue: Partial<IContact> = {
 export default function ContactUsForm() {
   const [formData, setFormData] = useState<Partial<IContact>>({ ...initialValue });
   const { postData, isBusy } = useAppFormPost();
-  const { alertMessages, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
+  const { alertOptions, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
 
   // useEffect(() => {
   //   console.log(formData);
@@ -124,7 +124,7 @@ export default function ContactUsForm() {
         </Button>
       </form>
 
-      <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertMessages} />
+      <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertOptions} />
     </>
   );
 }
