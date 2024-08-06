@@ -95,17 +95,26 @@ const AlertDialogCancel = React.forwardRef<
 ));
 AlertDialogCancel.displayName = AlertDialogPrimitive.Cancel.displayName;
 
+type IAlertDialogConfi = {
+  description?: string;
+  title: string;
+};
+
 export default function AppAlertDialog({
-  title,
-  description,
+  config,
   open,
   handleCancel,
 }: {
-  description?: string;
-  title: string;
+  config: IAlertDialogConfi;
   open: boolean;
   handleCancel: () => void;
 }) {
+  if (!open) {
+    return null;
+  }
+
+  const { title, description } = config;
+
   return (
     <AlertDialogPrimitive.Root open={open}>
       <AlertDialogContent>

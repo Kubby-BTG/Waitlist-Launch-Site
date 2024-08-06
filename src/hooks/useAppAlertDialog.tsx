@@ -24,7 +24,7 @@ export default function useAppAlertDialog() {
       error: (props: IProps) => openAlertDialog(props),
     },
     closeAlertDialog,
-    alertMessages,
+    alertMessages: alertMessages,
     isAlertOpen: alertMessages?.title ? isAlertOpen : false,
   };
 }

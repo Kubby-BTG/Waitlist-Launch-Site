@@ -191,14 +191,7 @@ export default function DeliveryIssuesMap() {
           />
         </div>
 
-        {isAlertOpen ? (
-          <AppAlertDialog
-            description={alertMessages.description}
-            handleCancel={() => closeAlertDialog()}
-            open={isAlertOpen}
-            title={alertMessages.title}
-          />
-        ) : null}
+        <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertMessages} />
       </div>
     </APIProvider>
   );

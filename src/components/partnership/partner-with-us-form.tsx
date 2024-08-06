@@ -63,14 +63,7 @@ export default function PartnerWithUsForm() {
 
   return (
     <>
-      {isAlertOpen ? (
-        <AppAlertDialog
-          description={alertMessages.description}
-          handleCancel={() => closeAlertDialog()}
-          open={isAlertOpen}
-          title={alertMessages.title}
-        />
-      ) : null}
+      <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertMessages} />
 
       <form onSubmit={handleSubmit} className="flex w-full flex-col gap-4 rounded-lg bg-white p-8 md:max-w-[32rem]">
         <div className="flex items-center gap-1">

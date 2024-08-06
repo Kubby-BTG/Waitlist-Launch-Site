@@ -72,14 +72,7 @@ const ReportFormBase = ({ slice }: { slice: ReportFormProps["slice"] }): JSX.Ele
 
   return (
     <>
-      {isAlertOpen ? (
-        <AppAlertDialog
-          description={alertMessages.description}
-          handleCancel={() => closeAlertDialog()}
-          open={isAlertOpen}
-          title={alertMessages.title}
-        />
-      ) : null}
+      <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertMessages} />
 
       <div className="relative flex w-full flex-col gap-6 md:gap-10">
         <div className={"mx-auto flex max-w-[32rem] flex-col gap-1"}>
