@@ -15,6 +15,7 @@ import useAppFormPost from "@/hooks/useAppFormPost";
 import { IDeliveryIssue } from "../../airtable/types";
 import AppAlertDialog, { useAppAlertDialog } from "../ui/AppAlertDialog";
 import { GoogleMapService } from "../../utils/google-map-service";
+import LoadGoogleMapProvider from "./load-map";
 
 type IssueInfo = {
   count: number | null;
@@ -44,9 +45,9 @@ export default function DeliveryIssuesMap() {
   const { postData, isBusy } = useAppFormPost();
   const map = useMap();
   const [userZoom, setUserZoom] = useState(zoomLevels.USA);
-  const geocodingLib = useMapsLibrary("geocoding");
+  // const geocodingLib = useMapsLibrary("geocoding");
 
-  const geocoder = useMemo(() => geocodingLib && new geocodingLib.Geocoder(), [geocodingLib]);
+  // const geocoder = useMemo(() => geocodingLib && new geocodingLib.Geocoder(), [geocodingLib]);
 
   const [center, setCenter] = useState(centerPoints.USA);
 
@@ -137,21 +138,21 @@ export default function DeliveryIssuesMap() {
         }
       }
 
-      if (params01.zipcode) {
-        const result01 = await GoogleMapService.getGeocodeAddressByZipcode(params01.zipcode);
+      // if (apiData?.length === 1) {
+      //   const result01 = await GoogleMapService.getGeocodeAddressByZipcode(apiData[0].zipcode);
 
-        const results02 = GoogleMapService.getFirtstLocation(result01);
-        console.log({ results02 });
+      //   const results02 = GoogleMapService.getFirtstLocation(result01);
+      //   console.log({ results02 });
 
-        if (results02) {
-          setUserZoom(zoomLevels.DEFAULT);
-          setCenter(results02);
-        }
+      //   if (results02) {
+      //     setUserZoom(zoomLevels.DEFAULT);
+      //     setCenter(results02);
+      //   }
 
-        // GoogleMapService.getGeocodeAddressByZipcode(params01.zipcode)
-        //   .then((res) => console.log(res))
-        //   .catch((e) => console.error(e));
-      }
+      //   // GoogleMapService.getGeocodeAddressByZipcode(params01.zipcode)
+      //   //   .then((res) => console.log(res))
+      //   //   .catch((e) => console.error(e));
+      // }
 
       setDeliveryIssue(options01);
 
@@ -185,7 +186,7 @@ export default function DeliveryIssuesMap() {
   }
 
   return (
-    <APIProvider apiKey={AppConfig.NEXT_PUBLIC_GOOGLE_MAP_KEY} onLoad={() => console.log("Maps API has loaded.")}>
+    <LoadGoogleMapProvider>
       <div className={"relative h-[600px] w-full overflow-hidden md:h-[640px] md:rounded-2xl"}>
         <Map
           defaultZoom={zoomLevels.USA}
@@ -281,6 +282,6 @@ export default function DeliveryIssuesMap() {
 
         <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertOptions} />
       </div>
-    </APIProvider>
+    </LoadGoogleMapProvider>
   );
 }
