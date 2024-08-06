@@ -14,8 +14,7 @@ import { getDeliveryIssueSchema } from "../../airtable/models";
 import { deliveryCompanies } from "../../lib/selection-data";
 import { deliveryIssues } from "@/utils/constants";
 import AppDatePicker from "@/components/ui/AppDatePicker";
-import AppAlertDialog from "../../components/ui/AppAlertDialog";
-import useAppAlertDialog from "../../hooks/useAppAlertDialog";
+import AppAlertDialog, { useAppAlertDialog } from "../../components/ui/AppAlertDialog";
 
 function FormRequiredTag() {
   return <span className="select-none pl-1 text-danger">*</span>;

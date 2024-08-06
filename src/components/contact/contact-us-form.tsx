@@ -9,8 +9,7 @@ import { IContact } from "../../airtable/types";
 import useAppFormPost from "../../hooks/useAppFormPost";
 import { getContactSchema } from "../../airtable/models";
 import { ZodValidationHelper } from "../../utils/zod-validation-helper";
-import useAppAlertDialog from "../../hooks/useAppAlertDialog";
-import AppAlertDialog from "../ui/AppAlertDialog";
+import AppAlertDialog, { useAppAlertDialog } from "../ui/AppAlertDialog";
 
 const initialValue: Partial<IContact> = {
   email: "",

@@ -11,8 +11,7 @@ import useAppFormPost from "../../hooks/useAppFormPost";
 import { getPartnerSchema } from "../../airtable/models";
 import { ZodValidationHelper } from "../../utils/zod-validation-helper";
 import { usStates } from "../../utils/constants";
-import AppAlertDialog from "../ui/AppAlertDialog";
-import useAppAlertDialog from "../../hooks/useAppAlertDialog";
+import AppAlertDialog, { useAppAlertDialog } from "../ui/AppAlertDialog";
 
 const initialValue: Partial<IPartner> = {
   email: "",

@@ -9,9 +9,8 @@ import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import FilterIcon from "../map/filter-icon";
 import { deliveryCompanies } from "@/lib/selection-data";
-import { deliveryIssues, usStates } from "@/utils/constants";
-import useAppAlertDialog from "../../hooks/useAppAlertDialog";
-import AppAlertDialog from "../ui/AppAlertDialog";
+import { deliveryIssues } from "@/utils/constants";
+import AppAlertDialog, { useAppAlertDialog } from "../ui/AppAlertDialog";
 
 export interface IFilterIssueParams {
   shipping_carrier: string;
@@ -60,6 +59,8 @@ export default function FilterIssuesForm({
 
   return (
     <>
+      <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertOptions} />
+
       <Dialog onOpenChange={setIsOpen} open={isOpen}>
         <DialogContent
           className={cn([
@@ -173,36 +174,6 @@ export default function FilterIssuesForm({
           </form>
         </DialogContent>
       </Dialog>
-
-      <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertOptions} />
     </>
   );
 }
-
-/*
-          <div className={"flex w-full flex-col gap-1"}>
-            <label htmlFor="state" className={"text-sm text-black"}>
-              State
-            </label>
-            <Select
-              required={true}
-              value={formData.state}
-              onValueChange={(val) => handleFormDataChange({ fieldName: "state", val: val })}
-            >
-              <SelectTrigger className="w-full" id={"state"}>
-                <SelectValue placeholder="Select..." />
-              </SelectTrigger>
-              <SelectContent>
-                {usStates.map((state, i) => (
-                  <Fragment key={i}>
-                    {i > 0 && <SelectSeparator />}
-                    <SelectItem key={i} value={state}>
-                      {state}
-                    </SelectItem>
-                  </Fragment>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-*/

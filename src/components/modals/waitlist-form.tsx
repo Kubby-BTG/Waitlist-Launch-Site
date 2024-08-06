@@ -13,8 +13,7 @@ import { ZodValidationHelper } from "../../utils/zod-validation-helper";
 import { getWaitlistSchema } from "../../airtable/models";
 import useAppFormPost from "../../hooks/useAppFormPost";
 import { reasonsForJoining } from "../../utils/constants";
-import useAppAlertDialog from "../../hooks/useAppAlertDialog";
-import AppAlertDialog from "../ui/AppAlertDialog";
+import AppAlertDialog, { useAppAlertDialog } from "../ui/AppAlertDialog";
 
 const initialValue: Partial<IWaitList> = {
   email: "",
