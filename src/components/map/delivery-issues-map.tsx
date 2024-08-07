@@ -86,6 +86,22 @@ export default function DeliveryIssuesMap() {
     return deliveryCompanies.find((f) => f?.name?.toLowerCase() === name?.toLowerCase());
   }
 
+  function drawCircle(latLng: { lat: number; lng: number }) {
+    if (!map) return;
+    const circle = new google.maps.Circle({
+      strokeColor: "#008359",
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      //
+      fillColor: "#38DAA6",
+      fillOpacity: 0.35,
+      //
+      center: latLng,
+      radius: 3000,
+    });
+    circle.setMap(map);
+  }
+
   function closeModals() {
     setIsShowFilterForm(false);
     setIsShowShowDeliveryIssues(false);
@@ -153,6 +169,7 @@ export default function DeliveryIssuesMap() {
           if (results02) {
             closeModals();
             setCenter(results02);
+            drawCircle(results02);
             await UtilService.waitUntilMilliseconds(2000);
             setZoom(zoomLevels.DEFAULT);
           }
@@ -164,6 +181,7 @@ export default function DeliveryIssuesMap() {
           if (results02) {
             closeModals();
             setCenter(results02);
+            drawCircle(results02);
             await UtilService.waitUntilMilliseconds(2000);
             setZoom(zoomLevels.DEFAULT);
           }
