@@ -2,15 +2,15 @@
 
 import FilterIssuesForm, { IFilterIssueParams } from "../modals/filter-issues-form";
 import { Button } from "../ui/button";
-import { AdvancedMarker, APIProvider, Map, Marker, useMapsLibrary, useMap } from "@vis.gl/react-google-maps";
+import { AdvancedMarker, Map } from "@vis.gl/react-google-maps";
 
 import FilterIcon from "./filter-icon";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import PinIcon from "./pin-icon";
 import ShowDeliveryNearYouForm from "../modals/show-delivery-near-you-form";
 
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "../ui/hover-card";
-import { AppConfig, deliveryCompanies } from "../../utils/constants";
+import { deliveryCompanies } from "../../utils/constants";
 import useAppFormPost from "@/hooks/useAppFormPost";
 import { IDeliveryIssue } from "../../airtable/types";
 import AppAlertDialog, { useAppAlertDialog } from "../ui/AppAlertDialog";
@@ -71,21 +71,6 @@ export default function DeliveryIssuesMap() {
     }, 500);
   }
 
-  // useEffect(() => {
-  //   if (!map) return;
-  //   map.setCenter(center);
-  // }, [center]);
-
-  // useEffect(() => {
-  //   if (!map) return;
-  //   map.setZoom(userZoom);
-  // }, [userZoom]);
-
-  // useEffect(() => {
-  //   if (!map) return;
-  //   // do something with the map instance
-  // }, [map]);
-
   function getDeliveryCompanyByName(name: string | undefined) {
     if (!name) return undefined;
     return deliveryCompanies.find((f) => f?.name?.toLowerCase() === name?.toLowerCase());
@@ -142,31 +127,31 @@ export default function DeliveryIssuesMap() {
         }
       }
 
-      if (apiData?.length === 1 && apiData[0].zipcode) {
-        console.log({ apiData });
-        const result01 = await GoogleMapService.getGeocodeAddressByZipcode(apiData[0].zipcode);
+      if (apiData?.length) {
+        const isOneZipcode = new Set(apiData.map((f) => f.zipcode.toString().toLowerCase())).size === 1;
 
-        const results02 = GoogleMapService.getFirtstLocation(result01);
-        console.log({ results02 });
+        if (isOneZipcode && apiData[0].zipcode) {
+          const result01 = await GoogleMapService.getGeocodeAddressByZipcode(apiData[0].zipcode);
 
-        if (results02) {
-          setUserZoom(zoomLevels.DEFAULT);
-          setCenter(results02);
-          restartMap();
-        }
+          const results02 = GoogleMapService.getFirtstLocation(result01);
 
-        // GoogleMapService.getGeocodeAddressByZipcode(params01.zipcode)
-        //   .then((res) => console.log(res))
-        //   .catch((e) => console.error(e));
-      } else if (params01.zipcode) {
-        const result01 = await GoogleMapService.getGeocodeAddressByZipcode(params01.zipcode);
+          if (results02) {
+            setUserZoom(zoomLevels.DEFAULT);
+            setCenter(results02);
+            restartMap();
+          }
+        } else if (params01.zipcode) {
+          const result01 = await GoogleMapService.getGeocodeAddressByZipcode(params01.zipcode);
 
-        const results02 = GoogleMapService.getFirtstLocation(result01);
+          const results02 = GoogleMapService.getFirtstLocation(result01);
 
-        if (results02) {
-          setUserZoom(zoomLevels.DEFAULT);
-          setCenter(results02);
-          restartMap();
+          if (results02) {
+            setUserZoom(zoomLevels.DEFAULT);
+            setCenter(results02);
+            restartMap();
+          }
+        } else {
+          centerToUsa();
         }
       } else {
         centerToUsa();
