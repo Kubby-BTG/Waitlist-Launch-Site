@@ -149,7 +149,9 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
                   muted
                   className={"pointer-events-none h-full object-cover"}
                 /> */}
-                <Video className={"size-44"} />
+
+                <img src={"/gifs/kube_on_red.gif"} alt="" className={"pointer-events-none h-full object-cover"} />
+                {/* <Video className={"size-44"} /> */}
               </div>
             </>
           ) : (
@@ -180,7 +182,8 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
                   muted
                   className={"pointer-events-none h-full object-cover"}
                 /> */}
-                <Video className={"size-44"} />
+                <img src={"/gifs/kube_on_green.gif"} alt="" className={"pointer-events-none h-full object-cover"} />
+                {/* <Video className={"size-44"} /> */}
               </div>
             </div>
           )}

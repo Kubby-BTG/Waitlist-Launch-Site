@@ -248,6 +248,12 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
           <source src="/animations/kube_on_pen.mp4" type="video/mp4" />
         </video> */}
 
+        <img
+          src={"/gifs/kube_on_pen_greenhair.gif"}
+          alt=""
+          className={"pointer-events-none absolute bottom-0 right-0 h-[140px] md:-bottom-1.5 md:hidden md:h-[204px]"}
+        />
+
         <div className="absolute inset-0 py-20">
           <img src="/decorations/scribble.svg" alt="" className="h-full object-cover" loading={"lazy"} decoding={"async"} />
         </div>
@@ -278,6 +284,12 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
           muted
           className={"pointer-events-none absolute bottom-0 right-0 h-[140px] max-md:hidden md:-bottom-1.5 md:h-[204px]"}
         /> */}
+
+        <img
+          src={"/gifs/kube_on_pen_whitehair.gif"}
+          alt=""
+          className={"pointer-events-none absolute bottom-0 right-0 h-[140px] max-md:hidden md:-bottom-1.5 md:h-[204px]"}
+        />
       </div>
     </section>
   );
