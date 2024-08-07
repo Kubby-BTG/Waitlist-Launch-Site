@@ -1,6 +1,8 @@
 import DeliveryIssuesMap from "@/components/map/delivery-issues-map";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
+import LoadGoogleMapProvider from "../../components/map/load-google-map";
+import LoadGoogleMapGeocoding from "../../components/map/load-googlemap-geocoding";
 
 /**
  * Props for `Map`.
@@ -19,7 +21,10 @@ const Map = ({ slice }: MapProps): JSX.Element => {
     >
       <div className="absolute inset-0 translate-y-1/2 bg-primary"></div>
       <div className="container relative max-md:px-0">
-        <DeliveryIssuesMap />
+        <LoadGoogleMapProvider>
+          <DeliveryIssuesMap />
+          <LoadGoogleMapGeocoding />
+        </LoadGoogleMapProvider>
       </div>
     </section>
   );
