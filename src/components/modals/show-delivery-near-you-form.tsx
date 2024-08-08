@@ -37,7 +37,7 @@ export default function ShowDeliveryNearYouForm({
         <form className={"flex w-full flex-col gap-4"}>
           <div className="flex w-full items-center gap-8">
             <h1 className={"flex w-full items-center gap-2 text-base font-bold"}>
-              <PinIcon className={"size-5"} /> Show delivery near you with
+              <PinIcon className={"size-5"} /> Show issues near you
             </h1>
             <DialogClose
               className={"flex size-8 flex-none items-center justify-center rounded-full bg-input-secondary text-black"}
