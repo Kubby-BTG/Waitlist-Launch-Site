@@ -158,32 +158,35 @@ export default function DeliveryIssuesMap() {
         }
       }
 
+      options01.count = apiData.length;
+
       if (apiData?.length) {
-        const isOneZipcode = new Set(apiData.map((f) => f.zipcode.toString().toLowerCase())).size === 1;
+        if (params01.zipcode && params01.zipcode === apiData[0].zipcode) {
+          const firstData = apiData[0];
 
-        if (isOneZipcode && apiData[0].zipcode) {
-          const result01 = await GoogleMapService.getGeocodeAddressByZipcode(apiData[0].zipcode);
+          if (firstData.zipcode_latitude && firstData.zipcode_longitude) {
+            const latLng = {
+              lat: firstData.zipcode_latitude,
+              lng: firstData.zipcode_longitude,
+            };
 
-          const results02 = GoogleMapService.getFirtstLocation(result01);
-
-          if (results02) {
             closeModals();
-            setCenter(results02);
-            drawCircle(results02);
+            setCenter(latLng);
+            drawCircle(latLng);
             await UtilService.waitUntilMilliseconds(2000);
             setZoom(zoomLevels.DEFAULT);
-          }
-        } else if (params01.zipcode) {
-          const result01 = await GoogleMapService.getGeocodeAddressByZipcode(params01.zipcode);
+          } else {
+            const result01 = (await GoogleMapService.getLocationInfoByZipcode(params01.zipcode))?.[0];
 
-          const results02 = GoogleMapService.getFirtstLocation(result01);
-
-          if (results02) {
-            closeModals();
-            setCenter(results02);
-            drawCircle(results02);
-            await UtilService.waitUntilMilliseconds(2000);
-            setZoom(zoomLevels.DEFAULT);
+            if (result01) {
+              closeModals();
+              setCenter(result01.locationCoordinates);
+              drawCircle(result01.locationCoordinates);
+              await UtilService.waitUntilMilliseconds(2000);
+              setZoom(zoomLevels.DEFAULT);
+            } else {
+              centerToUsa();
+            }
           }
         } else {
           centerToUsa();
@@ -258,7 +261,7 @@ export default function DeliveryIssuesMap() {
                       </svg>
                     </div>
                     <div className="text-sm">
-                      {deliveryIssue.count && <span className="font-bold"> {deliveryIssue.count} - </span>}
+                      {deliveryIssue.count !== null && <span className="font-bold"> {deliveryIssue.count} - </span>}
                       {deliveryIssue.issue && <span className="font-bold"> {deliveryIssue.issue}</span>}
                     </div>
                     {deliveryIssue.location && (

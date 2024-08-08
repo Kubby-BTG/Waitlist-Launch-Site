@@ -4,10 +4,15 @@ export interface IDeliveryIssue {
   //
   email: string;
   zipcode: string;
+  zipcode_latitude: number;
+  zipcode_longitude: number;
+  //
   issue: string;
   shipping_carrier: string;
   purchase_store_name: string;
   delivery_date: string;
+  state: string;
+  city: string;
 }
 
 export interface IWaitList {
