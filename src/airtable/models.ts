@@ -26,6 +26,8 @@ export function getWaitlistSchema() {
 export function getDeliveryIssueSchema() {
   const schema = z.object({
     id: z.string().optional(),
+    city: z.string().optional(),
+    state: z.string().optional(),
 
     email: z
       .string({
@@ -76,6 +78,9 @@ export function getDeliveryIssueSchema() {
       })
       .min(2, { message: "zipcode is required" })
       .trim(),
+
+    zipcode_latitude: z.number({ coerce: true }).optional(),
+    zipcode_longitude: z.number({ coerce: true }).optional(),
   });
   return schema;
 }
@@ -135,20 +140,20 @@ export function getPartnerSchema() {
       .min(2, { message: "zipcode is required" })
       .trim(),
 
-    city: z
-      .string({
-        required_error: "city is required",
-        invalid_type_error: "city must be a string",
-      })
-      .min(3, { message: "city is required" })
-      .trim(),
-
     company: z
       .string({
         required_error: "company is required",
         invalid_type_error: "company must be a string",
       })
       .min(3, { message: "company is required" })
+      .trim(),
+
+    city: z
+      .string({
+        required_error: "city is required",
+        invalid_type_error: "city must be a string",
+      })
+      .min(3, { message: "city is required" })
       .trim(),
 
     state: z

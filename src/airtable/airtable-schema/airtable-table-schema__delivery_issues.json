@@ -10,6 +10,22 @@
       "type": "singleLineText"
     },
     {
+      "name": "zipcode_latitude",
+      "type": "number"
+    },
+    {
+      "name": "zipcode_longitude",
+      "type": "number"
+    },
+    {
+      "name": "state",
+      "type": "singleLineText"
+    },
+    {
+      "name": "city",
+      "type": "singleLineText"
+    },
+    {
       "name": "issue",
       "type": "singleLineText"
     },

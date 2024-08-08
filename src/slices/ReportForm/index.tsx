@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectSeparator } from "@/components/ui/select";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import useAppFormPost from "../../hooks/useAppFormPost";
 import { IDeliveryIssue } from "../../airtable/types";
 import { ZodValidationHelper } from "../../utils/zod-validation-helper";
@@ -15,6 +15,8 @@ import { deliveryCompaniesWithLogo } from "../../utils/selection-data";
 import { deliveryIssues } from "@/utils/constants";
 import AppDatePicker from "@/components/ui/AppDatePicker";
 import AppAlertDialog, { useAppAlertDialog } from "../../components/ui/AppAlertDialog";
+import useAppDebounceValue from "../../hooks/useAppDebounceValue";
+import { GoogleMapService } from "../../utils/google-map-service";
 
 function FormRequiredTag() {
   return <span className="select-none pl-1 text-danger">*</span>;
@@ -25,23 +27,74 @@ function FormRequiredTag() {
  */
 export type ReportFormProps = SliceComponentProps<Content.ReportFormSlice>;
 
-const initialValue: Partial<IDeliveryIssue> = {
+type IDeliveryIssueExtra = IDeliveryIssue & { cities: string[] };
+
+const initialValue: Partial<IDeliveryIssueExtra> = {
   email: "",
   issue: "",
   purchase_store_name: "",
   shipping_carrier: "",
   zipcode: "",
   delivery_date: "",
+  zipcode_latitude: 0,
+  zipcode_longitude: 0,
+  city: "",
+  state: "",
+  cities: [],
 };
 
 const ReportFormBase = ({ slice }: { slice: ReportFormProps["slice"] }): JSX.Element => {
-  const [formData, setFormData] = useState<Partial<IDeliveryIssue>>({ ...initialValue });
+  const [formData, setFormData] = useState<Partial<IDeliveryIssueExtra>>({ ...initialValue });
   const { postData, isBusy } = useAppFormPost();
   const { alertOptions, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
 
-  // useEffect(() => {
-  //   console.log(formData);
-  // }, [formData]);
+  const zipcode01 = useAppDebounceValue({ delay: 1600, value: formData.zipcode });
+
+  useEffect(() => {
+    console.log({ zipcode01 });
+
+    if (zipcode01) {
+      getLocationByZipCode(zipcode01).catch((e) => {
+        console.error(e);
+      });
+    } else {
+      resetLocation();
+    }
+  }, [zipcode01]);
+
+  async function getLocationByZipCode(zipcode: string) {
+    const result01 = await GoogleMapService.getLocationInfoByZipcode(zipcode);
+    console.log({ result01 });
+    if (result01?.length) {
+      const data = result01[0];
+
+      setFormData((prev) => {
+        return {
+          ...prev,
+          city: data.city,
+          state: data.state,
+          zipcode_latitude: data.locationCoordinates.lat,
+          zipcode_longitude: data.locationCoordinates.lng,
+          cities: data.postcodeLocalities,
+        };
+      });
+    } else {
+      resetLocation();
+    }
+  }
+
+  function resetLocation() {
+    setFormData((prev) => {
+      return {
+        ...prev,
+        city: "",
+        state: "",
+        zipcode_latitude: 0,
+        zipcode_longitude: 0,
+        cities: [],
+      };
+    });
+  }
 
   async function handleSubmit() {
     try {
@@ -121,20 +174,63 @@ const ReportFormBase = ({ slice }: { slice: ReportFormProps["slice"] }): JSX.Ele
               placeholder={"Your email"}
             />
           </div>
+
           <div className={"flex w-full flex-col gap-1"}>
             <label htmlFor="zipcode" className={"text-sm text-black"}>
               Zipcode
               <FormRequiredTag />
             </label>
             <Input
-              type="text"
+              type="number"
               value={formData.zipcode}
               onChange={(e) => handleFormDataChange({ fieldName: "zipcode", val: e.target.value })}
               id={"zipcode"}
               required
               placeholder={"Your zipcode"}
+              onBlur={() => {
+                console.log({ onBlur: true });
+              }}
             />
           </div>
+
+          {formData.state && (
+            <div className={"flex w-full flex-col gap-1"}>
+              <label htmlFor="city" className={"text-sm text-black"}>
+                State
+              </label>
+              <Input
+                type="text"
+                readOnly
+                value={formData.state}
+                onChange={(e) => {}}
+                id={"state"}
+                required
+                placeholder={"State"}
+              />
+            </div>
+          )}
+
+          {formData.cities?.length ? (
+            <div className={"flex w-full flex-col gap-1"}>
+              <label htmlFor="city" className={"text-sm text-black"}>
+                City
+              </label>
+              <Select value={formData.city} onValueChange={(val) => handleFormDataChange({ fieldName: "city", val })}>
+                <SelectTrigger className="w-full" id={"city"}>
+                  <SelectValue placeholder="Select city..." />
+                </SelectTrigger>
+                <SelectContent>
+                  {formData.cities.map((city, i) => (
+                    <div key={`cities_0_${i}${city}`}>
+                      {i > 0 && <SelectSeparator />}
+                      <SelectItem value={city}>{city}</SelectItem>
+                    </div>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          ) : null}
+
           <div className={"flex w-full flex-col gap-1"}>
             <label htmlFor="delivery-issue" className={"text-sm text-black"}>
               Delivery Issue
@@ -154,6 +250,7 @@ const ReportFormBase = ({ slice }: { slice: ReportFormProps["slice"] }): JSX.Ele
               </SelectContent>
             </Select>
           </div>
+
           <div className={"flex w-full flex-col gap-1"}>
             <label htmlFor="shipping-carrier" className={"text-sm text-black"}>
               Shipping Carrier
@@ -178,6 +275,7 @@ const ReportFormBase = ({ slice }: { slice: ReportFormProps["slice"] }): JSX.Ele
               </SelectContent>
             </Select>
           </div>
+
           <div className={"flex w-full flex-col gap-1"}>
             <label htmlFor="purchase-store" className={"text-sm text-black"}>
               Purchase store
@@ -192,6 +290,7 @@ const ReportFormBase = ({ slice }: { slice: ReportFormProps["slice"] }): JSX.Ele
               placeholder={"Name of store"}
             />
           </div>
+
           <div className={"flex w-full flex-col gap-1"}>
             <label htmlFor="delivery-date" className={"text-sm text-black"}>
               Delivery Date
