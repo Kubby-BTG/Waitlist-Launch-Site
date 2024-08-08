@@ -5,21 +5,14 @@ import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 /**
  * Props for `TextWithImage`.
  */
-export type TextsWithAnimationsProps =
-  SliceComponentProps<Content.TextWithImageSlice>;
+export type TextsWithAnimationsProps = SliceComponentProps<Content.TextWithImageSlice>;
 
 /**
  * Component for "TextWithImage" Slices.
  */
-const TextsWithAnimations = ({
-  slice,
-}: TextsWithAnimationsProps): JSX.Element => {
+const TextsWithAnimations = ({ slice }: TextsWithAnimationsProps): JSX.Element => {
   return (
-    <section
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-      className={"bg-background"}
-    >
+    <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className={"bg-background"}>
       {/* Desktop */}
       <StickyScrollPointsSection slice={slice} />
 
@@ -34,40 +27,23 @@ const TextsWithAnimations = ({
            alt=""
         /> */}
             <div className="overflow-hidden md:col-span-4">
-              <video
-                autoPlay
-                muted
-                loop
-                className={"pointer-events-none scale-[1.02]"}
-                playsInline
-              >
-                <source
-                  src={"/animations/" + slice.primary.first_animation_file_name}
-                  type="video/mp4"
-                />
-              </video>
+              {/* <video autoPlay muted loop className={"pointer-events-none scale-[1.02]"} playsInline>
+                <source src={"/animations/" + slice.primary.first_animation_file_name} type="video/mp4" />
+              </video> */}
+              <img src="/gifs/shopping_ui.gif" alt="" className={""} loading={"lazy"} decoding={"async"} />
             </div>
             <div className="flex flex-col gap-4 md:col-span-3 md:col-start-6 md:justify-center">
               <PrismicRichText
                 field={slice.primary.first_heading}
                 components={{
-                  heading2: ({ children }) => (
-                    <h2 className="heading-3 text-primary">{children}</h2>
-                  ),
-                  strong: ({ children }) => (
-                    <strong className="text-brand">{children}</strong>
-                  ),
+                  heading2: ({ children }) => <h2 className="heading-3 text-primary">{children}</h2>,
+                  strong: ({ children }) => <strong className="text-brand">{children}</strong>,
                 }}
               />
               <PrismicRichText
                 field={slice.primary.first_body}
                 components={{
-                  paragraph: ({ children }) => (
-                    <p className={"body-3 text-primary opacity-70"}>
-                      {" "}
-                      {children}
-                    </p>
-                  ),
+                  paragraph: ({ children }) => <p className={"body-3 text-primary opacity-70"}> {children}</p>,
                 }}
               />
             </div>
@@ -81,40 +57,24 @@ const TextsWithAnimations = ({
            alt=""
         /> */}
             <div className="overflow-hidden md:col-span-4">
-              <video
-                autoPlay
-                muted
-                loop
-                className={"pointer-events-none scale-[1.02]"}
-                playsInline
-              >
-                <source
-                  src={"/animations/" + slice.primary.second_animation_file}
-                  type="video/mp4"
-                />
-              </video>
+              {/* <video autoPlay muted loop className={"pointer-events-none scale-[1.02]"} playsInline>
+                <source src={"/animations/" + slice.primary.second_animation_file} type="video/mp4" />
+              </video> */}
+
+              <img src="/gifs/kubby_chip.gif" alt="" className={""} loading={"lazy"} decoding={"async"} />
             </div>
             <div className="flex flex-col gap-4 md:col-span-3 md:col-start-6 md:justify-center">
               <PrismicRichText
                 field={slice.primary.second_heading}
                 components={{
-                  heading2: ({ children }) => (
-                    <h2 className="heading-3 text-primary">{children}</h2>
-                  ),
-                  strong: ({ children }) => (
-                    <strong className="text-brand">{children}</strong>
-                  ),
+                  heading2: ({ children }) => <h2 className="heading-3 text-primary">{children}</h2>,
+                  strong: ({ children }) => <strong className="text-brand">{children}</strong>,
                 }}
               />
               <PrismicRichText
                 field={slice.primary.second_body}
                 components={{
-                  paragraph: ({ children }) => (
-                    <p className={"body-3 text-primary opacity-70"}>
-                      {" "}
-                      {children}
-                    </p>
-                  ),
+                  paragraph: ({ children }) => <p className={"body-3 text-primary opacity-70"}> {children}</p>,
                 }}
               />
             </div>
