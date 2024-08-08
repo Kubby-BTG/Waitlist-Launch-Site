@@ -142,16 +142,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
 
               {/* Animation */}
               <div className={"hidden w-[17rem] flex-none md:flex md:items-end"}>
-                {/* <video
-                  src="/animations/kube-on-red.webm"
-                  autoPlay
-                  loop
-                  muted
-                  className={"pointer-events-none h-full object-cover"}
-                /> */}
-
                 <img src={"/gifs/kube_on_red.gif"} alt="" className={"pointer-events-none h-full object-cover"} />
-                {/* <Video className={"size-44"} /> */}
               </div>
             </>
           ) : (
@@ -175,15 +166,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
 
               {/* Animation */}
               <div className={"flex items-end max-md:row-start-1"}>
-                {/* <video
-                  src="/animations/kube-on-green.webm"
-                  autoPlay
-                  loop
-                  muted
-                  className={"pointer-events-none h-full object-cover"}
-                /> */}
                 <img src={"/gifs/kube_on_green.gif"} alt="" className={"pointer-events-none h-full object-cover"} />
-                {/* <Video className={"size-44"} /> */}
               </div>
             </div>
           )}
