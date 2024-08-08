@@ -2,19 +2,10 @@
 
 import { Content } from "@prismicio/client";
 import { PrismicRichText } from "@prismicio/react";
-import {
-  useScroll,
-  motion,
-  useMotionValueEvent,
-  AnimatePresence,
-} from "framer-motion";
+import { useScroll, motion, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 
-export default function StickyScrollPointsSection({
-  slice,
-}: {
-  slice: Content.TextWithImageSlice;
-}) {
+export default function StickyScrollPointsSection({ slice }: { slice: Content.TextWithImageSlice }) {
   const [isScrollEnd, setIsScrollEnd] = useState(false);
 
   const ref = useRef<HTMLDivElement>(null);
@@ -57,13 +48,22 @@ export default function StickyScrollPointsSection({
         /> */}
         <div className="md:col-span-6">
           <div className="sticky top-20 overflow-hidden">
-            <AnimatePresence>
+            <>
               {!isScrollEnd ? (
-                <motion.video
-                  src={"/animations/" + slice.primary.first_animation_file_name}
-                  autoPlay
-                  muted
-                  loop
+                // <motion.video
+                //   src={"/animations/" + slice.primary.first_animation_file_name}
+                //   autoPlay
+                //   muted
+                //   loop
+                //   initial={{ opacity: 0 }}
+                //   animate={{ opacity: 1 }}
+                //   exit={{ opacity: 0 }}
+                //   className={"scale-[1.02]"}
+                //   key={"sticky-vh-01-pg-001"}
+                // />
+
+                <motion.img
+                  src="/gifs/shopping_ui.gif"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
@@ -71,19 +71,29 @@ export default function StickyScrollPointsSection({
                   key={"sticky-vh-01-pg-001"}
                 />
               ) : (
-                <motion.video
-                  key={"ticky-vs-01-pg-002"}
-                  src={"/animations/" + slice.primary.second_animation_file}
-                  autoPlay
-                  muted
-                  loop
+                // /gifs/kubby_chip.gif
+                // <motion.video
+                //   key={"ticky-vs-01-pg-002"}
+                //   src={"/animations/" + slice.primary.second_animation_file}
+                //   autoPlay
+                //   muted
+                //   loop
+                //   initial={{ opacity: 0 }}
+                //   animate={{ opacity: 1 }}
+                //   exit={{ opacity: 0 }}
+                //   className={"scale-[1.02]"}
+                // />
+
+                <motion.img
+                  src="/gifs/kubby_chip.gif"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   className={"scale-[1.02]"}
+                  key={"ticky-vs-01-pg-002"}
                 />
               )}
-            </AnimatePresence>
+            </>
           </div>
         </div>
         <div className="flex w-full flex-col md:col-span-5 md:col-start-8 md:mb-96 md:gap-52">
@@ -97,20 +107,14 @@ export default function StickyScrollPointsSection({
             <PrismicRichText
               field={slice.primary.first_heading}
               components={{
-                heading2: ({ children }) => (
-                  <h2 className="heading-3 text-primary">{children}</h2>
-                ),
-                strong: ({ children }) => (
-                  <strong className="text-brand">{children}</strong>
-                ),
+                heading2: ({ children }) => <h2 className="heading-3 text-primary">{children}</h2>,
+                strong: ({ children }) => <strong className="text-brand">{children}</strong>,
               }}
             />
             <PrismicRichText
               field={slice.primary.first_body}
               components={{
-                paragraph: ({ children }) => (
-                  <p className={"body-3 text-primary opacity-70"}>{children}</p>
-                ),
+                paragraph: ({ children }) => <p className={"body-3 text-primary opacity-70"}>{children}</p>,
               }}
             />
           </motion.div>
@@ -124,20 +128,14 @@ export default function StickyScrollPointsSection({
             <PrismicRichText
               field={slice.primary.second_heading}
               components={{
-                heading2: ({ children }) => (
-                  <h2 className="heading-3 text-primary">{children}</h2>
-                ),
-                strong: ({ children }) => (
-                  <strong className="text-brand">{children}</strong>
-                ),
+                heading2: ({ children }) => <h2 className="heading-3 text-primary">{children}</h2>,
+                strong: ({ children }) => <strong className="text-brand">{children}</strong>,
               }}
             />
             <PrismicRichText
               field={slice.primary.second_body}
               components={{
-                paragraph: ({ children }) => (
-                  <p className={"body-3 text-primary opacity-70"}>{children}</p>
-                ),
+                paragraph: ({ children }) => <p className={"body-3 text-primary opacity-70"}>{children}</p>,
               }}
             />
           </motion.div>
