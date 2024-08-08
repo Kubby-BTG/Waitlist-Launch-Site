@@ -2,12 +2,27 @@
 
 import { useState } from "react";
 import { Calendar as CalendarIcon } from "lucide-react";
-import { format } from "date-fns";
+import { format, formatISO, parseISO } from "date-fns";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import Calendar from "./Calendar";
+
+const monthsObj: Record<string, string> = {
+  "01": "January",
+  "02": "February",
+  "03": "March",
+  "04": "April",
+  "05": "May",
+  "06": "June",
+  "07": "July",
+  "08": "August",
+  "09": "September",
+  "10": "October",
+  "11": "November",
+  "12": "December",
+};
 
 export default function AppDatePicker({
   date,
@@ -19,6 +34,42 @@ export default function AppDatePicker({
   handleDateChange: (date: string) => void;
 }) {
   const [open, setOpen] = useState(false);
+
+  function handleDateChangeConvertToFormat(date: Date | undefined) {
+    if (date) {
+      const datePart = formatISO(date, { representation: "date" });
+      handleDateChange(datePart);
+    } else {
+      handleDateChange("");
+    }
+    setOpen(false);
+  }
+
+  function parseDateView(date: string | undefined) {
+    if (date && typeof date === "string") {
+      const [yyyy, mm, dd] = date?.split("T")[0]?.split("-");
+      return `${dd} ${monthsObj[mm]}, ${yyyy}`;
+    }
+    return "";
+  }
+
+  function handleDateChangeConvertToFormat__(date: Date | undefined) {
+    if (date) {
+      const dt = new Date(date);
+      const datePart = [
+        dt.getFullYear().toString().padStart(4, "0"),
+        (dt.getMonth() + 1).toString().padStart(2, "0"),
+        dt.getDate().toString().padStart(2, "0"),
+        //
+      ].join("-");
+      // handleDateChange(d ? format(d, "yyyy-MM-dd") : "");
+      handleDateChange(datePart);
+    } else {
+      handleDateChange("");
+    }
+    setOpen(false);
+  }
+
   return (
     <Popover open={open} onOpenChange={() => setOpen((p) => !p)}>
       <PopoverTrigger asChild>
@@ -35,18 +86,15 @@ export default function AppDatePicker({
           ])}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {date ? format(date, "yyyy-MM-dd") : <span>{placeholder || "Pick a date"}</span>}
+          {date ? parseDateView(date) : <span>{placeholder || "Pick a date"}</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto bg-white p-0" align="start">
         <Calendar
           mode="single"
-          selected={date ? new Date(date) : new Date()}
-          onSelect={(d) => {
-            handleDateChange(d ? format(d, "yyyy-MM-dd") : "");
-            setOpen(false);
-          }}
-          initialFocus={true}
+          selected={date ? parseISO(date) : new Date()}
+          onSelect={(d) => handleDateChangeConvertToFormat(d)}
+          initialFocus={false}
         />
       </PopoverContent>
     </Popover>
