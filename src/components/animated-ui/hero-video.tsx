@@ -18,15 +18,8 @@ export default function HeroVideo() {
 
   return (
     <div className={"relative"}>
-      <video
-        ref={videoRef}
-        muted
-        loop
-        autoPlay
-        playsInline
-        className={"pointer-events-none"}
-      >
-        <source src="/animations/waitlist.mp4" type="video/mp4" />
+      <video ref={videoRef} muted loop autoPlay playsInline className={"pointer-events-none"}>
+        <source src="/animations/waitlist.webm" type="video/mp4" />
       </video>
       <button
         className={
@@ -41,13 +34,7 @@ export default function HeroVideo() {
 }
 
 const PauseIcon = () => (
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 20 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       fillRule="evenodd"
       clipRule="evenodd"
@@ -64,13 +51,7 @@ const PauseIcon = () => (
 );
 
 const PlayIcon = () => (
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 20 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
       fillRule="evenodd"
       clipRule="evenodd"
