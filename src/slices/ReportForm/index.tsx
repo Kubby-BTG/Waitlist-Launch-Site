@@ -17,6 +17,7 @@ import AppDatePicker from "@/components/ui/AppDatePicker";
 import AppAlertDialog, { useAppAlertDialog } from "../../components/ui/AppAlertDialog";
 import useAppDebounceValue from "../../hooks/useAppDebounceValue";
 import { GoogleMapService } from "../../utils/google-map-service";
+import { cn } from "../../lib/utils";
 
 function FormRequiredTag() {
   return <span className="select-none pl-1 text-danger">*</span>;
@@ -331,21 +332,13 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
       className={"relative bg-background pt-12 md:py-32"}
     >
       <div
-        className={
-          "relative mx-auto w-full max-w-[44rem] bg-primary px-8 pb-[8.5rem] pt-[4.5rem] md:overflow-visible md:rounded-3xl md:pb-[14rem] md:pt-20"
-        }
+        className={cn([
+          "relative mx-auto w-full max-w-[44rem] bg-primary",
+          "px-8 pb-[8.5rem] pt-[4.5rem]",
+          "md:overflow-visible md:rounded-3xl md:pb-[14rem] md:pt-20",
+        ])}
       >
         {/* Decorations */}
-
-        {/* <video
-          autoPlay
-          loop
-          muted
-          className={"pointer-events-none absolute bottom-0 right-0 h-[140px] md:-bottom-1.5 md:hidden md:h-[204px]"}
-          playsInline
-        >
-          <source src="/animations/kube_on_pen.mp4" type="video/mp4" />
-        </video> */}
 
         <img
           src={"/gifs/kube_on_pen_greenhair.gif"}
@@ -369,25 +362,22 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
           <img src="/decorations/ku-sticker.svg" alt="" className={""} loading={"lazy"} decoding={"async"} />
         </div>
 
-        <div className="absolute -right-24 bottom-1/2 block hidden -translate-y-40 md:block">
+        <div className="absolute -right-24 bottom-1/2 hidden -translate-y-40 md:block">
           <img src="/decorations/star.svg" alt="" className={""} loading={"lazy"} decoding={"async"} />
         </div>
 
         {/* Content */}
         <ReportFormBase slice={slice} />
 
-        {/* <video
-          src="/animations/kube-on-pen.webm"
-          loop
-          autoPlay
-          muted
-          className={"pointer-events-none absolute bottom-0 right-0 h-[140px] max-md:hidden md:-bottom-1.5 md:h-[204px]"}
-        /> */}
-
         <img
           src={"/gifs/kube_on_pen_whitehair.gif"}
           alt=""
-          className={"pointer-events-none absolute bottom-0 right-0 h-[140px] max-md:hidden md:-bottom-1.5 md:h-[204px]"}
+          className={cn([
+            //
+            "pointer-events-none absolute",
+            "bottom-1 right-5 h-[140px]",
+            "max-md:hidden md:bottom-2 md:h-[204px]",
+          ])}
         />
       </div>
     </section>
