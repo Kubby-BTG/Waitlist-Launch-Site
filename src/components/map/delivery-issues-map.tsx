@@ -41,6 +41,9 @@ const centerPoints = {
 
 const CURRENT_GOOGLE_MAP_ID = "19cefe5f097a79a6_tn";
 const CURRENT_GOOGLE_MAP_ID_MIAN = "a615f09cefe7997a_main";
+const BOUNDARY_ID = "BOUNDARY_ID_9925";
+
+const currentBoundary: Record<string, google.maps.Circle | null | undefined> = {};
 
 export default function DeliveryIssuesMap() {
   const [isShowFilterForm, setIsShowFilterForm] = useState(false);
@@ -88,18 +91,26 @@ export default function DeliveryIssuesMap() {
 
   function drawCircle(latLng: { lat: number; lng: number }) {
     if (!map) return;
-    const circle = new google.maps.Circle({
-      strokeColor: "#008359",
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      //
-      fillColor: "#38DAA6",
-      fillOpacity: 0.35,
-      //
-      center: latLng,
-      radius: 3000,
-    });
-    circle.setMap(map);
+
+    if (currentBoundary[BOUNDARY_ID]) {
+      currentBoundary[BOUNDARY_ID]?.setMap(null);
+      currentBoundary[BOUNDARY_ID] = null;
+    }
+
+    setTimeout(() => {
+      currentBoundary[BOUNDARY_ID] = new google.maps.Circle({
+        strokeColor: "#008359",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        //
+        fillColor: "#38DAA6",
+        fillOpacity: 0.35,
+        //
+        center: latLng,
+        radius: 3000,
+      });
+      currentBoundary[BOUNDARY_ID].setMap(map);
+    }, 500);
   }
 
   function closeModals() {
