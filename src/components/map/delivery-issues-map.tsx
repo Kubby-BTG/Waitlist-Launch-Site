@@ -212,7 +212,6 @@ export default function DeliveryIssuesMap() {
 
       openAlertDialog.info({
         title: `${apiData.length} issue(s) found`,
-        description: `${apiData.length} issue(s) found description to SHow stuff`,
       });
     } catch (error) {
       openAlertDialog.error({ title: "Could not filter. Error occured" });
