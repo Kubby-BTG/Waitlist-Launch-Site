@@ -1,6 +1,7 @@
 import StickyScrollPointsSection from "@/components/animated-ui/sticky-scroll-points-section";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import { cn } from "../../lib/utils";
 
 /**
  * Props for `TextWithImage`.
@@ -26,18 +27,29 @@ const TextsWithAnimations = ({ slice }: TextsWithAnimationsProps): JSX.Element =
           className={"md:col-span-4"}
            alt=""
         /> */}
-            <div className="overflow-hidden md:col-span-4">
+            <div className="m-0 overflow-hidden bg-transparent p-0 md:col-span-4">
               {/* <video autoPlay muted loop className={"pointer-events-none scale-[1.02]"} playsInline>
                 <source src={"/animations/" + slice.primary.first_animation_file_name} type="video/mp4" />
               </video> */}
-              <img src="/gifs/shopping_ui.gif" alt="" className={""} loading={"lazy"} decoding={"async"} />
+              <div className="inline-block h-auto w-auto">
+                <img
+                  src="/gifs/shopping_ui.gif"
+                  alt=""
+                  className={cn([
+                    // "scale-[1.02]",
+                    "pointer-events-none m-[-2px] border-none object-cover p-0 outline-none",
+                  ])}
+                  loading={"lazy"}
+                  decoding={"async"}
+                />
+              </div>
             </div>
             <div className="flex flex-col gap-4 md:col-span-3 md:col-start-6 md:justify-center">
               <PrismicRichText
                 field={slice.primary.first_heading}
                 components={{
                   heading2: ({ children }) => <h2 className="heading-3 text-primary">{children}</h2>,
-                  strong: ({ children }) => <strong className="text-brand">{children}</strong>,
+                  strong: ({ children }) => <strong className="text-brand-500">{children}</strong>,
                 }}
               />
               <PrismicRichText
@@ -56,19 +68,28 @@ const TextsWithAnimations = ({ slice }: TextsWithAnimationsProps): JSX.Element =
           className={"md:col-span-4"}
            alt=""
         /> */}
-            <div className="overflow-hidden md:col-span-4">
+            <div className="overflow-hidden p-0 md:col-span-4">
               {/* <video autoPlay muted loop className={"pointer-events-none scale-[1.02]"} playsInline>
                 <source src={"/animations/" + slice.primary.second_animation_file} type="video/mp4" />
               </video> */}
 
-              <img src="/gifs/kubby_chip.gif" alt="" className={""} loading={"lazy"} decoding={"async"} />
+              <img
+                src="/gifs/kubby_chip.gif"
+                alt=""
+                className={cn([
+                  // "scale-[1.02]",
+                  "pointer-events-none m-[-2px] border-none object-cover p-0 outline-none",
+                ])}
+                loading={"lazy"}
+                decoding={"async"}
+              />
             </div>
             <div className="flex flex-col gap-4 md:col-span-3 md:col-start-6 md:justify-center">
               <PrismicRichText
                 field={slice.primary.second_heading}
                 components={{
                   heading2: ({ children }) => <h2 className="heading-3 text-primary">{children}</h2>,
-                  strong: ({ children }) => <strong className="text-brand">{children}</strong>,
+                  strong: ({ children }) => <strong className="text-brand-500">{children}</strong>,
                 }}
               />
               <PrismicRichText

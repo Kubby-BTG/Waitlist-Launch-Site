@@ -35,6 +35,9 @@ export default function AppDatePicker({
 }) {
   const [open, setOpen] = useState(false);
 
+  const date01 = date ? parseISO(date) : undefined;
+  const dateDisplay01 = date ? parseDateView(date) : undefined;
+
   function handleDateChangeConvertToFormat(date: Date | undefined) {
     if (date) {
       const datePart = formatISO(date, { representation: "date" });
@@ -48,7 +51,7 @@ export default function AppDatePicker({
   function parseDateView(date: string | undefined) {
     if (date && typeof date === "string") {
       const [yyyy, mm, dd] = date?.split("T")[0]?.split("-");
-      return `${dd} ${monthsObj[mm]}, ${yyyy}`;
+      return `${monthsObj[mm]}-${dd}-${yyyy}`;
     }
     return "";
   }
@@ -86,15 +89,17 @@ export default function AppDatePicker({
           ])}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {date ? parseDateView(date) : <span>{placeholder || "Pick a date"}</span>}
+          {dateDisplay01 || placeholder || "Pick a date"}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto bg-white p-0" align="start">
         <Calendar
           mode="single"
-          selected={date ? parseISO(date) : new Date()}
+          defaultMonth={date01}
+          selected={date01}
           onSelect={(d) => handleDateChangeConvertToFormat(d)}
-          initialFocus={false}
+          initialFocus={true}
+          today={date01}
         />
       </PopoverContent>
     </Popover>

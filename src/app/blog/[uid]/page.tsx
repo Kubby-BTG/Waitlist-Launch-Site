@@ -79,7 +79,7 @@ export default async function Page({ params }: { params: Params }) {
               "font-display text-[2.625rem] uppercase leading-[3rem] text-primary-darker"
             }
           >
-            More <span className={"text-brand"}>Stories</span>
+            More <span className={"text-brand-500"}>Stories</span>
           </p>
           <CuratedPosts className={"md:grid-cols-2 lg:grid-cols-1"} />
         </div> */}
