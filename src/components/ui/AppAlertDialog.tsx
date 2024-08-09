@@ -151,7 +151,7 @@ export default function AppAlertDialog({
   const { title, description } = config;
 
   return (
-    <AppModalDialog isOpen={open}>
+    <AppModalDialog isOpen={open} className="max-w-[500px]">
       <AppModalDialog.Content>
         {/*  */}
         <AppModalDialog.Header>
