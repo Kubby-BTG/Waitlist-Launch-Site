@@ -147,6 +147,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
             </>
           ) : (
             <div className={"grid gap-8 md:grid-cols-2"}>
+              {/* "flex flex-col justify-start gap-2 max-md:row-start-2 md:pb-8" */}
               <div className="flex flex-col justify-start gap-2 max-md:row-start-2 md:pb-8">
                 <h1 className={"w-full font-display text-[3.25rem] uppercase leading-[3.5rem] text-primary max-md:text-center"}>
                   You&apos;re In
@@ -165,6 +166,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
               </div>
 
               {/* Animation */}
+              {/* "flex items-end max-md:row-start-1" */}
               <div className={"flex items-end max-md:row-start-1"}>
                 <img src={"/gifs/kube_on_green.gif"} alt="" className={"pointer-events-none h-full object-cover"} />
               </div>

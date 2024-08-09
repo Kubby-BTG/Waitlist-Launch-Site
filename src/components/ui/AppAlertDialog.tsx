@@ -32,9 +32,10 @@ const AlertDialogContent = forwardRef<
     <AlertDialogPrimitive.Content
       ref={ref}
       className={cn([
-        "border-slate-200 shadow-lg dark:border-slate-800 dark:bg-slate-950 fixed left-[50%] top-[50%]",
-        "z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-white p-6",
+        "border-brand-200 shadow-lg dark:border-brand-800 dark:bg-brand-950 fixed left-[50%] top-[50%]",
+        "z-50 grid max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-white p-6",
         "duration-200",
+        "w-[calc(100%-15px)] md:ml-0 md:mr-0 md:w-full",
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95",
         "data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2",
@@ -72,7 +73,7 @@ const AlertDialogDescription = forwardRef<
 >(({ className, ...props }, ref) => (
   <AlertDialogPrimitive.Description
     ref={ref}
-    className={cn(["text-slate-500 dark:text-slate-400 text-sm", className])}
+    className={cn(["text-brand-500 dark:text-brand-400 text-sm", className])}
     {...props}
   />
 ));

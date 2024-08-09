@@ -62,7 +62,7 @@ const PostContent = ({ slice }: PostContentProps): JSX.Element => {
 
           listItem: ({ children }) => (
             <li className="flex items-center gap-4 text-lg">
-              <KubbyLogo iconOnly className={"size-3 text-brand"} /> {children}
+              <KubbyLogo iconOnly className={"size-3 text-brand-500"} /> {children}
             </li>
           ),
 

@@ -4,6 +4,7 @@ import { Content } from "@prismicio/client";
 import { PrismicRichText } from "@prismicio/react";
 import { useScroll, motion, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
+import { cn } from "../../lib/utils";
 
 export default function StickyScrollPointsSection({ slice }: { slice: Content.TextWithImageSlice }) {
   const [isScrollEnd, setIsScrollEnd] = useState(false);
@@ -47,51 +48,60 @@ export default function StickyScrollPointsSection({ slice }: { slice: Content.Te
            alt=""
         /> */}
         <div className="md:col-span-6">
-          <div className="sticky top-20 overflow-hidden">
+          <div className="sticky top-20 overflow-hidden border-none">
             <>
               {!isScrollEnd ? (
-                // <motion.video
-                //   src={"/animations/" + slice.primary.first_animation_file_name}
-                //   autoPlay
-                //   muted
-                //   loop
-                //   initial={{ opacity: 0 }}
-                //   animate={{ opacity: 1 }}
-                //   exit={{ opacity: 0 }}
-                //   className={"scale-[1.02]"}
-                //   key={"sticky-vh-01-pg-001"}
-                // />
-
-                <motion.img
-                  src="/gifs/shopping_ui.gif"
+                <>
+                  {/* <motion.video
+                  src={"/animations/" + slice.primary.first_animation_file_name}
+                  autoPlay
+                  muted
+                  loop
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   className={"scale-[1.02]"}
                   key={"sticky-vh-01-pg-001"}
-                />
-              ) : (
-                // /gifs/kubby_chip.gif
-                // <motion.video
-                //   key={"ticky-vs-01-pg-002"}
-                //   src={"/animations/" + slice.primary.second_animation_file}
-                //   autoPlay
-                //   muted
-                //   loop
-                //   initial={{ opacity: 0 }}
-                //   animate={{ opacity: 1 }}
-                //   exit={{ opacity: 0 }}
-                //   className={"scale-[1.02]"}
-                // />
+                /> */}
 
-                <motion.img
-                  src="/gifs/kubby_chip.gif"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className={"scale-[1.02]"}
-                  key={"ticky-vs-01-pg-002"}
-                />
+                  <motion.img
+                    src="/gifs/shopping_ui.gif"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className={cn([
+                      // "scale-[1.02]",
+                      "pointer-events-none m-[-5px] border-none object-cover outline-none",
+                    ])}
+                    key={"sticky-vh-01-pg-001"}
+                  />
+                </>
+              ) : (
+                <>
+                  {/* <motion.video
+                    key={"ticky-vs-01-pg-002"}
+                    src={"/animations/" + slice.primary.second_animation_file}
+                    autoPlay
+                    muted
+                    loop
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className={"scale-[1.02]"}
+                  /> */}
+
+                  <motion.img
+                    src="/gifs/kubby_chip.gif"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className={cn([
+                      // "scale-[1.02]",
+                      "pointer-events-none m-[-5px] border-none object-cover outline-none",
+                    ])}
+                    key={"ticky-vs-01-pg-002"}
+                  />
+                </>
               )}
             </>
           </div>
@@ -108,7 +118,7 @@ export default function StickyScrollPointsSection({ slice }: { slice: Content.Te
               field={slice.primary.first_heading}
               components={{
                 heading2: ({ children }) => <h2 className="heading-3 text-primary">{children}</h2>,
-                strong: ({ children }) => <strong className="text-brand">{children}</strong>,
+                strong: ({ children }) => <strong className="text-brand-500">{children}</strong>,
               }}
             />
             <PrismicRichText
@@ -129,7 +139,7 @@ export default function StickyScrollPointsSection({ slice }: { slice: Content.Te
               field={slice.primary.second_heading}
               components={{
                 heading2: ({ children }) => <h2 className="heading-3 text-primary">{children}</h2>,
-                strong: ({ children }) => <strong className="text-brand">{children}</strong>,
+                strong: ({ children }) => <strong className="text-brand-500">{children}</strong>,
               }}
             />
             <PrismicRichText

@@ -29,7 +29,7 @@ const BlogCollections = ({ slice }: BlogCollectionsProps): JSX.Element => {
               </h2>
             ),
             strong: ({ children }) => (
-              <strong className="text-brand">{children}</strong>
+              <strong className="text-brand-500">{children}</strong>
             ),
           }}
         />

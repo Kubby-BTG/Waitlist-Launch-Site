@@ -8,21 +8,14 @@ import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 /**
  * Props for `FilteredBlogCollections`.
  */
-export type FilteredBlogCollectionsProps =
-  SliceComponentProps<Content.FilteredBlogCollectionsSlice>;
+export type FilteredBlogCollectionsProps = SliceComponentProps<Content.FilteredBlogCollectionsSlice>;
 
 /**
  * Component for "FilteredBlogCollections" Slices.
  */
-const FilteredBlogCollections = ({
-  slice,
-}: FilteredBlogCollectionsProps): JSX.Element => {
+const FilteredBlogCollections = ({ slice }: FilteredBlogCollectionsProps): JSX.Element => {
   return (
-    <section
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-      className={"bg-background py-16"}
-    >
+    <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className={"bg-background py-16"}>
       <div className="container flex flex-col gap-10">
         <PrismicRichText
           field={slice.primary.heading}
@@ -32,9 +25,7 @@ const FilteredBlogCollections = ({
                 <DoubleSlideUpText>{children}</DoubleSlideUpText>
               </h2>
             ),
-            strong: ({ children }) => (
-              <strong className="text-brand">{children}</strong>
-            ),
+            strong: ({ children }) => <strong className="text-brand-500">{children}</strong>,
           }}
         />
 
