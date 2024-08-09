@@ -5,6 +5,7 @@ import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
 
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
+import MountModalPortal from "../helpers/MountModalPortal";
 
 const AlertDialogOverlay = forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Overlay>,
@@ -32,10 +33,10 @@ const AlertDialogContent = forwardRef<
     <AlertDialogPrimitive.Content
       ref={ref}
       className={cn([
-        "border-brand-200 shadow-lg dark:border-brand-800 dark:bg-brand-950 fixed left-[50%] top-[50%]",
-        "z-50 grid max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-white p-6",
+        "shadow-lg fixed left-[50%] top-[50%] border-brand-200 dark:border-brand-800 dark:bg-brand-950",
+        "z-50 grid translate-x-[-50%] translate-y-[-50%] gap-4 border bg-white p-6",
         "duration-200",
-        "w-[calc(100%-15px)] md:ml-0 md:mr-0 md:w-full",
+        "w-[calc(100%-15px)] max-w-lg md:ml-0 md:mr-0 md:w-full",
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95",
         "data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2",
@@ -73,7 +74,7 @@ const AlertDialogDescription = forwardRef<
 >(({ className, ...props }, ref) => (
   <AlertDialogPrimitive.Description
     ref={ref}
-    className={cn(["text-brand-500 dark:text-brand-400 text-sm", className])}
+    className={cn(["text-sm text-brand-500 dark:text-brand-400", className])}
     {...props}
   />
 ));
@@ -121,24 +122,26 @@ export default function AppAlertDialog({
   const { title, description } = config;
 
   return (
-    <AlertDialogPrimitive.Root open={open}>
-      <AlertDialogContent>
-        {/*  */}
-        <AlertDialogHeader>
-          <AlertDialogTitle>{title}</AlertDialogTitle>
-          {description ? <AlertDialogDescription>{description}</AlertDialogDescription> : null}
-        </AlertDialogHeader>
+    <MountModalPortal>
+      <AlertDialogPrimitive.Root open={open}>
+        <AlertDialogContent>
+          {/*  */}
+          <AlertDialogHeader>
+            <AlertDialogTitle>{title}</AlertDialogTitle>
+            {description ? <AlertDialogDescription>{description}</AlertDialogDescription> : null}
+          </AlertDialogHeader>
 
-        {typeof handleCancel === "function" && (
-          <AlertDialogFooter>
-            {/* <AlertDialogCancel onClick={() => handleCancel()}>Okay</AlertDialogCancel> */}
-            <AlertDialogAction onClick={() => handleCancel()}>Okay</AlertDialogAction>
-          </AlertDialogFooter>
-        )}
+          {typeof handleCancel === "function" && (
+            <AlertDialogFooter>
+              {/* <AlertDialogCancel onClick={() => handleCancel()}>Okay</AlertDialogCancel> */}
+              <AlertDialogAction onClick={() => handleCancel()}>Okay</AlertDialogAction>
+            </AlertDialogFooter>
+          )}
 
-        {/*  */}
-      </AlertDialogContent>
-    </AlertDialogPrimitive.Root>
+          {/*  */}
+        </AlertDialogContent>
+      </AlertDialogPrimitive.Root>
+    </MountModalPortal>
   );
 }
 
