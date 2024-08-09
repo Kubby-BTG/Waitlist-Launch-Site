@@ -210,7 +210,10 @@ export default function DeliveryIssuesMap() {
 
       closeModals();
 
-      openAlertDialog.info({ title: `${apiData.length} issue(s) found` });
+      openAlertDialog.info({
+        title: `${apiData.length} issue(s) found`,
+        description: `${apiData.length} issue(s) found description to SHow stuff`,
+      });
     } catch (error) {
       openAlertDialog.error({ title: "Could not filter. Error occured" });
     }
