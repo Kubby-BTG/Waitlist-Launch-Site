@@ -99,7 +99,6 @@ export default function AppDatePicker({
           selected={date01}
           onSelect={(d) => handleDateChangeConvertToFormat(d)}
           initialFocus={true}
-          today={date01}
         />
       </PopoverContent>
     </Popover>
