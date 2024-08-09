@@ -58,6 +58,10 @@ AppModalDialog.HeaderTitle = ({ className, children }: IPropChild) => {
   return <div className={cn(["text-lg font-semibold leading-none tracking-tight", className])}>{children}</div>;
 };
 
+AppModalDialog.HeaderSubTitle = ({ className, children }: IPropChild) => {
+  return <div className={cn(["text-sm leading-none tracking-tight", className])}>{children}</div>;
+};
+
 AppModalDialog.CloseButton = ({ className, handleClick }: { className?: string; handleClick: () => void }) => {
   return (
     <button
