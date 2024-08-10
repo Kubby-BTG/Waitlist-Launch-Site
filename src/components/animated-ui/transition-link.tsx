@@ -14,19 +14,11 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export const TransitionLink: React.FC<TransitionLinkProps> = ({
-  children,
-  href,
-  onClick,
-  className,
-  ...props
-}) => {
+export const TransitionLink: React.FC<TransitionLinkProps> = ({ children, href, onClick, className, ...props }) => {
   const router = useRouter();
   const { show, hide } = useExitAnimation();
 
-  const handleTransition = async (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
-  ) => {
+  const handleTransition = async (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
     // const body = document.querySelector("body");
 
@@ -48,7 +40,10 @@ export const TransitionLink: React.FC<TransitionLinkProps> = ({
     <Link
       {...props}
       href={href}
-      onClick={handleTransition}
+      onClick={() => {
+        // TODO Animation
+        console.log({ Link: href });
+      }}
       className={className}
     >
       {children}
