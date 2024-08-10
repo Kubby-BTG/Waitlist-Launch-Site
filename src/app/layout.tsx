@@ -37,14 +37,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={"scroll-smooth"}>
+    <html lang="en" className={"scroll-smooth0"}>
       <body className={cn(DMSans.variable, TTBluescreens.variable, "font-sans")}>
-        <AnimatedLayout>
-          <Header />
-          {children}
-          <Footer />
-          <ExitAnimationWrapper />
-        </AnimatedLayout>
+        {/* <AnimatedLayout> */}
+        <Header />
+        {children}
+        <Footer />
+        {/* <ExitAnimationWrapper /> */}
+        {/* </AnimatedLayout> */}
       </body>
     </html>
   );
