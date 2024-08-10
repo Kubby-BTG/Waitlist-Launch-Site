@@ -49,100 +49,35 @@ export default function StickyScrollPointsSection({ slice }: { slice: Content.Te
         /> */}
         <div className="md:col-span-6">
           <div className="sticky top-20 overflow-hidden border-none">
-            <>
-              {!isScrollEnd ? (
-                <>
-                  {/* <motion.video
-                    src={"/animations/" + slice.primary.first_animation_file_name}
-                    autoPlay={true}
-                    muted={true}
-                    loop={true}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className={"scale-[1.02]"}
-                    key={"sticky-vh-01-pg-001"}
-                  /> */}
-
-                  <motion.video
-                    autoPlay={true}
-                    muted={true}
-                    loop={true}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className={"scale-[1.02]"}
-                    key={"sticky-vh-01-pg-001"}
-                  >
-                    <motion.source src="/animations/shopping_ui.webm" type="video/webm" />
-                    <motion.source src="/animations/shopping_ui.mp4" type="video/mp4" />
-                  </motion.video>
-
-                  {/* <video muted={true} loop={true} autoPlay={true} playsInline={true} className={"pointer-events-none"}>
-                    <source src="/animations/shopping_ui.webm" type="video/webm" />
-                    <source src="/animations/shopping_ui.mp4" type="video/mp4" />
-                  </video> */}
-
-                  {/*
-                  <motion.img
-                    src="/gifs/shopping_ui.gif"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className={cn([
-                      // "scale-[1.02]",
-                      "pointer-events-none m-[-5px] border-none object-cover outline-none",
-                    ])}
-                    key={"sticky-vh-01-pg-001"}
-                  /> */}
-                </>
-              ) : (
-                <>
-                  {/* <motion.video
-                    key={"ticky-vs-01-pg-002"}
-                    src={"/animations/" + slice.primary.second_animation_file}
-                    autoPlay
-                    muted
-                    loop
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className={"scale-[1.02]"}
-                  /> */}
-
-                  <motion.video
-                    key={"ticky-vs-01-pg-002"}
-                    autoPlay={true}
-                    muted={true}
-                    loop={true}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className={"scale-[1.02]"}
-                  >
-                    <motion.source src="/animations/chip_cube.webm" type="video/webm" />
-                    <motion.source src="/animations/chip_cube.mp4" type="video/mp4" />
-                  </motion.video>
-
-                  {/* <video muted={true} loop={true} autoPlay={true} playsInline={true} className={"pointer-events-none"}>
-                    <source src="/animations/chip_cube.webm" type="video/webm" />
-                    <source src="/animations/chip_cube.mp4" type="video/mp4" />
-                  </video> */}
-
-                  {/* <motion.img
-                    src="/gifs/kubby_chip.gif"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className={cn([
-                      // "scale-[1.02]",
-                      "pointer-events-none m-[-5px] border-none object-cover outline-none",
-                    ])}
-                    key={"ticky-vs-01-pg-002"}
-                  /> */}
-                </>
-              )}
-            </>
+            {!isScrollEnd ? (
+              <motion.video
+                autoPlay={true}
+                muted={true}
+                loop={true}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className={"scale-[1.02]"}
+                key={"sticky-vh-01-pg-001"}
+              >
+                <motion.source src="/animations/shopping_ui.webm" type="video/webm" />
+                <motion.source src="/animations/shopping_ui.mp4" type="video/mp4" />
+              </motion.video>
+            ) : (
+              <motion.video
+                key={"ticky-vs-01-pg-002"}
+                autoPlay={true}
+                muted={true}
+                loop={true}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className={"scale-[1.02]"}
+              >
+                <motion.source src="/animations/chip_cube.webm" type="video/webm" />
+                <motion.source src="/animations/chip_cube.mp4" type="video/mp4" />
+              </motion.video>
+            )}
           </div>
         </div>
         <div className="flex w-full flex-col md:col-span-5 md:col-start-8 md:mb-96 md:gap-52">
