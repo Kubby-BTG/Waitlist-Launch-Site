@@ -5,9 +5,13 @@ import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import PageWrapper from "@/components/animated-ui/page-wrapper";
 
+export const revalidate = 3;
+
 export default async function Page() {
   const client = createClient();
   const page = await client.getSingle("blog_feed");
+
+  // console.log({ page });
 
   return (
     <PageWrapper>

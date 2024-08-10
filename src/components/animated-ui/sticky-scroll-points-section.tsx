@@ -53,16 +53,16 @@ export default function StickyScrollPointsSection({ slice }: { slice: Content.Te
               {!isScrollEnd ? (
                 <>
                   {/* <motion.video
-                  src={"/animations/" + slice.primary.first_animation_file_name}
-                  autoPlay
-                  muted
-                  loop
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className={"scale-[1.02]"}
-                  key={"sticky-vh-01-pg-001"}
-                /> */}
+                    src={"/animations/" + slice.primary.first_animation_file_name}
+                    autoPlay={true}
+                    muted={true}
+                    loop={true}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className={"scale-[1.02]"}
+                    key={"sticky-vh-01-pg-001"}
+                  /> */}
 
                   <motion.img
                     src="/gifs/shopping_ui.gif"
