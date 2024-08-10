@@ -64,6 +64,26 @@ export default function StickyScrollPointsSection({ slice }: { slice: Content.Te
                     key={"sticky-vh-01-pg-001"}
                   /> */}
 
+                  <motion.video
+                    autoPlay={true}
+                    muted={true}
+                    loop={true}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className={"scale-[1.02]"}
+                    key={"sticky-vh-01-pg-001"}
+                  >
+                    <motion.source src="/animations/shopping_ui.webm" type="video/webm" />
+                    <motion.source src="/animations/shopping_ui.mp4" type="video/mp4" />
+                  </motion.video>
+
+                  {/* <video muted={true} loop={true} autoPlay={true} playsInline={true} className={"pointer-events-none"}>
+                    <source src="/animations/shopping_ui.webm" type="video/webm" />
+                    <source src="/animations/shopping_ui.mp4" type="video/mp4" />
+                  </video> */}
+
+                  {/*
                   <motion.img
                     src="/gifs/shopping_ui.gif"
                     initial={{ opacity: 0 }}
@@ -74,7 +94,7 @@ export default function StickyScrollPointsSection({ slice }: { slice: Content.Te
                       "pointer-events-none m-[-5px] border-none object-cover outline-none",
                     ])}
                     key={"sticky-vh-01-pg-001"}
-                  />
+                  /> */}
                 </>
               ) : (
                 <>
@@ -90,7 +110,26 @@ export default function StickyScrollPointsSection({ slice }: { slice: Content.Te
                     className={"scale-[1.02]"}
                   /> */}
 
-                  <motion.img
+                  <motion.video
+                    key={"ticky-vs-01-pg-002"}
+                    autoPlay={true}
+                    muted={true}
+                    loop={true}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className={"scale-[1.02]"}
+                  >
+                    <motion.source src="/animations/chip_cube.webm" type="video/webm" />
+                    <motion.source src="/animations/chip_cube.mp4" type="video/mp4" />
+                  </motion.video>
+
+                  {/* <video muted={true} loop={true} autoPlay={true} playsInline={true} className={"pointer-events-none"}>
+                    <source src="/animations/chip_cube.webm" type="video/webm" />
+                    <source src="/animations/chip_cube.mp4" type="video/mp4" />
+                  </video> */}
+
+                  {/* <motion.img
                     src="/gifs/kubby_chip.gif"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -100,7 +139,7 @@ export default function StickyScrollPointsSection({ slice }: { slice: Content.Te
                       "pointer-events-none m-[-5px] border-none object-cover outline-none",
                     ])}
                     key={"ticky-vs-01-pg-002"}
-                  />
+                  /> */}
                 </>
               )}
             </>

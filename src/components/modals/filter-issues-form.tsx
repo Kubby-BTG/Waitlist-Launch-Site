@@ -41,7 +41,7 @@ export default function FilterIssuesForm({
   const { alertOptions, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
 
   useEffect(() => {
-    console.log({ formData });
+    // console.log({ formData });
   }, [formData]);
 
   async function handleSubmit() {
