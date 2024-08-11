@@ -2,6 +2,12 @@ import StickyScrollPointsSection from "@/components/animated-ui/sticky-scroll-po
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { cn } from "../../lib/utils";
+// import AppPageShoppingVideo from "../../components/video/AppPageShoppingVideo";
+// import AppPageCubeVideo from "../../components/video/AppPageCubeVideo";
+
+import dynamic from "next/dynamic";
+const AppPageCubeVideo = dynamic(() => import("../../components/video/AppPageCubeVideo"), { ssr: false });
+const AppPageShoppingVideo = dynamic(() => import("../../components/video/AppPageShoppingVideo"), { ssr: false });
 
 /**
  * Props for `TextWithImage`.
@@ -43,10 +49,12 @@ const TextsWithAnimations = ({ slice }: TextsWithAnimationsProps): JSX.Element =
                   decoding={"async"}
                 /> */}
 
-                <video autoPlay={true} muted={true} loop={true} playsInline={true} className={"pointer-events-none scale-[1.02]"}>
+                {/* <video autoPlay={true} muted={true} loop={true} playsInline={true} className={"pointer-events-none scale-[1.02]"}>
                   <source src="/animations/shopping_ui.webm" type="video/webm" />
                   <source src="/animations/shopping_ui.mp4" type="video/mp4" />
-                </video>
+                </video> */}
+
+                <AppPageShoppingVideo />
               </div>
             </div>
             <div className="flex flex-col gap-4 md:col-span-3 md:col-start-6 md:justify-center">
@@ -89,10 +97,12 @@ const TextsWithAnimations = ({ slice }: TextsWithAnimationsProps): JSX.Element =
                 decoding={"async"}
               /> */}
 
-              <video autoPlay={true} muted={true} loop={true} className={"pointer-events-none scale-[1.02]"} playsInline>
+              {/* <video autoPlay={true} muted={true} loop={true} className={"pointer-events-none scale-[1.02]"} playsInline>
                 <source src="/animations/chip_cube.webm" type="video/webm" />
                 <source src="/animations/chip_cube.mp4" type="video/mp4" />
-              </video>
+              </video> */}
+
+              <AppPageCubeVideo />
             </div>
             <div className="flex flex-col gap-4 md:col-span-3 md:col-start-6 md:justify-center">
               <PrismicRichText
