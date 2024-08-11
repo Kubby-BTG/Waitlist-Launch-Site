@@ -38,22 +38,6 @@ const TextsWithAnimations = ({ slice }: TextsWithAnimationsProps): JSX.Element =
                 <source src={"/animations/" + slice.primary.first_animation_file_name} type="video/mp4" />
               </video> */}
               <div className="inline-block h-auto w-auto">
-                {/* <img
-                  src="/gifs/shopping_ui.gif"
-                  alt=""
-                  className={cn([
-                    "scale-[1.02]",
-                    "pointer-events-none m-[-2px] border-none object-cover p-0 outline-none",
-                  ])}
-                  loading={"lazy"}
-                  decoding={"async"}
-                /> */}
-
-                {/* <video autoPlay={true} muted={true} loop={true} playsInline={true} className={"pointer-events-none scale-[1.02]"}>
-                  <source src="/animations/shopping_ui.webm" type="video/webm" />
-                  <source src="/animations/shopping_ui.mp4" type="video/mp4" />
-                </video> */}
-
                 <AppPageShoppingVideo />
               </div>
             </div>
@@ -84,22 +68,6 @@ const TextsWithAnimations = ({ slice }: TextsWithAnimationsProps): JSX.Element =
             <div className="overflow-hidden p-0 md:col-span-4">
               {/* <video autoPlay muted loop className={"pointer-events-none scale-[1.02]"} playsInline>
                 <source src={"/animations/" + slice.primary.second_animation_file} type="video/mp4" />
-              </video> */}
-
-              {/* <img
-                src="/gifs/kubby_chip.gif"
-                alt=""
-                className={cn([
-                  // "scale-[1.02]",
-                  "pointer-events-none m-[-2px] border-none object-cover p-0 outline-none",
-                ])}
-                loading={"lazy"}
-                decoding={"async"}
-              /> */}
-
-              {/* <video autoPlay={true} muted={true} loop={true} className={"pointer-events-none scale-[1.02]"} playsInline>
-                <source src="/animations/chip_cube.webm" type="video/webm" />
-                <source src="/animations/chip_cube.mp4" type="video/mp4" />
               </video> */}
 
               <AppPageCubeVideo />

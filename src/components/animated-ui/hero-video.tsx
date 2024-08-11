@@ -19,8 +19,8 @@ export default function HeroVideo() {
   return (
     <div className={"relative"}>
       <video ref={videoRef} muted={true} loop={true} autoPlay={true} playsInline={true} className={"pointer-events-none"}>
-        <source src="/animations/waitlist.webm" type="video/webm" />
-        <source src="/animations/waitlist.mp4" type="video/mp4" />
+        <source src="/animations_02/waitlist.webm" type="video/webm" />
+        <source src="/animations_02/waitlist.mp4" type="video/mp4" />
       </video>
       <button
         className={
