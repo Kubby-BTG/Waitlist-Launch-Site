@@ -24,7 +24,7 @@ export default function RegisteredPartnership({
           {/* Animation */}
           <div className={"flex items-end"}>
             <video
-              src="/animations/kube-on-green.webm"
+              src="/animations/kube_on_green.webm"
               autoPlay
               loop
               muted
