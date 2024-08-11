@@ -67,8 +67,8 @@ export default function StickyScrollPointsSection({ slice }: { slice: Content.Te
                     className={"scale-[1.02]"}
                     key={"sticky-vh-01-pg-001"}
                   >
-                    <motion.source src="/animations/shopping_ui.webm" type="video/webm" />
-                    <motion.source src="/animations/shopping_ui.mp4" type="video/mp4" />
+                    <motion.source src="/animations_02/shopping_ui.webm" type="video/webm" />
+                    <motion.source src="/animations_02/shopping_ui.mp4" type="video/mp4" />
                   </motion.video> */}
 
                   <AppPageShoppingVideo />
@@ -97,8 +97,8 @@ export default function StickyScrollPointsSection({ slice }: { slice: Content.Te
                     exit={{ opacity: 0 }}
                     className={"scale-[1.02]"}
                   >
-                    <motion.source src="/animations/chip_cube.webm" type="video/webm" />
-                    <motion.source src="/animations/chip_cube.mp4" type="video/mp4" />
+                    <motion.source src="/animations_02/chip_cube.webm" type="video/webm" />
+                    <motion.source src="/animations_02/chip_cube.mp4" type="video/mp4" />
                   </motion.video> */}
 
                   <AppPageCubeVideo />
