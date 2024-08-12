@@ -25,8 +25,6 @@ export default function MobileMenu({
 }) {
   return (
     <MountModalPortal>
-      {/* <StickyHeaderWrapper></StickyHeaderWrapper> */}
-      {/* className={"z-10 max-md:bg-primary md:sticky md:top-0"} */}
       <div className="fixed inset-0 z-50 bg-background md:hidden">
         <div className="absolute inset-0 h-dvh overflow-auto">
           <div className="relative flex h-16 items-center justify-between bg-background px-6">

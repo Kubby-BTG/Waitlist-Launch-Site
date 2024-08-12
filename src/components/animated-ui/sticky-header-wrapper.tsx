@@ -18,7 +18,7 @@ export default function StickyHeaderWrapper({ children }: { children: ReactNode 
 
   return (
     <motion.div
-      className={"z-10 max-md:bg-primary md:sticky md:top-0"}
+      className={"sticky z-10 max-md:bg-primary md:sticky md:top-0"}
       key={"sticky-kl-001-001"}
       animate={{ top: isScrolledDown ? -48 : 0 }}
     >

@@ -73,6 +73,7 @@ export default function Navbar({
 
         <div className="md:hidden">
           <button
+            type="button"
             className="flex size-9 items-center justify-center rounded bg-background-icon"
             onClick={() => setIsMobileMenuOpen(true)}
           >
