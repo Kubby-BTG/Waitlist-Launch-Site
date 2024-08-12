@@ -2,10 +2,7 @@
 
 import { asLink, GroupField, LinkField } from "@prismicio/client";
 // import { PrismicNextLink } from "@prismicio/next";
-import {
-  SettingsDocumentDataNavigationItem,
-  Simplify,
-} from "../../../prismicio-types";
+import { SettingsDocumentDataNavigationItem, Simplify } from "../../../prismicio-types";
 import { Button } from "../ui/button";
 import KubbyLogo from "../ui/kubby-logo";
 import { ReactNode, useEffect, useState } from "react";
@@ -16,6 +13,7 @@ import WaitlistForm from "../modals/waitlist-form";
 import { usePathname } from "next/navigation";
 import { TransitionLink } from "../animated-ui/transition-link";
 import useIsIOS from "@/hooks/use-ios";
+import { cn } from "../../lib/utils";
 
 const MobileMenu = dynamic(() => import("./mobile-menu"), { ssr: false });
 
@@ -42,11 +40,7 @@ export default function Navbar({
 
   return (
     <div className="bg-primary">
-      <nav
-        className={
-          "container flex h-[68px] items-center justify-between max-md:h-[64px]"
-        }
-      >
+      <nav className={cn(["container flex h-[68px] items-center justify-between max-md:h-[64px]"])}>
         <div className={"flex items-center gap-8"}>
           {/* Kubby Logo */}
           <TransitionLink href={"/"}>
@@ -58,28 +52,21 @@ export default function Navbar({
             {navigation.map((item, i) => (
               <li
                 key={i}
-                className={
-                  "transition-500 rounded-full bg-white/0 px-4 py-[0.325rem] text-[0.938rem] font-medium leading-5 text-white transition-colors ease-kubby hover:bg-white/5"
-                }
+                className={cn([
+                  "transition-500 rounded-full bg-white/0 px-4 py-[0.325rem] text-[0.938rem] font-medium leading-5 text-white transition-colors ease-kubby hover:bg-white/5",
+                ])}
               >
                 {/* <PrismicNextLink field={item.link}>
                   {item.label}
                 </PrismicNextLink> */}
-                <TransitionLink href={asLink(item.link) as string}>
-                  {item.label}
-                </TransitionLink>
+                <TransitionLink href={asLink(item.link) as string}>{item.label}</TransitionLink>
               </li>
             ))}
           </ul>
         </div>
 
         <WaitlistForm>
-          <Button
-            type={"button"}
-            variant={"accent"}
-            size={"sm"}
-            className={"max-md:hidden"}
-          >
+          <Button type={"button"} variant={"accent"} size={"sm"} className={"max-md:hidden"}>
             Join Waitlist
           </Button>
         </WaitlistForm>
@@ -90,13 +77,7 @@ export default function Navbar({
             onClick={() => setIsMobileMenuOpen(true)}
           >
             <span className="sr-only">Open Menu</span>
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -120,12 +101,7 @@ export default function Navbar({
         </div>
 
         {isMobileMenuOpen && (
-          <MobileMenu
-            setIsOpen={setIsMobileMenuOpen}
-            navigation={navigation}
-            reportLink={reportLink}
-            post={post}
-          />
+          <MobileMenu setIsOpen={setIsMobileMenuOpen} navigation={navigation} reportLink={reportLink} post={post} />
         )}
       </nav>
     </div>

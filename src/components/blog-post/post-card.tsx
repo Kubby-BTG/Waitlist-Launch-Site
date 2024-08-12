@@ -15,22 +15,13 @@ export default function PostCard({ post }: { post: Content.BlogPostDocument }) {
       }
     >
       <div className="relative flex aspect-[5/3] w-full items-center justify-center overflow-hidden rounded-lg bg-input">
-        <PrismicNextImage
-          field={post.data.featured_image}
-          className={"absolute inset-0 h-full w-full object-cover"}
-           alt=""
-        />
+        <PrismicNextImage field={post.data.featured_image} className={"absolute inset-0 h-full w-full object-cover"} alt="" />
       </div>
 
       <div className="flex flex-grow flex-col gap-5 justify-self-stretch px-3.5 text-primary sm:px-4 lg:px-6">
         <div className="flex items-center justify-between">
-          <p
-            className={
-              "flex items-center gap-2.5 text-xs font-medium uppercase leading-6 text-primary"
-            }
-          >
-            <span>Blog</span>{" "}
-            <KubbyLogo iconOnly className={"size-2.5 text-primary"} />
+          <p className={"flex items-center gap-2.5 text-xs font-medium uppercase leading-6 text-primary"}>
+            <span>Blog</span> <KubbyLogo iconOnly className={"size-2.5 text-primary"} />
             {post.data.category}
           </p>
 
@@ -44,36 +35,22 @@ export default function PostCard({ post }: { post: Content.BlogPostDocument }) {
             <PrismicRichText
               field={post.data.title}
               components={{
-                heading1: ({ children }) => (
-                  <h3
-                    className={
-                      "text-balance text-lg font-bold leading-6 lg:text-xl"
-                    }
-                  >
-                    {children}
-                  </h3>
-                ),
+                heading1: ({ children }) => {
+                  return <h1 className={"text-lg font-bold leading-6 lg:text-xl"}>{children}</h1>;
+                },
               }}
             />
             <PrismicRichText
               field={post.data.description}
               components={{
-                paragraph: ({ children }) => (
-                  <p className={"_text-balance text-base md:pr-2 md:text-lg"}>
-                    {children}
-                  </p>
-                ),
+                paragraph: ({ children }) => <p className={"text-base md:pr-2 md:text-lg"}>{children}</p>,
               }}
             />
           </div>
 
           <span className="flex gap-1 text-sm leading-5 text-primary">
             <span>{post.data.author}</span>|
-            <span>
-              {post.data.publication_date
-                ? formatDate(post.data.publication_date)
-                : ""}
-            </span>
+            <span>{post.data.publication_date ? formatDate(post.data.publication_date) : ""}</span>
           </span>
 
           <div className="flex flex-grow items-end gap-4">

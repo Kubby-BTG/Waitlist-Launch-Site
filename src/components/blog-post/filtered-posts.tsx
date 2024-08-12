@@ -3,8 +3,7 @@
 import { Button } from "@/components/ui/button";
 import MultiSelect from "@/components/ui/multi-select";
 
-import { Fragment, useState } from "react";
-import CuratedPosts from "@/components/blog-post/curated-posts";
+import { useState } from "react";
 
 export default function FilteredPosts() {
   const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>([]);
@@ -18,7 +17,7 @@ export default function FilteredPosts() {
         <div className={"relative w-full md:max-w-[15.5rem]"}>
           <MultiSelect
             values={platforms.map((platform, i) => ({
-              key: `${platform}__${i}`,
+              key: platform,
               value: platform,
             }))}
             label={"Platform"}
@@ -31,7 +30,7 @@ export default function FilteredPosts() {
         <div className={"relative w-full md:max-w-[15.5rem]"}>
           <MultiSelect
             values={categories.map((category, i) => ({
-              key: `${category}__${i}`,
+              key: category,
               value: category,
             }))}
             label={"Category"}
@@ -44,7 +43,7 @@ export default function FilteredPosts() {
         <div className={"relative w-full md:max-w-[15.5rem]"}>
           <MultiSelect
             values={topics.map((topic, i) => ({
-              key: `${topic}__${i}`,
+              key: topic,
               value: topic,
             }))}
             label={"Topic"}
@@ -61,13 +60,7 @@ export default function FilteredPosts() {
 
 const platforms = ["Kubby Mobile", "Kubby Web"];
 
-const categories = [
-  "E-Commerce",
-  "Packages",
-  "Sustainability",
-  "Spaces",
-  "Updates",
-];
+const categories = ["E-Commerce", "Packages", "Sustainability", "Spaces", "Updates"];
 
 const topics = [
   "Online Shopping",
