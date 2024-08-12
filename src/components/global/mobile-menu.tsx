@@ -71,7 +71,7 @@ export default function MobileMenu({
                     }
                   >
                     <TransitionLink
-                      className="block bg-danger"
+                      className="block"
                       href={href01}
                       handleClick={() => {
                         // console.log({ href01 });
