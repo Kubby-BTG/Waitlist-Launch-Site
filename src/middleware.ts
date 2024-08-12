@@ -8,6 +8,7 @@ import { revalidateTag } from "next/cache";
 
 import { exitPreview, redirectToPreviewURL } from "@prismicio/next";
 import { createClient } from "./prismicio";
+import { WaitlistApiService } from "./airtable/tables/waitlist";
 
 const routesMonitor = {
   DeliveryIssueCreate: "/api/delivery-issue",
@@ -29,7 +30,6 @@ export async function middleware(request: NextRequest) {
   if (request.method.toUpperCase() === "POST") {
     if (pathname === routesMonitor.DeliveryIssueCreate) {
       const recordData = await request.json();
-
       const result = await DeliveryIssuesApiService.createRecordBase({ recordData });
       return NextResponse.json(result);
     }
@@ -38,6 +38,12 @@ export async function middleware(request: NextRequest) {
       const query = (await request.json()) as IQueryParameters<IDeliveryIssue>;
 
       const result = await DeliveryIssuesApiService.findRecordBase({ query });
+      return NextResponse.json(result);
+    }
+
+    if (pathname === routesMonitor.Waitlist) {
+      const recordData = await request.json();
+      const result = await WaitlistApiService.createRecordBase({ recordData });
       return NextResponse.json(result);
     }
 
@@ -75,7 +81,7 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  return NextResponse.json({ invalid_route: true });
+  return NextResponse.next({ status: 404, statusText: "Not found" });
 }
 
 // See "Matching Paths" below to learn more
