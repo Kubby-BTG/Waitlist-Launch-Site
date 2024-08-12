@@ -19,11 +19,11 @@ function joinUrlAndParams({ url, params }: { url: string; params: Record<string,
 function getHeaders() {
   console.log({
     "Content-Type": "application/json",
-    Authorization: `Bearer ${AppConfig.KUBBY_WEB_AIRTABLE_ACCESS_TOKEN}`,
+    Authorization: `Bearer ${AppConfig().KUBBY_WEB_AIRTABLE_ACCESS_TOKEN}`,
   });
   return {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${AppConfig.KUBBY_WEB_AIRTABLE_ACCESS_TOKEN}`,
+    Authorization: `Bearer ${AppConfig().KUBBY_WEB_AIRTABLE_ACCESS_TOKEN}`,
   };
 }
 
@@ -122,7 +122,7 @@ export abstract class AirtableServiceBase<T extends IBaseRecord> {
       ];
 
       const url = ApiUrls.createRecord({
-        baseId: AppConfig.KUBBY_WEB_AIRTABLE_DATABASE,
+        baseId: AppConfig().KUBBY_WEB_AIRTABLE_DATABASE,
         tableIdOrName: this.tableName,
       });
 
@@ -142,7 +142,7 @@ export abstract class AirtableServiceBase<T extends IBaseRecord> {
   async deleteRecordBase({ recordId }: { recordId: string }) {
     try {
       const url = ApiUrls.deleteRecordById({
-        baseId: AppConfig.KUBBY_WEB_AIRTABLE_DATABASE,
+        baseId: AppConfig().KUBBY_WEB_AIRTABLE_DATABASE,
         tableIdOrName: this.tableName,
         recordId,
       });
@@ -168,7 +168,7 @@ export abstract class AirtableServiceBase<T extends IBaseRecord> {
       }
 
       const url = ApiUrls.updateRecord({
-        baseId: AppConfig.KUBBY_WEB_AIRTABLE_DATABASE,
+        baseId: AppConfig().KUBBY_WEB_AIRTABLE_DATABASE,
         tableIdOrName: this.tableName,
         recordId: recordData.id,
       });
@@ -191,7 +191,7 @@ export abstract class AirtableServiceBase<T extends IBaseRecord> {
   async getByRecordIdBase({ recordId }: { recordId: string }) {
     try {
       const url = ApiUrls.getRecordById({
-        baseId: AppConfig.KUBBY_WEB_AIRTABLE_DATABASE,
+        baseId: AppConfig().KUBBY_WEB_AIRTABLE_DATABASE,
         tableIdOrName: this.tableName,
         recordId,
       });
@@ -208,7 +208,7 @@ export abstract class AirtableServiceBase<T extends IBaseRecord> {
   async findRecordBase({ query }: { query?: IQueryParameters<T> } = {}) {
     try {
       const url = ApiUrls.getRecords({
-        baseId: AppConfig.KUBBY_WEB_AIRTABLE_DATABASE,
+        baseId: AppConfig().KUBBY_WEB_AIRTABLE_DATABASE,
         tableIdOrName: this.tableName,
       });
 

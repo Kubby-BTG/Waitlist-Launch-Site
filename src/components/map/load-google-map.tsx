@@ -10,7 +10,7 @@ export default function LoadGoogleMapProvider({ children }: IPropsWithChildren) 
   return (
     <APIProvider
       // libraries={["geocoding", "core", "maps"]}
-      apiKey={AppConfig.NEXT_PUBLIC_GOOGLE_MAP_KEY}
+      apiKey={AppConfig().NEXT_PUBLIC_GOOGLE_MAP_KEY}
       onLoad={() => setIsShowFilterForm(true)}
     >
       {isShowFilterForm ? <>{children}</> : null}

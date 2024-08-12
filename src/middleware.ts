@@ -9,6 +9,7 @@ import { revalidateTag } from "next/cache";
 import { exitPreview, redirectToPreviewURL } from "@prismicio/next";
 import { createClient } from "./prismicio";
 import { WaitlistApiService } from "./airtable/tables/waitlist";
+import { AppConfig } from "./utils/constants";
 
 const routesMonitor = {
   DeliveryIssueCreate: "/api/delivery-issue",
@@ -32,7 +33,7 @@ export async function middleware(request: NextRequest) {
     if (request.method.toUpperCase() === "POST") {
       const recordData = await request.json();
 
-      console.log(JSON.stringify({ recordData }));
+      console.log(JSON.stringify({ recordData, AppConfig: AppConfig() }));
 
       if (pathname === routesMonitor.DeliveryIssueCreate) {
         const result = await DeliveryIssuesApiService.createRecordBase({ recordData });
