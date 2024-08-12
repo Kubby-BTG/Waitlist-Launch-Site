@@ -17,6 +17,8 @@ const TTBluescreens = localFont({
   variable: "--font-tt-bluescreens",
 });
 
+export const revalidate = 3;
+
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
 
@@ -37,8 +39,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={"scroll-smooth0"}>
-      <body className={cn(DMSans.variable, TTBluescreens.variable, "font-sans")}>
+    <html lang="en" className={"scroll-smooth"}>
+      <body className={cn([DMSans.variable, TTBluescreens.variable, "font-sans"])}>
         {/* <AnimatedLayout> */}
         <Header />
         {children}
