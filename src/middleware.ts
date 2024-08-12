@@ -19,69 +19,84 @@ const routesMonitor = {
   Revalidate: "/api/revalidate",
   ExitPreview: "/api/exit-preview",
   Preview: "/api/preview",
-};
+  ForTest: "/api/test",
+} as const;
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
-  const pathname = new URL(request.url).pathname;
+  try {
+    const pathname = new URL(request.url).pathname;
 
-  console.log({ url: request.url, pathname });
+    console.log({ url: request.url, pathname });
 
-  if (request.method.toUpperCase() === "POST") {
-    if (pathname === routesMonitor.DeliveryIssueCreate) {
-      const recordData = await request.json();
-      const result = await DeliveryIssuesApiService.createRecordBase({ recordData });
-      return NextResponse.json(result);
-    }
-
-    if (pathname === routesMonitor.DeliveryIssue_Find) {
-      const query = (await request.json()) as IQueryParameters<IDeliveryIssue>;
-
-      const result = await DeliveryIssuesApiService.findRecordBase({ query });
-      return NextResponse.json(result);
-    }
-
-    if (pathname === routesMonitor.Waitlist) {
-      const recordData = await request.json();
-      const result = await WaitlistApiService.createRecordBase({ recordData });
-      return NextResponse.json(result);
-    }
-
-    if (pathname === routesMonitor.Contact) {
+    if (request.method.toUpperCase() === "POST") {
       const recordData = await request.json();
 
-      const result = await ContactApiService.createRecordBase({ recordData });
+      console.log(JSON.stringify({ recordData }));
 
-      return NextResponse.json(result);
+      if (pathname === routesMonitor.DeliveryIssueCreate) {
+        const result = await DeliveryIssuesApiService.createRecordBase({ recordData });
+        return NextResponse.json(result);
+      }
+
+      if (pathname === routesMonitor.DeliveryIssue_Find) {
+        const query = recordData as IQueryParameters<IDeliveryIssue>;
+
+        const result = await DeliveryIssuesApiService.findRecordBase({ query });
+        return NextResponse.json(result);
+      }
+
+      if (pathname === routesMonitor.Waitlist) {
+        const result = await WaitlistApiService.createRecordBase({ recordData });
+        return NextResponse.json(result);
+      }
+
+      if (pathname === routesMonitor.Contact) {
+        const result = await ContactApiService.createRecordBase({ recordData });
+
+        return NextResponse.json(result);
+      }
+
+      if (pathname === routesMonitor.Partner) {
+        const result = await PartnersApiService.createRecordBase({ recordData });
+        return NextResponse.json(result);
+      }
+
+      if (pathname === routesMonitor.Revalidate) {
+        revalidateTag("prismic");
+
+        return NextResponse.json({ revalidated: true, now: Date.now() });
+      }
     }
 
-    if (pathname === routesMonitor.Partner) {
-      const recordData = await request.json();
+    if (request.method.toUpperCase() === "GET") {
+      if (pathname === routesMonitor.ForTest) {
+        return NextResponse.json({ test: true, now: Date.now() });
+      }
 
-      const result = await PartnersApiService.createRecordBase({ recordData });
-      return NextResponse.json(result);
+      if (pathname === routesMonitor.Preview) {
+        const client = createClient();
+
+        return await redirectToPreviewURL({ client, request });
+      }
+
+      if (pathname === routesMonitor.ExitPreview) {
+        return exitPreview();
+      }
     }
 
-    if (pathname === routesMonitor.Revalidate) {
-      revalidateTag("prismic");
+    return NextResponse.json({ message: "Not found" }, { status: 404 });
+  } catch (error) {
+    console.error(error);
 
-      return NextResponse.json({ revalidated: true, now: Date.now() });
+    try {
+      console.log(JSON.stringify({ error }));
+    } catch (error) {
+      //
     }
+
+    return NextResponse.json({ message: "Error occured" }, { status: 500 });
   }
-
-  if (request.method.toUpperCase() === "GET") {
-    if (pathname === routesMonitor.Preview) {
-      const client = createClient();
-
-      return await redirectToPreviewURL({ client, request });
-    }
-
-    if (pathname === routesMonitor.ExitPreview) {
-      return exitPreview();
-    }
-  }
-
-  return NextResponse.next({ status: 404, statusText: "Not found" });
 }
 
 // See "Matching Paths" below to learn more
