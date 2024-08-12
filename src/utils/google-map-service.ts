@@ -17,7 +17,7 @@ type IGeocodeLocality = {
 
 class GoogleMapServiceBase {
   async getGeocodeAddressByZipcode(zipcode: string) {
-    const apiKey = AppConfig.NEXT_PUBLIC_GOOGLE_MAP_KEY;
+    const apiKey = AppConfig().NEXT_PUBLIC_GOOGLE_MAP_KEY;
 
     const url = `${GEOCODE_BASE_URL}?address=${zipcode}&key=${apiKey}`;
 
