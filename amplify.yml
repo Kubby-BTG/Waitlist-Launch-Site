@@ -1,0 +1,20 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - "npm ci --cache .npm --prefer-offline"
+    build:
+      commands:
+        - echo "KUBBY_WEB_AIRTABLE_ACCESS_TOKEN=$KUBBY_WEB_AIRTABLE_ACCESS_TOKEN" >> .env
+        - echo "KUBBY_WEB_AIRTABLE_DATABASE=$KUBBY_WEB_AIRTABLE_DATABASE" >> .env
+        - echo "NEXT_PUBLIC_GOOGLE_MAP_KEY=$NEXT_PUBLIC_GOOGLE_MAP_KEY" >> .env
+        - "npm run build"
+  artifacts:
+    baseDirectory: .next
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - ".next/cache/**/*"
+      - ".npm/**/*"
