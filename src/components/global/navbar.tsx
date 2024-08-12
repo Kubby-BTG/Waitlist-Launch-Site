@@ -53,7 +53,9 @@ export default function Navbar({
               <li
                 key={i}
                 className={cn([
-                  "transition-500 rounded-full bg-white/0 px-4 py-[0.325rem] text-[0.938rem] font-medium leading-5 text-white transition-colors ease-kubby hover:bg-white/5",
+                  "transition-500 rounded-full bg-white/0 px-4",
+                  "py-[0.325rem] text-[0.938rem] font-medium leading-5 text-white",
+                  "transition-colors ease-kubby hover:bg-white/5",
                 ])}
               >
                 {/* <PrismicNextLink field={item.link}>
@@ -102,7 +104,14 @@ export default function Navbar({
         </div>
 
         {isMobileMenuOpen && (
-          <MobileMenu setIsOpen={setIsMobileMenuOpen} navigation={navigation} reportLink={reportLink} post={post} />
+          <MobileMenu
+            setIsOpen={(v) => {
+              setIsMobileMenuOpen(v);
+            }}
+            navigation={navigation}
+            reportLink={reportLink}
+            post={post}
+          />
         )}
       </nav>
     </div>
