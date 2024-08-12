@@ -25,12 +25,18 @@ const AppModalDialog = ({ className, isOpen, isChildDialogExtend, children }: IP
         className={cn([
           "fixed inset-0 z-50 flex items-center justify-center",
           "overflow-y-auto overflow-x-hidden outline-none focus:outline-none",
-          isChildDialogExtend && "z-53",
+          { "z-[510]": isChildDialogExtend },
         ])}
       >
         <div className={cn(["relative mx-auto my-6 w-auto max-w-3xl", className])}>{children}</div>
       </div>
-      <div className={cn(["fixed inset-0 z-40 bg-black/50", isChildDialogExtend && "z-52"])}></div>
+      <div
+        className={cn([
+          "fixed inset-0 z-40 bg-black/50",
+          //
+          { "z-[500]": isChildDialogExtend },
+        ])}
+      />
     </MountModalPortal>
   );
 };
