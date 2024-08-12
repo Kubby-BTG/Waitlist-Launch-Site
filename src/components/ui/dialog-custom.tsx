@@ -7,13 +7,14 @@ import MountModalPortal from "../helpers/MountModalPortal";
 type IProps = IPropsWithChildren & {
   className?: string;
   isOpen: boolean;
+  isChildDialogExtend?: boolean;
 };
 
 type IPropChild = IPropsWithChildren & {
   className?: string;
 };
 
-const AppModalDialog = ({ className, isOpen, children }: IProps) => {
+const AppModalDialog = ({ className, isOpen, isChildDialogExtend, children }: IProps) => {
   if (!isOpen) {
     return null;
   }
@@ -24,11 +25,18 @@ const AppModalDialog = ({ className, isOpen, children }: IProps) => {
         className={cn([
           "fixed inset-0 z-50 flex items-center justify-center",
           "overflow-y-auto overflow-x-hidden outline-none focus:outline-none",
+          { "z-[510]": isChildDialogExtend },
         ])}
       >
         <div className={cn(["relative mx-auto my-6 w-auto max-w-3xl", className])}>{children}</div>
       </div>
-      <div className={cn(["fixed inset-0 z-40 bg-black/50"])}></div>
+      <div
+        className={cn([
+          "fixed inset-0 z-40 bg-black/50",
+          //
+          { "z-[500]": isChildDialogExtend },
+        ])}
+      />
     </MountModalPortal>
   );
 };
