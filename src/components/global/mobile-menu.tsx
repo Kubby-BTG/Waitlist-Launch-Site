@@ -11,6 +11,7 @@ import Arrow from "../ui/arrow";
 import WaitlistForm from "../modals/waitlist-form";
 import { TransitionLink } from "../animated-ui/transition-link";
 import MountModalPortal from "../helpers/MountModalPortal";
+import useAppScrollToSection from "../../hooks/useAppScrollToSection";
 
 export default function MobileMenu({
   setIsOpen,
@@ -23,12 +24,13 @@ export default function MobileMenu({
   reportLink: LinkField;
   post?: ReactNode;
 }) {
+  const { scrollToSection } = useAppScrollToSection();
   return (
     <MountModalPortal>
       <div className="fixed inset-0 z-50 bg-background md:hidden">
         <div className="absolute inset-0 h-dvh overflow-auto">
           <div className="relative flex h-16 items-center justify-between bg-background px-6">
-            <TransitionLink href={"/"} onClick={() => setIsOpen(false)}>
+            <TransitionLink href={"/"} handleClick={() => setIsOpen(false)}>
               <span className="sr-only">Home</span>
               <KubbyLogo iconOnly />
             </TransitionLink>
@@ -58,24 +60,43 @@ export default function MobileMenu({
           <div className="flex flex-col gap-8 px-6 pb-8">
             {/* Nav */}
             <ul className="mt-10 flex flex-col">
-              {navigation.map((item, i) => (
-                <li
-                  key={i}
-                  className={
-                    "border-b border-b-background-muted py-1 font-display text-[3rem] font-extrabold uppercase leading-[2.5rem] text-primary"
-                  }
-                >
-                  <TransitionLink href={asLink(item.link) as string} onClick={() => setIsOpen(false)}>
-                    {item.label}
-                  </TransitionLink>
-                </li>
-              ))}
+              {navigation.map((item, i) => {
+                const href01 = asLink(item.link) as string;
+                // console.log({ href01 });
+                return (
+                  <li
+                    key={i}
+                    className={
+                      "border-b border-b-background-muted py-1 font-display text-[3rem] font-extrabold uppercase leading-[2.5rem] text-primary"
+                    }
+                  >
+                    <TransitionLink
+                      className="block bg-danger"
+                      href={href01}
+                      handleClick={() => {
+                        // console.log({ href01 });
+                        // if (href01.startsWith("/#")) {
+                        //   const idPart = href01.trim().split("/#")[1]?.trim();
+                        //   console.log({ idPart });
+                        //   if (idPart) {
+                        //     // href01.split("#")
+                        //     scrollToSection(idPart);
+                        //   }
+                        // }
+                        setIsOpen(false);
+                      }}
+                    >
+                      {item.label}
+                    </TransitionLink>
+                  </li>
+                );
+              })}
               <li
                 className={
                   "border-b border-b-background-muted py-1 font-display text-[3rem] font-extrabold uppercase leading-[2.5rem] text-primary"
                 }
               >
-                <TransitionLink href={asLink(reportLink) as string} onClick={() => setIsOpen(false)}>
+                <TransitionLink href={asLink(reportLink) as string} handleClick={() => setIsOpen(false)}>
                   Report Delivery Issue
                 </TransitionLink>
               </li>
