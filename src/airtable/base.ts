@@ -1,5 +1,5 @@
 import { AppConfig } from "../utils/constants";
-import { ICreateRecordsRequest, ICreateRecordsResponse, IQueryParameters, IRecordListResponse, IRecords } from "./types";
+import type { ICreateRecordsRequest, ICreateRecordsResponse, IQueryParameters, IRecordListResponse, IRecords } from "./types";
 
 function joinUrlAndParams({ url, params }: { url: string; params: Record<string, string> | undefined }) {
   if (!(params && typeof params === "object" && Object.keys(params).length)) {
