@@ -53,6 +53,15 @@ export const deliveryCompanies = [
   },
 ];
 
+export const AppSocialMediaLinks = Object.freeze({
+  Facebook: "https://www.facebook.com/profile.php?id=61563980498725&mibextid=LQQJ4d",
+  Twitter: "https://x.com/kubbyio",
+  LinkedIn: "https://www.linkedin.com/company/kubbyinc",
+  Instagram: "https://www.instagram.com/kubby.io?igsh=eXNlcm95bjZnd2Nj&utm_source=qr",
+  Tiktok: "",
+  YouTube: "",
+});
+
 export const usStates = [
   "Alabama",
   "Alaska",

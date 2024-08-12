@@ -25,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = await client.getSingle("blog_feed");
 
   return {
-    title: page.data.meta_title,
+    title: page.data.title,
     description: page.data.meta_description,
   };
 }

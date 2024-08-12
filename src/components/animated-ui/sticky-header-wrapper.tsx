@@ -3,11 +3,7 @@
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { ReactNode, useState } from "react";
 
-export default function StickyHeaderWrapper({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export default function StickyHeaderWrapper({ children }: { children: ReactNode }) {
   const { scrollY } = useScroll();
 
   const [isScrolledDown, setIscrolledDown] = useState(false);
@@ -22,7 +18,7 @@ export default function StickyHeaderWrapper({
 
   return (
     <motion.div
-      className={"z-10 max-md:bg-primary md:sticky md:top-0"}
+      className={"sticky z-10 max-md:bg-primary md:sticky md:top-0"}
       key={"sticky-kl-001-001"}
       animate={{ top: isScrolledDown ? -48 : 0 }}
     >
