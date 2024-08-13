@@ -13,17 +13,13 @@ export type Brands = SliceComponentProps<Content.SocialProofsSlice>;
 const Brands = ({ slice }: Brands): JSX.Element => {
   return (
     <section
-      id={"brands"}
+      id={"why-us"}
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className={"scroll-mt-[64px] bg-background py-16 md:scroll-mt-[64px]"}
     >
       <div className="container flex grid-cols-12 flex-col gap-10 lg:grid lg:gap-4">
-        <p
-          className={
-            "text-center text-base font-medium text-black/80 lg:col-span-3 lg:max-w-[20.625rem] lg:text-start"
-          }
-        >
+        <p className={"text-center text-base font-medium text-black/80 lg:col-span-3 lg:max-w-[20.625rem] lg:text-start"}>
           {slice.primary.text}
         </p>
 
