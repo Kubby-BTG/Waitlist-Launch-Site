@@ -4,6 +4,8 @@ export const DefinedRoutes = Object.freeze({
   blogDetails: (uid: string) => `/blog/${uid}`,
   contact: "/contact",
   partnership: "/partnership",
+  whyUs: "/#brands",
+  ourStory: "/#story",
   // sliceSimulator: "/slice-simulator",
 });
 
