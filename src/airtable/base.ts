@@ -17,10 +17,6 @@ function joinUrlAndParams({ url, params }: { url: string; params: Record<string,
 }
 
 function getHeaders() {
-  console.log({
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${AppConfig().KUBBY_WEB_AIRTABLE_ACCESS_TOKEN}`,
-  });
   return {
     "Content-Type": "application/json",
     Authorization: `Bearer ${AppConfig().KUBBY_WEB_AIRTABLE_ACCESS_TOKEN}`,

@@ -4,7 +4,7 @@ export default function useAppScrollToSection() {
   function scrollToSection(id: string) {
     if (!id) return;
     const element = document.getElementById(id);
-    console.log(element);
+    // console.log(element);
     if (!element || !isBrowser) return;
     element.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
   }

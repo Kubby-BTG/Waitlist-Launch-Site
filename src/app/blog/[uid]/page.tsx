@@ -150,8 +150,6 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const client = createClient();
   const page = await client.getByUID("blog_post", params.uid).catch(() => notFound());
 
-  console.log({ page });
-
   return {
     title: page.data.meta_title,
     description: page.data.meta_description,

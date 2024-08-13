@@ -51,6 +51,10 @@ export const deliveryCompanies = [
     name: "USPS",
     logoUrl: "/carriers/USPS.svg",
   },
+  {
+    name: "other",
+    logoUrl: "",
+  },
 ];
 
 export const AppSocialMediaLinks = Object.freeze({
