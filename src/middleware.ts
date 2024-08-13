@@ -28,12 +28,12 @@ export async function middleware(request: NextRequest) {
   try {
     const pathname = new URL(request.url).pathname;
 
-    console.log({ url: request.url, pathname });
+    // console.log({ url: request.url, pathname });
 
     if (request.method.toUpperCase() === "POST") {
       const recordData = await request.json();
 
-      console.log(JSON.stringify({ recordData, AppConfig: AppConfig() }));
+      // console.log(JSON.stringify({ recordData, AppConfig: AppConfig() }));
 
       if (pathname === routesMonitor.DeliveryIssueCreate) {
         const result = await DeliveryIssuesApiService.createRecordBase({ recordData });

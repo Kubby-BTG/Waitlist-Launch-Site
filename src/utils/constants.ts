@@ -4,15 +4,22 @@ export const DefinedRoutes = Object.freeze({
   blogDetails: (uid: string) => `/blog/${uid}`,
   contact: "/contact",
   partnership: "/partnership",
-  sliceSimulator: "/slice-simulator",
+  // sliceSimulator: "/slice-simulator",
 });
 
 export const AppConfig = () =>
   ({
-    KUBBY_WEB_AIRTABLE_ACCESS_TOKEN: process.env.KUBBY_WEB_AIRTABLE_ACCESS_TOKEN ?? "",
-    KUBBY_WEB_AIRTABLE_DATABASE: process.env.KUBBY_WEB_AIRTABLE_DATABASE ?? "",
-    NEXT_PUBLIC_GOOGLE_MAP_KEY: process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY ?? "",
+    KUBBY_WEB_AIRTABLE_ACCESS_TOKEN: process.env.KUBBY_WEB_AIRTABLE_ACCESS_TOKEN || "",
+    KUBBY_WEB_AIRTABLE_DATABASE: process.env.KUBBY_WEB_AIRTABLE_DATABASE || "",
+    NEXT_PUBLIC_GOOGLE_MAP_KEY: process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY || "",
+    CURRENT_SITE_URL: process.env.NEXT_PUBLIC_CURRENT_SITE_URL || "https://www.kubby.io",
   }) as const;
+
+export const ApplicationKeyword = ["Shopping", "Shopping Communities"];
+
+export const AppDescription = `Shop easy, deliver worry-free with Kubby! Access your favorite stores, enjoy secure, sustainable delivery, and say goodbye to package theft | Kubby`;
+export const ApplicationSiteName = `Building Communities Through Shopping | Kubby`;
+export const ApplicationAuthor = `Kubby`;
 
 export const deliveryIssues = [
   //
@@ -50,6 +57,10 @@ export const deliveryCompanies = [
   {
     name: "USPS",
     logoUrl: "/carriers/USPS.svg",
+  },
+  {
+    name: "other",
+    logoUrl: "",
   },
 ];
 

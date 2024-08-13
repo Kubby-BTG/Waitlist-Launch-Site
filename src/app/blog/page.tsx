@@ -11,8 +11,6 @@ export default async function Page() {
   const client = createClient();
   const page = await client.getSingle("blog_feed");
 
-  // console.log({ page });
-
   return (
     <PageWrapper>
       <SliceZone slices={page.data.slices} components={components} />
