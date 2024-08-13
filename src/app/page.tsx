@@ -5,6 +5,8 @@ import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import PageWrapper from "@/components/animated-ui/page-wrapper";
 
+export const revalidate = 30;
+
 export default async function Page() {
   const client = createClient();
   const page = await client.getSingle("homepage");

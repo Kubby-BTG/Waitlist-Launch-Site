@@ -18,6 +18,8 @@ const TTBluescreens = localFont({
   variable: "--font-tt-bluescreens",
 });
 
+export const revalidate = 30;
+
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
 
