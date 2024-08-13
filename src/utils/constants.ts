@@ -9,10 +9,10 @@ export const DefinedRoutes = Object.freeze({
 
 export const AppConfig = () =>
   ({
-    KUBBY_WEB_AIRTABLE_ACCESS_TOKEN: process.env.KUBBY_WEB_AIRTABLE_ACCESS_TOKEN ?? "",
-    KUBBY_WEB_AIRTABLE_DATABASE: process.env.KUBBY_WEB_AIRTABLE_DATABASE ?? "",
-    NEXT_PUBLIC_GOOGLE_MAP_KEY: process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY ?? "",
-    CURRENT_SITE_URL: process.env.NEXT_PUBLIC_CURRENT_SITE_URL ?? "https://www.kubby.io",
+    KUBBY_WEB_AIRTABLE_ACCESS_TOKEN: process.env.KUBBY_WEB_AIRTABLE_ACCESS_TOKEN || "",
+    KUBBY_WEB_AIRTABLE_DATABASE: process.env.KUBBY_WEB_AIRTABLE_DATABASE || "",
+    NEXT_PUBLIC_GOOGLE_MAP_KEY: process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY || "",
+    CURRENT_SITE_URL: process.env.NEXT_PUBLIC_CURRENT_SITE_URL || "https://www.kubby.io",
   }) as const;
 
 export const ApplicationKeyword = ["Shopping", "Shopping Communities"];
