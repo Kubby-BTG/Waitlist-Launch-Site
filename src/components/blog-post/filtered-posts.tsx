@@ -5,27 +5,17 @@ import MultiSelect from "@/components/ui/multi-select";
 
 import { useState } from "react";
 
-export default function FilteredPosts() {
-  const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>([]);
+export default function FilteredPosts({
+  handleRunFilter,
+}: {
+  handleRunFilter: ({ categories }: { categories: string[] }) => void;
+}) {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
+  // const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
   return (
     <>
       {/* Filter */}
       <div className="flex flex-col gap-2 md:flex-row md:gap-6">
-        {/* Platform */}
-        <div className={"relative w-full md:max-w-[15.5rem]"}>
-          <MultiSelect
-            values={platforms.map((platform, i) => ({
-              key: platform,
-              value: platform,
-            }))}
-            label={"Platform"}
-            selectedItems={selectedPlatforms}
-            setSelectedItems={setSelectedPlatforms}
-          />
-        </div>
-
         {/* Category */}
         <div className={"relative w-full md:max-w-[15.5rem]"}>
           <MultiSelect
@@ -40,7 +30,7 @@ export default function FilteredPosts() {
         </div>
 
         {/* Topic */}
-        <div className={"relative w-full md:max-w-[15.5rem]"}>
+        {/* <div className={"relative w-full md:max-w-[15.5rem]"}>
           <MultiSelect
             values={topics.map((topic, i) => ({
               key: topic,
@@ -50,28 +40,20 @@ export default function FilteredPosts() {
             selectedItems={selectedTopics}
             setSelectedItems={setSelectedTopics}
           />
-        </div>
+        </div> */}
 
-        <Button className={"md:h-[3.125rem] md:px-6"}>Filter</Button>
+        <Button
+          className={"md:h-[3.125rem] md:px-6"}
+          onClick={() => {
+            handleRunFilter({ categories: selectedCategories });
+          }}
+        >
+          Filter
+        </Button>
       </div>
     </>
   );
 }
 
 const platforms = ["Kubby Mobile", "Kubby Web"];
-
 const categories = ["E-Commerce", "Packages", "Sustainability", "Spaces", "Updates"];
-
-const topics = [
-  "Online Shopping",
-  "Shop Local",
-  "Returns",
-  "Delivery",
-  "Lost/Theft Package",
-  "Missed/Late Deliveries",
-  "Local Community",
-  "Company updates",
-  "App Updates",
-  "News",
-  "Social Media",
-];
