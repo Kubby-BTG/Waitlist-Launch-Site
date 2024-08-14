@@ -5,6 +5,8 @@ import { PrismicRichText } from "@prismicio/react";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { formatDate } from "@/lib/utils";
 import KubbyLogo from "../ui/kubby-logo";
+import AppSocialMediaShareButton from "../ui/AppSocialMediaShareButton";
+import { AppConfig } from "../../utils/constants";
 
 export default function PostCard({ postItem }: { postItem: Content.BlogPostDocument }) {
   if (!postItem?.data) {
@@ -62,6 +64,8 @@ export default function PostCard({ postItem }: { postItem: Content.BlogPostDocum
               <Badge key={i}>{tag.label}</Badge>
             ))}
           </div>
+
+          {/* {postItem.uid && <AppSocialMediaShareButton shareUrl={`${AppConfig().CURRENT_SITE_URL}${postItem.url}`} />} */}
         </div>
       </div>
     </PrismicNextLink>

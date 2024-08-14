@@ -1,9 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import MultiSelect from "@/components/ui/multi-select";
-
-import { useState } from "react";
 
 export default function FilteredPosts({
   handleRunFilter,
@@ -11,6 +10,7 @@ export default function FilteredPosts({
   handleRunFilter: ({ categories }: { categories: string[] }) => void;
 }) {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  // const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>([]);
   // const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
   return (
     <>
@@ -55,5 +55,18 @@ export default function FilteredPosts({
   );
 }
 
-const platforms = ["Kubby Mobile", "Kubby Web"];
+// const platforms = ["Kubby Mobile", "Kubby Web"];
 const categories = ["E-Commerce", "Packages", "Sustainability", "Spaces", "Updates"];
+// const topics = [
+//   "Online Shopping",
+//   "Shop Local",
+//   "Returns",
+//   "Delivery",
+//   "Lost/Theft Package",
+//   "Missed/Late Deliveries",
+//   "Local Community",
+//   "Company updates",
+//   "App Updates",
+//   "News",
+//   "Social Media",
+// ];
