@@ -9,7 +9,7 @@ export default async function Header() {
   const client = createClient();
 
   const settings = await client.getSingle("settings");
-  const latestPosts = await getLatestBlogPost();
+  // const latestPosts = await getLatestBlogPost();
 
   return (
     <StickyHeaderWrapper>
@@ -27,7 +27,7 @@ export default async function Header() {
         <Navbar
           navigation={settings.data.navigation}
           reportLink={settings.data.report_link}
-          post={<PostCard post={latestPosts?.[0] || []} />}
+          // post={<PostCard postItem={latestPosts?.[0]} />}
         />
       </header>
     </StickyHeaderWrapper>

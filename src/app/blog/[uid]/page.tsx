@@ -57,19 +57,6 @@ export default async function Page({ params }: { params: Params }) {
             {/* <SocialMediaShareButtons /> */}
           </div>
         </div>
-
-        {/* <div
-          className={"flex flex-col gap-4 lg:max-w-[24rem] xl:max-w-[26rem]"}
-        >
-          <p
-            className={
-              "font-display text-[2.625rem] uppercase leading-[3rem] text-primary-darker"
-            }
-          >
-            More <span className={"text-brand-500"}>Stories</span>
-          </p>
-          <CuratedPosts className={"md:grid-cols-2 lg:grid-cols-1"} />
-        </div> */}
       </div>
     </PageWrapper>
   );
