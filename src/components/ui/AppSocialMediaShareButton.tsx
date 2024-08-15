@@ -65,7 +65,7 @@ const AppSocialMediaShareButton = ({ shareUrl, title }: { shareUrl: string; titl
   const className01 = cn(["cursor-pointer"]);
   return (
     <div className="flex flex-row flex-wrap gap-3">
-      <FacebookShareButton url={shareUrl} className={className01}>
+      <FacebookShareButton url={shareUrl} title={title} className={className01}>
         <FacebookIcon size={iconSize} round={true} />
       </FacebookShareButton>
 
@@ -77,7 +77,7 @@ const AppSocialMediaShareButton = ({ shareUrl, title }: { shareUrl: string; titl
         <WhatsappIcon size={iconSize} round={true} />
       </WhatsappShareButton>
 
-      <LinkedinShareButton url={shareUrl} className={className01}>
+      <LinkedinShareButton url={shareUrl} title={title} className={className01}>
         <LinkedinIcon size={iconSize} round={true} />
       </LinkedinShareButton>
 
