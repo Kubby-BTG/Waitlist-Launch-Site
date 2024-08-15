@@ -11,7 +11,7 @@ import { PrismicNextImage } from "@prismicio/next";
 import PageWrapper from "@/components/animated-ui/page-wrapper";
 import { TransitionLink } from "@/components/animated-ui/transition-link";
 import KubbyLogo from "@/components/ui/kubby-logo";
-import { AppConfig } from "../../../utils/constants";
+import { AppConfig, ApplicationAuthor } from "../../../utils/constants";
 import AppSocialMediaShareButton from "../../../components/ui/AppSocialMediaShareButton";
 
 type Params = { uid: string };
@@ -73,8 +73,8 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const page = await client.getByUID("blog_post", params.uid).catch(() => notFound());
 
   return {
-    title: page.data.meta_title,
-    description: page.data.meta_description,
+    title: `${asText(page.data.title)} | ${ApplicationAuthor}`,
+    description: asText(page.data.description),
   };
 }
 
