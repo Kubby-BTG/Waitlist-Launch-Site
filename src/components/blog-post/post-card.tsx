@@ -64,8 +64,6 @@ export default function PostCard({ postItem }: { postItem: Content.BlogPostDocum
               <Badge key={i}>{tag.label}</Badge>
             ))}
           </div>
-
-          {/* {postItem.uid && <AppSocialMediaShareButton shareUrl={`${AppConfig().CURRENT_SITE_URL}${postItem.url}`} />} */}
         </div>
       </div>
     </PrismicNextLink>
