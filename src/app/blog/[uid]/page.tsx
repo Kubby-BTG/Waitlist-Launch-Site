@@ -20,6 +20,9 @@ export default async function Page({ params }: { params: Params }) {
   const client = createClient();
   const page = await client.getByUID("blog_post", params.uid).catch(() => notFound());
 
+  const shareTitle = `${asText(page.data.title)} | ${ApplicationAuthor}`;
+  const shareUrl = `${AppConfig().CURRENT_SITE_URL}${page.url}`;
+
   return (
     <PageWrapper>
       <div className="container relative mx-auto grid py-16 lg:grid-cols-12 lg:pb-14 lg:pt-12">
@@ -52,10 +55,7 @@ export default async function Page({ params }: { params: Params }) {
 
           {page.url ? (
             <div className="mt-7">
-              <AppSocialMediaShareButton
-                title={asText(page.data.title)}
-                shareUrl={`${AppConfig().CURRENT_SITE_URL}${page.url}`}
-              />
+              <AppSocialMediaShareButton title={shareTitle} shareUrl={shareUrl} />
             </div>
           ) : null}
 
@@ -74,7 +74,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
   const description = asText(page.data.description);
   const title = `${asText(page.data.title)} | ${ApplicationAuthor}`;
-  const fullBlogUrl = `${AppConfig().CURRENT_SITE_URL}${page.url}`;
+  const shareUrl = `${AppConfig().CURRENT_SITE_URL}${page.url}`;
 
   const data01: Metadata = {
     title: title,
@@ -85,7 +85,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
       siteName: ApplicationSiteName,
       title: title,
       description: description,
-      url: fullBlogUrl,
+      url: shareUrl,
       authors: AppSocialMediaLinks.Facebook,
     },
     twitter: {
@@ -94,7 +94,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
       creator: AppSocialMediaLinks.Twitter,
       images: page?.data?.featured_image?.url || "/twitter-image.png",
       title: title,
-      site: fullBlogUrl,
+      site: shareUrl,
     },
   };
   return data01;
