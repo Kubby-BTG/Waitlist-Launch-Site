@@ -20,11 +20,6 @@ export default async function Page({ params }: { params: Params }) {
   const client = createClient();
   const page = await client.getByUID("blog_post", params.uid).catch(() => notFound());
 
-  function SocialMediaShareButtons() {
-    if (!page.uid) return null;
-    return <AppSocialMediaShareButton title={asText(page.data.title)} shareUrl={`${AppConfig().CURRENT_SITE_URL}${page.url}`} />;
-  }
-
   return (
     <PageWrapper>
       <div className="container relative mx-auto grid py-16 lg:grid-cols-12 lg:pb-14 lg:pt-12">
@@ -55,9 +50,14 @@ export default async function Page({ params }: { params: Params }) {
             <PrismicNextImage field={page.data.featured_image} className={"absolute inset-0 object-cover"} alt="" />
           </div>
 
-          <div className="mt-7">
-            <SocialMediaShareButtons />
-          </div>
+          {page.url ? (
+            <div className="mt-7">
+              <AppSocialMediaShareButton
+                title={asText(page.data.title)}
+                shareUrl={`${AppConfig().CURRENT_SITE_URL}${page.url}`}
+              />
+            </div>
+          ) : null}
 
           <div className="relative mt-[clamp(2rem,3.571vw,3.75rem)] grid lg:pr-10">
             <SliceZone slices={page.data.slices} components={components} />
