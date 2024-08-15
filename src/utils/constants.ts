@@ -50,7 +50,7 @@ export const ApplicationKeyword = [
 ];
 
 export const AppDescription = `Shop easy, deliver worry-free with Kubby! Access your favorite stores, enjoy secure, sustainable delivery, and say goodbye to package theft | Kubby`;
-export const ApplicationSiteName = `Building Communities Through Shopping | Kubby`;
+export const ApplicationSiteName = `Kubby | Building Communities Through Shopping`;
 export const ApplicationAuthor = `Kubby`;
 
 export const deliveryIssues = [
@@ -97,10 +97,10 @@ export const deliveryCompanies = [
 ];
 
 export const AppSocialMediaLinks = Object.freeze({
-  Facebook: "https://www.facebook.com/profile.php?id=61563980498725&mibextid=LQQJ4d",
+  Facebook: "https://www.facebook.com/profile.php?id=61563980498725",
   Twitter: "https://x.com/kubbyio",
   LinkedIn: "https://www.linkedin.com/company/kubbyinc",
-  Instagram: "https://www.instagram.com/kubby.io?igsh=eXNlcm95bjZnd2Nj&utm_source=qr",
+  Instagram: "https://www.instagram.com/kubby.io",
   Tiktok: "",
   YouTube: "",
 });

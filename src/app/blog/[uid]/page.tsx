@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PrismicRichText, SliceZone } from "@prismicio/react";
-import { asText } from "@prismicio/client";
+import { asText, asImageSrc } from "@prismicio/client";
 
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
@@ -11,7 +11,7 @@ import { PrismicNextImage } from "@prismicio/next";
 import PageWrapper from "@/components/animated-ui/page-wrapper";
 import { TransitionLink } from "@/components/animated-ui/transition-link";
 import KubbyLogo from "@/components/ui/kubby-logo";
-import { AppConfig, ApplicationAuthor } from "../../../utils/constants";
+import { AppConfig, AppDescription, ApplicationAuthor, ApplicationSiteName, AppSocialMediaLinks } from "../../../utils/constants";
 import AppSocialMediaShareButton from "../../../components/ui/AppSocialMediaShareButton";
 
 type Params = { uid: string };
@@ -72,10 +72,32 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const client = createClient();
   const page = await client.getByUID("blog_post", params.uid).catch(() => notFound());
 
-  return {
-    title: `${asText(page.data.title)} | ${ApplicationAuthor}`,
-    description: asText(page.data.description),
+  const description = asText(page.data.description);
+  const title = `${asText(page.data.title)} | ${ApplicationAuthor}`;
+  const fullBlogUrl = `${AppConfig().CURRENT_SITE_URL}${page.url}`;
+
+  const data01: Metadata = {
+    title: title,
+    description: description,
+    openGraph: {
+      images: asImageSrc(page?.data?.featured_image) || "/opengraph-image.png",
+      type: "article",
+      siteName: ApplicationSiteName,
+      title: title,
+      description: description,
+      url: fullBlogUrl,
+      authors: AppSocialMediaLinks.Facebook,
+    },
+    twitter: {
+      card: "summary_large_image",
+      description: description,
+      creator: AppSocialMediaLinks.Twitter,
+      images: page?.data?.featured_image?.url || "/twitter-image.png",
+      title: title,
+      site: fullBlogUrl,
+    },
   };
+  return data01;
 }
 
 export async function generateStaticParams() {
