@@ -64,7 +64,7 @@ const AppSocialMediaShareButton = ({ shareUrl, title }: { shareUrl: string; titl
   const iconSize = 32;
   const className01 = cn(["cursor-pointer"]);
   return (
-    <div className="flex flex-row gap-3">
+    <div className="flex flex-row flex-wrap gap-3">
       <FacebookShareButton url={shareUrl} className={className01}>
         <FacebookIcon size={iconSize} round={true} />
       </FacebookShareButton>
