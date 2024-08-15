@@ -4,6 +4,7 @@ import { SliceZone } from "@prismicio/react";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import PageWrapper from "@/components/animated-ui/page-wrapper";
+import { AppDescription, ApplicationSiteName } from "../utils/constants";
 
 export const revalidate = 30;
 
@@ -23,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = await client.getSingle("homepage");
 
   return {
-    title: page.data.title,
-    description: page.data.meta_description,
+    title: page.data.title || ApplicationSiteName,
+    description: page.data.meta_description || AppDescription,
   };
 }
