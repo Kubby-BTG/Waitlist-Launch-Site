@@ -234,8 +234,7 @@ const ReportFormBase = (): JSX.Element => {
 
         <div className={"flex w-full flex-col gap-1"}>
           <label htmlFor="purchase-store" className={"text-sm text-black"}>
-            Purchase store
-            <FormRequiredTag />
+            Purchase store (optional)
           </label>
           <Input
             type="text"
@@ -249,8 +248,7 @@ const ReportFormBase = (): JSX.Element => {
 
         <div className={"flex w-full flex-col gap-1"}>
           <label htmlFor="delivery-date" className={"text-sm text-black"}>
-            Delivery Date
-            <FormRequiredTag />
+            Delivery Date (optional)
           </label>
           <AppDatePicker
             date={formData.delivery_date}
