@@ -28,6 +28,7 @@ export function getDeliveryIssueSchema() {
     id: z.string().optional(),
     city: z.string().optional(),
     state: z.string().optional(),
+    delivery_date: z.string().optional(),
 
     email: z
       .string({
@@ -37,38 +38,29 @@ export function getDeliveryIssueSchema() {
       .trim()
       .email({ message: "Invalid email address" }),
 
-    delivery_date: z
-      .date({
-        coerce: true,
-        invalid_type_error: "Invalid Date",
-        required_error: "Date Required",
-      })
-      .max(new Date(), { message: "Date cannot be future date" })
-      .transform((f) => f.toISOString().split("T")[0])
-      .pipe(z.string().date("Invalid Date")),
+    // delivery_date: z
+    //   .date({ coerce: true })
+    //   .max(new Date(), { message: "Date cannot be future date" })
+    //   .transform((f) => f.toISOString().split("T")[0])
+    //   // .pipe(z.string().date("Invalid Date").optional())
+    //   .optional(),
 
     issue: z
       .string({
-        required_error: "issue is required",
-        invalid_type_error: "issue must be a string",
+        required_error: "Delivery issue is required",
+        invalid_type_error: "Delivery issue must be a string",
       })
-      .min(3, { message: "issue is required" })
+      .min(3, { message: "Delivery issue is required" })
       .trim(),
 
-    purchase_store_name: z
-      .string({
-        required_error: "purchase_store_name is required",
-        invalid_type_error: "purchase_store_name must be a string",
-      })
-      .min(3, { message: "purchase_store_name is required" })
-      .trim(),
+    purchase_store_name: z.string().trim().optional(),
 
     shipping_carrier: z
       .string({
-        required_error: "shipping_carrier is required",
-        invalid_type_error: "shipping_carrier must be a string",
+        required_error: "Shipping carrier is required",
+        invalid_type_error: "Shipping carrier must be a string",
       })
-      .min(3, { message: "shipping_carrier is required" })
+      .min(3, { message: "Shipping carrier is required" })
       .trim(),
 
     zipcode: z

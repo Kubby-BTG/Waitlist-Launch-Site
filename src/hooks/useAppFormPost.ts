@@ -20,12 +20,21 @@ export default function useAppFormPost(ms?: number) {
   async function postData<T = any>({ formData, url }: { formData: any; url: string }) {
     try {
       increaseActions();
+
+      const formData01: any = {};
+
+      Object.entries(formData).forEach(([key, value]) => {
+        if (value !== "" && value !== null && value !== undefined) {
+          formData01[key] = value;
+        }
+      });
+
       const res = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData01),
       });
 
       if (!res.ok) {
