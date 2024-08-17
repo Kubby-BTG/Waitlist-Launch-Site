@@ -91,8 +91,12 @@ export const deliveryCompanies = [
     logoUrl: "/carriers/USPS.svg",
   },
   {
+    name: "Fetch",
+    logoUrl: "/carriers/fetch-02.jpg",
+  },
+  {
     name: "other",
-    logoUrl: "",
+    logoUrl: "/carriers/package.svg",
   },
 ];
 
