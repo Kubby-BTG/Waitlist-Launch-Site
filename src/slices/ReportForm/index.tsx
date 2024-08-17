@@ -28,13 +28,17 @@ function FormRequiredTag() {
  */
 export type ReportFormProps = SliceComponentProps<Content.ReportFormSlice>;
 
-type IDeliveryIssueExtra = IDeliveryIssue & { cities: string[] };
+type IDeliveryIssueExtra = IDeliveryIssue & {
+  cities: string[];
+  shipping_carrier_other?: string;
+};
 
 const initialValue: Partial<IDeliveryIssueExtra> = {
   email: "",
   issue: "",
   purchase_store_name: "",
   shipping_carrier: "",
+  shipping_carrier_other: "",
   zipcode: "",
   delivery_date: "",
   zipcode_latitude: 0,
@@ -100,7 +104,13 @@ const ReportFormBase = (): JSX.Element => {
     try {
       const schema = getDeliveryIssueSchema();
 
-      const validationResult = ZodValidationHelper.validate({ schema, input: formData });
+      const formData01 = { ...formData };
+      if (formData01.shipping_carrier?.toLowerCase() === "other" && formData01.shipping_carrier_other) {
+        formData01.shipping_carrier = formData01.shipping_carrier_other;
+      }
+      formData01.shipping_carrier_other = "";
+
+      const validationResult = ZodValidationHelper.validate({ schema, input: formData01 });
 
       if (validationResult.firstError) {
         openAlertDialog.warning({ title: validationResult.firstError });
@@ -118,7 +128,7 @@ const ReportFormBase = (): JSX.Element => {
     }
   }
 
-  const handleFormDataChange = ({ fieldName, val }: { fieldName: keyof IDeliveryIssue; val: any }) => {
+  const handleFormDataChange = ({ fieldName, val }: { fieldName: keyof IDeliveryIssueExtra; val: any }) => {
     setFormData((prev) => ({ ...prev, [fieldName]: val }));
   };
 
@@ -231,6 +241,21 @@ const ReportFormBase = (): JSX.Element => {
             </SelectContent>
           </Select>
         </div>
+
+        {formData.shipping_carrier?.toLowerCase() === "other" && (
+          <div className={"flex w-full flex-col gap-1"}>
+            <label htmlFor="shipping_carrier_other" className={"text-sm text-black"}>
+              Other Shipping Carrier Name
+            </label>
+            <Input
+              type="text"
+              value={formData.shipping_carrier_other}
+              onChange={(e) => handleFormDataChange({ fieldName: "shipping_carrier_other", val: e.target.value })}
+              id={"shipping_carrier_other"}
+              placeholder={"Enter Other Shipping Carrier Name"}
+            />
+          </div>
+        )}
 
         <div className={"flex w-full flex-col gap-1"}>
           <label htmlFor="purchase-store" className={"text-sm text-black"}>
