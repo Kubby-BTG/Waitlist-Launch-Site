@@ -22,7 +22,7 @@ export function AppScrollToTopButton() {
       }}
       onClick={() => scrollToTop()}
     >
-      BACK TO TOP
+      TOP
       <ArrowUp className="inline-block h-4 w-4" />
     </button>
   );
