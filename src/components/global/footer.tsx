@@ -8,6 +8,7 @@ import WaitlistForm from "../modals/waitlist-form";
 import { TransitionLink } from "../animated-ui/transition-link";
 import { asLink } from "@prismicio/client";
 import { AppScrollToTopButton } from "../ui/AppScrollToTopButton";
+import SalesIQ from "../helpers/SalesIQ";
 
 export default async function Footer() {
   const client = createClient();
@@ -17,6 +18,7 @@ export default async function Footer() {
   return (
     <>
       <AppScrollToTopButton />
+      <SalesIQ />
       <footer className={"relative bg-background py-16"}>
         <div className="absolute inset-0">
           <PrismicNextImage field={settings.data.background_image} className={"h-full w-full object-cover"} alt="" />
