@@ -11,8 +11,8 @@ export function AppScrollToTopButton() {
     <button
       type="button"
       className={cn([
-        `fixed bottom-0 right-0 z-50 mb-[50px] mr-6`,
-        `flex items-center gap-2 rounded-s-full bg-brand-300 px-4 py-2 text-xs text-brand-950`,
+        `lef-0 fixed bottom-0 z-50 mb-[50px] ml-6`,
+        `flex items-center gap-2 rounded-e-full bg-brand-300 px-4 py-2 text-xs text-brand-950`,
         "cursor-pointer",
         "font-bold",
       ])}

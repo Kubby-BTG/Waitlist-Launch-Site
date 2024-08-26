@@ -15,7 +15,7 @@ const useScript = (url: string, widgetCode: string) => {
       widgetcode: "${widgetCode}",
       values: {},
       ready: function() {
-        $zoho.salesiq.floatbutton.position("right");
+        // $zoho.salesiq.floatbutton.position("right");
         $zoho.salesiq.floatbutton.visible("show");
       }
     };
