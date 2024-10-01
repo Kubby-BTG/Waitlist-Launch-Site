@@ -4,6 +4,8 @@ export function getWaitlistSchema() {
   const schema = z.object({
     id: z.string().optional(),
 
+    referralCode: z.string().optional(),
+
     email: z
       .string({
         required_error: "Email is required",
