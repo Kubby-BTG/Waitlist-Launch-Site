@@ -175,7 +175,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
                   You&apos;re In
                 </h1>
 
-                <p className={"text-sm text-black max-md:text-center"}>You should receive an email from us shortly</p>
+                <p className={"text-sm text-black max-md:text-center"}>You will receive an email from us soon</p>
 
                 <Button
                   onClick={() => {
