@@ -8,6 +8,10 @@
     {
       "name": "reasonForJoining",
       "type": "singleLineText"
+    },
+    {
+      "name": "referralCode",
+      "type": "singleLineText"
     }
   ]
 }

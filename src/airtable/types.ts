@@ -21,6 +21,7 @@ export interface IWaitList {
   //
   email: string;
   reasonForJoining: string;
+  referralCode: string;
 }
 
 export interface IContact {

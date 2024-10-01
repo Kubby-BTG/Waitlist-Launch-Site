@@ -18,6 +18,7 @@ import AppAlertDialog, { useAppAlertDialog } from "../ui/AppAlertDialog";
 const initialValue: Partial<IWaitList> = {
   email: "",
   reasonForJoining: "",
+  referralCode: "",
 };
 
 export default function WaitlistForm({ children }: { children: ReactNode }) {
@@ -38,9 +39,17 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
         return;
       }
 
+      const data01: any = {};
+
+      Object.entries(validationResult.validatedData || {}).forEach(([key, value]) => {
+        if (key && value) {
+          data01[key] = value;
+        }
+      });
+
       const apiData = await postData({
         url: "/api/waitlist",
-        formData: validationResult.validatedData,
+        formData: data01,
       });
 
       setFormData({ ...initialValue });
@@ -126,6 +135,19 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
                       ))}
                     </SelectContent>
                   </Select>
+                </div>
+
+                <div className={"flex w-full flex-col gap-1"}>
+                  <label htmlFor="referralCode" className={"text-sm text-black"}>
+                    Referral Code
+                  </label>
+                  <Input
+                    type="text"
+                    id={"referralCode"}
+                    value={formData.referralCode}
+                    onChange={(e) => handleFormDataChange({ fieldName: "referralCode", val: e.target.value })}
+                    placeholder={"Enter referral code"}
+                  />
                 </div>
 
                 <Button
