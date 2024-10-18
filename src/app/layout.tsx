@@ -48,6 +48,7 @@ async function postData() {
     // }
     // return true;
   } catch (error) {
+    console.error(error);
     return { error: true };
     // return true;
   }
