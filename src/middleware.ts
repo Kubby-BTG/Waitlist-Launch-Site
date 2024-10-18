@@ -9,7 +9,6 @@ import { revalidateTag } from "next/cache";
 import { exitPreview, redirectToPreviewURL } from "@prismicio/next";
 import { createClient } from "./prismicio";
 import { WaitlistApiService } from "./airtable/tables/waitlist";
-import { BANNED_IP_ROUTE_ID } from "./utils/constants";
 
 const routesMonitor = {
   DeliveryIssueCreate: "/api/delivery-issue",
@@ -21,7 +20,7 @@ const routesMonitor = {
   ExitPreview: "/api/exit-preview",
   Preview: "/api/preview",
   ForTest: "/api/test",
-  FetchIpAdress: BANNED_IP_ROUTE_ID,
+  FetchIpAdress: "/api/ip-got",
 } as const;
 
 const bannedIpAddresses = [
