@@ -9,7 +9,7 @@ import { revalidateTag } from "next/cache";
 import { exitPreview, redirectToPreviewURL } from "@prismicio/next";
 import { createClient } from "./prismicio";
 import { WaitlistApiService } from "./airtable/tables/waitlist";
-import { AppConfig } from "./utils/constants";
+import { BANNED_IP_ROUTE_ID } from "./utils/constants";
 
 const routesMonitor = {
   DeliveryIssueCreate: "/api/delivery-issue",
@@ -21,7 +21,18 @@ const routesMonitor = {
   ExitPreview: "/api/exit-preview",
   Preview: "/api/preview",
   ForTest: "/api/test",
+  FetchIpAdress: BANNED_IP_ROUTE_ID,
 } as const;
+
+const bannedIpAddresses = [
+  //
+  "102.88.83.109",
+  "172.176.75.89",
+  "20.169.168.224",
+  "52.165.149.97",
+  //
+  "197.210.28.176",
+];
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
@@ -67,6 +78,14 @@ export async function middleware(request: NextRequest) {
         revalidateTag("prismic");
 
         return NextResponse.json({ revalidated: true, now: Date.now() });
+      }
+
+      if (pathname === routesMonitor.FetchIpAdress) {
+        const currentIp = request.headers.get("X-Forwarded-For") || request.ip;
+        if (currentIp && typeof currentIp === "string" && bannedIpAddresses.includes(currentIp)) {
+          return NextResponse.json({ value: false, now: Date.now() });
+        }
+        return NextResponse.json({ value: true, now: Date.now() });
       }
     }
 
