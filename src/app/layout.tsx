@@ -6,14 +6,7 @@ import { cn } from "@/lib/utils";
 import { createClient } from "@/prismicio";
 import Header from "@/components/global/header";
 import Footer from "@/components/global/footer";
-import {
-  AppConfig,
-  AppDescription,
-  ApplicationAuthor,
-  ApplicationKeyword,
-  ApplicationSiteName,
-  BANNED_IP_ROUTE_ID,
-} from "../utils/constants";
+import { AppConfig, AppDescription, ApplicationAuthor, ApplicationKeyword, ApplicationSiteName } from "../utils/constants";
 
 const DMSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
 
@@ -27,7 +20,7 @@ export const revalidate = 30;
 
 async function postData() {
   try {
-    const res = await fetch(BANNED_IP_ROUTE_ID, {
+    const res = await fetch("/api/ip-got", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

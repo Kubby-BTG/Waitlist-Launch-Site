@@ -10,8 +10,6 @@ export const DefinedRoutes = Object.freeze({
   // sliceSimulator: "/slice-simulator",
 });
 
-export const BANNED_IP_ROUTE_ID = `/api/5d261fcd9a93f62e889c19900d9f183a`;
-
 export const AppConfig = () =>
   ({
     KUBBY_WEB_AIRTABLE_ACCESS_TOKEN: process.env.KUBBY_WEB_AIRTABLE_ACCESS_TOKEN || "",
