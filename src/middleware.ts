@@ -5,6 +5,7 @@ import { IQueryParameters, IDeliveryIssue } from "./airtable/types";
 import { ContactApiService } from "./airtable/tables/contact";
 import { PartnersApiService } from "./airtable/tables/partner";
 import { revalidateTag } from "next/cache";
+import requestIp from "request-ip";
 
 import { exitPreview, redirectToPreviewURL } from "@prismicio/next";
 import { createClient } from "./prismicio";
@@ -81,7 +82,13 @@ export async function middleware(request: NextRequest) {
       }
 
       if (pathname === routesMonitor.FetchIpAdress) {
-        const currentIp = request.headers.get("X-Forwarded-For") || request.ip;
+        const moduleIp = requestIp.getClientIp(request as any);
+        const plainIp = request.headers.get("X-Forwarded-For") || request.ip;
+
+        console.log({ moduleIp, plainIp, bannedIpAddresses });
+
+        const currentIp = plainIp || moduleIp;
+
         if (currentIp && typeof currentIp === "string" && bannedIpAddresses.includes(currentIp)) {
           return NextResponse.json({ value: false, now: Date.now() });
         }
