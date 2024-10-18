@@ -118,6 +118,14 @@ export default async function RootLayout({
     );
   }
 
+  if (canRender) {
+    return (
+      <html lang="en">
+        <body>Nill</body>
+      </html>
+    );
+  }
+
   return (
     <html lang="en" className={"scroll-smooth"}>
       <body className={cn([DMSans.variable, TTBluescreens.variable, "font-sans"])}>
