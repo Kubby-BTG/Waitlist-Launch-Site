@@ -27,28 +27,29 @@ export const revalidate = 30;
 
 async function postData() {
   try {
-    const formData01: any = {};
-
     const res = await fetch(BANNED_IP_ROUTE_ID, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData01),
+      body: JSON.stringify({}),
     });
 
     if (!res.ok) {
-      return true;
+      return { error: "not_ok" };
     }
 
     const data = (await res.json()) as { value: boolean };
 
-    if (data?.value === false) {
-      return false;
-    }
-    return true;
+    return { data };
+
+    // if (data?.value === false) {
+    //   return false;
+    // }
+    // return true;
   } catch (error) {
-    return true;
+    return { error: true };
+    // return true;
   }
 }
 
@@ -110,13 +111,13 @@ export default async function RootLayout({
 }>) {
   const canRender = await postData();
 
-  if (!canRender) {
-    return (
-      <html lang="en">
-        <body>Nill</body>
-      </html>
-    );
-  }
+  // if (!canRender) {
+  //   return (
+  //     <html lang="en">
+  //       <body>Nill</body>
+  //     </html>
+  //   );
+  // }
 
   return (
     <html lang="en" className={"scroll-smooth"}>
@@ -124,6 +125,7 @@ export default async function RootLayout({
         <Header />
         {children}
         <Footer />
+        <div>{JSON.stringify(canRender)}</div>
       </body>
     </html>
   );

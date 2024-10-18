@@ -83,14 +83,14 @@ export async function middleware(request: NextRequest) {
 
       if (pathname === routesMonitor.FetchIpAdress) {
         const moduleIp = requestIp.getClientIp(request as any);
-        const plainIp = request.headers.get("X-Forwarded-For") || request.ip;
+        const plainIp = request.headers.get("x-forwarded-for") || request.headers.get("X-Forwarded-For") || request.ip;
 
         console.log({ moduleIp, plainIp, bannedIpAddresses });
 
-        const currentIp = plainIp || moduleIp;
+        const currentIp = (plainIp || moduleIp || "").trim();
 
         if (currentIp && typeof currentIp === "string" && bannedIpAddresses.includes(currentIp)) {
-          return NextResponse.json({ value: false, now: Date.now() });
+          return NextResponse.json({ value: false, currentIp, moduleIp, plainIp, now: Date.now() });
         }
         return NextResponse.json({ value: true, now: Date.now() });
       }
