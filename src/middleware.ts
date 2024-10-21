@@ -20,7 +20,7 @@ const routesMonitor = {
   ExitPreview: "/api/exit-preview",
   Preview: "/api/preview",
   ForTest: "/api/test",
-  FetchIpAdress: "/api/ip-got",
+  // FetchIpAdress: "/api/ip-got",
 } as const;
 
 const bannedIpAddresses = [
@@ -36,7 +36,40 @@ const bannedIpAddresses = [
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
   try {
+    const plainIp = request.headers.get("x-forwarded-for") || request.headers.get("X-Forwarded-For") || request.ip;
+    const realIp = request.headers.get("x-real-ip");
+    const request_ip = request.ip;
+
+    try {
+      console.log(
+        JSON.stringify({
+          realIp,
+          plainIp,
+          request_ip,
+          headers: request.headers,
+          geo: request.geo,
+          method: request.method,
+          ip: request.ip,
+          url: request.url,
+          body: request.body,
+          mode: request.mode,
+        }),
+      );
+    } catch (error) {
+      //
+    }
+
     const pathname = new URL(request.url).pathname;
+
+    const currentIp = (plainIp || request.ip || realIp || "").trim();
+
+    if (currentIp && typeof currentIp === "string" && bannedIpAddresses.includes(currentIp)) {
+      return NextResponse.redirect(new URL("/banned", request.url));
+    }
+
+    if (!pathname.startsWith("/api")) {
+      return NextResponse.next();
+    }
 
     // console.log({ url: request.url, pathname });
 
@@ -78,20 +111,6 @@ export async function middleware(request: NextRequest) {
 
         return NextResponse.json({ revalidated: true, now: Date.now() });
       }
-
-      if (pathname === routesMonitor.FetchIpAdress) {
-        const plainIp = request.headers.get("x-forwarded-for") || request.headers.get("X-Forwarded-For") || request.ip;
-        const realIp = request.headers.get("x-real-ip");
-
-        console.log({ plainIp, bannedIpAddresses });
-
-        const currentIp = (plainIp || realIp || "").trim();
-
-        if (currentIp && typeof currentIp === "string" && bannedIpAddresses.includes(currentIp)) {
-          return NextResponse.json({ value: false, currentIp, realIp, plainIp, now: Date.now() });
-        }
-        return NextResponse.json({ value: true, now: Date.now() });
-      }
     }
 
     if (request.method.toUpperCase() === "GET") {
@@ -126,5 +145,5 @@ export async function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/api/:path*"],
+  matcher: ["/api/:path*", "/"],
 };

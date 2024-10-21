@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/private/", "/slice-simulator/"],
+      disallow: ["/private/", "/banned/", "/slice-simulator/"],
     },
     sitemap: [AppConfig().CURRENT_SITE_URL, "sitemap.xml"].join("/"),
   };
