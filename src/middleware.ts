@@ -29,25 +29,20 @@ const bannedIpAddresses = [
   "172.176.75.89",
   "20.169.168.224",
   "52.165.149.97",
-  "146.70.58.134",
-  "146.70.58.136",
+  // "102.89.23.197",
   //
-  "102.89.32.55",
-  //
-  // "::1",
 ];
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
   try {
     const plainIp = request.headers.get("x-forwarded-for");
-    const plainIp_02 = request.headers.get("X-Forwarded-For");
     const realIp = request.headers.get("x-real-ip");
     const request_ip = request.ip;
     const pathname = new URL(request.url).pathname;
 
     const currentIp =
-      (plainIp || plainIp_02 || request.ip || realIp || "")
+      (plainIp || request.ip || realIp || "")
         .split(",")
         ?.map((f) => f?.trim())?.[0]
         ?.trim() || "";
@@ -58,7 +53,6 @@ export async function middleware(request: NextRequest) {
           currentIp,
           pathname,
           realIp,
-          plainIp_02,
           plainIp,
           request_ip,
           headers: request.headers,
