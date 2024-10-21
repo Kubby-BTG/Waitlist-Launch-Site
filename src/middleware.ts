@@ -40,10 +40,19 @@ export async function middleware(request: NextRequest) {
     const plainIp_02 = request.headers.get("X-Forwarded-For");
     const realIp = request.headers.get("x-real-ip");
     const request_ip = request.ip;
+    const pathname = new URL(request.url).pathname;
+
+    const currentIp =
+      (plainIp || plainIp_02 || request.ip || realIp || "")
+        .split(",")
+        ?.map((f) => f?.trim())?.[0]
+        ?.trim() || "";
 
     try {
       console.log(
         JSON.stringify({
+          currentIp,
+          pathname,
           realIp,
           plainIp_02,
           plainIp,
@@ -60,14 +69,6 @@ export async function middleware(request: NextRequest) {
     } catch (error) {
       //
     }
-
-    const pathname = new URL(request.url).pathname;
-
-    const currentIp =
-      (plainIp || plainIp_02 || request.ip || realIp || "")
-        .split(",")
-        ?.map((f) => f?.trim())?.[0]
-        ?.trim() || "";
 
     if (currentIp && typeof currentIp === "string" && bannedIpAddresses.includes(currentIp)) {
       return NextResponse.redirect(new URL(routesMonitor.Banned, request.url));
