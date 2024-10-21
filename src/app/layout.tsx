@@ -4,8 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/prismicio";
-import Header from "@/components/global/header";
-import Footer from "@/components/global/footer";
+
 import { AppConfig, AppDescription, ApplicationAuthor, ApplicationKeyword, ApplicationSiteName } from "../utils/constants";
 
 const DMSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
@@ -17,35 +16,6 @@ const TTBluescreens = localFont({
 });
 
 export const revalidate = 30;
-
-async function postData() {
-  try {
-    const res = await fetch("/api/ip-got", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({}),
-    });
-
-    if (!res.ok) {
-      return { error: "not_ok" };
-    }
-
-    const data = (await res.json()) as { value: boolean };
-
-    return { data };
-
-    // if (data?.value === false) {
-    //   return false;
-    // }
-    // return true;
-  } catch (error) {
-    console.error(error);
-    return { error: true };
-    // return true;
-  }
-}
 
 export async function generateMetadata(): Promise<Metadata> {
   const client = createClient();
@@ -103,23 +73,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const canRender = await postData();
-
-  // if (!canRender) {
-  //   return (
-  //     <html lang="en">
-  //       <body>Nill</body>
-  //     </html>
-  //   );
-  // }
-
   return (
     <html lang="en" className={"scroll-smooth"}>
       <body className={cn([DMSans.variable, TTBluescreens.variable, "font-sans"])}>
-        <Header />
+        {/* <Header /> */}
         {children}
-        <Footer />
-        <div>{JSON.stringify(canRender)}</div>
+        {/* <Footer /> */}
       </body>
     </html>
   );
