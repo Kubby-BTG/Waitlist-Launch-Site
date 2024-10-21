@@ -5,6 +5,8 @@ import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import PageWrapper from "@/components/animated-ui/page-wrapper";
 import { AppDescription, ApplicationSiteName } from "../utils/constants";
+import Footer from "@/components/global/footer";
+import Header from "@/components/global/header";
 
 export const revalidate = 30;
 
@@ -13,9 +15,13 @@ export default async function Page() {
   const page = await client.getSingle("homepage");
 
   return (
-    <PageWrapper>
-      <SliceZone slices={page.data.slices} components={components} />
-    </PageWrapper>
+    <>
+      <Header />
+      <PageWrapper>
+        <SliceZone slices={page.data.slices} components={components} />
+      </PageWrapper>
+      <Footer />
+    </>
   );
 }
 

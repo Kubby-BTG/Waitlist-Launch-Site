@@ -4,8 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/prismicio";
-import Header from "@/components/global/header";
-import Footer from "@/components/global/footer";
+
 import { AppConfig, AppDescription, ApplicationAuthor, ApplicationKeyword, ApplicationSiteName } from "../utils/constants";
 
 const DMSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
@@ -77,9 +76,9 @@ export default async function RootLayout({
   return (
     <html lang="en" className={"scroll-smooth"}>
       <body className={cn([DMSans.variable, TTBluescreens.variable, "font-sans"])}>
-        <Header />
+        {/* <Header /> */}
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

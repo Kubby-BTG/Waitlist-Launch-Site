@@ -20,7 +20,7 @@ const routesMonitor = {
   ExitPreview: "/api/exit-preview",
   Preview: "/api/preview",
   ForTest: "/api/test",
-  // FetchIpAdress: "/api/ip-got",
+  Banned: "/banned_faa41b67a500c5885cc4c0f0f8bd",
 } as const;
 
 const bannedIpAddresses = [
@@ -30,7 +30,7 @@ const bannedIpAddresses = [
   "20.169.168.224",
   "52.165.149.97",
   //
-  "197.210.28.176",
+  // "::1",
 ];
 
 // This function can be marked `async` if using `await` inside
@@ -64,7 +64,11 @@ export async function middleware(request: NextRequest) {
     const currentIp = (plainIp || request.ip || realIp || "").trim();
 
     if (currentIp && typeof currentIp === "string" && bannedIpAddresses.includes(currentIp)) {
-      return NextResponse.redirect(new URL("/banned", request.url));
+      return NextResponse.redirect(new URL(routesMonitor.Banned, request.url));
+    }
+
+    if (pathname === routesMonitor.Banned) {
+      return NextResponse.redirect(new URL("/", request.url));
     }
 
     if (!pathname.startsWith("/api")) {
@@ -145,5 +149,5 @@ export async function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/api/:path*", "/"],
+  matcher: ["/api/:path*", "/blog/:path*", "/", "/contact", "/partnership", "/slice-simulator", routesMonitor.Banned],
 };

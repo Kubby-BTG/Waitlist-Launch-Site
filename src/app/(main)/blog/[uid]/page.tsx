@@ -11,8 +11,8 @@ import { PrismicNextImage } from "@prismicio/next";
 import PageWrapper from "@/components/animated-ui/page-wrapper";
 import { TransitionLink } from "@/components/animated-ui/transition-link";
 import KubbyLogo from "@/components/ui/kubby-logo";
-import { AppConfig, AppDescription, ApplicationAuthor, ApplicationSiteName, AppSocialMediaLinks } from "../../../utils/constants";
-import AppSocialMediaShareButton from "../../../components/ui/AppSocialMediaShareButton";
+import { AppConfig, AppDescription, ApplicationAuthor, ApplicationSiteName, AppSocialMediaLinks } from "@/utils/constants";
+import AppSocialMediaShareButton from "@/components/ui/AppSocialMediaShareButton";
 
 type Params = { uid: string };
 
