@@ -149,5 +149,13 @@ export async function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: ["/api/:path*", "/blog/:path*", "/", "/contact", "/partnership", "/slice-simulator", routesMonitor.Banned],
+  matcher: [
+    "/api/:path*",
+    "/blog/:path*",
+    "/",
+    "/contact",
+    "/partnership",
+    "/slice-simulator",
+    "/banned_faa41b67a500c5885cc4c0f0f8bd",
+  ],
 };
