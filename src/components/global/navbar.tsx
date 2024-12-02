@@ -69,7 +69,7 @@ export default function Navbar({
 
         <WaitlistForm>
           <Button type={"button"} variant={"accent"} size={"sm"} className={"max-md:hidden"}>
-            Join Waitlist
+            Request Early Access
           </Button>
         </WaitlistForm>
 
