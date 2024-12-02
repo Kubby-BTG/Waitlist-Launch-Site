@@ -21,6 +21,10 @@ const initialValue: Partial<IWaitList> = {
   referralCode: "",
 };
 
+function FormRequiredTag() {
+  return <span className="select-none pl-[2px] font-bold text-danger">*</span>;
+}
+
 export default function WaitlistForm({ children }: { children: ReactNode }) {
   const [isSent, setIsSent] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +36,13 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
     try {
       const schema = getWaitlistSchema();
 
-      const validationResult = ZodValidationHelper.validate({ schema, input: formData });
+      const validationResult = ZodValidationHelper.validate({
+        schema,
+        input: {
+          ...formData,
+          referralCode: formData.referralCode || undefined,
+        },
+      });
 
       if (validationResult.firstError) {
         openAlertDialog.warning({ title: validationResult.firstError });
@@ -102,7 +112,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
 
                 <div className={"flex w-full flex-col gap-1"}>
                   <label htmlFor="email" className={"text-sm text-black"}>
-                    Email
+                    Email <FormRequiredTag />
                   </label>
                   <Input
                     type="email"
@@ -116,7 +126,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
 
                 <div className={"flex w-full flex-col gap-1"}>
                   <label htmlFor="reason" className={"text-sm text-black"}>
-                    Reason For Joining
+                    Reason For Joining <FormRequiredTag />
                   </label>
                   <Select
                     required
@@ -139,7 +149,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
 
                 <div className={"flex w-full flex-col gap-1"}>
                   <label htmlFor="referralCode" className={"text-sm text-black"}>
-                    Referral Code
+                    Referral Code (optional)
                   </label>
                   <Input
                     type="text"
@@ -158,7 +168,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
                     handleSubmit().catch(() => {});
                   }}
                 >
-                  {isBusy ? "Joining Waitlist..." : "Join Waitlist"}
+                  {isBusy ? "Requesting Early Access..." : "Request Early Access"}
                 </Button>
               </form>
 
