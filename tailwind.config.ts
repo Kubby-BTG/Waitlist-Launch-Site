@@ -13,10 +13,9 @@ const config = {
       },
     },
     colors: {
-      primary: "#003A28",
+      primary: "#003928",
       "primary-darker": "#002A1D",
       secondary: "#38DAA6",
-      // brand: "#008359",
       "brand-secondary": "#BCFFE9",
       background: "#F9F3E8",
       "background-secondary": "#FFFAF0",
@@ -38,7 +37,7 @@ const config = {
       danger: "#dc2626",
       success: "#22c55e",
       warning: "#ffc409",
-
+      //
       brand: {
         default: "#008359",
         "50": "#EDFAF8",
