@@ -168,7 +168,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
                     handleSubmit().catch(() => {});
                   }}
                 >
-                  {isBusy ? "Requesting Early Access..." : "Sign Up Today"}
+                  {isBusy ? "Requesting Early Access..." : "Join Kubby"}
                 </Button>
               </form>
 
