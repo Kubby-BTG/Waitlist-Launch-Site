@@ -218,23 +218,6 @@ export default function DeliveryIssuesMap() {
     }
   }
 
-  async function getAllDeliveryIssues() {
-    try {
-      const apiData = await postData<IDeliveryIssue[]>({
-        url: "/api/delivery-issue/find",
-        formData: {},
-      });
-
-      if (apiData?.length) {
-        setDeliveryIssue({ count: apiData.length, location: "Unknown Location" });
-      } else {
-        setDeliveryIssue({ ...initialData });
-      }
-    } catch (error) {
-      openAlertDialog.error({ title: "Could not filter. Error occured" });
-    }
-  }
-
   return (
     <>
       <div className={"relative h-[600px] w-full overflow-hidden md:h-[640px] md:rounded-2xl"}>
@@ -247,12 +230,6 @@ export default function DeliveryIssuesMap() {
           id={CURRENT_GOOGLE_MAP_ID_MIAN}
         >
           <>
-            {/* <Marker position={{ lat: 32.9618763, lng: -96.99609249999999 }} /> */}
-
-            {/* <AdvancedMarker position={center}>
-              <img src={deliveryIssue.carrierLogo || "/markers/cube.svg"} alt="" className={"size-8"} />
-            </AdvancedMarker> */}
-
             {deliveryIssue.issue && (
               <AdvancedMarker position={center}>
                 <HoverCard open={true}>
