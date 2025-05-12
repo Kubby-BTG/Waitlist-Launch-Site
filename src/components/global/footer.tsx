@@ -1,14 +1,12 @@
 import { createClient } from "@/prismicio";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
-import { Button } from "../ui/button";
-import Arrow from "../ui/arrow";
 import KubbyLogo from "../ui/kubby-logo";
-import WaitlistForm from "../modals/waitlist-form";
 import { TransitionLink } from "../animated-ui/transition-link";
 import { asLink } from "@prismicio/client";
 import { AppScrollToTopButton } from "../ui/AppScrollToTopButton";
 import SalesIQ from "../helpers/SalesIQ";
+import { AppStoreButton } from "../ui/AppStoreButton";
 
 export default async function Footer() {
   const client = createClient();
@@ -42,12 +40,7 @@ export default async function Footer() {
               />
 
               <div>
-                <WaitlistForm>
-                  <Button variant={"accent"} className={"flex items-center gap-1"}>
-                    <span>{settings.data.cta_button_text}</span>
-                    <Arrow className={"flex-none"} />
-                  </Button>
-                </WaitlistForm>
+                <AppStoreButton />
               </div>
             </div>
             {/* Mobile Nav */}
@@ -138,12 +131,7 @@ export default async function Footer() {
                 />
 
                 <div className={"mt-4"}>
-                  <WaitlistForm>
-                    <Button variant={"accent"} className={"flex items-center gap-1"}>
-                      <span>{settings.data.cta_button_text}</span>
-                      <Arrow className={"flex-none"} />
-                    </Button>
-                  </WaitlistForm>
+                  <AppStoreButton />
                 </div>
               </div>
 

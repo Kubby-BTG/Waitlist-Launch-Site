@@ -66,12 +66,17 @@ export default function Navbar({
             ))}
           </ul>
         </div>
+        <div className="flex flex-row gap-4 max-md:hidden">
+          <WaitlistForm>
+            <Button type={"button"} variant={"accent"} size={"sm"} className={"max-md:hidden"}>
+              Request Early Access
+            </Button>
+          </WaitlistForm>
 
-        <WaitlistForm>
-          <Button type={"button"} variant={"accent"} size={"sm"} className={"max-md:hidden"}>
-            Sign Up Today
+          <Button type={"button"} variant={"outline"} size={"sm"} className={"border-white text-white max-md:hidden"}>
+            Login to Space
           </Button>
-        </WaitlistForm>
+        </div>
 
         <div className="md:hidden">
           <button

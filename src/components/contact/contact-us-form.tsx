@@ -23,10 +23,6 @@ export default function ContactUsForm() {
   const { postData, isBusy } = useAppFormPost();
   const { alertOptions, isAlertOpen, closeAlertDialog, openAlertDialog } = useAppAlertDialog();
 
-  // useEffect(() => {
-  //   console.log(formData);
-  // }, [formData]);
-
   async function handleSubmit() {
     try {
       const schema = getContactSchema();

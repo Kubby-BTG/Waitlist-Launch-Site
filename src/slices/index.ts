@@ -6,13 +6,15 @@ export const components = {
   blog_collections: dynamic(() => import("./BlogCollections")),
   blog_hero: dynamic(() => import("./BlogHero")),
   call_to_action: dynamic(() => import("./CallToAction")),
-  contact_form: dynamic(() => import("./ContactForm")),
   content: dynamic(() => import("./PostContent")),
   featured_blog_posts: dynamic(() => import("./FeaturedBlogPosts")),
   features: dynamic(() => import("./Features")),
   filtered_blog_collections: dynamic(() => import("./FilteredBlogCollections"), { ssr: false }),
   hero: dynamic(() => import("./Hero")),
+  //
+  contact_form: dynamic(() => import("./ContactForm")),
   map: dynamic(() => import("./Map")),
+  //
   partnership_form: dynamic(() => import("./PartnershipForm")),
   report_form: dynamic(() => import("./ReportForm")),
   social_proofs: dynamic(() => import("./Brands")),
