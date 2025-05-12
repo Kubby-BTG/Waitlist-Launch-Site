@@ -1,17 +1,14 @@
 "use client";
 
-import { createPortal } from "react-dom";
 import KubbyLogo from "../ui/kubby-logo";
 import { Dispatch, ReactNode, SetStateAction } from "react";
 import { asLink, GroupField, LinkField } from "@prismicio/client";
 import { SettingsDocumentDataNavigationItem, Simplify } from "../../../prismicio-types";
 // import { PrismicNextLink } from "@prismicio/next";
-import { Button } from "../ui/button";
-import Arrow from "../ui/arrow";
-import WaitlistForm from "../modals/waitlist-form";
 import { TransitionLink } from "../animated-ui/transition-link";
 import MountModalPortal from "../helpers/MountModalPortal";
 import useAppScrollToSection from "../../hooks/useAppScrollToSection";
+import { AppStoreButton } from "../ui/AppStoreButton";
 
 export default function MobileMenu({
   setIsOpen,
@@ -102,12 +99,7 @@ export default function MobileMenu({
               </li>
             </ul>
             <div className={"w-full"}>
-              <WaitlistForm>
-                <Button type={"button"} className={"flex w-full items-center gap-1 bg-primary hover:bg-primary/80"}>
-                  <span>Join Kubby Today</span>
-                  <Arrow className={"flex-none"} />
-                </Button>
-              </WaitlistForm>
+              <AppStoreButton />
             </div>
             {post}
           </div>
@@ -116,5 +108,3 @@ export default function MobileMenu({
     </MountModalPortal>
   );
 }
-
-//
