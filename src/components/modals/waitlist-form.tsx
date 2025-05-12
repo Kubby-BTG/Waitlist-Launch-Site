@@ -101,7 +101,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
               <form className={"flex w-full flex-col gap-4"} autoComplete={"off"}>
                 <div className="flex w-full items-center gap-8">
                   <h1 className={cn(["w-full font-display text-[2rem] uppercase leading-[2.5rem] text-primary"])}>
-                    Join Early Access
+                    Sign Up Today
                   </h1>
 
                   <AppModalDialog.CloseButton handleClick={() => setIsOpen(false)} />
@@ -168,7 +168,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
                     handleSubmit().catch(() => {});
                   }}
                 >
-                  {isBusy ? "Requesting Early Access..." : "Request Early Access"}
+                  {isBusy ? "Requesting Early Access..." : "Join Kubby"}
                 </Button>
               </form>
 

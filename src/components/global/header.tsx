@@ -15,12 +15,12 @@ export default async function Header() {
     <StickyHeaderWrapper>
       <header>
         <div className="flex items-center justify-center gap-2 bg-background-invert py-3 text-white">
-          <p className="text-sm">Issue with your delivery {">"}</p>
+          <p className="text-sm">Package stolen or other delivery issues {">"}</p>
           <TransitionLink
             href={asLink(settings.data.report_link) as string}
             className={"text-sm font-medium text-secondary underline"}
           >
-            Report it here
+            Report Here
           </TransitionLink>
         </div>
         {/* Navbar */}

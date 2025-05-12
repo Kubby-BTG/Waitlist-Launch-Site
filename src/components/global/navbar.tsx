@@ -66,7 +66,6 @@ export default function Navbar({
             ))}
           </ul>
         </div>
-
         <div className="flex flex-row gap-4 max-md:hidden">
           <WaitlistForm>
             <Button type={"button"} variant={"accent"} size={"sm"} className={"max-md:hidden"}>
