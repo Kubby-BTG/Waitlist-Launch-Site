@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import { AdvancedMarker, Map, useMap } from "@vis.gl/react-google-maps";
 
 import FilterIcon from "./filter-icon";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import PinIcon from "./pin-icon";
 import ShowDeliveryNearYouForm from "../modals/show-delivery-near-you-form";
 
@@ -15,9 +15,7 @@ import useAppFormPost from "@/hooks/useAppFormPost";
 import { IDeliveryIssue } from "../../airtable/types";
 import AppAlertDialog, { useAppAlertDialog } from "../ui/AppAlertDialog";
 import { GoogleMapService } from "../../utils/google-map-service";
-import LoadGoogleMapProvider from "./load-google-map";
 import { UtilService } from "../../utils/util-service";
-import LoadGoogleMapGeocoding from "./load-googlemap-geocoding";
 
 type IssueInfo = {
   count: number | null;
@@ -45,7 +43,7 @@ const BOUNDARY_ID = "BOUNDARY_ID_9925";
 
 const currentBoundary: Record<string, google.maps.Circle | null | undefined> = {};
 
-export default function DeliveryIssuesMap() {
+export default function DeliveryIssuesMap({ height }: { height: number }) {
   const [isShowFilterForm, setIsShowFilterForm] = useState(false);
   const [isShowShowDeliveryIssuesForm, setIsShowShowDeliveryIssues] = useState(false);
   const [deliveryIssue, setDeliveryIssue] = useState<IssueInfo>({ ...initialData });
@@ -219,95 +217,93 @@ export default function DeliveryIssuesMap() {
   }
 
   return (
-    <>
-      <div className={"relative h-[600px] w-full overflow-hidden md:h-[640px] md:rounded-2xl"}>
-        <Map
-          defaultZoom={zoomLevels.USA}
-          defaultCenter={centerPoints.USA}
-          disableDefaultUI={true}
-          mapId={CURRENT_GOOGLE_MAP_ID}
-          // gestureHandling={"greedy"}
-          id={CURRENT_GOOGLE_MAP_ID_MIAN}
+    <div className={"relative flex-1"} style={{ height }}>
+      <Map
+        defaultZoom={zoomLevels.USA}
+        defaultCenter={centerPoints.USA}
+        disableDefaultUI={true}
+        mapId={CURRENT_GOOGLE_MAP_ID}
+        // gestureHandling={"greedy"}
+        id={CURRENT_GOOGLE_MAP_ID_MIAN}
+      >
+        <>
+          {deliveryIssue.issue && (
+            <AdvancedMarker position={center}>
+              <HoverCard open={true}>
+                <HoverCardTrigger>
+                  <img src={deliveryIssue.carrierLogo || "/markers/cube.svg"} alt="" className={"size-8"} />
+                </HoverCardTrigger>
+                <HoverCardContent
+                  side={"top"}
+                  sideOffset={12}
+                  forceMount={true}
+                  className="flex h-fit w-fit flex-col items-center gap-2 rounded-lg border-none bg-black px-3 py-3 font-sans text-white"
+                >
+                  <div className="absolute bottom-0 translate-y-[80%]">
+                    <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M8.73649 7.96115C7.9687 9.30478 6.0313 9.30478 5.26351 7.96115L0.709874 -0.00772253C-0.0520192 -1.34104 0.910715 -3 2.44636 -3L11.5536 -3C13.0893 -3 14.052 -1.34103 13.2901 -0.0077215L8.73649 7.96115Z"
+                        fill="black"
+                      />
+                    </svg>
+                  </div>
+                  <div className="text-sm">
+                    {deliveryIssue.count !== null && <span className="font-bold"> {deliveryIssue.count} - </span>}
+                    {deliveryIssue.issue && <span className="font-bold"> {deliveryIssue.issue}</span>}
+                  </div>
+                  {deliveryIssue.location && (
+                    <div className="flex items-center gap-1 rounded-lg bg-[#2F3233] px-2 py-1 text-sm text-white">
+                      <PinIcon />
+                      <span>{deliveryIssue.location}</span>
+                    </div>
+                  )}
+                </HoverCardContent>
+              </HoverCard>
+            </AdvancedMarker>
+          )}
+        </>
+      </Map>
+      {/* <LoadGoogleMapGeocoding /> */}
+      <div className="absolute left-6 top-8 flex flex-wrap gap-2 md:gap-4">
+        <Button
+          className={"gap-1 rounded-full bg-background-icon text-sm font-normal hover:bg-background-icon/80"}
+          size={"sm"}
+          onClick={() => setIsShowShowDeliveryIssues(true)}
+          disabled={isBusy}
         >
-          <>
-            {deliveryIssue.issue && (
-              <AdvancedMarker position={center}>
-                <HoverCard open={true}>
-                  <HoverCardTrigger>
-                    <img src={deliveryIssue.carrierLogo || "/markers/cube.svg"} alt="" className={"size-8"} />
-                  </HoverCardTrigger>
-                  <HoverCardContent
-                    side={"top"}
-                    sideOffset={12}
-                    forceMount={true}
-                    className="flex h-fit w-fit flex-col items-center gap-2 rounded-lg border-none bg-black px-3 py-3 font-sans text-white"
-                  >
-                    <div className="absolute bottom-0 translate-y-[80%]">
-                      <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M8.73649 7.96115C7.9687 9.30478 6.0313 9.30478 5.26351 7.96115L0.709874 -0.00772253C-0.0520192 -1.34104 0.910715 -3 2.44636 -3L11.5536 -3C13.0893 -3 14.052 -1.34103 13.2901 -0.0077215L8.73649 7.96115Z"
-                          fill="black"
-                        />
-                      </svg>
-                    </div>
-                    <div className="text-sm">
-                      {deliveryIssue.count !== null && <span className="font-bold"> {deliveryIssue.count} - </span>}
-                      {deliveryIssue.issue && <span className="font-bold"> {deliveryIssue.issue}</span>}
-                    </div>
-                    {deliveryIssue.location && (
-                      <div className="flex items-center gap-1 rounded-lg bg-[#2F3233] px-2 py-1 text-sm text-white">
-                        <PinIcon />
-                        <span>{deliveryIssue.location}</span>
-                      </div>
-                    )}
-                  </HoverCardContent>
-                </HoverCard>
-              </AdvancedMarker>
-            )}
-          </>
-        </Map>
-        {/* <LoadGoogleMapGeocoding /> */}
-        <div className="absolute left-6 top-8 flex flex-wrap gap-2 md:gap-4">
-          <Button
-            className={"gap-1 rounded-full bg-background-icon text-sm font-normal hover:bg-background-icon/80"}
-            size={"sm"}
-            onClick={() => setIsShowShowDeliveryIssues(true)}
-            disabled={isBusy}
-          >
-            <PinIcon />
-            Show delivery issues near you
-          </Button>
+          <PinIcon />
+          Show delivery issues near you
+        </Button>
 
-          <Button
-            className={"gap-1 rounded-full bg-background-icon text-sm font-normal hover:bg-background-icon/80"}
-            size={"sm"}
-            onClick={() => setIsShowFilterForm(true)}
-            disabled={isBusy}
-          >
-            <FilterIcon />
-            Filter issues
-          </Button>
+        <Button
+          className={"gap-1 rounded-full bg-background-icon text-sm font-normal hover:bg-background-icon/80"}
+          size={"sm"}
+          onClick={() => setIsShowFilterForm(true)}
+          disabled={isBusy}
+        >
+          <FilterIcon />
+          Filter issues
+        </Button>
 
-          {/* Modals */}
-          <FilterIssuesForm
-            handleDone={(filters) => {
-              handleFindByManyParams(filters);
-            }}
-            isBusy={isBusy}
-            setIsOpen={setIsShowFilterForm}
-            isOpen={isShowFilterForm}
-          />
+        {/* Modals */}
+        <FilterIssuesForm
+          handleDone={(filters) => {
+            handleFindByManyParams(filters);
+          }}
+          isBusy={isBusy}
+          setIsOpen={setIsShowFilterForm}
+          isOpen={isShowFilterForm}
+        />
 
-          <ShowDeliveryNearYouForm
-            isBusy={isBusy}
-            handleDone={(zipcode) => zipcode && handleFindByManyParams({ zipcode })}
-            isOpen={isShowShowDeliveryIssuesForm}
-            setIsOpen={setIsShowShowDeliveryIssues}
-          />
-        </div>
-
-        <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertOptions} />
+        <ShowDeliveryNearYouForm
+          isBusy={isBusy}
+          handleDone={(zipcode) => zipcode && handleFindByManyParams({ zipcode })}
+          isOpen={isShowShowDeliveryIssuesForm}
+          setIsOpen={setIsShowShowDeliveryIssues}
+        />
       </div>
-    </>
+
+      <AppAlertDialog handleCancel={() => closeAlertDialog()} open={isAlertOpen} config={alertOptions} />
+    </div>
   );
 }
