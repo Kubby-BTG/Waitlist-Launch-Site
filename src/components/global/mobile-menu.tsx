@@ -8,7 +8,7 @@ import { SettingsDocumentDataNavigationItem, Simplify } from "../../../prismicio
 import { TransitionLink } from "../animated-ui/transition-link";
 import MountModalPortal from "../helpers/MountModalPortal";
 import useAppScrollToSection from "../../hooks/useAppScrollToSection";
-import { AppStoreButton } from "../ui/AppStoreButton";
+import { AppleStoreButton } from "../ui/AppleStoreButton";
 
 export default function MobileMenu({
   setIsOpen,
@@ -99,7 +99,7 @@ export default function MobileMenu({
               </li>
             </ul>
             <div className={"w-full"}>
-              <AppStoreButton />
+              <AppleStoreButton />
             </div>
             {post}
           </div>

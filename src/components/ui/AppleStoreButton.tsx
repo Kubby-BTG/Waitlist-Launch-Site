@@ -4,10 +4,10 @@ import { Button } from "./button";
 import { cn } from "../../lib/utils";
 import WaitlistForm from "../modals/waitlist-form";
 
-export function AppStoreButton({ className }: { className?: string }) {
+export function AppleStoreButton({ className }: { className?: string }) {
   return (
     <WaitlistForm>
-      <Button type="button" variant={"ghost"} className={cn([``, className])}>
+      <Button type="button" variant={"ghost"} className={cn([className, `m-0 p-0`])}>
         <img src="/images/apple-store.png" />
       </Button>
     </WaitlistForm>

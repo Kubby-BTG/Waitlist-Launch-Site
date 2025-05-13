@@ -1,7 +1,7 @@
 import HeroVideo from "@/components/animated-ui/hero-video";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
-import { AppStoreButton } from "../../components/ui/AppStoreButton";
+import { AppleStoreButton } from "../../components/ui/AppleStoreButton";
 
 /**
  * Props for `Hero`.
@@ -39,7 +39,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
           </div>
 
           <div className={"mt-4"}>
-            <AppStoreButton />
+            <AppleStoreButton />
           </div>
         </div>
 

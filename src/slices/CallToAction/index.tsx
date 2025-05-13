@@ -1,7 +1,7 @@
 import { Content } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
 import { SliceComponentProps } from "@prismicio/react";
-import { AppStoreButton } from "../../components/ui/AppStoreButton";
+import { AppleStoreButton } from "../../components/ui/AppleStoreButton";
 
 /**
  * Props for `CallToAction`.
@@ -20,7 +20,7 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
           <div className="flex w-full flex-col gap-2 p-6 md:flex-row md:items-center md:p-8">
             <p className={"w-full text-lg font-medium leading-6 text-white"}>{slice.primary.text}</p>
             <div>
-              <AppStoreButton />
+              <AppleStoreButton />
             </div>
           </div>
         </div>
