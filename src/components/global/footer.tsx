@@ -6,7 +6,7 @@ import { TransitionLink } from "../animated-ui/transition-link";
 import { asLink } from "@prismicio/client";
 import { AppScrollToTopButton } from "../ui/AppScrollToTopButton";
 import SalesIQ from "../helpers/SalesIQ";
-import { AppStoreButton } from "../ui/AppStoreButton";
+import { AppleStoreButton } from "../ui/AppleStoreButton";
 
 export default async function Footer() {
   const client = createClient();
@@ -40,7 +40,7 @@ export default async function Footer() {
               />
 
               <div>
-                <AppStoreButton />
+                <AppleStoreButton />
               </div>
             </div>
             {/* Mobile Nav */}
@@ -131,7 +131,7 @@ export default async function Footer() {
                 />
 
                 <div className={"mt-4"}>
-                  <AppStoreButton />
+                  <AppleStoreButton />
                 </div>
               </div>
 
