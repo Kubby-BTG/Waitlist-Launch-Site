@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectSeparator } from "@/components/ui/select";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
-import { Fragment, useEffect, useState, useRef } from "react";
+import { Fragment, useEffect, useState } from "react";
 import useAppFormPost from "../../hooks/useAppFormPost";
 import { IDeliveryIssue } from "../../airtable/types";
 import { ZodValidationHelper } from "../../utils/zod-validation-helper";
@@ -18,9 +18,6 @@ import AppAlertDialog, { useAppAlertDialog } from "../../components/ui/AppAlertD
 import useAppDebounceValue from "../../hooks/useAppDebounceValue";
 import { GoogleMapService } from "../../utils/google-map-service";
 import { cn } from "../../lib/utils";
-import LoadGoogleMapProvider from "../../components/map/load-google-map";
-import DeliveryIssuesMap from "../../components/map/delivery-issues-map";
-import LoadGoogleMapGeocoding from "../../components/map/load-googlemap-geocoding";
 
 function FormRequiredTag() {
   return <span className="select-none pl-[2px] font-bold text-danger">*</span>;
@@ -300,38 +297,27 @@ const ReportFormBase = (): JSX.Element => {
   );
 };
 
+/**
+ * Component for "ReportForm" Slices.
+ */
 const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
-  const div1Ref = useRef<HTMLDivElement>(null);
-  const [height, setHeight] = useState(0);
-
-  useEffect(() => {
-    const updateHeight = () => {
-      const newHeight = Math.max(div1Ref?.current?.offsetHeight || 0, 30);
-      setHeight(newHeight);
-    };
-
-    updateHeight();
-    window.addEventListener("resize", updateHeight);
-
-    return () => window.removeEventListener("resize", updateHeight);
-  }, []);
-
   return (
-    <div className="flex flex-col md:flex-row">
+    <>
       <section
         id={"report-delivery-issue"}
         data-slice-type={slice.slice_type}
         data-slice-variation={slice.variation}
-        className={"relative bg-primary md:w-1/2"}
-        ref={div1Ref}
+        className={"relative bg-background pt-12 md:py-32"}
       >
         <div
           className={cn([
             "relative mx-auto w-full max-w-[44rem] bg-primary",
             "px-8 pb-[8.5rem] pt-[4.5rem]",
-            "md:overflow-visible md:pb-[14rem] md:pt-20",
+            "md:overflow-visible md:rounded-3xl md:pb-[14rem] md:pt-20",
           ])}
         >
+          {/* Decorations */}
+
           <img
             src={"/gifs/kube_on_pen_greenhair.gif"}
             alt=""
@@ -413,14 +399,7 @@ const ReportForm = ({ slice }: ReportFormProps): JSX.Element => {
           />
         </div>
       </section>
-
-      <section className="max-md:px-0 md:w-1/2">
-        <LoadGoogleMapProvider>
-          <DeliveryIssuesMap height={height} />
-          <LoadGoogleMapGeocoding />
-        </LoadGoogleMapProvider>
-      </section>
-    </div>
+    </>
   );
 };
 
