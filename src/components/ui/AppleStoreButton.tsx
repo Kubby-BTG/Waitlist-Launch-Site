@@ -3,12 +3,14 @@
 import { Button } from "./button";
 import { cn } from "../../lib/utils";
 import WaitlistForm from "../modals/waitlist-form";
+import AppleStoreIcon from "./AppleStoreIcon";
 
-export function AppleStoreButton({ className }: { className?: string }) {
+export function AppleStoreButton({ className, variant }: { className?: string; variant?: "primary" | "secondary" | "accent" }) {
   return (
     <WaitlistForm>
       <Button type="button" variant={"ghost"} className={cn([className, `m-0 p-0`])}>
-        <img src="/images/apple-store.png" />
+        {/* <img src="/images/apple-store.png" /> */}
+        <AppleStoreIcon variant={variant || "accent"} width={160} />
       </Button>
     </WaitlistForm>
   );

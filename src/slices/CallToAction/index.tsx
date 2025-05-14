@@ -13,16 +13,18 @@ export type CallToActionProps = SliceComponentProps<Content.CallToActionSlice>;
  */
 const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
   return (
-    <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className={"bg-background py-16"}>
-      <div className="container">
-        <div className={"flex flex-col overflow-hidden rounded-2xl bg-primary md:h-24 md:flex-row md:rounded-3xl"}>
-          <PrismicNextImage field={slice.primary.image} className={"h-36 w-full object-cover md:w-60"} alt="" />
-          <div className="flex w-full flex-col gap-2 p-6 md:flex-row md:items-center md:p-8">
-            <p className={"w-full text-lg font-medium leading-6 text-white"}>{slice.primary.text}</p>
-            <div>
-              <AppleStoreButton />
-            </div>
+    <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className={"bg-background-secondary"}>
+      <div className="flex w-full flex-row justify-between">
+        <div className={"flex flex-col justify-center gap-6 pl-36"}>
+          <div>
+            <h1 className={"heading-2 text-primary [font-size:_clamp(2rem,6.548vw,4.875rem)]"}>{slice.primary.text}</h1>
           </div>
+          <div>
+            <AppleStoreButton variant="primary" />
+          </div>
+        </div>
+        <div className={"w-[220px] bg-primary"}>
+          <img src="/images/phone-hand-02.png" className="-ml-[100px]" height={200} />
         </div>
       </div>
     </section>
