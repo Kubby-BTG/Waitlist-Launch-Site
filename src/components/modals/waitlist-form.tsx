@@ -80,7 +80,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
         onClick={() => {
           setIsOpen(true);
         }}
-        className="cursor-pointer bg-transparent"
+        className="inline-block cursor-pointer bg-transparent"
         role="button"
       >
         <div className="pointer-events-none cursor-none">{children}</div>
