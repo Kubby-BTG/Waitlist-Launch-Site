@@ -69,7 +69,7 @@ export default function Navbar({
         <div className="flex flex-row gap-4 max-md:hidden">
           <WaitlistForm>
             <Button type={"button"} variant={"accent"} size={"sm"} className={"max-md:hidden"}>
-              Request Early Access
+              Become a Space Partner
             </Button>
           </WaitlistForm>
 

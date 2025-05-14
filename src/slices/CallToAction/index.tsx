@@ -13,7 +13,11 @@ export type CallToActionProps = SliceComponentProps<Content.CallToActionSlice>;
  */
 const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
   return (
-    <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className={"bg-background-secondary"}>
+    <section
+      data-slice-type={slice.slice_type}
+      data-slice-variation={slice.variation}
+      className={"hidden bg-background-secondary md:block"}
+    >
       <div className="flex w-full flex-row justify-between">
         <div className={"flex flex-col justify-center gap-6 pl-36"}>
           <div>
