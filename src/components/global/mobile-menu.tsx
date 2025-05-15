@@ -101,11 +101,9 @@ export default function MobileMenu({
             </ul>
             <div className={"mt-1 flex w-full flex-col gap-5"}>
               <div>
-                <WaitlistForm className="block">
-                  <Button type={"button"} variant={"default"} size={"sm"} className="w-full">
-                    Become a Space Partner
-                  </Button>
-                </WaitlistForm>
+                <Button type={"button"} variant={"default"} size={"sm"} className="w-full">
+                  Become a Space Partner
+                </Button>
               </div>
 
               <div>
