@@ -4,11 +4,12 @@ import KubbyLogo from "../ui/kubby-logo";
 import { Dispatch, ReactNode, SetStateAction } from "react";
 import { asLink, GroupField, LinkField } from "@prismicio/client";
 import { SettingsDocumentDataNavigationItem, Simplify } from "../../../prismicio-types";
-// import { PrismicNextLink } from "@prismicio/next";
 import { TransitionLink } from "../animated-ui/transition-link";
 import MountModalPortal from "../helpers/MountModalPortal";
 import useAppScrollToSection from "../../hooks/useAppScrollToSection";
 import { AppleStoreButton } from "../ui/AppleStoreButton";
+import WaitlistForm from "../modals/waitlist-form";
+import { Button } from "../ui/button";
 
 export default function MobileMenu({
   setIsOpen,
@@ -98,8 +99,24 @@ export default function MobileMenu({
                 </TransitionLink>
               </li>
             </ul>
-            <div className={"w-full"}>
-              <AppleStoreButton />
+            <div className={"mt-1 flex w-full flex-col gap-5"}>
+              <div>
+                <WaitlistForm className="block">
+                  <Button type={"button"} variant={"default"} size={"sm"} className="w-full">
+                    Become a Space Partner
+                  </Button>
+                </WaitlistForm>
+              </div>
+
+              <div>
+                <Button type={"button"} variant={"outline"} size={"sm"} className="w-full">
+                  Login to Space
+                </Button>
+              </div>
+
+              <div>
+                <AppleStoreButton variant="primary" />
+              </div>
             </div>
             {post}
           </div>
