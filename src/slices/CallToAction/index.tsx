@@ -28,7 +28,7 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
           </div>
         </div>
         <div className={"w-[220px] bg-primary"}>
-          <img src="/images/phone-hand-02.png" className="-ml-[100px]" height={200} />
+          <img src="/images/phone-hand-03.gif" className="-ml-[100px]" height={200} />
         </div>
       </div>
     </section>

@@ -25,7 +25,7 @@ function FormRequiredTag() {
   return <span className="select-none pl-[2px] font-bold text-danger">*</span>;
 }
 
-export default function WaitlistForm({ children }: { children: ReactNode }) {
+export default function WaitlistForm({ children, className }: { children: ReactNode; className?: string }) {
   const [isSent, setIsSent] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState<Partial<IWaitList>>({ ...initialValue });
@@ -80,7 +80,7 @@ export default function WaitlistForm({ children }: { children: ReactNode }) {
         onClick={() => {
           setIsOpen(true);
         }}
-        className="inline-block cursor-pointer bg-transparent"
+        className={cn(["inline-block cursor-pointer bg-transparent", className])}
         role="button"
       >
         <div className="pointer-events-none cursor-none">{children}</div>
