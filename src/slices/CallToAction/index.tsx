@@ -32,7 +32,7 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
           </div>
         </div>
         <div className={"bg-primary md:w-[150px]"}>
-          <img src="/images/phone-hand-03.gif" className="-mt-[325px] md: ml-[150px] md:-mt-0" width={180} height={200} />
+          <img src="/images/phone-hand-03.gif" className="-mt-[300px] md: ml-[150px] md:-mt-0" width={180} height={200} />
         </div>
       </div>
     </section>
