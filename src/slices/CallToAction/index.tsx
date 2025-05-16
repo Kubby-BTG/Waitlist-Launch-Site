@@ -17,7 +17,7 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
       <div className="flex w-full flex-col md:flex-row md:justify-between">
         <div className={"container flex flex-col justify-center gap-6 pb-[100px] md:pb-3"}>
           <div>
-            <h1 className={"heading-2 text-[#003928] [font-size:_clamp(2rem,6.548vw,4.875rem)]"}>{slice.primary.text}</h1>
+            <h1 className={"heading-2 text-[#003928] pt-6 md:pt-0 [font-size:_clamp(2rem,6.548vw,4.875rem)]"}>{slice.primary.text}</h1>
           </div>
 
           <div>
