@@ -31,7 +31,7 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
             <AppleStoreButton variant="primary" />
           </div>
         </div>
-        <div className={"bg-primary md:w-[220px]"}>
+        <div className={"bg-primary md:w-[150px]"}>
           <img src="/images/phone-hand-03.gif" className="-mt-[100px] md:-ml-[100px] md:-mt-0" height={200} />
         </div>
       </div>
