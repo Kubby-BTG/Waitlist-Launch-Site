@@ -20,8 +20,7 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
             <h1 className={"heading-2 text-primary [font-size:_clamp(2rem,6.548vw,4.875rem)]"}>{slice.primary.text}</h1>
           </div>
 
-          <div>
-            <div className="cta-mobile-padding">
+          <div className="cta-mobile-padding">
             <p className={"w-full text-lg font-medium leading-6 text-black pt-4 md:pt-4"}>
               Shop, track, & manage your orders in one place. Get discounts, stop delivery issues, and get unique insights to make
               better purchases and shop the way you live.
