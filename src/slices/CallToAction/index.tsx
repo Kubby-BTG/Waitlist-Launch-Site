@@ -15,7 +15,7 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
   return (
     <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className={"bg-background-secondary"}>
       <div className="flex w-full flex-col md:flex-row md:justify-between">
-        <div className={"container flex flex-col justify-center gap-6 pb-[100px] md:pb-1"}>
+        <div className={"container flex flex-col justify-center gap-6 pb-[100px] md:pb-3"}>
           <div>
             <h1 className={"heading-2 text-primary [font-size:_clamp(2rem,6.548vw,4.875rem)]"}>{slice.primary.text}</h1>
           </div>
