@@ -22,7 +22,6 @@ const CallToAction = ({ slice }: CallToActionProps): JSX.Element => {
 
           <div>
             <div className="andong-mobile-spacing">andong</div>
-            <div>
             <p className={"w-full text-lg font-medium leading-6 text-black pt-4 md:pt-4"}>
               Shop, track, & manage your orders in one place. Get discounts, stop delivery issues, and get unique insights to make
               better purchases and shop the way you live.
